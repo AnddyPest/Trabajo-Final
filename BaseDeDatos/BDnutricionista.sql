@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2024 a las 21:00:56
+-- Tiempo de generación: 14-10-2024 a las 21:43:18
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -31,7 +31,8 @@ CREATE TABLE `comida` (
   `idComida` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `detalle` varchar(200) DEFAULT NULL,
-  `cantCalorias` int(11) NOT NULL
+  `cantCalorias` int(11) NOT NULL,
+  `estado` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -47,7 +48,8 @@ CREATE TABLE `dieta` (
   `fechaFinal` date DEFAULT NULL,
   `pesoInicial` double NOT NULL,
   `pesoFinal` double DEFAULT NULL,
-  `idPaciente` int(11) DEFAULT NULL
+  `idPaciente` int(11) DEFAULT NULL,
+  `estado` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -59,7 +61,8 @@ CREATE TABLE `dieta` (
 CREATE TABLE `dietacomida` (
   `idDietaComida` int(11) NOT NULL,
   `idComida` int(11) NOT NULL,
-  `idDieta` int(11) NOT NULL
+  `idDieta` int(11) NOT NULL,
+  `estado` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -73,7 +76,8 @@ CREATE TABLE `paciente` (
   `nombre` varchar(200) NOT NULL,
   `dni` int(11) NOT NULL,
   `domicilio` varchar(250) NOT NULL,
-  `telefono` int(11) NOT NULL
+  `telefono` varchar(20) NOT NULL,
+  `estado` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
