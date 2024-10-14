@@ -165,7 +165,22 @@ public class PacienteData {
     
     //DELETE
     //borrar paciente por id
-       
+    public void borrarPacientePorId(int id){
+        
+        try {
+            String Query = "DELETE FROM paciente WHERE paciente.idPaciente = ?";
+            PreparedStatement ps = conexion.prepareStatement(Query);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+            Herramientas.mostrarMensajeCorrecto("borrarPacientePorId", "Paciente eliminado con exito");
+                
+            
+        } catch (SQLException ex) {
+            Herramientas.mostrarMensajeError(ex, "BorrarPacientePorId", "PacienteData", "168");
+        }
+        
+    }
     
     
 }
