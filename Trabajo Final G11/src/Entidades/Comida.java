@@ -3,25 +3,28 @@ package Entidades;
 
 public class Comida {
     
-    int idComida = -1;
+    int idComida;
     String nombre;
     String detalle;
     int cantidadCalorias;
+    boolean estadoComida;
 
     public Comida() {
     }
 
-    public Comida(String nombre, String detalle, int cantidadCalorias) {
+    public Comida(String nombre, String detalle, int cantidadCalorias, boolean estadoComida) {
         this.nombre = nombre;
         this.detalle = detalle;
         this.cantidadCalorias = cantidadCalorias;
+        this.estadoComida = estadoComida;
     }
 
-    public Comida(int idComida, String nombre, String detalle, int cantidadCalorias) {
+    public Comida(int idComida, String nombre, String detalle, int cantidadCalorias, boolean estadoComida) {
         this.idComida = idComida;
         this.nombre = nombre;
         this.detalle = detalle;
         this.cantidadCalorias = cantidadCalorias;
+        this.estadoComida = estadoComida;
     }
 
     public int getIdComida() {
@@ -54,6 +57,14 @@ public class Comida {
 
     public void setCantidadCalorias(int cantidadCalorias) {
         this.cantidadCalorias = cantidadCalorias;
+    }
+
+    public boolean isEstadoComida() {
+        return estadoComida;
+    }
+
+    public void setEstadoComida(boolean estadoComida) {
+        this.estadoComida = estadoComida;
     }
     
     

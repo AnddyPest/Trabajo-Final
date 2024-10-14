@@ -5,39 +5,44 @@ import java.time.LocalDate;
 
 public class Dieta {
     
-    int idDieta = -1;
+    int idDieta;
     String nombre;
     Paciente paciente;
     LocalDate fechaInicio;
     double pesoInicial;
     double pesoFinal;
     LocalDate fechaFinal;
+    boolean estadoDieta;
 
     public Dieta() {
     }
 
-    public Dieta(String nombre, Paciente paciente) {
+    public Dieta(String nombre, Paciente paciente, boolean esrtadoDieta) {
         this.nombre = nombre;
         this.paciente = paciente;
+        this.estadoDieta = esrtadoDieta;
     }
 
-    public Dieta(String nombre, Paciente paciente, LocalDate fechaInicio, double pesoInicial) {
+    
+    public Dieta(String nombre, Paciente paciente, LocalDate fechaInicio, double pesoInicial, boolean estadoDieta) {
         this.nombre = nombre;
         this.paciente = paciente;
         this.fechaInicio = fechaInicio;
         this.pesoInicial = pesoInicial;
+        this.estadoDieta = estadoDieta;
     }
 
-    public Dieta(String nombre, Paciente paciente, LocalDate fechaInicio, double pesoInicial, double pesoFinal, LocalDate fechaFinal) {
+    public Dieta(String nombre, Paciente paciente, LocalDate fechaInicio, double pesoInicial, double pesoFinal, LocalDate fechaFinal, boolean estadoDieta) {
         this.nombre = nombre;
         this.paciente = paciente;
         this.fechaInicio = fechaInicio;
         this.pesoInicial = pesoInicial;
         this.pesoFinal = pesoFinal;
         this.fechaFinal = fechaFinal;
+        this.estadoDieta = estadoDieta;
     }
 
-    public Dieta(int idDieta, String nombre, Paciente paciente, LocalDate fechaInicio, double pesoInicial, double pesoFinal, LocalDate fechaFinal) {
+    public Dieta(int idDieta, String nombre, Paciente paciente, LocalDate fechaInicio, double pesoInicial, double pesoFinal, LocalDate fechaFinal, boolean estadoDieta) {
         this.idDieta = idDieta;
         this.nombre = nombre;
         this.paciente = paciente;
@@ -45,6 +50,7 @@ public class Dieta {
         this.pesoInicial = pesoInicial;
         this.pesoFinal = pesoFinal;
         this.fechaFinal = fechaFinal;
+        this.estadoDieta = estadoDieta;
     }
 
     public int getIdDieta() {
@@ -101,6 +107,14 @@ public class Dieta {
 
     public void setFechaFinal(LocalDate fechaFinal) {
         this.fechaFinal = fechaFinal;
+    }
+
+    public boolean isEstadoDieta() {
+        return estadoDieta;
+    }
+
+    public void setEstadoDieta(boolean estadoDieta) {
+        this.estadoDieta = estadoDieta;
     }
     
     
