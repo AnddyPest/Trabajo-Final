@@ -47,7 +47,7 @@ public class PacienteData {
             }
         }
         if(!validado){
-            throw new Exception("Error en validacion");
+            throw new SQLException("Error en validacion || Linea: 50");
         } else{
             try {
                 String query = "Insert into paciente( nombre, dni, domicilio, telefono, estado ) values( ? , ? , ? , ?, ? )";
