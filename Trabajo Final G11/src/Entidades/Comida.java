@@ -66,6 +66,11 @@ public class Comida {
     public void setEstadoComida(boolean estadoComida) {
         this.estadoComida = estadoComida;
     }
+
+    @Override
+    public String toString() {
+        return "Datos de Comida:" + "idComida=" + idComida + ", nombre=" + nombre + ", detalle=" + detalle + ", cantidadCalorias=" + cantidadCalorias + ", estadoComida=" + estadoComida ;
+    }
     
     
     

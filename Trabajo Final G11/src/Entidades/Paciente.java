@@ -90,6 +90,11 @@ public class Paciente {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "Datos del Paciente: " + "idPaciente=" + idPaciente + ", nombre=" + nombre + ", dni=" + dni + ", domicilio=" + domicilio + ", telefono=" + telefono + ", estado=" + estado ;
+    }
     
     
     
