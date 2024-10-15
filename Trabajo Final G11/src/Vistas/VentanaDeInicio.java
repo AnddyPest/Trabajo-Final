@@ -21,7 +21,6 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuPacientes = new javax.swing.JMenu();
         menuNuevoPaciente = new javax.swing.JMenuItem();
         menuEditarPaciente = new javax.swing.JMenuItem();
-        menuBorrarPaciente = new javax.swing.JMenuItem();
         menuListarPacientes = new javax.swing.JMenuItem();
         menuAltaBajaPaciente = new javax.swing.JMenuItem();
         menuAsignarDieta = new javax.swing.JMenuItem();
@@ -72,16 +71,13 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         });
         menuPacientes.add(menuNuevoPaciente);
 
-        menuEditarPaciente.setText("Editar Paciente");
+        menuEditarPaciente.setText("Editar/Borrar Paciente");
         menuEditarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuEditarPacienteActionPerformed(evt);
             }
         });
         menuPacientes.add(menuEditarPaciente);
-
-        menuBorrarPaciente.setText("Borrar Paciente");
-        menuPacientes.add(menuBorrarPaciente);
 
         menuListarPacientes.setText("Listar Pacientes");
         menuPacientes.add(menuListarPacientes);
@@ -238,7 +234,6 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuAsignarDieta;
     private javax.swing.JMenuItem menuBorrarComida;
     private javax.swing.JMenuItem menuBorrarDieta;
-    private javax.swing.JMenuItem menuBorrarPaciente;
     private javax.swing.JMenu menuComidas;
     private javax.swing.JMenu menuDietas;
     private javax.swing.JMenuItem menuEditarComida;

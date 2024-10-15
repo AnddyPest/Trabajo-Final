@@ -30,16 +30,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuEditarPaciente">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Editar Paciente"/>
+                <Property name="text" type="java.lang.String" value="Editar/Borrar Paciente"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuEditarPacienteActionPerformed"/>
               </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuBorrarPaciente">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Borrar Paciente"/>
-              </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuListarPacientes">
               <Properties>
