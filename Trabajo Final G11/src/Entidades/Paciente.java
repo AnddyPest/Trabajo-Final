@@ -19,8 +19,16 @@ public class Paciente {
         this.domicilio = domicilio;
         this.telefono = telefono;
     }
+
+    public Paciente(int idPaciente, String nombre, int dni, String domicilio, String telefono) {
+        this.idPaciente = idPaciente;
+        this.nombre = nombre;
+        this.dni = dni;
+        this.domicilio = domicilio;
+        this.telefono = telefono;
+    }
     
-    
+        
 
     public Paciente(String nombre, int dni, String domicilio, String telefono, boolean estado) {
         this.nombre = nombre;

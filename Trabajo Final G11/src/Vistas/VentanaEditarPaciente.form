@@ -74,8 +74,8 @@
                           <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
                           <Component id="jLabel1" alignment="1" max="32767" attributes="0"/>
                           <Component id="jLabel2" alignment="1" pref="148" max="32767" attributes="0"/>
-                          <Component id="btnNw" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnSave" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnSelect" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnActualizar" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -93,9 +93,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel7" min="-2" pref="138" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnNw" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="btnSelect" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnSave" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="btnActualizar" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnExit" min="-2" pref="51" max="-2" attributes="0"/>
                       <EmptySpace pref="155" max="32767" attributes="0"/>
@@ -150,21 +150,21 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnNw">
+            <Component class="javax.swing.JButton" name="btnSelect">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Seleccionar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNwActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelectActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnSave">
+            <Component class="javax.swing.JButton" name="btnActualizar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Actualizar"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnExit">
@@ -524,7 +524,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel5" min="-2" pref="180" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtErrorName1" max="32767" attributes="0"/>
+                                  <Component id="txtErrorDni" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
@@ -541,7 +541,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtErrorName1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtErrorDni" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
@@ -594,7 +594,7 @@
                     <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDniKeyTyped"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="txtErrorName1">
+                <Component class="javax.swing.JLabel" name="txtErrorDni">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
@@ -628,7 +628,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel6" min="-2" pref="180" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="txtErrorName2" max="32767" attributes="0"/>
+                                          <Component id="txtErrorDire" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -647,7 +647,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtErrorName2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtErrorDire" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jSeparator4" min="-2" pref="10" max="-2" attributes="0"/>
@@ -700,7 +700,7 @@
                     <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDireKeyTyped"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="txtErrorName2">
+                <Component class="javax.swing.JLabel" name="txtErrorDire">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
@@ -734,7 +734,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel8" min="-2" pref="180" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="txtErrorName3" max="32767" attributes="0"/>
+                                          <Component id="txtErrorTel" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -753,7 +753,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtErrorName3" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtErrorTel" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jSeparator5" min="-2" pref="10" max="-2" attributes="0"/>
@@ -806,7 +806,7 @@
                     <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTelefonoKeyTyped"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="txtErrorName3">
+                <Component class="javax.swing.JLabel" name="txtErrorTel">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
