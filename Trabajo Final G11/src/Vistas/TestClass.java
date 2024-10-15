@@ -135,5 +135,9 @@ public class TestClass {
         //Borrar Comida por id // FUNCIONA
         //comidaData.borrarComidaPorId(3);
         
+        ////////////////////////////
+        //////Testeo Dietas/////////
+        ////////////////////////////
+        
     }
 }
