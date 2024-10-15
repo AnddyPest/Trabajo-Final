@@ -5,10 +5,10 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 
-public class Connection {
-    private static Connection conexion = null;
+public class Conexion {
+    private static Conexion conexion = null;
     
-    private Connection(){
+    private Conexion(){
         
         try {
             Class.forName("org.mariadb.jdbc.Driver");
@@ -21,7 +21,7 @@ public class Connection {
         java.sql.Connection con = null;
         if(conexion == null){
             
-            conexion = new Connection();
+            conexion = new Conexion();
         }
         
         try {
