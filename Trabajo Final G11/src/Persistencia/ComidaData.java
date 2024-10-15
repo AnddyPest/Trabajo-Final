@@ -172,8 +172,7 @@ public class ComidaData {
     }
     
         
-    //DELETE
-    
+    //DELETE    
      //buscar por estado individual
     public boolean buscarEstadoPorId(int id){
         Comida resultadoEstado = null;
