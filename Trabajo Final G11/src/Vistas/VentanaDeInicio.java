@@ -143,7 +143,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
 
     private void menuNuevoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevoPacienteActionPerformed
         desktop.removeAll();
-        NuevoPaciente nuevoPaciente =new NuevoPaciente();
+        VentalaNuevoPaciente nuevoPaciente =new VentalaNuevoPaciente();
         desktop.add(nuevoPaciente); 
         desktop.moveToFront(nuevoPaciente);
         nuevoPaciente.addComponentListener(new ComponentAdapter() {

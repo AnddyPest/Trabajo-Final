@@ -7,10 +7,10 @@ import java.sql.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class NuevoPaciente extends javax.swing.JInternalFrame {
+public class VentalaNuevoPaciente extends javax.swing.JInternalFrame {
     PacienteData pacienteData;
 
-    public NuevoPaciente() {
+    public VentalaNuevoPaciente() {
         initComponents();
         Connection con = Conexion.getConexion();
         pacienteData = new PacienteData(con);
@@ -510,7 +510,7 @@ public class NuevoPaciente extends javax.swing.JInternalFrame {
                     txtTelefono.setEditable(false);
                     btnSave.setEnabled(false);
                 } catch (Exception ex) {
-                    Logger.getLogger(NuevoPaciente.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(VentalaNuevoPaciente.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                 
