@@ -2,17 +2,16 @@ package Vistas;
 
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 
 public class VentanaDeInicio extends javax.swing.JFrame {
 
-    
     public VentanaDeInicio() {
         initComponents();
         setExtendedState(VentanaDeInicio.MAXIMIZED_BOTH);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -71,6 +70,11 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuPacientes.add(menuNuevoPaciente);
 
         menuEditarPaciente.setText("Editar Paciente");
+        menuEditarPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEditarPacienteActionPerformed(evt);
+            }
+        });
         menuPacientes.add(menuEditarPaciente);
 
         menuBorrarPaciente.setText("Borrar Paciente");
@@ -143,18 +147,19 @@ public class VentanaDeInicio extends javax.swing.JFrame {
 
     private void menuNuevoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevoPacienteActionPerformed
         desktop.removeAll();
-        VentalaNuevoPaciente nuevoPaciente =new VentalaNuevoPaciente();
-        desktop.add(nuevoPaciente); 
-        desktop.moveToFront(nuevoPaciente);
+        VentanaNuevoPaciente nuevoPaciente = new VentanaNuevoPaciente();
+        desktop.add(nuevoPaciente);
+
         nuevoPaciente.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
                 nuevoPaciente.setLocation(
-                    (desktop.getWidth() - nuevoPaciente.getWidth()) / 2,
-                    (desktop.getHeight() - nuevoPaciente.getHeight()) / 2
+                        (desktop.getWidth() - nuevoPaciente.getWidth()) / 2,
+                        (desktop.getHeight() - nuevoPaciente.getHeight()) / 2
                 );
             }
         });
+        desktop.moveToFront(nuevoPaciente);
         nuevoPaciente.setVisible(true);
         desktop.revalidate();
         desktop.repaint();
@@ -164,9 +169,29 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_menuExitActionPerformed
 
-    
+    private void menuEditarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditarPacienteActionPerformed
+        desktop.removeAll();
+        VentanaEditarPaciente editarPaciente = new VentanaEditarPaciente();
+        desktop.add(editarPaciente);
+
+        editarPaciente.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                editarPaciente.setLocation((desktop.getWidth() - editarPaciente.getWidth()) / 2,
+                        (desktop.getHeight() - editarPaciente.getHeight()) / 2
+                );
+            }
+        });
+        desktop.moveToFront(editarPaciente);
+        editarPaciente.setVisible(true);
+        desktop.revalidate();
+        desktop.repaint();
+
+
+    }//GEN-LAST:event_menuEditarPacienteActionPerformed
+
     public static void main(String args[]) {
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -183,9 +208,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaDeInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-       
 
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentanaDeInicio().setVisible(true);
@@ -214,4 +237,5 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuNuevoPaciente;
     private javax.swing.JMenu menuPacientes;
     // End of variables declaration//GEN-END:variables
+
 }
