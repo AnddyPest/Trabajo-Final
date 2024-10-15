@@ -23,16 +23,19 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuEditarPaciente = new javax.swing.JMenuItem();
         menuBorrarPaciente = new javax.swing.JMenuItem();
         menuListarPacientes = new javax.swing.JMenuItem();
+        menuAltaBajaPaciente = new javax.swing.JMenuItem();
         menuAsignarDieta = new javax.swing.JMenuItem();
         menuDietas = new javax.swing.JMenu();
         menuNuevaDieta = new javax.swing.JMenuItem();
         menuBorrarDieta = new javax.swing.JMenuItem();
         menuListarDietas = new javax.swing.JMenuItem();
         menuEditarDieta = new javax.swing.JMenuItem();
+        menuAltaBajaDieta = new javax.swing.JMenuItem();
         menuComidas = new javax.swing.JMenu();
         menuNuevaComida = new javax.swing.JMenuItem();
         menuBorrarComida = new javax.swing.JMenuItem();
         menuEditarComida = new javax.swing.JMenuItem();
+        menuAltaBajaComida = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         menuExit = new javax.swing.JMenuItem();
 
@@ -83,6 +86,9 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuListarPacientes.setText("Listar Pacientes");
         menuPacientes.add(menuListarPacientes);
 
+        menuAltaBajaPaciente.setText("Alta/Baja Paciente");
+        menuPacientes.add(menuAltaBajaPaciente);
+
         menuAsignarDieta.setText("Asignar Dieta");
         menuPacientes.add(menuAsignarDieta);
 
@@ -102,6 +108,9 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuEditarDieta.setText("Editar Dieta");
         menuDietas.add(menuEditarDieta);
 
+        menuAltaBajaDieta.setText("Alta/Baja Dieta");
+        menuDietas.add(menuAltaBajaDieta);
+
         jMenuBar1.add(menuDietas);
 
         menuComidas.setText("Comidas");
@@ -114,6 +123,9 @@ public class VentanaDeInicio extends javax.swing.JFrame {
 
         menuEditarComida.setText("Editar Comida");
         menuComidas.add(menuEditarComida);
+
+        menuAltaBajaComida.setText("Alta/Baja Comida");
+        menuComidas.add(menuAltaBajaComida);
 
         jMenuBar1.add(menuComidas);
 
@@ -220,6 +232,9 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem menuAltaBajaComida;
+    private javax.swing.JMenuItem menuAltaBajaDieta;
+    private javax.swing.JMenuItem menuAltaBajaPaciente;
     private javax.swing.JMenuItem menuAsignarDieta;
     private javax.swing.JMenuItem menuBorrarComida;
     private javax.swing.JMenuItem menuBorrarDieta;

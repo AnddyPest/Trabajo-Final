@@ -94,6 +94,7 @@ public class VentanaEditarPaciente extends javax.swing.JInternalFrame {
         txtTelefono = new javax.swing.JTextField();
         txtErrorTel = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 615));
         setMinimumSize(new java.awt.Dimension(800, 615));
         setPreferredSize(new java.awt.Dimension(800, 615));

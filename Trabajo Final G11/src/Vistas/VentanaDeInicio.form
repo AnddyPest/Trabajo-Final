@@ -46,6 +46,11 @@
                 <Property name="text" type="java.lang.String" value="Listar Pacientes"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuAltaBajaPaciente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Alta/Baja Paciente"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuAsignarDieta">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Asignar Dieta"/>
@@ -78,6 +83,11 @@
                 <Property name="text" type="java.lang.String" value="Editar Dieta"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuAltaBajaDieta">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Alta/Baja Dieta"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuComidas">
@@ -98,6 +108,11 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuEditarComida">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Editar Comida"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuAltaBajaComida">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Alta/Baja Comida"/>
               </Properties>
             </MenuItem>
           </SubComponents>
