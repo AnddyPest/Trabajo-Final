@@ -1,5 +1,8 @@
 package Vistas;
 
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+
 
 public class VentanaDeInicio extends javax.swing.JFrame {
 
@@ -15,7 +18,6 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     private void initComponents() {
 
         desktop = new javax.swing.JDesktopPane();
-        btnExit = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuPacientes = new javax.swing.JMenu();
         menuNuevoPaciente = new javax.swing.JMenuItem();
@@ -32,6 +34,8 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuNuevaComida = new javax.swing.JMenuItem();
         menuBorrarComida = new javax.swing.JMenuItem();
         menuEditarComida = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        menuExit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Nutricionista G11");
@@ -41,38 +45,29 @@ public class VentanaDeInicio extends javax.swing.JFrame {
 
         desktop.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
-        btnExit.setText("SALIR");
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
-            }
-        });
-
-        desktop.setLayer(btnExit, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
         desktop.setLayout(desktopLayout);
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
-                .addContainerGap(900, Short.MAX_VALUE)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 1015, Short.MAX_VALUE)
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
-                .addContainerGap(592, Short.MAX_VALUE)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 633, Short.MAX_VALUE)
         );
 
         jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenuBar1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jMenuBar1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jMenuBar1.setMargin(new java.awt.Insets(2, 2, 2, 2));
 
         menuPacientes.setText("Pacientes");
 
         menuNuevoPaciente.setText("Nuevo Paciente");
+        menuNuevoPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuNuevoPacienteActionPerformed(evt);
+            }
+        });
         menuPacientes.add(menuNuevoPaciente);
 
         menuEditarPaciente.setText("Editar Paciente");
@@ -118,6 +113,18 @@ public class VentanaDeInicio extends javax.swing.JFrame {
 
         jMenuBar1.add(menuComidas);
 
+        jMenu1.setText("Salir");
+
+        menuExit.setText("Salir");
+        menuExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuExitActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuExit);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -128,15 +135,34 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktop)
+            .addComponent(desktop, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-       dispose();
-    }//GEN-LAST:event_btnExitActionPerformed
+    private void menuNuevoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevoPacienteActionPerformed
+        desktop.removeAll();
+        NuevoPaciente nuevoPaciente =new NuevoPaciente();
+        desktop.add(nuevoPaciente); 
+        desktop.moveToFront(nuevoPaciente);
+        nuevoPaciente.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                nuevoPaciente.setLocation(
+                    (desktop.getWidth() - nuevoPaciente.getWidth()) / 2,
+                    (desktop.getHeight() - nuevoPaciente.getHeight()) / 2
+                );
+            }
+        });
+        nuevoPaciente.setVisible(true);
+        desktop.revalidate();
+        desktop.repaint();
+    }//GEN-LAST:event_menuNuevoPacienteActionPerformed
+
+    private void menuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuExitActionPerformed
+        dispose();
+    }//GEN-LAST:event_menuExitActionPerformed
 
     
     public static void main(String args[]) {
@@ -168,8 +194,8 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExit;
     private javax.swing.JDesktopPane desktop;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem menuAsignarDieta;
     private javax.swing.JMenuItem menuBorrarComida;
@@ -180,6 +206,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuEditarComida;
     private javax.swing.JMenuItem menuEditarDieta;
     private javax.swing.JMenuItem menuEditarPaciente;
+    private javax.swing.JMenuItem menuExit;
     private javax.swing.JMenuItem menuListarDietas;
     private javax.swing.JMenuItem menuListarPacientes;
     private javax.swing.JMenuItem menuNuevaComida;

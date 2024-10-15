@@ -13,6 +13,15 @@ public class Paciente {
     public Paciente() {
     }
 
+    public Paciente(String nombre, int dni, String domicilio, String telefono) {
+        this.nombre = nombre;
+        this.dni = dni;
+        this.domicilio = domicilio;
+        this.telefono = telefono;
+    }
+    
+    
+
     public Paciente(String nombre, int dni, String domicilio, String telefono, boolean estado) {
         this.nombre = nombre;
         this.dni = dni;
