@@ -1,7 +1,9 @@
 package Vistas;
+import Entidades.Comida;
 import Entidades.Conexion;
 import java.sql.Connection;
 import Entidades.Paciente;
+import Persistencia.ComidaData;
 import Persistencia.PacienteData;
 import java.util.ArrayList;
 
@@ -11,14 +13,18 @@ public class TestClass {
     public static void main(String args[]) {
         
         Connection conexion = Conexion.getConexion();
+        
+        ////////////////////////////
+        //////Testeo Pacientes//////
+        ////////////////////////////
+        
         PacienteData pacienteData = new PacienteData(conexion);
-        
-        
-        Paciente paciente1 = new Paciente("maximo", 44332211, "b 123 cc122", "2552331", true);
-        Paciente paciente2 = new Paciente("ramon", 46532211, "b 126 cc122", "9952331", true);
-        Paciente paciente3 = new Paciente("andres", 41332211, "b 121 cc122", "2752331", true);
-        Paciente paciente4 = new Paciente("marquitos", 31332211, "b 333 cc122", "232331", true);
-        Paciente paciente5 = new Paciente("maximo", 443322211, "b 1 cc122", "2552331", true);
+//        
+//        Paciente paciente1 = new Paciente("maximo", 44332211, "b 123 cc122", "2552331", true);
+//        Paciente paciente2 = new Paciente("ramon", 46532211, "b 126 cc122", "9952331", true);
+//        Paciente paciente3 = new Paciente("andres", 41332211, "b 121 cc122", "2752331", true);
+//        Paciente paciente4 = new Paciente("marquitos", 31332211, "b 333 cc122", "232331", true);
+//        Paciente paciente5 = new Paciente("maximo", 443322211, "b 1 cc122", "2552331", true);
        
         //Crear || FUNCIONA CORRECTAMENTE ||   Nota Hay que VALIDAR el telefono, para saber si es un numero y no contiene letras
 //        
@@ -75,6 +81,59 @@ public class TestClass {
         
         //pacienteData.borrarPacientePorId(5);
         
+        //////////////////////////
+        //////Testeo Comidas//////
+        //////////////////////////
+        
+        ComidaData comidaData = new ComidaData(conexion);
+        
+        Comida comida1 = new Comida(1, "Ensalada", "Simple ensalada de tomate y lechuga", 500, true);
+        Comida comida2 = new Comida(2, "Ensalada Rusa", "Simple ensalada de papa, zanahoria, arvejas y mayonesa", 600, true);
+        Comida comida3 = new Comida(3, "Chorizo a la pomarola", "Mortal cuando hace frio", 700, true);
+        Comida comida4 = new Comida(4, "Asado", "Nunca puede faltar un domingo", 1200, true);
+        Comida comida5 = new Comida(5, "Ensalada de Aveeee", "Simple ensalada de papa y pollo", 450, true);
+        
+        //Crear //FUNCIONA
+        
+//        comidaData.crearComida(comida1);
+//        comidaData.crearComida(comida2);
+//        comidaData.crearComida(comida3);
+//        comidaData.crearComida(comida4);
+//        comidaData.crearComida(comida5);
+
+        //Listar Comida //FUNCIONA
+        
+        
+//        ArrayList<Comida> comidasBD =comidaData.listarComidas();
+//        for(Comida comida: comidasBD){
+//            System.out.println(comida.toString());
+//        }
+        //Buscar Comida por Id //FUNCIONA
+        
+//        Comida comidasBD =comidaData.buscarComidaPorID(4);
+//        if(!(comidasBD == null) ){
+//            System.out.println(comidasBD.toString());
+//        }
+        
+        //Buscar Comida por nombre // FUNCIONA
+        
+//       ArrayList<Comida>  comidasBD = comidaData.buscarComidasPorNombre("Ensalada Rusa");
+//        for(Comida comida : comidasBD){
+//            System.out.println(comida.toString());
+//        }
+      
+        //Actualizar comida por id
+
+//        comidaData.actualizarComidaPorId(comida5);
+        
+        //Alta Logica // FUNCIONA
+        //comidaData.altaLogicaComida(13);
+        
+        //Baja Logica // FUNCIONA
+        //comidaData.bajaLogicaComida(3);
+        
+        //Borrar Comida por id // FUNCIONA
+        //comidaData.borrarComidaPorId(3);
         
     }
 }

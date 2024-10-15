@@ -28,7 +28,7 @@ public class ComidaData {
         } else{
             for(Comida comidaRevisada: comidas){
                 
-                if(comidaRevisada.getNombre()!= comidaEnviada.getNombre() ){                                       
+                if(!comidaRevisada.getNombre().equals(comidaEnviada.getNombre()) ){                                       
                     validado = true;
                     
                 }else{
@@ -158,6 +158,7 @@ public class ComidaData {
             ps.setString(2, comidaEnviada.getDetalle());
             ps.setInt(3, comidaEnviada.getCantidadCalorias());
             ps.setBoolean(4, comidaEnviada.isEstadoComida());
+            ps.setInt(5, comidaEnviada.getIdComida());
 
             ps.executeUpdate();
             ps.close();
