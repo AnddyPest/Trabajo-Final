@@ -2,7 +2,7 @@ package Persistencia;
 
 import Entidades.Comida;
 import Entidades.Dieta;
-import Entidades.Herramientas;
+import Entidades.FuncionDe;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -53,10 +53,10 @@ public class DietaData {
                 ps.setBoolean(6, true);
                 ps.executeUpdate();
 
-                Herramientas.mostrarMensajeCorrecto("Crear Dieta", "La dieta ha sido añadida");
+                FuncionDe.mostrarMensajeCorrecto("Crear Dieta", "La dieta ha sido añadida");
                 ps.close();
             }   catch (SQLException ex) {
-                Herramientas.mostrarMensajeError(ex, "Crear Dieta", "DietaData", "20");
+                FuncionDe.mostrarMensajeError(ex, "Crear Dieta", "DietaData", "20");
                 codigoDevuelto = ex.getErrorCode();
             }
         
@@ -78,16 +78,16 @@ public class DietaData {
             ResultSet resultados = ps.executeQuery();
             
             while(resultados.next()){
-                Dieta dietaCreada = Herramientas.crearDieta(resultados);
+                Dieta dietaCreada = FuncionDe.crearDieta(resultados);
                 
                 dietasDevueltas.add(dietaCreada);
             }
-            Herramientas.mostrarMensajeCorrecto("Listar Dietas", "Todas las dietas han sido enviadas correctamente");
+            FuncionDe.mostrarMensajeCorrecto("Listar Dietas", "Todas las dietas han sido enviadas correctamente");
             
             resultados.close();
             ps.close();
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se puede listar las dietas",ex, "Listar Dietas", "DietasData", "71");
+            FuncionDe.mostrarMensajeError("No se puede listar las dietas",ex, "Listar Dietas", "DietasData", "71");
         }
         
         return dietasDevueltas;
@@ -103,17 +103,17 @@ public class DietaData {
             ps.setInt( 1, id );
             ResultSet resultados = ps.executeQuery();
             while(resultados.next()){
-                dietaDevuelta = Herramientas.crearDieta(resultados);                
+                dietaDevuelta = FuncionDe.crearDieta(resultados);                
             }
             if(dietaDevuelta == null){
                 throw new SQLException();
             }else{
-                Herramientas.mostrarMensajeCorrecto("buscarDietaPorId", "Dieta encontrada correctamente");
+                FuncionDe.mostrarMensajeCorrecto("buscarDietaPorId", "Dieta encontrada correctamente");
             }
             resultados.close();
             ps.close();
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se pudo encontrar el registro",ex, "buscarDietaPorId", "DietaData", "98");
+            FuncionDe.mostrarMensajeError("No se pudo encontrar el registro",ex, "buscarDietaPorId", "DietaData", "98");
         }
         
         return dietaDevuelta;
@@ -127,11 +127,11 @@ public class DietaData {
             ps.setString(1, nombreEnviado.trim().toLowerCase());
             ResultSet resultados = ps.executeQuery();
             while(resultados.next()){
-                Dieta dieta = Herramientas.crearDieta(resultados);
+                Dieta dieta = FuncionDe.crearDieta(resultados);
                 dietasEncontradas.add(dieta);
             }
             if(!dietasEncontradas.isEmpty()){
-                Herramientas.mostrarMensajeCorrecto("buscarDietasPorNombre", "Dietas con nombre: " + nombreEnviado + " enviadas correctamente");
+                FuncionDe.mostrarMensajeCorrecto("buscarDietasPorNombre", "Dietas con nombre: " + nombreEnviado + " enviadas correctamente");
             } else{
                 throw new SQLException();
             }
@@ -139,7 +139,7 @@ public class DietaData {
             ps.close();
             
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se encontraron dietas con dicho nombre",ex, "buscarDietasPorNombre", "DietaData", "122");
+            FuncionDe.mostrarMensajeError("No se encontraron dietas con dicho nombre",ex, "buscarDietasPorNombre", "DietaData", "122");
         }
         
         return dietasEncontradas;
@@ -152,7 +152,7 @@ public class DietaData {
         
         try {
             //REVISAR SI FUNCIONA
-            Herramientas.validarSiExisteId(this, dietaEnviada.getIdDieta());
+            FuncionDe.validarSiExisteId(this, dietaEnviada.getIdDieta());
             
             String Query = "UPDATE dieta SET dieta.nombre = ?, dieta.fechaInicial = ?, dieta.fechaFinal = ? , dieta.pesoInicial = ? ,dieta.pesoFinal = ? , dieta.idPaciente = ?, dieta.estado = ? WHERE dieta.idDieta = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
@@ -167,11 +167,11 @@ public class DietaData {
             ps.executeUpdate();
             ps.close();
 
-            Herramientas.mostrarMensajeCorrecto("actualizarDietaPorId", "Dieta actualizada con exito");
+            FuncionDe.mostrarMensajeCorrecto("actualizarDietaPorId", "Dieta actualizada con exito");
                     
                         
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se pudo actualizar la dieta",ex, "actualizarDietaPorId", "DietaData", "151");
+            FuncionDe.mostrarMensajeError("No se pudo actualizar la dieta",ex, "actualizarDietaPorId", "DietaData", "151");
         }
     }
     
@@ -181,7 +181,7 @@ public class DietaData {
     public boolean buscarEstadoPorId(int id){
         Dieta resultadoEstado = null;
         try {
-            Herramientas.validarSiExisteId(this, id);
+            FuncionDe.validarSiExisteId(this, id);
             String query = "SELECT dieta.estado FROM dieta WHERE dieta.idDieta = ?";
             PreparedStatement ps = conexion.prepareStatement(query);
             ps.setInt(1, id);
@@ -190,9 +190,9 @@ public class DietaData {
                 resultadoEstado = new Dieta();
                 resultadoEstado.setEstadoDieta(resultados.getBoolean("estado"));
             }
-            Herramientas.mostrarMensajeCorrecto("BuscarEstadoPorId", "Estado Logico de la dieta enviada correctamente");
+            FuncionDe.mostrarMensajeCorrecto("BuscarEstadoPorId", "Estado Logico de la dieta enviada correctamente");
         } catch (SQLException ex) {
-           Herramientas.mostrarMensajeError("No se pudo enviar el estado logico de la dieta", ex, "BuscarEstadoPorID", "DietaData", "181");
+           FuncionDe.mostrarMensajeError("No se pudo enviar el estado logico de la dieta", ex, "BuscarEstadoPorID", "DietaData", "181");
         }
         return resultadoEstado.isEstadoDieta();
     }
@@ -200,17 +200,17 @@ public class DietaData {
     public void altaLogicaDieta(int id){
         
         try {
-            Herramientas.validarSiExisteId(this, id);
-            Herramientas.validarSiYaEstabaLogicamenteEnDichoEstado(this, id, true);
+            FuncionDe.validarSiExisteId(this, id);
+            FuncionDe.validarSiYaEstabaLogicamenteEnDichoEstado(this, id, true);
             String Query = "UPDATE dieta SET dieta.estado = ? WHERE dieta.idDieta = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setBoolean(1, true);
             ps.setInt(2, id);
             ps.executeUpdate();
             ps.close();
-            Herramientas.mostrarMensajeCorrecto("AltaLogicaDieta", "Dieta dada de Alta correctamente");
+            FuncionDe.mostrarMensajeCorrecto("AltaLogicaDieta", "Dieta dada de Alta correctamente");
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se pudo dar el alta logica", ex, "AltaLogicaDieta", "DietaData", "200");
+            FuncionDe.mostrarMensajeError("No se pudo dar el alta logica", ex, "AltaLogicaDieta", "DietaData", "200");
         }
     }
    
@@ -218,17 +218,17 @@ public class DietaData {
     public void bajaLogicaDieta(int id){
         
         try {
-            Herramientas.validarSiExisteId(this, id);
-            Herramientas.validarSiYaEstabaLogicamenteEnDichoEstado(this, id, false);
+            FuncionDe.validarSiExisteId(this, id);
+            FuncionDe.validarSiYaEstabaLogicamenteEnDichoEstado(this, id, false);
             String Query = "UPDATE dieta SET dieta.estado = ? WHERE dieta.idDieta = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setBoolean(1, false);
             ps.setInt(2, id);
             ps.executeUpdate();
             ps.close();
-            Herramientas.mostrarMensajeCorrecto("BajaLogicaDieta", "Dieta dada de Baja correctamente");
+            FuncionDe.mostrarMensajeCorrecto("BajaLogicaDieta", "Dieta dada de Baja correctamente");
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se pudo dar la baja logica", ex, "BajaLogicaDieta", "DietaData", "218");
+            FuncionDe.mostrarMensajeError("No se pudo dar la baja logica", ex, "BajaLogicaDieta", "DietaData", "218");
         }
     }
    
@@ -237,18 +237,18 @@ public class DietaData {
     public void borrarDietaPorId(int id){
         
         try {
-            Herramientas.validarSiExisteId(this, id);
+            FuncionDe.validarSiExisteId(this, id);
             
             String Query = "DELETE FROM dieta WHERE dieta.idDieta = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setInt(1, id);
             ps.executeUpdate();
             ps.close();
-            Herramientas.mostrarMensajeCorrecto("borrarDietaPorId", "Dieta eliminada con exito");
+            FuncionDe.mostrarMensajeCorrecto("borrarDietaPorId", "Dieta eliminada con exito");
                 
             
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se pudo borrar la dieta",ex, "BorrarDietaPorId", "DietaData", "233");
+            FuncionDe.mostrarMensajeError("No se pudo borrar la dieta",ex, "BorrarDietaPorId", "DietaData", "233");
         }
         
     }

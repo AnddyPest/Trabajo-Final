@@ -1,7 +1,7 @@
 package Persistencia;
 
 import Entidades.Comida;
-import Entidades.Herramientas;
+import Entidades.FuncionDe;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -51,10 +51,10 @@ public class ComidaData {
                 ps.setBoolean(4, true);                
                 ps.executeUpdate();
 
-                Herramientas.mostrarMensajeCorrecto("Crear Comida", "La comida ha sido añadida");
+                FuncionDe.mostrarMensajeCorrecto("Crear Comida", "La comida ha sido añadida");
                 ps.close();
             }   catch (SQLException ex) {
-                Herramientas.mostrarMensajeError(ex, "Crear comida", "ComidaData", "20");
+                FuncionDe.mostrarMensajeError(ex, "Crear comida", "ComidaData", "20");
                 codigoDevuelto = ex.getErrorCode();
             }
         
@@ -76,16 +76,16 @@ public class ComidaData {
             ResultSet resultados = ps.executeQuery();
             
             while(resultados.next()){
-                Comida comidaCreada = Herramientas.crearComida(resultados);
+                Comida comidaCreada = FuncionDe.crearComida(resultados);
                 
                 comidasDevueltas.add(comidaCreada);
             }
-            Herramientas.mostrarMensajeCorrecto("Listar Comidas", "Todas las comidas han sido enviados correctamente");
+            FuncionDe.mostrarMensajeCorrecto("Listar Comidas", "Todas las comidas han sido enviados correctamente");
             
             resultados.close();
             ps.close();
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError(ex, "Listar Comidas", "ComidaData", "69");
+            FuncionDe.mostrarMensajeError(ex, "Listar Comidas", "ComidaData", "69");
         }
         
         return comidasDevueltas;
@@ -101,17 +101,17 @@ public class ComidaData {
             ps.setInt( 1, id );
             ResultSet resultados = ps.executeQuery();
             while(resultados.next()){
-                comidaDevuelta = Herramientas.crearComida(resultados);                
+                comidaDevuelta = FuncionDe.crearComida(resultados);                
             }
             if(comidaDevuelta == null){
                 throw new SQLException();
             }else{
-                Herramientas.mostrarMensajeCorrecto("buscarComidaPorId", "Comida encontrada correctamente");
+                FuncionDe.mostrarMensajeCorrecto("buscarComidaPorId", "Comida encontrada correctamente");
             }
             resultados.close();
             ps.close();
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se pudo encontrar el registro",ex, "buscarComidaPorId", "ComidaData", "96");
+            FuncionDe.mostrarMensajeError("No se pudo encontrar el registro",ex, "buscarComidaPorId", "ComidaData", "96");
         }
         
         return comidaDevuelta;
@@ -125,11 +125,11 @@ public class ComidaData {
             ps.setString(1, nombreEnviado.trim().toLowerCase());
             ResultSet resultados = ps.executeQuery();
             while(resultados.next()){
-                Comida comida = Herramientas.crearComida(resultados);
+                Comida comida = FuncionDe.crearComida(resultados);
                 comidasEncontradas.add(comida);
             }
             if(!comidasEncontradas.isEmpty()){
-                Herramientas.mostrarMensajeCorrecto("buscarComidasPorNombre", "Comidas con nombre: " + nombreEnviado + " enviadas correctamente");
+                FuncionDe.mostrarMensajeCorrecto("buscarComidasPorNombre", "Comidas con nombre: " + nombreEnviado + " enviadas correctamente");
             } else{
                 throw new SQLException();
             }
@@ -137,7 +137,7 @@ public class ComidaData {
             ps.close();
             
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se encontraron comidas con dicho nombre",ex, "buscarComidasPorNombre", "ComidaData", "120");
+            FuncionDe.mostrarMensajeError("No se encontraron comidas con dicho nombre",ex, "buscarComidasPorNombre", "ComidaData", "120");
         }
         
         return comidasEncontradas;
@@ -150,7 +150,7 @@ public class ComidaData {
         
         try {
             //REVISAR SI FUNCIONA
-            Herramientas.validarSiExisteId(this, comidaEnviada.getIdComida());
+            FuncionDe.validarSiExisteId(this, comidaEnviada.getIdComida());
             
             String Query = "UPDATE comida SET comida.nombre = ?,comida.detalle = ? ,comida.cantCalorias = ?,comida.estado = ? WHERE comida.idComida = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
@@ -163,11 +163,11 @@ public class ComidaData {
             ps.executeUpdate();
             ps.close();
 
-            Herramientas.mostrarMensajeCorrecto("actualizarComidaPorId", "Comida actualizada con exito");
+            FuncionDe.mostrarMensajeCorrecto("actualizarComidaPorId", "Comida actualizada con exito");
                     
                         
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError(ex, "actualizarComidaPorId", "ComidaData", "149");
+            FuncionDe.mostrarMensajeError(ex, "actualizarComidaPorId", "ComidaData", "149");
         }
     }
     
@@ -177,7 +177,7 @@ public class ComidaData {
     public boolean buscarEstadoPorId(int id){
         Comida resultadoEstado = null;
         try {
-            Herramientas.validarSiExisteId(this, id);
+            FuncionDe.validarSiExisteId(this, id);
             String query = "SELECT comida.estado FROM comida WHERE comida.idComida = ?";
             PreparedStatement ps = conexion.prepareStatement(query);
             ps.setInt(1, id);
@@ -186,9 +186,9 @@ public class ComidaData {
                 resultadoEstado = new Comida();
                 resultadoEstado.setEstadoComida(resultados.getBoolean("estado"));
             }
-            Herramientas.mostrarMensajeCorrecto("BuscarEstadoPorId", "Estado Logico de la comida enviada correctamente");
+            FuncionDe.mostrarMensajeCorrecto("BuscarEstadoPorId", "Estado Logico de la comida enviada correctamente");
         } catch (SQLException ex) {
-           Herramientas.mostrarMensajeError("No se pudo enviar el estado logico de la comida", ex, "BuscarEstadoPorID", "ComidaData", "177");
+           FuncionDe.mostrarMensajeError("No se pudo enviar el estado logico de la comida", ex, "BuscarEstadoPorID", "ComidaData", "177");
         }
         return resultadoEstado.isEstadoComida();
     }
@@ -196,17 +196,17 @@ public class ComidaData {
     public void altaLogicaComida(int id){
         
         try {
-            Herramientas.validarSiExisteId(this, id);
-            Herramientas.validarSiYaEstabaLogicamenteEnDichoEstado(this, id, true);
+            FuncionDe.validarSiExisteId(this, id);
+            FuncionDe.validarSiYaEstabaLogicamenteEnDichoEstado(this, id, true);
             String Query = "UPDATE comida SET comida.estado = ? WHERE comida.idComida = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setBoolean(1, true);
             ps.setInt(2, id);
             ps.executeUpdate();
             ps.close();
-            Herramientas.mostrarMensajeCorrecto("AltaLogicaComida", "Comida dada de Alta correctamente");
+            FuncionDe.mostrarMensajeCorrecto("AltaLogicaComida", "Comida dada de Alta correctamente");
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se pudo dar el alta logica", ex, "AltaLogicaComida", "ComidaData", "196");
+            FuncionDe.mostrarMensajeError("No se pudo dar el alta logica", ex, "AltaLogicaComida", "ComidaData", "196");
         }
     }
    
@@ -214,17 +214,17 @@ public class ComidaData {
     public void bajaLogicaComida(int id){
         
         try {
-            Herramientas.validarSiExisteId(this, id);
-            Herramientas.validarSiYaEstabaLogicamenteEnDichoEstado(this, id, false);
+            FuncionDe.validarSiExisteId(this, id);
+            FuncionDe.validarSiYaEstabaLogicamenteEnDichoEstado(this, id, false);
             String Query = "UPDATE comida SET comida.estado = ? WHERE comida.idComida = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setBoolean(1, false);
             ps.setInt(2, id);
             ps.executeUpdate();
             ps.close();
-            Herramientas.mostrarMensajeCorrecto("BajaLogicaComida", "Comida dada de Baja correctamente");
+            FuncionDe.mostrarMensajeCorrecto("BajaLogicaComida", "Comida dada de Baja correctamente");
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se pudo dar la baja logica", ex, "BajaLogicaComida", "ComidaData", "214");
+            FuncionDe.mostrarMensajeError("No se pudo dar la baja logica", ex, "BajaLogicaComida", "ComidaData", "214");
         }
     }
    
@@ -233,18 +233,18 @@ public class ComidaData {
     public void borrarComidaPorId(int id){
         
         try {
-            Herramientas.validarSiExisteId(this, id);
+            FuncionDe.validarSiExisteId(this, id);
             
             String Query = "DELETE FROM comida WHERE comida.idComida = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setInt(1, id);
             ps.executeUpdate();
             ps.close();
-            Herramientas.mostrarMensajeCorrecto("borrarComidaPorId", "Comida eliminada con exito");
+            FuncionDe.mostrarMensajeCorrecto("borrarComidaPorId", "Comida eliminada con exito");
                 
             
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se pudo borrar la comida",ex, "BorrarComidaPorId", "ComidaData", "233");
+            FuncionDe.mostrarMensajeError("No se pudo borrar la comida",ex, "BorrarComidaPorId", "ComidaData", "233");
         }
         
     }

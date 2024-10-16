@@ -1,6 +1,6 @@
 package Persistencia;
 
-import Entidades.Herramientas;
+import Entidades.FuncionDe;
 import java.sql.Connection;
 import Entidades.Paciente;
 import java.sql.PreparedStatement;
@@ -60,10 +60,10 @@ public class PacienteData {
 
                 ps.executeUpdate();
 
-                Herramientas.mostrarMensajeCorrecto("Crear Paciente", "El paciente ha sido creado");
+                FuncionDe.mostrarMensajeCorrecto("Crear Paciente", "El paciente ha sido creado");
                 ps.close();
             }   catch (SQLException ex) {
-                Herramientas.mostrarMensajeError(ex, "Crear Paciente", "PacienteData", "29");
+                FuncionDe.mostrarMensajeError(ex, "Crear Paciente", "PacienteData", "29");
                 codigoDevuelto = ex.getErrorCode();
             }
         
@@ -85,16 +85,16 @@ public class PacienteData {
             ResultSet resultados = ps.executeQuery();
             
             while(resultados.next()){
-                Paciente pacienteCreado = Herramientas.crearPaciente(resultados);
+                Paciente pacienteCreado = FuncionDe.crearPaciente(resultados);
                 
                 pacientesDevueltos.add(pacienteCreado);
             }
-            Herramientas.mostrarMensajeCorrecto("Listar Pacientes", "Todos los pacientes han sido enviados correctamente");
+            FuncionDe.mostrarMensajeCorrecto("Listar Pacientes", "Todos los pacientes han sido enviados correctamente");
             
             resultados.close();
             ps.close();
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError(ex, "listarPacientes", "PacienteData", "80");
+            FuncionDe.mostrarMensajeError(ex, "listarPacientes", "PacienteData", "80");
         }
         
         return pacientesDevueltos;
@@ -110,17 +110,17 @@ public class PacienteData {
             ps.setInt( 1, id );
             ResultSet resultados = ps.executeQuery();
             while(resultados.next()){
-                pacienteDevuelto = Herramientas.crearPaciente(resultados);                
+                pacienteDevuelto = FuncionDe.crearPaciente(resultados);                
             }
             if(pacienteDevuelto == null){
                 throw new SQLException();
             }else{
-                Herramientas.mostrarMensajeCorrecto("buscarPacientePorid", "Paciente encontrado correctamente");
+                FuncionDe.mostrarMensajeCorrecto("buscarPacientePorid", "Paciente encontrado correctamente");
             }
             resultados.close();
             ps.close();
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se pudo encontrar el registro",ex, "buscarPacientePorId", "PacienteData", "107");
+            FuncionDe.mostrarMensajeError("No se pudo encontrar el registro",ex, "buscarPacientePorId", "PacienteData", "107");
         }
         
         return pacienteDevuelto;
@@ -134,11 +134,11 @@ public class PacienteData {
             ps.setString(1, nombreEnviado.trim().toLowerCase());
             ResultSet resultados = ps.executeQuery();
             while(resultados.next()){
-                Paciente paciente = Herramientas.crearPaciente(resultados);
+                Paciente paciente = FuncionDe.crearPaciente(resultados);
                 pacientesEncontrados.add(paciente);
             }
             if(!pacientesEncontrados.isEmpty()){
-                Herramientas.mostrarMensajeCorrecto("buscarPacientesPorNombre", "Pacientes con nombre: " + nombreEnviado + " enviados correctamente");
+                FuncionDe.mostrarMensajeCorrecto("buscarPacientesPorNombre", "Pacientes con nombre: " + nombreEnviado + " enviados correctamente");
             } else{
                 throw new SQLException();
             }
@@ -146,7 +146,7 @@ public class PacienteData {
             ps.close();
             
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se encontraron pacientes con dicho nombre",ex, "buscarPacientesPorNombre", "PacienteData", "131");
+            FuncionDe.mostrarMensajeError("No se encontraron pacientes con dicho nombre",ex, "buscarPacientesPorNombre", "PacienteData", "131");
         }
         
         return pacientesEncontrados;
@@ -160,7 +160,7 @@ public class PacienteData {
         try {
             //REVISAR SI FUNCIONA 
             //MAXI: Eliminé el campo para cambiar el "ESTADO" ya que este se modifica solo por ALTA/BAJA Lógica -- ANDRES
-            Herramientas.validarSiExisteId(this, pacienteEnviado.getIdPaciente());
+            FuncionDe.validarSiExisteId(this, pacienteEnviado.getIdPaciente());
             
             String Query = "UPDATE paciente SET paciente.nombre = ?, paciente.dni = ?, paciente.domicilio = ?, paciente.telefono = ? WHERE paciente.idPaciente = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
@@ -173,11 +173,11 @@ public class PacienteData {
             ps.executeUpdate();
             ps.close();
 
-            Herramientas.mostrarMensajeCorrecto("actualizarPacientePorId", "Paciente actualizado con exito");
+            FuncionDe.mostrarMensajeCorrecto("actualizarPacientePorId", "Paciente actualizado con exito");
                     
                         
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError(ex, "actualizarPacientePorId", "PacienteData", "160");
+            FuncionDe.mostrarMensajeError(ex, "actualizarPacientePorId", "PacienteData", "160");
         }
     }
     
@@ -188,7 +188,7 @@ public class PacienteData {
     public boolean buscarEstadoPorId(int id){
         Paciente resultadoEstado = null;
         try {
-            Herramientas.validarSiExisteId(this, id);
+            FuncionDe.validarSiExisteId(this, id);
             String query = "SELECT paciente.estado FROM paciente WHERE paciente.idPaciente = ?";
             PreparedStatement ps = conexion.prepareStatement(query);
             ps.setInt(1, id);
@@ -197,9 +197,9 @@ public class PacienteData {
                 resultadoEstado = new Paciente();
                 resultadoEstado.setEstado(resultados.getBoolean("estado"));
             }
-            Herramientas.mostrarMensajeCorrecto("BuscarEstadoPorId", "Estado Logico del paciente enviado correctamente");
+            FuncionDe.mostrarMensajeCorrecto("BuscarEstadoPorId", "Estado Logico del paciente enviado correctamente");
         } catch (SQLException ex) {
-           Herramientas.mostrarMensajeError("No se pudo enviar el estado logico del paciente", ex, "BuscarEstadoPorID", "PacienteData", "190");
+           FuncionDe.mostrarMensajeError("No se pudo enviar el estado logico del paciente", ex, "BuscarEstadoPorID", "PacienteData", "190");
         }
         return resultadoEstado.isEstado();
     }
@@ -207,17 +207,17 @@ public class PacienteData {
     public void altaLogicaPaciente(int id){
         
         try {
-            Herramientas.validarSiExisteId(this, id);
-            Herramientas.validarSiYaEstabaLogicamenteEnDichoEstado(this, id, true);
+            FuncionDe.validarSiExisteId(this, id);
+            FuncionDe.validarSiYaEstabaLogicamenteEnDichoEstado(this, id, true);
             String Query = "UPDATE paciente SET paciente.estado = ? WHERE paciente.idPaciente = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setBoolean(1, true);
             ps.setInt(2, id);
             ps.executeUpdate();
             ps.close();
-            Herramientas.mostrarMensajeCorrecto("AltaLogicaPaciente", "Paciente dado de Alta correctamente");
+            FuncionDe.mostrarMensajeCorrecto("AltaLogicaPaciente", "Paciente dado de Alta correctamente");
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se pudo dar el alta logica", ex, "AltaLogicaPaciente", "PacienteData", "209");
+            FuncionDe.mostrarMensajeError("No se pudo dar el alta logica", ex, "AltaLogicaPaciente", "PacienteData", "209");
         }
     }
    
@@ -225,17 +225,17 @@ public class PacienteData {
     public void bajaLogicaPaciente(int id){
         
         try {
-            Herramientas.validarSiExisteId(this, id);
-            Herramientas.validarSiYaEstabaLogicamenteEnDichoEstado(this, id, false);
+            FuncionDe.validarSiExisteId(this, id);
+            FuncionDe.validarSiYaEstabaLogicamenteEnDichoEstado(this, id, false);
             String Query = "UPDATE paciente SET paciente.estado = ? WHERE paciente.idPaciente = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setBoolean(1, false);
             ps.setInt(2, id);
             ps.executeUpdate();
             ps.close();
-            Herramientas.mostrarMensajeCorrecto("BajaLogicaPaciente", "Paciente dado de Baja correctamente");
+            FuncionDe.mostrarMensajeCorrecto("BajaLogicaPaciente", "Paciente dado de Baja correctamente");
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se pudo dar la baja logica", ex, "BajaLogicaPaciente", "PacienteData", "227");
+            FuncionDe.mostrarMensajeError("No se pudo dar la baja logica", ex, "BajaLogicaPaciente", "PacienteData", "227");
         }
     }
    
@@ -244,18 +244,18 @@ public class PacienteData {
     public void borrarPacientePorId(int id){
         
         try {
-            Herramientas.validarSiExisteId(this, id);
+            FuncionDe.validarSiExisteId(this, id);
             
             String Query = "DELETE FROM paciente WHERE paciente.idPaciente = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setInt(1, id);
             ps.executeUpdate();
             ps.close();
-            Herramientas.mostrarMensajeCorrecto("borrarPacientePorId", "Paciente eliminado con exito");
+            FuncionDe.mostrarMensajeCorrecto("borrarPacientePorId", "Paciente eliminado con exito");
                 
             
         } catch (SQLException ex) {
-            Herramientas.mostrarMensajeError("No se pudo borrar el paciente",ex, "BorrarPacientePorId", "PacienteData", "246");
+            FuncionDe.mostrarMensajeError("No se pudo borrar el paciente",ex, "BorrarPacientePorId", "PacienteData", "246");
         }
         
     }
