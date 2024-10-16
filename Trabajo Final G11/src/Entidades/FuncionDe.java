@@ -6,7 +6,7 @@ import Persistencia.DietaData;
 import Persistencia.PacienteData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-public class Herramientas {
+public class FuncionDe {
 
     public static void mostrarMensajeCorrecto( String nombreMetodo , String mensajeEnviado ){
         String mensaje = "\nMetodo: " + nombreMetodo + "\tDice: " + mensajeEnviado;
