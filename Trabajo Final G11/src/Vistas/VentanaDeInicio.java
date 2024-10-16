@@ -80,9 +80,19 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuPacientes.add(menuEditarPaciente);
 
         menuListarPacientes.setText("Listar Pacientes");
+        menuListarPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuListarPacientesActionPerformed(evt);
+            }
+        });
         menuPacientes.add(menuListarPacientes);
 
         menuAltaBajaPaciente.setText("Alta/Baja Paciente");
+        menuAltaBajaPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAltaBajaPacienteActionPerformed(evt);
+            }
+        });
         menuPacientes.add(menuAltaBajaPaciente);
 
         menuAsignarDieta.setText("Asignar Dieta");
@@ -179,7 +189,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
 
     private void menuEditarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditarPacienteActionPerformed
         desktop.removeAll();
-        VentanaEditarPaciente editarPaciente = new VentanaEditarPaciente();
+        VentanaEditarBorrarPaciente editarPaciente = new VentanaEditarBorrarPaciente();
         desktop.add(editarPaciente);
 
         editarPaciente.addComponentListener(new ComponentAdapter() {
@@ -197,6 +207,44 @@ public class VentanaDeInicio extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_menuEditarPacienteActionPerformed
+
+    private void menuAltaBajaPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAltaBajaPacienteActionPerformed
+        desktop.removeAll();
+        VentanaAltaBajaPaciente altaBaja = new VentanaAltaBajaPaciente();
+        desktop.add(altaBaja);
+        altaBaja.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                altaBaja.setLocation((desktop.getWidth() - altaBaja.getWidth()) / 2,
+                        (desktop.getHeight() - altaBaja.getHeight()) / 2
+                );
+            }
+        });
+        desktop.moveToFront(altaBaja);
+        altaBaja.setVisible(true);
+        desktop.revalidate();
+        desktop.repaint();
+    }//GEN-LAST:event_menuAltaBajaPacienteActionPerformed
+
+    private void menuListarPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListarPacientesActionPerformed
+        desktop.removeAll();
+        VentanaListadoPacientes listaPacientes = new VentanaListadoPacientes();
+        desktop.add(listaPacientes);
+        listaPacientes.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                listaPacientes.setLocation((desktop.getWidth() - listaPacientes.getWidth()) / 2,
+                        (desktop.getHeight() - listaPacientes.getHeight()) / 2
+                );
+            }
+        });
+        desktop.moveToFront(listaPacientes);
+        listaPacientes.setVisible(true);
+        desktop.revalidate();
+        desktop.repaint();
+
+
+    }//GEN-LAST:event_menuListarPacientesActionPerformed
 
     public static void main(String args[]) {
 
