@@ -64,24 +64,19 @@
             <Property name="text" type="java.lang.String" value="Dietas"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuNuevaDieta">
+            <MenuItem class="javax.swing.JMenuItem" name="menuCrearDieta">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nueva Dieta"/>
+                <Property name="text" type="java.lang.String" value="Crear Dieta"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuBorrarDieta">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Borrar Dieta"/>
+                <Property name="text" type="java.lang.String" value="Editar/Borrar Dieta"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuListarDietas">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Listar Dietas"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuEditarDieta">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Editar Dieta"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuAltaBajaDieta">
@@ -103,12 +98,12 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuBorrarComida">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Borrar Comida"/>
+                <Property name="text" type="java.lang.String" value="Editar/Borrar Comida"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuEditarComida">
+            <MenuItem class="javax.swing.JMenuItem" name="menuListarComidas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Editar Comida"/>
+                <Property name="text" type="java.lang.String" value="Listar Comidas"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuAltaBajaComida">

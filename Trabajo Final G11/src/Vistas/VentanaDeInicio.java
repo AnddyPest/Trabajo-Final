@@ -25,15 +25,14 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuAltaBajaPaciente = new javax.swing.JMenuItem();
         menuAsignarDieta = new javax.swing.JMenuItem();
         menuDietas = new javax.swing.JMenu();
-        menuNuevaDieta = new javax.swing.JMenuItem();
+        menuCrearDieta = new javax.swing.JMenuItem();
         menuBorrarDieta = new javax.swing.JMenuItem();
         menuListarDietas = new javax.swing.JMenuItem();
-        menuEditarDieta = new javax.swing.JMenuItem();
         menuAltaBajaDieta = new javax.swing.JMenuItem();
         menuComidas = new javax.swing.JMenu();
         menuNuevaComida = new javax.swing.JMenuItem();
         menuBorrarComida = new javax.swing.JMenuItem();
-        menuEditarComida = new javax.swing.JMenuItem();
+        menuListarComidas = new javax.swing.JMenuItem();
         menuAltaBajaComida = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         menuExit = new javax.swing.JMenuItem();
@@ -102,17 +101,14 @@ public class VentanaDeInicio extends javax.swing.JFrame {
 
         menuDietas.setText("Dietas");
 
-        menuNuevaDieta.setText("Nueva Dieta");
-        menuDietas.add(menuNuevaDieta);
+        menuCrearDieta.setText("Crear Dieta");
+        menuDietas.add(menuCrearDieta);
 
-        menuBorrarDieta.setText("Borrar Dieta");
+        menuBorrarDieta.setText("Editar/Borrar Dieta");
         menuDietas.add(menuBorrarDieta);
 
         menuListarDietas.setText("Listar Dietas");
         menuDietas.add(menuListarDietas);
-
-        menuEditarDieta.setText("Editar Dieta");
-        menuDietas.add(menuEditarDieta);
 
         menuAltaBajaDieta.setText("Alta/Baja Dieta");
         menuDietas.add(menuAltaBajaDieta);
@@ -124,11 +120,11 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuNuevaComida.setText("Nueva Comida");
         menuComidas.add(menuNuevaComida);
 
-        menuBorrarComida.setText("Borrar Comida");
+        menuBorrarComida.setText("Editar/Borrar Comida");
         menuComidas.add(menuBorrarComida);
 
-        menuEditarComida.setText("Editar Comida");
-        menuComidas.add(menuEditarComida);
+        menuListarComidas.setText("Listar Comidas");
+        menuComidas.add(menuListarComidas);
 
         menuAltaBajaComida.setText("Alta/Baja Comida");
         menuComidas.add(menuAltaBajaComida);
@@ -283,15 +279,14 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuBorrarComida;
     private javax.swing.JMenuItem menuBorrarDieta;
     private javax.swing.JMenu menuComidas;
+    private javax.swing.JMenuItem menuCrearDieta;
     private javax.swing.JMenu menuDietas;
-    private javax.swing.JMenuItem menuEditarComida;
-    private javax.swing.JMenuItem menuEditarDieta;
     private javax.swing.JMenuItem menuEditarPaciente;
     private javax.swing.JMenuItem menuExit;
+    private javax.swing.JMenuItem menuListarComidas;
     private javax.swing.JMenuItem menuListarDietas;
     private javax.swing.JMenuItem menuListarPacientes;
     private javax.swing.JMenuItem menuNuevaComida;
-    private javax.swing.JMenuItem menuNuevaDieta;
     private javax.swing.JMenuItem menuNuevoPaciente;
     private javax.swing.JMenu menuPacientes;
     // End of variables declaration//GEN-END:variables
