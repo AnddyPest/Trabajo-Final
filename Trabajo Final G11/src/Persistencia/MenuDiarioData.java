@@ -179,7 +179,7 @@ public class MenuDiarioData {
         Dieta resultadoEstado = null;
         try {
             FuncionDe.validarSiExisteId(this, id);
-            String query = "SELECT dieta.estado FROM dieta WHERE dieta.idDieta = ?";
+            String query = "SELECT menudiario.estado FROM dieta WHERE menudiario.idMenuDiario= ?";
             PreparedStatement ps = conexion.prepareStatement(query);
             ps.setInt(1, id);
             ResultSet resultados = ps.executeQuery();
@@ -187,65 +187,65 @@ public class MenuDiarioData {
                 resultadoEstado = new Dieta();
                 resultadoEstado.setEstadoDieta(resultados.getBoolean("estado"));
             }
-            FuncionDe.mostrarMensajeCorrecto("BuscarEstadoPorId", "Estado Logico de la dieta enviada correctamente");
+            FuncionDe.mostrarMensajeCorrecto("BuscarEstadoPorId", "Estado Logico del menu enviado correctamente");
         } catch (SQLException ex) {
-           FuncionDe.mostrarMensajeError("No se pudo enviar el estado logico de la dieta", ex, "BuscarEstadoPorID", "DietaData", "181");
+           FuncionDe.mostrarMensajeError("No se pudo enviar el estado logico del menu", ex, "BuscarEstadoPorID", "MenuDiarioData", "181");
         }
         return resultadoEstado.isEstadoDieta();
     }
     //Alta logica
-    public void altaLogicaDieta(int id){
+    public void altaLogicaMenuDiario(int id){
         
         try {
             FuncionDe.validarSiExisteId(this, id);
             FuncionDe.validarSiYaEstabaLogicamenteEnDichoEstado(this, id, true);
-            String Query = "UPDATE dieta SET dieta.estado = ? WHERE dieta.idDieta = ?";
+            String Query = "UPDATE menudiario SET menudiario.estado = ? WHERE menudiario.idMenuDiario= ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setBoolean(1, true);
             ps.setInt(2, id);
             ps.executeUpdate();
             ps.close();
-            FuncionDe.mostrarMensajeCorrecto("AltaLogicaDieta", "Dieta dada de Alta correctamente");
+            FuncionDe.mostrarMensajeCorrecto("altaLogicaMenuDiario", "Menu diario dado de Alta correctamente");
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo dar el alta logica", ex, "AltaLogicaDieta", "DietaData", "200");
+            FuncionDe.mostrarMensajeError("No se pudo dar el alta logica", ex, "altaLogicaMenuDiario", "MenuDiarioData", "200");
         }
     }
    
     //baja logica 
-    public void bajaLogicaDieta(int id){
+    public void bajaLogicaMenuDiario(int id){
         
         try {
             FuncionDe.validarSiExisteId(this, id);
             FuncionDe.validarSiYaEstabaLogicamenteEnDichoEstado(this, id, false);
-            String Query = "UPDATE dieta SET dieta.estado = ? WHERE dieta.idDieta = ?";
+            String Query = "UPDATE menudiario SET menudiario.estado = ? WHERE menudiario.idMenuDiario = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setBoolean(1, false);
             ps.setInt(2, id);
             ps.executeUpdate();
             ps.close();
-            FuncionDe.mostrarMensajeCorrecto("BajaLogicaDieta", "Dieta dada de Baja correctamente");
+            FuncionDe.mostrarMensajeCorrecto("BajaLogicaMenuDiario", "Menu Diario dado de Baja correctamente");
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo dar la baja logica", ex, "BajaLogicaDieta", "DietaData", "218");
+            FuncionDe.mostrarMensajeError("No se pudo dar la baja logica", ex, "BajaLogicaMenuDiario", "MenuDiarioData", "218");
         }
     }
    
     
     //borrar paciente por id
-    public void borrarDietaPorId(int id){
+    public void borrarMenuDiarioPorId(int id){
         
         try {
             FuncionDe.validarSiExisteId(this, id);
             
-            String Query = "DELETE FROM dieta WHERE dieta.idDieta = ?";
+            String Query = "DELETE FROM menudiario WHERE menudiario.idMenuDiario = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setInt(1, id);
             ps.executeUpdate();
             ps.close();
-            FuncionDe.mostrarMensajeCorrecto("borrarDietaPorId", "Dieta eliminada con exito");
+            FuncionDe.mostrarMensajeCorrecto("borrarMenuDiarioPorId", "Dieta eliminada con exito");
                 
             
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo borrar la dieta",ex, "BorrarDietaPorId", "DietaData", "233");
+            FuncionDe.mostrarMensajeError("No se pudo borrar el menu diario",ex, "borrarMenuDiarioPorId", "DietaData", "233");
         }
         
     }

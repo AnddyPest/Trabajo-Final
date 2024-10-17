@@ -129,8 +129,9 @@ public class FuncionDe {
                 throw new SQLException("El paciente ya está dado de BAJA");
             }
         }
+    }
         
-        public static void validarSiYaEstabaLogicamenteEnDichoEstado(MenuDiarioData metodo, int id,boolean estadoAValidar) throws SQLException{
+    public static void validarSiYaEstabaLogicamenteEnDichoEstado(MenuDiarioData metodo, int id,boolean estadoAValidar) throws SQLException{
         if(estadoAValidar){
             if(metodo.buscarEstadoPorId(id) == true){
                 throw new SQLException("El paciente ya está dado de ALTA");
