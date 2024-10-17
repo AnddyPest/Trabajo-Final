@@ -2,6 +2,7 @@
 package Entidades;
 //
 //import Persistencia.ComidaData;
+import Persistencia.AlimentoData;
 import Persistencia.DietaData;
 import Persistencia.PacienteData;
 import java.sql.ResultSet;
@@ -54,6 +55,16 @@ public class FuncionDe {
 //        comidaCreada.setEstadoComida(resultados.getBoolean("estado"));
 //        return comidaCreada;
 //    }
+    public static Alimento crearAlimento(ResultSet resultados) throws SQLException{
+        Alimento alimentoCreado = new Alimento();
+        alimentoCreado.setIdAlimento(resultados.getInt("idAlimento"));
+        alimentoCreado.setNombre(resultados.getString("nombre"));
+        alimentoCreado.setTipoComida(resultados.getString("tipoComida"));
+        alimentoCreado.setCaloriasPor100g(resultados.getInt("caloriasPor100g"));
+        alimentoCreado.setDetalle(resultados.getString("detalle"));
+        alimentoCreado.setEstado(resultados.getBoolean("estado"));
+        return alimentoCreado;
+    }
     public static Dieta crearDieta(ResultSet resultados) throws SQLException{
         Dieta dietaCreada = new Dieta();
         dietaCreada.setIdDieta(resultados.getInt("idDieta"));
@@ -74,11 +85,11 @@ public class FuncionDe {
                 throw new SQLException();
             }
     }
-//    public static void validarSiExisteId(ComidaData metodo, int id) throws SQLException{
-//        if(metodo.buscarComidaPorID(id) == null){
-//                throw new SQLException();
-//            }
-//    }
+    public static void validarSiExisteId(AlimentoData metodo, int id) throws SQLException{
+        if(metodo.buscarAlimentoPorID(id) == null){
+                throw new SQLException();
+            }
+    }
     public static void validarSiExisteId(DietaData metodo, int id) throws SQLException{
         if(metodo.buscarDietaPorID(id) == null){
                 throw new SQLException();
@@ -97,18 +108,18 @@ public class FuncionDe {
         
         
     }
-//    public static void validarSiYaEstabaLogicamenteEnDichoEstado(ComidaData metodo, int id,boolean estadoAValidar) throws SQLException{
-//        if(estadoAValidar){
-//            if(metodo.buscarEstadoPorId(id) == true){
-//                throw new SQLException("La comida ya está dada de ALTA");
-//            }
-//        }else{
-//            if(metodo.buscarEstadoPorId(id) == false){
-//                throw new SQLException("La comida ya está dada de BAJA");
-//            }
-//        }       
-//        
-//    }
+    public static void validarSiYaEstabaLogicamenteEnDichoEstado(AlimentoData metodo, int id,boolean estadoAValidar) throws SQLException{
+        if(estadoAValidar){
+            if(metodo.buscarEstadoPorId(id) == true){
+                throw new SQLException("El alimento ya está dada de ALTA");
+            }
+        }else{
+            if(metodo.buscarEstadoPorId(id) == false){
+                throw new SQLException("El alimento ya está dada de BAJA");
+            }
+        }       
+        
+    }
     public static void validarSiYaEstabaLogicamenteEnDichoEstado(DietaData metodo, int id,boolean estadoAValidar) throws SQLException{
         if(estadoAValidar){
             if(metodo.buscarEstadoPorId(id) == true){

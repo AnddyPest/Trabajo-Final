@@ -4,7 +4,7 @@ package Entidades;
 
 public class Alimento {
     
-    private int idComida;
+    private int idAlimento;
     private String nombre;
     private String tipoComida;
     private int caloriasPor100g;
@@ -22,8 +22,8 @@ public class Alimento {
         this.estado = estado;
     }
 
-    public Alimento(int idComida, String nombre, String tipoComida, int caloriasPor100g, String detalle, boolean estado) {
-        this.idComida = idComida;
+    public Alimento(int idAlimento, String nombre, String tipoComida, int caloriasPor100g, String detalle, boolean estado) {
+        this.idAlimento = idAlimento;
         this.nombre = nombre;
         this.tipoComida = tipoComida;
         this.caloriasPor100g = caloriasPor100g;
@@ -31,12 +31,12 @@ public class Alimento {
         this.estado = estado;
     }
 
-    public int getIdComida() {
-        return idComida;
+    public int getIdAlimento() {
+        return idAlimento;
     }
 
-    public void setIdComida(int idComida) {
-        this.idComida = idComida;
+    public void setIdAlimento(int idAlimento) {
+        this.idAlimento = idAlimento;
     }
 
     public String getNombre() {
@@ -81,7 +81,7 @@ public class Alimento {
 
     @Override
     public String toString() {
-        return "Alimento= " + "idComida=" + idComida + ", nombre=" + nombre + ", tipoComida=" + tipoComida + ", caloriasPor100g=" + caloriasPor100g + ", detalle=" + detalle + ", estado=" + estado + '}';
+        return "Alimento= " + "idAlimento=" + idAlimento + ", nombre=" + nombre + ", tipoComida=" + tipoComida + ", caloriasPor100g=" + caloriasPor100g + ", detalle=" + detalle + ", estado=" + estado + '}';
     }
             
     
