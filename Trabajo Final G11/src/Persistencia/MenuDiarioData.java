@@ -45,10 +45,12 @@ public class MenuDiarioData {
            
         
             try {
-                String query = "Insert into menudiario(dia, idRenglonDeMenus, caloriasDelMenu, estado ) values(  ? , ? , ? , ? )";
+                String query = "Insert into menudiario(dia, caloriasDelMenu, estado ) values(  ? , ? , ?)";
 
                 PreparedStatement ps = conexion.prepareStatement(query);
                 ps.setInt(1, menuDiarioEnviada.getDia());
+                ps.setInt(2, menuDiarioEnviada.getCaloriasDelMenu());
+                ps.setBoolean(3, menuDiarioEnviada.isEstado());
                 ps.executeUpdate();
 
                 FuncionDe.mostrarMensajeCorrecto("Crear Dieta", "La dieta ha sido añadida");
@@ -66,111 +68,107 @@ public class MenuDiarioData {
     //READ
     //Listar Todos Los Pacientes
     
-    public ArrayList<Dieta> listarDietas(){
-        ArrayList<Dieta> dietasDevueltas = new ArrayList<>();
+    public ArrayList<MenuDiario> listarMenus(){
+        ArrayList<MenuDiario> menusDevueltos = new ArrayList<>();
         try {            
             
-            String Query= "SELECT * FROM dieta";            
+            String Query= "SELECT * FROM menudiario";            
             PreparedStatement ps = conexion.prepareStatement(Query);
             
             ResultSet resultados = ps.executeQuery();
             
             while(resultados.next()){
-                Dieta dietaCreada = FuncionDe.crearDieta(resultados);
+                MenuDiario menuCreado = FuncionDe.crearMenu(resultados);
                 
-                dietasDevueltas.add(dietaCreada);
+                menusDevueltos.add(menuCreado);
             }
-            FuncionDe.mostrarMensajeCorrecto("Listar Dietas", "Todas las dietas han sido enviadas correctamente");
+            FuncionDe.mostrarMensajeCorrecto("Listar Menus", "Todos los menus han sido enviados correctamente");
             
             resultados.close();
             ps.close();
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se puede listar las dietas",ex, "Listar Dietas", "DietasData", "71");
+            FuncionDe.mostrarMensajeError("No se puede listar los menus",ex, "Listar Menus", "MenuDiarioData", "71");
         }
         
-        return dietasDevueltas;
+        return menusDevueltos;
     }
     
     //Listar Paciente por id
     
-    public Dieta buscarDietaPorID(int id){
-        Dieta dietaDevuelta = null;
+    public MenuDiario buscarMenuPorID(int id){
+        MenuDiario MenuDevuelto = null;
         try {
-            String query = "SELECT * FROM dieta WHERE idDieta = ?";
+            String query = "SELECT * FROM menudiario WHERE idMenu = ?";
             PreparedStatement ps = conexion.prepareStatement(query);
             ps.setInt( 1, id );
             ResultSet resultados = ps.executeQuery();
             while(resultados.next()){
-                dietaDevuelta = FuncionDe.crearDieta(resultados);                
+                MenuDevuelto = FuncionDe.crearMenu(resultados);                
             }
-            if(dietaDevuelta == null){
+            if(MenuDevuelto == null){
                 throw new SQLException();
             }else{
-                FuncionDe.mostrarMensajeCorrecto("buscarDietaPorId", "Dieta encontrada correctamente");
+                FuncionDe.mostrarMensajeCorrecto("buscarMenuPorId", "Menu encontrado correctamente");
             }
             resultados.close();
             ps.close();
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo encontrar el registro",ex, "buscarDietaPorId", "DietaData", "98");
+            FuncionDe.mostrarMensajeError("No se pudo encontrar el registro",ex, "buscarMenuPorId", "MenuData", "98");
         }
         
-        return dietaDevuelta;
+        return MenuDevuelto;
     }
     //Listar Paciente por nombre
-    public ArrayList<Dieta> buscarDietasPorNombre(String nombreEnviado){
-        ArrayList<Dieta> dietasEncontradas = new ArrayList<>();
-        try {            
-            String query = "SELECT * FROM dieta WHERE dieta.nombre = ?";
-            PreparedStatement ps = conexion.prepareStatement(query);
-            ps.setString(1, nombreEnviado.trim().toLowerCase());
-            ResultSet resultados = ps.executeQuery();
-            while(resultados.next()){
-                Dieta dieta = FuncionDe.crearDieta(resultados);
-                dietasEncontradas.add(dieta);
-            }
-            if(!dietasEncontradas.isEmpty()){
-                FuncionDe.mostrarMensajeCorrecto("buscarDietasPorNombre", "Dietas con nombre: " + nombreEnviado + " enviadas correctamente");
-            } else{
-                throw new SQLException();
-            }
-            resultados.close();
-            ps.close();
-            
-        } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se encontraron dietas con dicho nombre",ex, "buscarDietasPorNombre", "DietaData", "122");
-        }
+//    public ArrayList<Dieta> buscarMenusPorNombre(String nombreEnviado){
+//        ArrayList<MenuDiario> menusEncontrados = new ArrayList<>();
+//        try {            
+//            String query = "SELECT * FROM menudiario WHERE dieta.nombre = ?";
+//            PreparedStatement ps = conexion.prepareStatement(query);
+//            ps.setString(1, nombreEnviado.trim().toLowerCase());
+//            ResultSet resultados = ps.executeQuery();
+//            while(resultados.next()){
+//                Dieta dieta = FuncionDe.crearDieta(resultados);
+//                dietasEncontradas.add(dieta);
+//            }
+//            if(!dietasEncontradas.isEmpty()){
+//                FuncionDe.mostrarMensajeCorrecto("buscarDietasPorNombre", "Dietas con nombre: " + nombreEnviado + " enviadas correctamente");
+//            } else{
+//                throw new SQLException();
+//            }
+//            resultados.close();
+//            ps.close();
+//            
+//        } catch (SQLException ex) {
+//            FuncionDe.mostrarMensajeError("No se encontraron dietas con dicho nombre",ex, "buscarDietasPorNombre", "DietaData", "122");
+//        }
+//        
+//        return dietasEncontradas;
         
-        return dietasEncontradas;
-        
-    }
+    
     //UPDATE
     //actualizar paciente por id
     
-    public void actualizarDietaPorId(Dieta dietaEnviada){
+    public void actualizarMenuPorId(MenuDiario menuEnviado){
         
         try {
             //REVISAR SI FUNCIONA
-            FuncionDe.validarSiExisteId(this, dietaEnviada.getIdDieta());
-            
-            String Query = "UPDATE dieta SET dieta.nombre = ?,dieta.idPaciente = ?, dieta.fechaInicio = ?, dieta.fechaFinal = ? , dieta.pesoInicial = ? ,dieta.pesoFinal = ? , dieta.totalCalorias = ? , dieta.estado = ? WHERE dieta.idDieta = ?";
+            FuncionDe.validarSiExisteId(this, menuEnviado.getIdMenuDiario());
+                                                           
+            String Query = "UPDATE menudiario SET menudiario.idMenuDiario = ?, menudiario.dia = ?, menudiario.caloriasDelMenu = ?, menudiario.idDieta, menudiario.estado = ? WHERE menuDiario.idMenu = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
-            ps.setString(1, dietaEnviada.getNombre());
-            ps.setInt(2, dietaEnviada.getIdPaciente().getIdPaciente());
-            ps.setDate(3, Date.valueOf(dietaEnviada.getFechaInicio()));
-            ps.setDate(4, Date.valueOf(dietaEnviada.getFechaFinal()));
-            ps.setDouble(5, dietaEnviada.getPesoInicial());
-            ps.setDouble(6, dietaEnviada.getPesoFinal());
-            ps.setInt(7, dietaEnviada.getTotalCalorias());
-            ps.setBoolean(8, dietaEnviada.isEstadoDieta());
-            ps.setInt(9, dietaEnviada.getIdDieta());
+            ps.setInt(1,menuEnviado.getIdMenuDiario());
+            ps.setInt(2, menuEnviado.getDia());
+            ps.setInt(3, menuEnviado.getCaloriasDelMenu());
+            ps.setInt(4, menuEnviado.getDieta().getIdDieta());
+            ps.setBoolean(5, menuEnviado.isEstado());
             ps.executeUpdate();
             ps.close();
 
-            FuncionDe.mostrarMensajeCorrecto("actualizarDietaPorId", "Dieta actualizada con exito");
+            FuncionDe.mostrarMensajeCorrecto("actualizarMenuPorId", "Menu actualizado con exito");
                     
                         
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo actualizar la dieta",ex, "actualizarDietaPorId", "DietaData", "151");
+            FuncionDe.mostrarMensajeError("No se pudo actualizar el menu",ex, "actualizarMenuPorId", "MenuDiarioData", "151");
         }
     }
     
