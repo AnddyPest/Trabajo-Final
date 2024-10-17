@@ -1,9 +1,9 @@
 package Vistas;
-import Entidades.Comida;
+
 import Entidades.Conexion;
 import java.sql.Connection;
 import Entidades.Paciente;
-//import Persistencia.ComidaData;
+
 import Persistencia.PacienteData;
 import java.util.ArrayList;
 
@@ -87,11 +87,11 @@ public class TestClass {
         
 //        ComidaData comidaData = new ComidaData(conexion);
         
-        Comida comida1 = new Comida(1, "Ensalada", "Simple ensalada de tomate y lechuga", 500, true);
-        Comida comida2 = new Comida(2, "Ensalada Rusa", "Simple ensalada de papa, zanahoria, arvejas y mayonesa", 600, true);
-        Comida comida3 = new Comida(3, "Chorizo a la pomarola", "Mortal cuando hace frio", 700, true);
-        Comida comida4 = new Comida(4, "Asado", "Nunca puede faltar un domingo", 1200, true);
-        Comida comida5 = new Comida(5, "Ensalada de Aveeee", "Simple ensalada de papa y pollo", 450, true);
+//        Comida comida1 = new Comida(1, "Ensalada", "Simple ensalada de tomate y lechuga", 500, true);
+//        Comida comida2 = new Comida(2, "Ensalada Rusa", "Simple ensalada de papa, zanahoria, arvejas y mayonesa", 600, true);
+//        Comida comida3 = new Comida(3, "Chorizo a la pomarola", "Mortal cuando hace frio", 700, true);
+//        Comida comida4 = new Comida(4, "Asado", "Nunca puede faltar un domingo", 1200, true);
+//        Comida comida5 = new Comida(5, "Ensalada de Aveeee", "Simple ensalada de papa y pollo", 450, true);
         
         //Crear //FUNCIONA
         

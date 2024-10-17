@@ -7,7 +7,7 @@ public class Paciente {
     private String nombre;
     private int dni;
     private int edad; 
-    private int telefono;
+    private String telefono;
     private double pesoActual;
     private double pesoBuscado;
     private boolean estado;
@@ -15,7 +15,7 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(String nombre, int dni, int edad, int telefono, double pesoActual, double pesoBuscado) {
+    public Paciente(String nombre, int dni, int edad, String telefono, double pesoActual, double pesoBuscado) {
         this.nombre = nombre;
         this.dni = dni;
         this.edad = edad;
@@ -24,7 +24,7 @@ public class Paciente {
         this.pesoBuscado = pesoBuscado;
     }
 
-    public Paciente(String nombre, int dni, int edad, int telefono, double pesoActual, double pesoBuscado, boolean estado) {
+    public Paciente(String nombre, int dni, int edad, String telefono, double pesoActual, double pesoBuscado, boolean estado) {
         this.nombre = nombre;
         this.dni = dni;
         this.edad = edad;
@@ -34,7 +34,7 @@ public class Paciente {
         this.estado = estado;
     }
 
-    public Paciente(int idPaciente, String nombre, int dni, int edad, int telefono, double pesoActual, double pesoBuscado, boolean estado) {
+    public Paciente(int idPaciente, String nombre, int dni, int edad, String telefono, double pesoActual, double pesoBuscado, boolean estado) {
         this.idPaciente = idPaciente;
         this.nombre = nombre;
         this.dni = dni;
@@ -77,11 +77,11 @@ public class Paciente {
         this.edad = edad;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

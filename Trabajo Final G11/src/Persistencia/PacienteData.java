@@ -49,13 +49,13 @@ public class PacienteData {
            
         
             try {
-                String query = "Insert into paciente( nombre, dni, edad, telefono, pesoActual, pesoBuscado , estado) values( ? , ? , ? , ?, ? ,?,? )";
+                String query = "Insert into paciente( nombre, dni, edad, telefono, pesoActual, pesoBuscado , estado) values( ? , ? , ? , ?, ? , ?, ? )";
 
                 PreparedStatement ps = conexion.prepareStatement(query);
                 ps.setString(1,pacienteEnviado.getNombre().trim() );
                 ps.setInt(2, pacienteEnviado.getDni());
                 ps.setInt(3, pacienteEnviado.getEdad());
-                ps.setInt(4, pacienteEnviado.getTelefono());
+                ps.setString(4, pacienteEnviado.getTelefono());
                 ps.setDouble(5, pacienteEnviado.getPesoActual());
                 ps.setDouble(6, pacienteEnviado.getPesoBuscado());
                 ps.setBoolean(7, true);
@@ -169,7 +169,7 @@ public class PacienteData {
             ps.setString(1, pacienteEnviado.getNombre());
             ps.setInt(2, pacienteEnviado.getDni());
             ps.setInt(3, pacienteEnviado.getEdad());
-            ps.setInt(4, pacienteEnviado.getTelefono());
+            ps.setString(4, pacienteEnviado.getTelefono());
             ps.setDouble(5, pacienteEnviado.getPesoActual());
             ps.setDouble(6, pacienteEnviado.getPesoBuscado());
             ps.setBoolean(7, pacienteEnviado.isEstado());

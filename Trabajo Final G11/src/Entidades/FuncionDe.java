@@ -39,7 +39,7 @@ public class FuncionDe {
         pacienteCreado.setEdad(resultados.getInt("edad"));
         pacienteCreado.setPesoActual(resultados.getDouble("pesoActual"));
         pacienteCreado.setPesoActual(resultados.getDouble("pesoBuscado"));
-        pacienteCreado.setTelefono(resultados.getInt("telefono"));
+        pacienteCreado.setTelefono(resultados.getString("telefono"));
         pacienteCreado.setEstado(resultados.getBoolean("estado"));
         
         return pacienteCreado;
