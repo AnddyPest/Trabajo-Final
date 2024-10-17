@@ -3,7 +3,7 @@ import Entidades.Comida;
 import Entidades.Conexion;
 import java.sql.Connection;
 import Entidades.Paciente;
-import Persistencia.ComidaData;
+//import Persistencia.ComidaData;
 import Persistencia.PacienteData;
 import java.util.ArrayList;
 
@@ -85,7 +85,7 @@ public class TestClass {
         //////Testeo Comidas//////
         //////////////////////////
         
-        ComidaData comidaData = new ComidaData(conexion);
+//        ComidaData comidaData = new ComidaData(conexion);
         
         Comida comida1 = new Comida(1, "Ensalada", "Simple ensalada de tomate y lechuga", 500, true);
         Comida comida2 = new Comida(2, "Ensalada Rusa", "Simple ensalada de papa, zanahoria, arvejas y mayonesa", 600, true);
