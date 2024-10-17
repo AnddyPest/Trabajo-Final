@@ -1,4 +1,3 @@
-
 package Vistas;
 
 import Entidades.Conexion;
@@ -8,12 +7,11 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
-
 public class VentanaListadoPacientes extends javax.swing.JInternalFrame {
-     private final DefaultTableModel modelo = new NonEditableTableModel();
+
+    private final DefaultTableModel modelo = new NonEditableTableModel();
     PacienteData pacienteData;
 
-   
     public VentanaListadoPacientes() {
         initComponents();
         Connection con = Conexion.getConexion();
@@ -22,6 +20,7 @@ public class VentanaListadoPacientes extends javax.swing.JInternalFrame {
         actualizarTabla();
         tabPacientes.setEnabled(false);
     }
+
     private class NonEditableTableModel extends DefaultTableModel {
 
         @Override
@@ -30,7 +29,6 @@ public class VentanaListadoPacientes extends javax.swing.JInternalFrame {
         }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -224,12 +222,14 @@ public class VentanaListadoPacientes extends javax.swing.JInternalFrame {
     private javax.swing.JTable tabPacientes;
     // End of variables declaration//GEN-END:variables
 
- private void cargarCabecera() {
+    private void cargarCabecera() {
         modelo.addColumn("ID Paciente");
         modelo.addColumn("Nombre y Apellido");
         modelo.addColumn("D.N.I.");
-     //   modelo.addColumn("Direccion");
+        modelo.addColumn("Edad");
         modelo.addColumn("Teléfono");
+        modelo.addColumn("Peso Inicial");
+        modelo.addColumn("Peso Buscado");
         modelo.addColumn("Activo");
 
         tabPacientes.setModel(modelo);
@@ -243,8 +243,10 @@ public class VentanaListadoPacientes extends javax.swing.JInternalFrame {
                 p.getIdPaciente(),
                 p.getNombre(),
                 p.getDni(),
-             //   p.getDomicilio(),
+                p.getEdad(),
                 p.getTelefono(),
+                p.getPesoActual(),
+                p.getPesoBuscado(),
                 p.isEstado() ? "SI" : "NO"
 
             });
