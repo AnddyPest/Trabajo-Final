@@ -23,7 +23,16 @@ public class Paciente {
         this.pesoActual = pesoActual;
         this.pesoBuscado = pesoBuscado;
     }
-
+    public Paciente(int idPaciente, String nombre, int dni, int edad, String telefono, double pesoActual, double pesoBuscado) {
+        this.idPaciente = idPaciente;
+        this.nombre = nombre;
+        this.dni = dni;
+        this.edad = edad;
+        this.telefono = telefono;
+        this.pesoActual = pesoActual;
+        this.pesoBuscado = pesoBuscado;
+    }
+    
     public Paciente(String nombre, int dni, int edad, String telefono, double pesoActual, double pesoBuscado, boolean estado) {
         this.nombre = nombre;
         this.dni = dni;
@@ -33,6 +42,10 @@ public class Paciente {
         this.pesoBuscado = pesoBuscado;
         this.estado = estado;
     }
+
+    
+    
+    
 
     public Paciente(int idPaciente, String nombre, int dni, int edad, String telefono, double pesoActual, double pesoBuscado, boolean estado) {
         this.idPaciente = idPaciente;

@@ -184,7 +184,6 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         desktop.removeAll();
         VentanaEditarBorrarPaciente editarPaciente = new VentanaEditarBorrarPaciente();
         desktop.add(editarPaciente);
-
         editarPaciente.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {

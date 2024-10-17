@@ -164,7 +164,7 @@ public class PacienteData {
             //MAXI: Eliminé el campo para cambiar el "ESTADO" ya que este se modifica solo por ALTA/BAJA Lógica -- ANDRES
             FuncionDe.validarSiExisteId(this, pacienteEnviado.getIdPaciente());
             
-            String Query = "UPDATE paciente SET paciente.nombre = ?, paciente.dni = ?, paciente.edad = ?, paciente.telefono = ? , paciente.pesoActual = ? , paciente.pesoBuscado = ?, paciente.estado WHERE paciente.idPaciente = ?";
+            String Query = "UPDATE paciente SET paciente.nombre = ?, paciente.dni = ?, paciente.edad = ?, paciente.telefono = ? , paciente.pesoActual = ? , paciente.pesoBuscado = ? WHERE paciente.idPaciente = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setString(1, pacienteEnviado.getNombre());
             ps.setInt(2, pacienteEnviado.getDni());
@@ -172,8 +172,8 @@ public class PacienteData {
             ps.setString(4, pacienteEnviado.getTelefono());
             ps.setDouble(5, pacienteEnviado.getPesoActual());
             ps.setDouble(6, pacienteEnviado.getPesoBuscado());
-            ps.setBoolean(7, pacienteEnviado.isEstado());
-            ps.setInt(8, pacienteEnviado.getIdPaciente());
+            //ps.setBoolean(7, pacienteEnviado.isEstado());
+            ps.setInt(7, pacienteEnviado.getIdPaciente());
             ps.executeUpdate();
             ps.close();
 
