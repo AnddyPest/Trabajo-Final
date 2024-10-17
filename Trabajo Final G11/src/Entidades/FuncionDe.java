@@ -30,7 +30,7 @@ public class FuncionDe {
         System.out.println("\nCodigo de error: " + ex.getErrorCode());
         System.out.println("\n==========================================");
     }
-    
+ 
     public static Paciente crearPaciente(ResultSet resultados) throws SQLException{
 
         Paciente pacienteCreado = new Paciente();
