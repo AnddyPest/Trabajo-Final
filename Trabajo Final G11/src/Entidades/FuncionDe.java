@@ -4,6 +4,7 @@ package Entidades;
 //import Persistencia.ComidaData;
 import Persistencia.AlimentoData;
 import Persistencia.DietaData;
+import Persistencia.MenuDiarioData;
 import Persistencia.PacienteData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,7 +45,24 @@ public class FuncionDe {
         pacienteCreado.setEstado(resultados.getBoolean("estado"));
         
         return pacienteCreado;
+    } 
+   
+    public static MenuDiario crearMenu(ResultSet resultados) throws SQLException{
+
+        MenuDiario menuCreado = new MenuDiario();
+        menuCreado.setIdMenuDiario(resultados.getInt("idMenuDiario"));
+        menuCreado.setDia(resultados.getInt("dia"));
+        menuCreado.setCaloriasDelMenu(resultados.getInt("caloriasDelMenu"));
+        Dieta dieta = new Dieta();
+        dieta.setIdDieta(resultados.getInt("idDieta"));
+        menuCreado.setEstado(resultados.getBoolean("estado"));
+        RenglonDeMenu renglonDeMenu = new RenglonDeMenu();
+        renglonDeMenu.setIdRenglonDeMenu(resultados.getInt("idRenglonDelMenu"));
+  
+        
+        return menuCreado;
     }
+  
     
 //    public static Comida crearComida(ResultSet resultados) throws SQLException{
 //        Comida comidaCreada = new Comida();
@@ -85,6 +103,12 @@ public class FuncionDe {
                 throw new SQLException();
             }
     }
+    
+    public static void validarSiExisteId(MenuDiarioData metodo, int id) throws SQLException{
+        if(metodo.buscarMenuPorID(id) == null){
+                throw new SQLException();
+            }
+    }
     public static void validarSiExisteId(AlimentoData metodo, int id) throws SQLException{
         if(metodo.buscarAlimentoPorID(id) == null){
                 throw new SQLException();
@@ -105,8 +129,20 @@ public class FuncionDe {
                 throw new SQLException("El paciente ya está dado de BAJA");
             }
         }
+    }
         
+    public static void validarSiYaEstabaLogicamenteEnDichoEstado(MenuDiarioData metodo, int id,boolean estadoAValidar) throws SQLException{
+        if(estadoAValidar){
+            if(metodo.buscarEstadoPorId(id) == true){
+                throw new SQLException("El paciente ya está dado de ALTA");
+            }
+        }else{
+            if(metodo.buscarEstadoPorId(id) == false){
+                throw new SQLException("El paciente ya está dado de BAJA");
+            }
+        }
         
+   
     }
     public static void validarSiYaEstabaLogicamenteEnDichoEstado(AlimentoData metodo, int id,boolean estadoAValidar) throws SQLException{
         if(estadoAValidar){
