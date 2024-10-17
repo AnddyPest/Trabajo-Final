@@ -1,4 +1,4 @@
-/*package Persistencia;
+package Persistencia;
 
 import Entidades.Dieta;
 import Entidades.FuncionDe;
@@ -249,4 +249,4 @@ public class MenuDiarioData {
         }
         
     }
-}*/
+}
