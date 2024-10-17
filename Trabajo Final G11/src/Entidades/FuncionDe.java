@@ -36,8 +36,10 @@ public class FuncionDe {
         pacienteCreado.setIdPaciente(resultados.getInt("idPaciente"));
         pacienteCreado.setNombre(resultados.getString("nombre").trim());
         pacienteCreado.setDni(resultados.getInt("dni"));
-        pacienteCreado.setDomicilio(resultados.getString("domicilio").trim());
-        pacienteCreado.setTelefono(resultados.getString("telefono").trim());
+        pacienteCreado.setEdad(resultados.getInt("edad"));
+        pacienteCreado.setPesoActual(resultados.getDouble("pesoActual"));
+        pacienteCreado.setPesoActual(resultados.getDouble("pesoBuscado"));
+        pacienteCreado.setTelefono(resultados.getInt("telefono"));
         pacienteCreado.setEstado(resultados.getBoolean("estado"));
         
         return pacienteCreado;
@@ -55,11 +57,14 @@ public class FuncionDe {
         Dieta dietaCreada = new Dieta();
         dietaCreada.setIdDieta(resultados.getInt("idDieta"));
         dietaCreada.setNombre(resultados.getString("nombre"));
+        Paciente paciente = new Paciente();
+        paciente.setIdPaciente(resultados.getInt("idPaciente"));
+        dietaCreada.setIdPaciente(paciente);
         dietaCreada.setFechaInicio(resultados.getDate("fechaInicial").toLocalDate());
         dietaCreada.setFechaFinal(resultados.getDate("fechaFinal").toLocalDate());
         dietaCreada.setPesoInicial(resultados.getDouble("pesoInicial"));
         dietaCreada.setPesoInicial(resultados.getDouble("pesoFinal"));
-        dietaCreada.setIdPaciente(resultados.getInt("idPaciente"));
+        dietaCreada.setTotalCalorias(resultados.getInt("totalCalorias"));        
         dietaCreada.setEstadoDieta(resultados.getBoolean("estado"));
         return dietaCreada;
     }

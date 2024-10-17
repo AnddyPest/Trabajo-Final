@@ -3,53 +3,47 @@ package Entidades;
 
 public class Paciente {
     
-    int idPaciente;
-    String nombre;
-    int dni;
-    String domicilio;
-    String telefono;
-    boolean estado;
+    private int idPaciente;
+    private String nombre;
+    private int dni;
+    private int edad; 
+    private int telefono;
+    private double pesoActual;
+    private double pesoBuscado;
+    private boolean estado;
 
     public Paciente() {
     }
 
-    public Paciente(String nombre, int dni, String domicilio, String telefono) {
+    public Paciente(String nombre, int dni, int edad, int telefono, double pesoActual, double pesoBuscado) {
         this.nombre = nombre;
         this.dni = dni;
-        this.domicilio = domicilio;
+        this.edad = edad;
         this.telefono = telefono;
+        this.pesoActual = pesoActual;
+        this.pesoBuscado = pesoBuscado;
     }
 
-    public Paciente(int idPaciente, String nombre, int dni, String domicilio, String telefono) {
-        this.idPaciente = idPaciente;
+    public Paciente(String nombre, int dni, int edad, int telefono, double pesoActual, double pesoBuscado, boolean estado) {
         this.nombre = nombre;
         this.dni = dni;
-        this.domicilio = domicilio;
+        this.edad = edad;
         this.telefono = telefono;
-    }
-    
-        
-
-    public Paciente(String nombre, int dni, String domicilio, String telefono, boolean estado) {
-        this.nombre = nombre;
-        this.dni = dni;
-        this.domicilio = domicilio;
-        this.telefono = telefono;
+        this.pesoActual = pesoActual;
+        this.pesoBuscado = pesoBuscado;
         this.estado = estado;
     }
 
-    public Paciente(int idPaciente, String nombre, int dni, String domicilio, String telefono, boolean estado) {
+    public Paciente(int idPaciente, String nombre, int dni, int edad, int telefono, double pesoActual, double pesoBuscado, boolean estado) {
         this.idPaciente = idPaciente;
         this.nombre = nombre;
         this.dni = dni;
-        this.domicilio = domicilio;
+        this.edad = edad;
         this.telefono = telefono;
+        this.pesoActual = pesoActual;
+        this.pesoBuscado = pesoBuscado;
         this.estado = estado;
     }
-    
-    
-
-    
 
     public int getIdPaciente() {
         return idPaciente;
@@ -75,20 +69,36 @@ public class Paciente {
         this.dni = dni;
     }
 
-    public String getDomicilio() {
-        return domicilio;
+    public int getEdad() {
+        return edad;
     }
 
-    public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
+    }
+
+    public double getPesoActual() {
+        return pesoActual;
+    }
+
+    public void setPesoActual(double pesoActual) {
+        this.pesoActual = pesoActual;
+    }
+
+    public double getPesoBuscado() {
+        return pesoBuscado;
+    }
+
+    public void setPesoBuscado(double pesoBuscado) {
+        this.pesoBuscado = pesoBuscado;
     }
 
     public boolean isEstado() {
@@ -98,11 +108,25 @@ public class Paciente {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+    public boolean seAcercaAlPeso(Dieta dieta){
 
+        boolean seAcercaPesoBuscado = (dieta.getPesoInicial() > pesoBuscado && pesoActual <= pesoBuscado) ||
+                              (dieta.getPesoFinal() < pesoBuscado && pesoActual >= pesoBuscado);
+        return seAcercaPesoBuscado;
+    }
     @Override
     public String toString() {
-        return "Datos del Paciente: " + "idPaciente=" + idPaciente + ", nombre=" + nombre + ", dni=" + dni + ", domicilio=" + domicilio + ", telefono=" + telefono + ", estado=" + estado ;
+        return "Paciente= " + "idPaciente=" + idPaciente + ", nombre=" + nombre + ", dni=" + dni + ", edad=" + edad + ", telefono=" + telefono + ", pesoActual=" + pesoActual + ", pesoBuscado=" + pesoBuscado + ", estado=" + estado ;
     }
+
+   
+    
+    
+
+    
+
+    
+    
     
     
     

@@ -49,14 +49,16 @@ public class PacienteData {
            
         
             try {
-                String query = "Insert into paciente( nombre, dni, domicilio, telefono, estado ) values( ? , ? , ? , ?, ? )";
+                String query = "Insert into paciente( nombre, dni, edad, telefono, pesoActual, pesoBuscado , estado) values( ? , ? , ? , ?, ? ,?,? )";
 
                 PreparedStatement ps = conexion.prepareStatement(query);
                 ps.setString(1,pacienteEnviado.getNombre().trim() );
                 ps.setInt(2, pacienteEnviado.getDni());
-                ps.setString(3, pacienteEnviado.getDomicilio().trim());
-                ps.setString(4, pacienteEnviado.getTelefono().trim());
-                ps.setBoolean(5, true);
+                ps.setInt(3, pacienteEnviado.getEdad());
+                ps.setInt(4, pacienteEnviado.getTelefono());
+                ps.setDouble(5, pacienteEnviado.getPesoActual());
+                ps.setDouble(6, pacienteEnviado.getPesoBuscado());
+                ps.setBoolean(7, true);
 
                 ps.executeUpdate();
 
@@ -162,14 +164,16 @@ public class PacienteData {
             //MAXI: Eliminé el campo para cambiar el "ESTADO" ya que este se modifica solo por ALTA/BAJA Lógica -- ANDRES
             FuncionDe.validarSiExisteId(this, pacienteEnviado.getIdPaciente());
             
-            String Query = "UPDATE paciente SET paciente.nombre = ?, paciente.dni = ?, paciente.domicilio = ?, paciente.telefono = ? WHERE paciente.idPaciente = ?";
+            String Query = "UPDATE paciente SET paciente.nombre = ?, paciente.dni = ?, paciente.edad = ?, paciente.telefono = ? , paciente.pesoActual = ? , paciente.pesoBuscado = ?, paciente.estado WHERE paciente.idPaciente = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setString(1, pacienteEnviado.getNombre());
             ps.setInt(2, pacienteEnviado.getDni());
-            ps.setString(3, pacienteEnviado.getDomicilio());
-            ps.setString(4, pacienteEnviado.getTelefono());
-            ps.setInt(5, pacienteEnviado.getIdPaciente());
-
+            ps.setInt(3, pacienteEnviado.getEdad());
+            ps.setInt(4, pacienteEnviado.getTelefono());
+            ps.setDouble(5, pacienteEnviado.getPesoActual());
+            ps.setDouble(6, pacienteEnviado.getPesoBuscado());
+            ps.setBoolean(7, pacienteEnviado.isEstado());
+            ps.setInt(8, pacienteEnviado.getIdPaciente());
             ps.executeUpdate();
             ps.close();
 

@@ -228,7 +228,7 @@ public class VentanaListadoPacientes extends javax.swing.JInternalFrame {
         modelo.addColumn("ID Paciente");
         modelo.addColumn("Nombre y Apellido");
         modelo.addColumn("D.N.I.");
-        modelo.addColumn("Direccion");
+     //   modelo.addColumn("Direccion");
         modelo.addColumn("Teléfono");
         modelo.addColumn("Activo");
 
@@ -243,7 +243,7 @@ public class VentanaListadoPacientes extends javax.swing.JInternalFrame {
                 p.getIdPaciente(),
                 p.getNombre(),
                 p.getDni(),
-                p.getDomicilio(),
+             //   p.getDomicilio(),
                 p.getTelefono(),
                 p.isEstado() ? "SI" : "NO"
 

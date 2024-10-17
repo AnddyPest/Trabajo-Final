@@ -598,8 +598,8 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
                 txtErrorTel.setText("*El campo no puede quedar vacío.");
                 txtTelefono.requestFocus();
             } else if (radioActualizar.isSelected()) {
-                Paciente pacienteEdit = new Paciente(Integer.parseInt(txtId.getText()), txtName.getText(), Integer.parseInt(txtDni.getText()), txtDire.getText(), txtTelefono.getText());
-                pacienteData.actualizarPacientePorId(pacienteEdit);
+           //     Paciente pacienteEdit = new Paciente(Integer.parseInt(txtId.getText()), txtName.getText(), Integer.parseInt(txtDni.getText()), txtDire.getText(), txtTelefono.getText());
+             //   pacienteData.actualizarPacientePorId(pacienteEdit);
                 botonActualizarBorrar();
             } else if (radioBorrar.isSelected()) {
                 pacienteData.borrarPacientePorId(Integer.parseInt(txtId.getText()));
@@ -712,7 +712,7 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
         modelo.addColumn("ID Paciente");
         modelo.addColumn("Nombre y Apellido");
         modelo.addColumn("D.N.I.");
-        modelo.addColumn("Direccion");
+    //    modelo.addColumn("Direccion");
         modelo.addColumn("Teléfono");
         modelo.addColumn("Activo");
 
@@ -727,7 +727,7 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
                 p.getIdPaciente(),
                 p.getNombre(),
                 p.getDni(),
-                p.getDomicilio(),
+             //   p.getDomicilio(),
                 p.getTelefono(),
                 p.isEstado() ? "SI" : "NO"
 

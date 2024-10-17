@@ -501,9 +501,9 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
                 String dire = txtDire.getText();
                 String tel = txtTelefono.getText();
                 
-                Paciente paciente = new Paciente(nombre, dni, dire, tel);
+//                Paciente paciente = new Paciente(nombre, dni, dire, tel);
                 try {
-                    pacienteData.crearPaciente(paciente);
+                 //   pacienteData.crearPaciente(paciente);
                     txtName.setEditable(false);
                     txtDire.setEditable(false);
                     txtDni.setEditable(false);

@@ -42,7 +42,7 @@ public class DietaData {
            
         
             try {
-                String query = "Insert into dieta( nombre, fechaInicial, fechaFinal, pesoInicial, pesoFinal,estado ) values( ? , ? , ? , ? , ? , ? )";
+                String query = "Insert into dieta( nombre, fechaInicio, fechaFinal, pesoInicial, pesoFinal,totalCalorias ,estado ) values( ? , ? , ? , ? , ?,? , ? )";
 
                 PreparedStatement ps = conexion.prepareStatement(query);
                 ps.setString(1, dietaEnviada.getNombre());
@@ -50,7 +50,8 @@ public class DietaData {
                 ps.setDate(3, Date.valueOf(dietaEnviada.getFechaFinal()));
                 ps.setDouble(4, dietaEnviada.getPesoInicial());
                 ps.setDouble(5, dietaEnviada.getPesoFinal());
-                ps.setBoolean(6, true);
+                ps.setInt(6, dietaEnviada.getTotalCalorias());
+                ps.setBoolean(7, true);
                 ps.executeUpdate();
 
                 FuncionDe.mostrarMensajeCorrecto("Crear Dieta", "La dieta ha sido añadida");
@@ -154,16 +155,17 @@ public class DietaData {
             //REVISAR SI FUNCIONA
             FuncionDe.validarSiExisteId(this, dietaEnviada.getIdDieta());
             
-            String Query = "UPDATE dieta SET dieta.nombre = ?, dieta.fechaInicial = ?, dieta.fechaFinal = ? , dieta.pesoInicial = ? ,dieta.pesoFinal = ? , dieta.idPaciente = ?, dieta.estado = ? WHERE dieta.idDieta = ?";
+            String Query = "UPDATE dieta SET dieta.nombre = ?,dieta.idPaciente = ?, dieta.fechaInicio = ?, dieta.fechaFinal = ? , dieta.pesoInicial = ? ,dieta.pesoFinal = ? , dieta.totalCalorias = ? , dieta.estado = ? WHERE dieta.idDieta = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setString(1, dietaEnviada.getNombre());
-            ps.setDate(2, Date.valueOf(dietaEnviada.getFechaInicio()));
-            ps.setDate(3, Date.valueOf(dietaEnviada.getFechaFinal() ));
-            ps.setDouble(4, dietaEnviada.getPesoInicial());
-            ps.setDouble(5, dietaEnviada.getPesoFinal());
-            ps.setInt(6, dietaEnviada.getIdPaciente());
-            ps.setBoolean(7, dietaEnviada.isEstadoDieta());
-            ps.setInt(8, dietaEnviada.getIdDieta());
+            ps.setInt(2, dietaEnviada.getIdPaciente().getIdPaciente());
+            ps.setDate(3, Date.valueOf(dietaEnviada.getFechaInicio()));
+            ps.setDate(4, Date.valueOf(dietaEnviada.getFechaFinal()));
+            ps.setDouble(5, dietaEnviada.getPesoInicial());
+            ps.setDouble(6, dietaEnviada.getPesoFinal());
+            ps.setInt(7, dietaEnviada.getTotalCalorias());
+            ps.setBoolean(8, dietaEnviada.isEstadoDieta());
+            ps.setInt(9, dietaEnviada.getIdDieta());
             ps.executeUpdate();
             ps.close();
 
