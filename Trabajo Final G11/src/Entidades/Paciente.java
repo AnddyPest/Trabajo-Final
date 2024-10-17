@@ -110,8 +110,8 @@ public class Paciente {
     }
     public boolean seAcercaAlPeso(Dieta dieta){
 
-        boolean seAcercaPesoBuscado = (dieta.getPesoInicial() > pesoBuscado && pesoActual <= pesoBuscado) ||
-                              (dieta.getPesoFinal() < pesoBuscado && pesoActual >= pesoBuscado);
+        boolean seAcercaPesoBuscado =   (dieta.getPesoInicial() > pesoBuscado && pesoActual <= pesoBuscado) ||
+                                        (dieta.getPesoFinal() < pesoBuscado && pesoActual >= pesoBuscado);
         return seAcercaPesoBuscado;
     }
     @Override

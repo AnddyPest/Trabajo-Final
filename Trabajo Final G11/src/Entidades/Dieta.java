@@ -19,13 +19,17 @@ public class Dieta {
 
     public Dieta() {
     }
-
+    public Dieta(String nombre,int totalCalorias, boolean estadoDieta) {
+        this.nombre = nombre;        
+        this.totalCalorias = totalCalorias;
+        this.estadoDieta = estadoDieta;
+    }
     public Dieta(String nombre, Paciente idPaciente ,int totalCalorias, boolean estadoDieta) {
         this.nombre = nombre;
         this.idPaciente = idPaciente;        
         this.totalCalorias = totalCalorias;
         this.estadoDieta = estadoDieta;
-    }
+    }  
 
     
     public Dieta(String nombre, Paciente idPaciente ,int totalCalorias, LocalDate fechaInicio, double pesoInicial, boolean estadoDieta) {

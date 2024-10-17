@@ -46,7 +46,7 @@ public class PacienteData {
             }
         }
         if(validado){
-           
+          
         
             try {
                 String query = "Insert into paciente( nombre, dni, edad, telefono, pesoActual, pesoBuscado , estado) values( ? , ? , ? , ?, ? ,?,? )";
@@ -61,6 +61,7 @@ public class PacienteData {
                 ps.setBoolean(7, true);
 
                 ps.executeUpdate();
+                
 
                 FuncionDe.mostrarMensajeCorrecto("Crear Paciente", "El paciente ha sido creado");
                 ps.close();
@@ -181,7 +182,7 @@ public class PacienteData {
                     
                         
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError(ex, "actualizarPacientePorId", "PacienteData", "160");
+            FuncionDe.mostrarMensajeError("No se pudo actualizar al paciente por Id",ex , "actualizarPacientePorId", "PacienteData", "160");
         }
     }
     

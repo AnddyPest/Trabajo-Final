@@ -7,10 +7,10 @@ public class MenuDiario {
     
     private int idMenuDiario;
     private int dia;
-    private List<RenglonDeMenu> comidas;
     private int caloriasDelMenu;
     private Dieta dieta;
     private boolean estado;
+    private List<RenglonDeMenu> idRenglonDeMenus;
 
     public MenuDiario() {
     }
@@ -33,18 +33,18 @@ public class MenuDiario {
         this.estado = estado;
     }
 
-    public MenuDiario(int dia, List<RenglonDeMenu> comidas, int caloriasDelMenu, Dieta dieta, boolean estado) {
+    public MenuDiario(int dia, List<RenglonDeMenu> idRenglonDeMenus, int caloriasDelMenu, Dieta dieta, boolean estado) {
         this.dia = dia;
-        this.comidas = comidas;
+        this.idRenglonDeMenus = idRenglonDeMenus;
         this.caloriasDelMenu = caloriasDelMenu;
         this.dieta = dieta;
         this.estado = estado;
     }
 
-    public MenuDiario(int idMenuDiario, int dia, List<RenglonDeMenu> comidas, int caloriasDelMenu, Dieta dieta, boolean estado) {
+    public MenuDiario(int idMenuDiario, int dia, List<RenglonDeMenu> idRenglonDeMenus, int caloriasDelMenu, Dieta dieta, boolean estado) {
         this.idMenuDiario = idMenuDiario;
         this.dia = dia;
-        this.comidas = comidas;
+        this.idRenglonDeMenus = idRenglonDeMenus;
         this.caloriasDelMenu = caloriasDelMenu;
         this.dieta = dieta;
         this.estado = estado;
@@ -66,12 +66,12 @@ public class MenuDiario {
         this.dia = dia;
     }
 
-    public List<RenglonDeMenu> getComidas() {
-        return comidas;
+    public List<RenglonDeMenu> getIdRenglonDeMenus() {
+        return idRenglonDeMenus;
     }
 
-    public void setComidas(List<RenglonDeMenu> comidas) {
-        this.comidas = comidas;
+    public void setIdRenglonDeMenus(List<RenglonDeMenu> idRenglonDeMenus) {
+        this.idRenglonDeMenus = idRenglonDeMenus;
     }
 
     public int getCaloriasDelMenu() {
