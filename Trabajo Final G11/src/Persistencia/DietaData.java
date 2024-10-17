@@ -1,6 +1,5 @@
 package Persistencia;
 
-import Entidades.Comida;
 import Entidades.Dieta;
 import Entidades.FuncionDe;
 import java.sql.Connection;

@@ -3,12 +3,12 @@ package Vistas;
 import Entidades.Conexion;
 import Entidades.Paciente;
 import Persistencia.PacienteData;
+import java.awt.Color;
 import java.sql.Connection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
     PacienteData pacienteData;
+    
 
     public VentanaNuevoPaciente() {
         initComponents();
@@ -44,19 +44,29 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        txtDire = new javax.swing.JTextField();
-        txtErrorDireccion = new javax.swing.JLabel();
+        txtEdad = new javax.swing.JTextField();
+        txtErrorEdad = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         txtTelefono = new javax.swing.JTextField();
-        txtErrorTeléfono = new javax.swing.JLabel();
+        txtErrorTelefono = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        txtPesoInicial = new javax.swing.JTextField();
+        txtErrorPesoI = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        txtPesoBuscado = new javax.swing.JTextField();
+        txtErrorPesoB = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(802, 486));
-        setMinimumSize(new java.awt.Dimension(802, 486));
-        setPreferredSize(new java.awt.Dimension(802, 486));
+        setMaximumSize(new java.awt.Dimension(802, 496));
+        setMinimumSize(new java.awt.Dimension(802, 496));
+        setPreferredSize(new java.awt.Dimension(802, 496));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -134,10 +144,10 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 564));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 450));
 
         jPanel3.setBackground(new java.awt.Color(51, 0, 0));
 
@@ -184,19 +194,17 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtErrorName, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator2)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtErrorName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(txtName)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -242,18 +250,16 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator3)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtErrorDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(txtDni, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtErrorDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jSeparator3)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -275,42 +281,40 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
         jLabel5.setBackground(new java.awt.Color(51, 51, 51));
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel5.setText("Dirección:");
+        jLabel5.setText("Edad:");
 
         jSeparator4.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator4.setForeground(new java.awt.Color(204, 204, 204));
 
-        txtDire.setEditable(false);
-        txtDire.setBackground(new java.awt.Color(153, 153, 153));
-        txtDire.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        txtDire.setForeground(new java.awt.Color(0, 0, 0));
-        txtDire.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtEdad.setEditable(false);
+        txtEdad.setBackground(new java.awt.Color(153, 153, 153));
+        txtEdad.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        txtEdad.setForeground(new java.awt.Color(0, 0, 0));
+        txtEdad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDireKeyTyped(evt);
+                txtEdadKeyTyped(evt);
             }
         });
 
-        txtErrorDireccion.setBackground(new java.awt.Color(51, 51, 51));
-        txtErrorDireccion.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        txtErrorDireccion.setForeground(new java.awt.Color(255, 0, 0));
+        txtErrorEdad.setBackground(new java.awt.Color(51, 51, 51));
+        txtErrorEdad.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtErrorEdad.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator4)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtErrorDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 59, Short.MAX_VALUE)
+                        .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator4)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(txtDire, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtErrorEdad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -319,11 +323,11 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(txtErrorDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtErrorEdad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -347,27 +351,25 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
             }
         });
 
-        txtErrorTeléfono.setBackground(new java.awt.Color(51, 51, 51));
-        txtErrorTeléfono.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        txtErrorTeléfono.setForeground(new java.awt.Color(255, 0, 0));
+        txtErrorTelefono.setBackground(new java.awt.Color(51, 51, 51));
+        txtErrorTelefono.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtErrorTelefono.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator5)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator5)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtErrorTeléfono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtErrorTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -376,12 +378,124 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtErrorTeléfono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtErrorTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        jPanel9.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel8.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel8.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel8.setText("Peso Inicial:");
+
+        jSeparator6.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator6.setForeground(new java.awt.Color(204, 204, 204));
+
+        txtPesoInicial.setEditable(false);
+        txtPesoInicial.setBackground(new java.awt.Color(153, 153, 153));
+        txtPesoInicial.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        txtPesoInicial.setForeground(new java.awt.Color(0, 0, 0));
+        txtPesoInicial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPesoInicialKeyTyped(evt);
+            }
+        });
+
+        txtErrorPesoI.setBackground(new java.awt.Color(51, 51, 51));
+        txtErrorPesoI.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtErrorPesoI.setForeground(new java.awt.Color(255, 0, 0));
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtErrorPesoI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jSeparator6)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtErrorPesoI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        jPanel10.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel9.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel9.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel9.setText("Peso Buscado:");
+
+        jSeparator7.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator7.setForeground(new java.awt.Color(204, 204, 204));
+
+        txtPesoBuscado.setEditable(false);
+        txtPesoBuscado.setBackground(new java.awt.Color(153, 153, 153));
+        txtPesoBuscado.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        txtPesoBuscado.setForeground(new java.awt.Color(0, 0, 0));
+        txtPesoBuscado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPesoBuscadoKeyTyped(evt);
+            }
+        });
+
+        txtErrorPesoB.setBackground(new java.awt.Color(51, 51, 51));
+        txtErrorPesoB.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtErrorPesoB.setForeground(new java.awt.Color(255, 0, 0));
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel10Layout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtErrorPesoB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(txtPesoBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtErrorPesoB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPesoBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -392,9 +506,15 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -403,12 +523,16 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 630, 400));
@@ -421,7 +545,7 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -434,15 +558,22 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
 
     private void btnNwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNwActionPerformed
         btnNw.setEnabled(false);
+        txtErrorName.setForeground(Color.red);
+        txtErrorName.setText("");
         txtName.setEditable(true);
         txtName.requestFocus();
         txtDni.setEditable(true);
-        txtDire.setEditable(true);
+        txtEdad.setEditable(true);
         txtTelefono.setEditable(true);
-        txtDire.setText("");
-        txtDni.setText("");
+        txtPesoInicial.setEditable(true);
+        txtPesoBuscado.setEditable(true);
         txtName.setText("");
+        txtDni.setText("");
+        txtEdad.setText("");
         txtTelefono.setText("");
+        txtPesoInicial.setText("");
+        txtPesoBuscado.setText("");
+        
     }//GEN-LAST:event_btnNwActionPerformed
 
     private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
@@ -451,72 +582,77 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNameKeyTyped
 
     private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
-        int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57 || key == 46;
-
-        if (!numero) {
-            evt.consume();
-            txtErrorDni.setText("*Solo debe ingresar números.");
-        } else {
-            txtErrorDni.setText("");
-        }
+        entradaNumerosSinPunto(evt);
         validarEntradas();
     }//GEN-LAST:event_txtDniKeyTyped
 
-    private void txtDireKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireKeyTyped
+    private void txtEdadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadKeyTyped
+        entradaNumerosSinPunto(evt);
         validarEntradas();
-        txtErrorDireccion.setText("");
-    }//GEN-LAST:event_txtDireKeyTyped
+        
+    }//GEN-LAST:event_txtEdadKeyTyped
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57 || key == 46;
-
-        if (!numero) {
-            evt.consume();
-            txtErrorTeléfono.setText("*Solo debe ingresar números.");
-        } else {
-            txtErrorTeléfono.setText("");
-        }
+        entradaNumerosSinPunto(evt);
         validarEntradas();
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         if (validarEntradas()) {
             if(txtName.getText().isEmpty()) {
-            txtErrorName.setText("*Debe ingresar un Nombre y Apellido.");
+            txtErrorName.setText("*Ingrese un Nombre y Apellido.");
             txtName.requestFocus();
             }else if(txtDni.getText().isEmpty()) {
-            txtErrorDni.setText("Debe ingresar un DNI.");
+            txtErrorDni.setText("Ingrese un DNI.");
             txtDni.requestFocus();
-            }else if(txtDire.getText().isEmpty()) {
-            txtErrorDireccion.setText("Debe ingresar una direccion.");
-            txtDire.requestFocus();
+            }else if(txtEdad.getText().isEmpty()) {
+            txtErrorEdad.setText("Ingrese edad.");
+            txtEdad.requestFocus();
             }else if(txtTelefono.getText().isEmpty()) {
-            txtErrorTeléfono.setText("Debe ingresar un teléfono.");
+            txtErrorTelefono.setText("Ingrese un teléfono.");
             txtTelefono.requestFocus();
+            }else if(txtPesoInicial.getText().isEmpty()){
+            txtErrorPesoI.setText("Ingrese un peso.");
+            txtPesoInicial.requestFocus();
+            }else if(txtPesoBuscado.getText().isEmpty()){
+            txtErrorPesoB.setText("Ingrese un peso.");
+            txtPesoInicial.requestFocus();
             }else{
                 String nombre = txtName.getText();
                 int dni = Integer.parseInt(txtDni.getText());
-                String dire = txtDire.getText();
+                int edad = Integer.parseInt(txtEdad.getText());
                 String tel = txtTelefono.getText();
+                double pesoI = Double.parseDouble(txtPesoInicial.getText());
+                double pesoB = Double.parseDouble(txtPesoBuscado.getText());
                 
-//                Paciente paciente = new Paciente(nombre, dni, dire, tel);
-                try {
-                 //   pacienteData.crearPaciente(paciente);
+                Paciente paciente = new Paciente(nombre, dni, edad, tel, pesoI, pesoB);
+               
+                    pacienteData.crearPaciente(paciente);
                     txtName.setEditable(false);
-                    txtDire.setEditable(false);
+                    txtEdad.setEditable(false);
                     txtDni.setEditable(false);
                     txtTelefono.setEditable(false);
+                    txtPesoInicial.setEditable(false);
+                    txtPesoBuscado.setEditable(false);
                     btnSave.setEnabled(false);
-                } catch (Exception ex) {
-                    Logger.getLogger(VentanaNuevoPaciente.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    btnNw.setEnabled(true);
+                    txtErrorName.setForeground(Color.green);
+                    txtErrorName.setText("*Nuevo paciente agregado con éxito.");
                 
                 
             }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtPesoInicialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesoInicialKeyTyped
+        entradaNumerosConPunto(evt);
+        validarEntradas();
+    }//GEN-LAST:event_txtPesoInicialKeyTyped
+
+    private void txtPesoBuscadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesoBuscadoKeyTyped
+        entradaNumerosConPunto(evt);
+        validarEntradas();
+    }//GEN-LAST:event_txtPesoBuscadoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -530,7 +666,10 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -538,25 +677,57 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextField txtDire;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JTextField txtDni;
-    private javax.swing.JLabel txtErrorDireccion;
+    private javax.swing.JTextField txtEdad;
     private javax.swing.JLabel txtErrorDni;
+    private javax.swing.JLabel txtErrorEdad;
     private javax.swing.JLabel txtErrorName;
-    private javax.swing.JLabel txtErrorTeléfono;
+    private javax.swing.JLabel txtErrorPesoB;
+    private javax.swing.JLabel txtErrorPesoI;
+    private javax.swing.JLabel txtErrorTelefono;
     private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPesoBuscado;
+    private javax.swing.JTextField txtPesoInicial;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
     private boolean validarEntradas() {
-        if (!txtDire.getText().isEmpty() && !txtDni.getText().isEmpty() && !txtName.getText().isEmpty() && !txtTelefono.getText().isEmpty()) {
+        if (!txtEdad.getText().isEmpty() && !txtDni.getText().isEmpty() && !txtName.getText().isEmpty() && !txtTelefono.getText().isEmpty() && !txtPesoInicial.getText().isEmpty() && !txtPesoBuscado.getText().isEmpty()) {
             btnSave.setEnabled(true);
         }
         return true;
+    }
+    
+    private void entradaNumerosConPunto (java.awt.event.KeyEvent evt) {
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57 || key == 46;
+
+        if (!numero) {
+            evt.consume();
+            txtErrorDni.setText("*Solo números.");
+        } else {
+            txtErrorDni.setText("");
+        }
+        
+    }
+    
+    private void entradaNumerosSinPunto (java.awt.event.KeyEvent evt) {
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;
+
+        if (!numero) {
+            evt.consume();
+            txtErrorDni.setText("*Solo números.");
+        } else {
+            txtErrorDni.setText("");
+        }
     }
 }

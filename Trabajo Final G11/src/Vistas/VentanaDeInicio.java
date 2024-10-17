@@ -2,8 +2,6 @@ package Vistas;
 
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import javax.swing.JDesktopPane;
-import javax.swing.JInternalFrame;
 
 public class VentanaDeInicio extends javax.swing.JFrame {
 
@@ -163,7 +161,6 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         desktop.removeAll();
         VentanaNuevoPaciente nuevoPaciente = new VentanaNuevoPaciente();
         desktop.add(nuevoPaciente);
-
         nuevoPaciente.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
