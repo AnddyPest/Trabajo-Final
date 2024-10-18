@@ -35,10 +35,10 @@ public class RenglonDelMenuData {
                 ps.setInt(3, renglonDelMenuEnviada.getSubTotalCalorias());
                 ps.executeUpdate();
 
-                FuncionDe.mostrarMensajeCorrecto("Crear RenglonDeMenu", "El RenglonDeMenu ha sido añadido");
+                FuncionDe.mostrarMensajeCorrecto("Crear RenglonDelMenu", "El RenglonDelMenu ha sido añadido");
                 ps.close();
             }   catch (SQLException ex) {
-                FuncionDe.mostrarMensajeError(ex, "Crear RenglonDeMenu", "RenglonDeMenuData", "24");
+                FuncionDe.mostrarMensajeError(ex, "Crear RenglonDelMenu", "RenglonDelMenuData", "24");
                 codigoDevuelto = ex.getErrorCode();
             }
         
