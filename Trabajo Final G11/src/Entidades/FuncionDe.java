@@ -6,6 +6,7 @@ import Persistencia.AlimentoData;
 import Persistencia.DietaData;
 import Persistencia.MenuDiarioData;
 import Persistencia.PacienteData;
+import Persistencia.RenglonDelMenuData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public class FuncionDe {
@@ -56,11 +57,24 @@ public class FuncionDe {
         Dieta dieta = new Dieta();
         dieta.setIdDieta(resultados.getInt("idDieta"));
         menuCreado.setEstado(resultados.getBoolean("estado"));
-        RenglonDeMenu renglonDeMenu = new RenglonDeMenu();
-        renglonDeMenu.setIdRenglonDeMenu(resultados.getInt("idRenglonDelMenu"));
+        RenglonDelMenu renglonDeMenu = new RenglonDelMenu();
+        renglonDeMenu.setIdRenglonDelMenu(resultados.getInt("idRenglonDelMenu"));
   
         
         return menuCreado;
+    }
+    public static RenglonDelMenu crearRengloDeMenu(ResultSet resultados) throws SQLException{
+
+        RenglonDelMenu renglonDelMenu = new RenglonDelMenu();
+        renglonDelMenu.setIdRenglonDelMenu(resultados.getInt("idRenglonDelMenu"));
+        Alimento alimento = new Alimento();
+        alimento.setIdAlimento(resultados.getInt("idAlimento"));
+        renglonDelMenu.setAlimento(alimento);
+        renglonDelMenu.setCantidadGramos(resultados.getDouble("cantidadGramos"));
+        renglonDelMenu.setSubtotalCalorias(resultados.getInt("subTotalCalorias"));
+  
+        
+        return renglonDelMenu;
     }
   
     
@@ -100,6 +114,11 @@ public class FuncionDe {
     }
     public static void validarSiExisteId(PacienteData metodo, int id) throws SQLException{
         if(metodo.buscarPacientePorID(id) == null){
+                throw new SQLException();
+            }
+    }
+    public static void validarSiExisteId(RenglonDelMenuData metodo, int id) throws SQLException{
+        if(metodo.buscarRenglonDelMenuPorID(id) == null){
                 throw new SQLException();
             }
     }

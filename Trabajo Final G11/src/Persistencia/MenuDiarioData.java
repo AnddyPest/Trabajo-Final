@@ -13,7 +13,7 @@ import java.sql.Connection;
 
 
 public class MenuDiarioData {
-    //MARQUITOS DEJAME LA BD AMI (MAXI) HACE UNA VISTA
+    
     private Connection conexion;
     public MenuDiarioData(Connection conexion){
         this.conexion = conexion;
@@ -23,27 +23,7 @@ public class MenuDiarioData {
         //CAMBIAR A FALSE SI SE LLEGA A VALIDAR
         boolean validado = true;   
         int codigoDevuelto = 1;
-        //UNA VEZ CREADO EL METODO HAY QUE ACTUALIZAR ESTO Y AÑADIR UN IF AL TRY DE ABAJO
-//        List<MenuDiario> menusDiarios = this.listarMenuDiario();
-//        
-//        if(menusDiarios.isEmpty()){           
-//            validado = true;
-//        } else{
-//            for(Dieta dietaRevisada: dietas){
-//                
-//                if(!dietaRevisada.getNombre().equals(dietaEnviada.getNombre()) ){                                       
-//                    validado = true;
-//                    
-//                }else{
-//                    validado = false;
-//                    System.out.println("Validacion Metodo: CrearDieta || Mensaje: Dietas con nombres identicos no son admitidas\n");                    
-//                    break;
-//                }
-//            }
-//        }
         if(validado){
-           
-        
             try {
                 String query = "Insert into menudiario(dia, caloriasDelMenu, estado ) values(  ? , ? , ?)";
 
@@ -56,7 +36,7 @@ public class MenuDiarioData {
                 FuncionDe.mostrarMensajeCorrecto("Crear Dieta", "La dieta ha sido añadida");
                 ps.close();
             }   catch (SQLException ex) {
-                FuncionDe.mostrarMensajeError(ex, "Crear Dieta", "DietaData", "20");
+                FuncionDe.mostrarMensajeError(ex, "Crear Dieta", "DietaData", "22");
                 codigoDevuelto = ex.getErrorCode();
             }
         
@@ -87,7 +67,7 @@ public class MenuDiarioData {
             resultados.close();
             ps.close();
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se puede listar los menus",ex, "Listar Menus", "MenuDiarioData", "71");
+            FuncionDe.mostrarMensajeError("No se puede listar los menus",ex, "Listar Menus", "MenuDiarioData", "51");
         }
         
         return menusDevueltos;
@@ -113,38 +93,12 @@ public class MenuDiarioData {
             resultados.close();
             ps.close();
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo encontrar el registro",ex, "buscarMenuPorId", "MenuData", "98");
+            FuncionDe.mostrarMensajeError("No se pudo encontrar el registro",ex, "buscarMenuPorId", "MenuData", "78");
         }
         
         return MenuDevuelto;
     }
-    //Listar Paciente por nombre
-//    public ArrayList<Dieta> buscarMenusPorNombre(String nombreEnviado){
-//        ArrayList<MenuDiario> menusEncontrados = new ArrayList<>();
-//        try {            
-//            String query = "SELECT * FROM menudiario WHERE dieta.nombre = ?";
-//            PreparedStatement ps = conexion.prepareStatement(query);
-//            ps.setString(1, nombreEnviado.trim().toLowerCase());
-//            ResultSet resultados = ps.executeQuery();
-//            while(resultados.next()){
-//                Dieta dieta = FuncionDe.crearDieta(resultados);
-//                dietasEncontradas.add(dieta);
-//            }
-//            if(!dietasEncontradas.isEmpty()){
-//                FuncionDe.mostrarMensajeCorrecto("buscarDietasPorNombre", "Dietas con nombre: " + nombreEnviado + " enviadas correctamente");
-//            } else{
-//                throw new SQLException();
-//            }
-//            resultados.close();
-//            ps.close();
-//            
-//        } catch (SQLException ex) {
-//            FuncionDe.mostrarMensajeError("No se encontraron dietas con dicho nombre",ex, "buscarDietasPorNombre", "DietaData", "122");
-//        }
-//        
-//        return dietasEncontradas;
-        
-    
+
     //UPDATE
     //actualizar paciente por id
     
@@ -154,13 +108,13 @@ public class MenuDiarioData {
             //REVISAR SI FUNCIONA
             FuncionDe.validarSiExisteId(this, menuEnviado.getIdMenuDiario());
                                                            
-            String Query = "UPDATE menudiario SET menudiario.idMenuDiario = ?, menudiario.dia = ?, menudiario.caloriasDelMenu = ?, menudiario.idDieta, menudiario.estado = ? WHERE menuDiario.idMenu = ?";
+            String Query = "UPDATE menudiario SET  menudiario.dia = ?, menudiario.caloriasDelMenu = ?, menudiario.idDieta = ?, menudiario.estado = ? WHERE menuDiario.idMenu = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
-            ps.setInt(1,menuEnviado.getIdMenuDiario());
-            ps.setInt(2, menuEnviado.getDia());
-            ps.setInt(3, menuEnviado.getCaloriasDelMenu());
-            ps.setInt(4, menuEnviado.getDieta().getIdDieta());
-            ps.setBoolean(5, menuEnviado.isEstado());
+            ps.setInt(1, menuEnviado.getDia());
+            ps.setInt(2, menuEnviado.getCaloriasDelMenu());
+            ps.setInt(3, menuEnviado.getDieta().getIdDieta());
+            ps.setBoolean(4, menuEnviado.isEstado());
+            ps.setInt(5 ,menuEnviado.getIdMenuDiario());
             ps.executeUpdate();
             ps.close();
 
@@ -168,7 +122,7 @@ public class MenuDiarioData {
                     
                         
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo actualizar el menu",ex, "actualizarMenuPorId", "MenuDiarioData", "151");
+            FuncionDe.mostrarMensajeError("No se pudo actualizar el menu",ex, "actualizarMenuPorId", "MenuDiarioData", "105");
         }
     }
     
@@ -189,7 +143,7 @@ public class MenuDiarioData {
             }
             FuncionDe.mostrarMensajeCorrecto("BuscarEstadoPorId", "Estado Logico del menu enviado correctamente");
         } catch (SQLException ex) {
-           FuncionDe.mostrarMensajeError("No se pudo enviar el estado logico del menu", ex, "BuscarEstadoPorID", "MenuDiarioData", "181");
+           FuncionDe.mostrarMensajeError("No se pudo enviar el estado logico del menu", ex, "BuscarEstadoPorID", "MenuDiarioData", "132");
         }
         return resultadoEstado.isEstadoDieta();
     }
@@ -207,7 +161,7 @@ public class MenuDiarioData {
             ps.close();
             FuncionDe.mostrarMensajeCorrecto("altaLogicaMenuDiario", "Menu diario dado de Alta correctamente");
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo dar el alta logica", ex, "altaLogicaMenuDiario", "MenuDiarioData", "200");
+            FuncionDe.mostrarMensajeError("No se pudo dar el alta logica", ex, "altaLogicaMenuDiario", "MenuDiarioData", "151");
         }
     }
    
@@ -225,11 +179,10 @@ public class MenuDiarioData {
             ps.close();
             FuncionDe.mostrarMensajeCorrecto("BajaLogicaMenuDiario", "Menu Diario dado de Baja correctamente");
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo dar la baja logica", ex, "BajaLogicaMenuDiario", "MenuDiarioData", "218");
+            FuncionDe.mostrarMensajeError("No se pudo dar la baja logica", ex, "BajaLogicaMenuDiario", "MenuDiarioData", "169");
         }
     }
    
-    
     //borrar paciente por id
     public void borrarMenuDiarioPorId(int id){
         
@@ -241,11 +194,11 @@ public class MenuDiarioData {
             ps.setInt(1, id);
             ps.executeUpdate();
             ps.close();
-            FuncionDe.mostrarMensajeCorrecto("borrarMenuDiarioPorId", "Dieta eliminada con exito");
+            FuncionDe.mostrarMensajeCorrecto("borrarMenuDiarioPorId", "Menu Diario eliminado con exito");
                 
             
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo borrar el menu diario",ex, "borrarMenuDiarioPorId", "DietaData", "233");
+            FuncionDe.mostrarMensajeError("No se pudo borrar el menu diario",ex, "borrarMenuDiarioPorId", "MenuDiarioData", "187");
         }
         
     }

@@ -56,7 +56,7 @@ public class AlimentoData {
                 FuncionDe.mostrarMensajeCorrecto("Crear Alimento", "El alimento ha sido creado");
                 ps.close();
             }   catch (SQLException ex) {
-                FuncionDe.mostrarMensajeError(ex, "Crear Alimento", "AlimentoData", "29");
+                FuncionDe.mostrarMensajeError(ex, "Crear Alimento", "AlimentoData", "21");
                 codigoDevuelto = ex.getErrorCode();
             }
         
@@ -87,7 +87,7 @@ public class AlimentoData {
             resultados.close();
             ps.close();
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError(ex, "listarAlimentos", "AlimentoData", "80");
+            FuncionDe.mostrarMensajeError(ex, "listarAlimentos", "AlimentoData", "71");
         }
         
         return alimentosDevueltos;
@@ -113,7 +113,7 @@ public class AlimentoData {
             resultados.close();
             ps.close();
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo encontrar el registro",ex, "buscarAlimentoPorId", "AlimentoData", "107");
+            FuncionDe.mostrarMensajeError("No se pudo encontrar el registro",ex, "buscarAlimentoPorId", "AlimentoData", "98");
         }
         
         return alimentoDevuelto;
@@ -139,7 +139,7 @@ public class AlimentoData {
             ps.close();
             
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se encontraron alimentos con dicho nombre",ex, "buscarAlimentoPorNombre", "AlimentoData", "131");
+            FuncionDe.mostrarMensajeError("No se encontraron alimentos con dicho nombre",ex, "buscarAlimentoPorNombre", "AlimentoData", "122");
         }
         
         return alimentosEncontrados;
@@ -170,7 +170,7 @@ public class AlimentoData {
                     
                         
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError(ex, "actualizarAlimentoPorId", "AlimentoData", "160");
+            FuncionDe.mostrarMensajeError(ex, "actualizarAlimentoPorId", "AlimentoData", "151");
         }
     }
     
@@ -192,7 +192,7 @@ public class AlimentoData {
             }
             FuncionDe.mostrarMensajeCorrecto("BuscarEstadoPorId", "Estado Logico del Alimento enviado correctamente");
         } catch (SQLException ex) {
-           FuncionDe.mostrarMensajeError("No se pudo enviar el estado logico del Alimento", ex, "BuscarEstadoPorID", "AlimentoData", "190");
+           FuncionDe.mostrarMensajeError("No se pudo enviar el estado logico del Alimento", ex, "BuscarEstadoPorID", "AlimentoData", "181");
         }
         return resultadoEstado.isEstado();
     }
@@ -210,7 +210,7 @@ public class AlimentoData {
             ps.close();
             FuncionDe.mostrarMensajeCorrecto("AltaLogicaAlimento", "Alimento dado de Alta correctamente");
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo dar el alta logica", ex, "AltaLogicaAlimento", "AlimentoData", "209");
+            FuncionDe.mostrarMensajeError("No se pudo dar el alta logica", ex, "AltaLogicaAlimento", "AlimentoData", "200");
         }
     }
    
@@ -228,7 +228,7 @@ public class AlimentoData {
             ps.close();
             FuncionDe.mostrarMensajeCorrecto("BajaLogicaAlimento", "Alimento dado de Baja correctamente");
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo dar la baja logica", ex, "BajaLogicaAlimento", "AlimentoData", "227");
+            FuncionDe.mostrarMensajeError("No se pudo dar la baja logica", ex, "BajaLogicaAlimento", "AlimentoData", "218");
         }
     }
    
@@ -248,7 +248,7 @@ public class AlimentoData {
                 
             
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo borrar el alimento",ex, "BorrarAlimentoPorId", "AlimentoData", "246");
+            FuncionDe.mostrarMensajeError("No se pudo borrar el alimento",ex, "BorrarAlimentoPorId", "AlimentoData", "237");
         }
         
     }
