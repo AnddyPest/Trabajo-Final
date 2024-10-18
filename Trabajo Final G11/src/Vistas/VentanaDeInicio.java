@@ -124,6 +124,11 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuComidas.add(menuNuevoAlimento);
 
         menuBorrarComida.setText("Editar/Borrar Alimento");
+        menuBorrarComida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBorrarComidaActionPerformed(evt);
+            }
+        });
         menuComidas.add(menuBorrarComida);
 
         menuListarComidas.setText("Listar/Filtrar Alimentos");
@@ -260,6 +265,24 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         desktop.revalidate();
         desktop.repaint();
     }//GEN-LAST:event_menuNuevoAlimentoActionPerformed
+
+    private void menuBorrarComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBorrarComidaActionPerformed
+        desktop.removeAll();
+        VentanaEditarBorrarAlimento editarBorrarAlimento= new VentanaEditarBorrarAlimento();
+        desktop.add(editarBorrarAlimento);
+        editarBorrarAlimento.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                editarBorrarAlimento.setLocation((desktop.getWidth() - editarBorrarAlimento.getWidth()) / 2,
+                        (desktop.getHeight() - editarBorrarAlimento.getHeight()) / 2
+                );
+            }
+        });
+        desktop.moveToFront(editarBorrarAlimento);
+        editarBorrarAlimento.setVisible(true);
+        desktop.revalidate();
+        desktop.repaint();
+    }//GEN-LAST:event_menuBorrarComidaActionPerformed
 
     public static void main(String args[]) {
 
