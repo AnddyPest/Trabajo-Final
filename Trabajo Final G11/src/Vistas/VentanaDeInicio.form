@@ -88,22 +88,25 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuComidas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Comidas"/>
+            <Property name="text" type="java.lang.String" value="Alimento"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuNuevaComida">
+            <MenuItem class="javax.swing.JMenuItem" name="menuNuevoAlimento">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nueva Comida"/>
+                <Property name="text" type="java.lang.String" value="Nuevo Alimento"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuNuevoAlimentoActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuBorrarComida">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Editar/Borrar Comida"/>
+                <Property name="text" type="java.lang.String" value="Editar/Borrar Alimento"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuListarComidas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listar Comidas"/>
+                <Property name="text" type="java.lang.String" value="Listar/Filtrar Alimentos"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuAltaBajaComida">

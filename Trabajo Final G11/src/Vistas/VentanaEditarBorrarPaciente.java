@@ -916,7 +916,7 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
 
         if (!numero) {
             evt.consume();
-            txtErrorDni.setText("*Solo números.");
+            txtErrorDni.setText("*Solo números."); //modificar para que afecte al campo correspondiente
         } else {
             txtErrorDni.setText("");
         }
@@ -929,7 +929,7 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
 
         if (!numero) {
             evt.consume();
-            txtErrorDni.setText("*Solo números.");
+            txtErrorDni.setText("*Solo números.");//lo mismo aca
         } else {
             txtErrorDni.setText("");
         }

@@ -50,7 +50,7 @@ public class AlimentoData {
                 ps.setString(2, alimentoEnviado.getTipoComida().trim());
                 ps.setInt(3, alimentoEnviado.getCaloriasPor100g());
                 ps.setString(4, alimentoEnviado.getDetalle().trim());
-                ps.setBoolean(5, alimentoEnviado.isEstado());
+                ps.setBoolean(5, true);
                 ps.executeUpdate();
 
                 FuncionDe.mostrarMensajeCorrecto("Crear Alimento", "El alimento ha sido creado");
