@@ -20,6 +20,15 @@ public class Alimento {
         this.caloriasPor100g = caloriasPor100g;
         this.detalle = detalle;
     }
+
+    public Alimento(int idAlimento, String nombre, String tipoComida, int caloriasPor100g, String detalle) {
+        this.idAlimento = idAlimento;
+        this.nombre = nombre;
+        this.tipoComida = tipoComida;
+        this.caloriasPor100g = caloriasPor100g;
+        this.detalle = detalle;
+    }
+    
     
     
 

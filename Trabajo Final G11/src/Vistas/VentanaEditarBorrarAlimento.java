@@ -571,27 +571,22 @@ public class VentanaEditarBorrarAlimento extends javax.swing.JInternalFrame {
             if (txtName.getText().isEmpty()) {
                 txtErrorName.setText("*Vacío.");
                 txtName.requestFocus();
-            } else if (txtTipo.getText().isEmpty()) {
-                txtErrorTipo.setText("*Vacío.");
-                txtTipo.requestFocus();
+            } else if (boxTipo.getSelectedIndex() == 0) {
+                txtErrorTipo.setText("*Seleccione.");
+                
             } else if (txtCal.getText().isEmpty()) {
                 txtErrorCal.setText("*Vacío.");
                 txtCal.requestFocus();
             } else if (txtDescripcion.getText().isEmpty()) {
                 txtErrorDesc.setText("*Vacío.");
                 txtDescripcion.requestFocus();
-            }else if(txtPesoInicial.getText().isEmpty()){
-                txtErrorPesoI.setText("*Vacío.");
-                txtPesoInicial.requestFocus();
-            }else if(txtPesoBuscado.getText().isEmpty()){
-                txtErrorPesoB.setText("*Vacío.");
-                txtPesoBuscado.requestFocus();
             } else if (radioActualizar.isSelected()) {
-                Paciente pacienteEdit = new Paciente(Integer.parseInt(txtId.getText()), txtName.getText(), Integer.parseInt(txtTipo.getText()), Integer.parseInt(txtCal.getText()), txtDescripcion.getText(), Double.parseDouble(txtPesoInicial.getText()), Double.parseDouble(txtPesoBuscado.getText()));
-                pacienteData.actualizarPacientePorId(pacienteEdit);
+                String tipoCmb= (String) boxTipo.getSelectedItem();
+                Alimento alimentoEdit = new Alimento (Integer.parseInt(txtId.getText()), txtName.getText(), tipoCmb, Integer.parseInt(txtCal.getText()), txtDescripcion.getText());
+                alimentoData.actualizarAlimentoPorId(alimentoEdit);
                 botonActualizarBorrar();
             } else if (radioBorrar.isSelected()) {
-                pacienteData.borrarPacientePorId(Integer.parseInt(txtId.getText()));
+                alimentoData.borrarAlimentoPorId(Integer.parseInt(txtId.getText()));
                 botonActualizarBorrar();
             }
         }
@@ -703,12 +698,10 @@ public class VentanaEditarBorrarAlimento extends javax.swing.JInternalFrame {
         btnActualizar.setEnabled(false);
         tabAlimentos.setEnabled(false);
         txtName.setEditable(false);
-        txtTipo.setEditable(false);
+        boxTipo.setEnabled(false);
         txtCal.setEditable(false);
         txtDescripcion.setEditable(false);
-        txtPesoInicial.setEditable(false);
-        txtPesoBuscado.setEditable(false);
-        
+           
         if(radioActualizar.isSelected()) {
         txtErrorName.setForeground(Color.green);
         txtErrorName.setText("*DATOS DEL PACIENTE ACTUALIZADO.");
@@ -718,7 +711,7 @@ public class VentanaEditarBorrarAlimento extends javax.swing.JInternalFrame {
         txtErrorName.setText("*PACIENTE BORRADO.");
         }
         actualizarTabla();
-        grupoSelect.clearSelection();
+        groupSelection.clearSelection();
         radioActualizar.setEnabled(true);
         radioBorrar.setEnabled(true);
         
