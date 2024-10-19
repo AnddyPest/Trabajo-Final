@@ -38,7 +38,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuListarPacientes">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listar Pacientes"/>
+                <Property name="text" type="java.lang.String" value="Listar/Buscar Pacientes"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuListarPacientesActionPerformed"/>
@@ -76,7 +76,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuListarDietas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listar Dietas"/>
+                <Property name="text" type="java.lang.String" value="Listar/Buscar Dietas"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuAltaBajaDieta">
@@ -109,7 +109,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuListarComidas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listar/Filtrar Alimentos"/>
+                <Property name="text" type="java.lang.String" value="Listar/Buscar Alimentos"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuAltaBajaComida">

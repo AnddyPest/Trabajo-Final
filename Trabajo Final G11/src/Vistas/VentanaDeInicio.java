@@ -76,7 +76,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         });
         menuPacientes.add(menuEditarPaciente);
 
-        menuListarPacientes.setText("Listar Pacientes");
+        menuListarPacientes.setText("Listar/Buscar Pacientes");
         menuListarPacientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuListarPacientesActionPerformed(evt);
@@ -105,7 +105,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuBorrarDieta.setText("Editar/Borrar Dieta");
         menuDietas.add(menuBorrarDieta);
 
-        menuListarDietas.setText("Listar Dietas");
+        menuListarDietas.setText("Listar/Buscar Dietas");
         menuDietas.add(menuListarDietas);
 
         menuAltaBajaDieta.setText("Alta/Baja Dieta");
@@ -131,7 +131,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         });
         menuComidas.add(menuBorrarComida);
 
-        menuListarComidas.setText("Listar/Filtrar Alimentos");
+        menuListarComidas.setText("Listar/Buscar Alimentos");
         menuComidas.add(menuListarComidas);
 
         menuAltaBajaComida.setText("Alta/Baja Comida");
