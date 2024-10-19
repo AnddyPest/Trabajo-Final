@@ -1,7 +1,7 @@
 
 package Vistas;
 
-import Entidades.Conexion;
+import Utilities.Conexion;
 import Entidades.Paciente;
 import Persistencia.PacienteData;
 import java.awt.Color;

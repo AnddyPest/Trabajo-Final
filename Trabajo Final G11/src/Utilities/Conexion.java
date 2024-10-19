@@ -1,4 +1,4 @@
-package Entidades;
+package Utilities;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;

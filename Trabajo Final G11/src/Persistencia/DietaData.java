@@ -1,7 +1,7 @@
 package Persistencia;
 
 import Entidades.Dieta;
-import Entidades.FuncionDe;
+import Utilities.FuncionDe;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

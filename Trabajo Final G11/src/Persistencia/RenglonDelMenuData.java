@@ -2,7 +2,7 @@
 package Persistencia;
 
 import Entidades.Dieta;
-import Entidades.FuncionDe;
+import Utilities.FuncionDe;
 import Entidades.MenuDiario;
 import Entidades.RenglonDelMenu;
 import java.sql.Connection;

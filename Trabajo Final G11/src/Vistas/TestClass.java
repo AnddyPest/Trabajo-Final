@@ -1,6 +1,6 @@
 package Vistas;
 
-import Entidades.Conexion;
+import Utilities.Conexion;
 import java.sql.Connection;
 import Entidades.Paciente;
 

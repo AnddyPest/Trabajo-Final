@@ -1,7 +1,12 @@
 
-package Entidades;
+package Utilities;
 //
 //import Persistencia.ComidaData;
+import Entidades.Alimento;
+import Entidades.Dieta;
+import Entidades.MenuDiario;
+import Entidades.Paciente;
+import Entidades.RenglonDelMenu;
 import Persistencia.AlimentoData;
 import Persistencia.DietaData;
 import Persistencia.MenuDiarioData;

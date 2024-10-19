@@ -1,8 +1,7 @@
 
 package Persistencia;
 import Entidades.Alimento;
-import Entidades.FuncionDe;
-import Entidades.Paciente;
+import Utilities.FuncionDe;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

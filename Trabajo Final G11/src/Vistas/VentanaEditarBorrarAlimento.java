@@ -2,7 +2,7 @@
 package Vistas;
 
 import Entidades.Alimento;
-import Entidades.Conexion;
+import Utilities.Conexion;
 import Persistencia.AlimentoData;
 import java.awt.Color;
 import java.sql.Connection;
