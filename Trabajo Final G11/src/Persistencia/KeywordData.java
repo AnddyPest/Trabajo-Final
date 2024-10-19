@@ -78,9 +78,4 @@ public class KeywordData {
 
 }
 
-//Hay que hacer las funciones 
-
-// Listar alimentos con keywords: SELECT alimentos a JOINT alimento_keyword ON idAlimento, JOINT keywords ON idKeyword
-// Seleccionar alimentos por keywords: SELECT alimentos a JOINT alimento_keyword ON idAlimento, JOINT keywords ON idKeyword WHERE keyword =  ?
-// Agregar keywords a un alimento: INSERT INTO alimento_keyword (idAlimento, idKeyword) WHERE idAlimento = ?, idKeyword = ?
 

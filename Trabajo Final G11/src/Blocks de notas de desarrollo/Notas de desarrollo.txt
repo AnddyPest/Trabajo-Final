@@ -1,0 +1,9 @@
+
+
+Listar alimentos con keywords: SELECT alimentos.nombre JOINT alimento_keyword ON idAlimento, JOINT keywords.keyword ON idKeyword
+------------------------------------------
+Seleccionar alimentos por keywords: SELECT alimentos JOINT alimento_keyword ON idAlimento, JOINT keywords ON idKeyword WHERE keyword =  ? AND keyword = ? AND keword = ? and keyword = ? AND keyword = ? END ON
+--------------------------------------------
+Agregar keywords a un alimento: INSERT INTO alimento_keyword (idAlimento, idKeyword) WHERE idAlimento = ?, idKeyword = ?
+--------------------------------
+Filtro por calorias WHERE SUM(Cal <= ?) AND NOT IN Cebolla AND ... TIPO tiene q estar ordenado asi: DESAYUNO, ALMUERZO, MERIENDA, SNACK, CENA.
