@@ -1,4 +1,4 @@
-package Vistas;
+package VistasPaciente;
 
 import Utilities.Conexion;
 import Entidades.Paciente;

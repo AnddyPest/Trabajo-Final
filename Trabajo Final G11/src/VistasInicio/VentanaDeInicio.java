@@ -1,5 +1,12 @@
-package Vistas;
+package VistasInicio;
 
+import VistasAlimento.VentanaAltaBajaAlimento;
+import VistasAlimento.VentanaEditarBorrarAlimento;
+import VistasAlimento.VentanaNuevoAlimento;
+import VistasPaciente.VentanaAltaBajaPaciente;
+import VistasPaciente.VentanaEditarBorrarPaciente;
+import VistasPaciente.VentanaListadoPacientes;
+import VistasPaciente.VentanaNuevoPaciente;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
@@ -29,7 +36,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuAltaBajaDieta = new javax.swing.JMenuItem();
         menuComidas = new javax.swing.JMenu();
         menuNuevoAlimento = new javax.swing.JMenuItem();
-        menuBorrarComida = new javax.swing.JMenuItem();
+        menuBorrarAlimento = new javax.swing.JMenuItem();
         menuListarComidas = new javax.swing.JMenuItem();
         menuAltaBajaComida = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -123,18 +130,23 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         });
         menuComidas.add(menuNuevoAlimento);
 
-        menuBorrarComida.setText("Editar/Borrar Alimento");
-        menuBorrarComida.addActionListener(new java.awt.event.ActionListener() {
+        menuBorrarAlimento.setText("Editar/Borrar Alimento");
+        menuBorrarAlimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuBorrarComidaActionPerformed(evt);
+                menuBorrarAlimentoActionPerformed(evt);
             }
         });
-        menuComidas.add(menuBorrarComida);
+        menuComidas.add(menuBorrarAlimento);
 
         menuListarComidas.setText("Listar/Buscar Alimentos");
         menuComidas.add(menuListarComidas);
 
-        menuAltaBajaComida.setText("Alta/Baja Comida");
+        menuAltaBajaComida.setText("Alta/Baja Alimento");
+        menuAltaBajaComida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAltaBajaComidaActionPerformed(evt);
+            }
+        });
         menuComidas.add(menuAltaBajaComida);
 
         jMenuBar1.add(menuComidas);
@@ -266,7 +278,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         desktop.repaint();
     }//GEN-LAST:event_menuNuevoAlimentoActionPerformed
 
-    private void menuBorrarComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBorrarComidaActionPerformed
+    private void menuBorrarAlimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBorrarAlimentoActionPerformed
         desktop.removeAll();
         VentanaEditarBorrarAlimento editarBorrarAlimento= new VentanaEditarBorrarAlimento();
         desktop.add(editarBorrarAlimento);
@@ -282,7 +294,25 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         editarBorrarAlimento.setVisible(true);
         desktop.revalidate();
         desktop.repaint();
-    }//GEN-LAST:event_menuBorrarComidaActionPerformed
+    }//GEN-LAST:event_menuBorrarAlimentoActionPerformed
+
+    private void menuAltaBajaComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAltaBajaComidaActionPerformed
+        desktop.removeAll();
+        VentanaAltaBajaAlimento altaBajaAlimento= new VentanaAltaBajaAlimento();
+        desktop.add(altaBajaAlimento);
+        altaBajaAlimento.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                altaBajaAlimento.setLocation((desktop.getWidth() - altaBajaAlimento.getWidth()) / 2,
+                        (desktop.getHeight() - altaBajaAlimento.getHeight()) / 2
+                );
+            }
+        });
+        desktop.moveToFront(altaBajaAlimento);
+        altaBajaAlimento.setVisible(true);
+        desktop.revalidate();
+        desktop.repaint();
+    }//GEN-LAST:event_menuAltaBajaComidaActionPerformed
 
     public static void main(String args[]) {
 
@@ -318,7 +348,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuAltaBajaDieta;
     private javax.swing.JMenuItem menuAltaBajaPaciente;
     private javax.swing.JMenuItem menuAsignarDieta;
-    private javax.swing.JMenuItem menuBorrarComida;
+    private javax.swing.JMenuItem menuBorrarAlimento;
     private javax.swing.JMenuItem menuBorrarDieta;
     private javax.swing.JMenu menuComidas;
     private javax.swing.JMenuItem menuCrearDieta;

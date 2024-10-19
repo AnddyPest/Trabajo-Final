@@ -1,4 +1,4 @@
-package Vistas;
+package VistasInicio;
 
 import Utilities.Conexion;
 import java.sql.Connection;

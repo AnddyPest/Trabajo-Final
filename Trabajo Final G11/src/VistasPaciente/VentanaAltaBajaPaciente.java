@@ -1,5 +1,5 @@
 
-package Vistas;
+package VistasPaciente;
 
 import Utilities.Conexion;
 import Entidades.Paciente;
@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class VentanaAltaBajaPaciente extends javax.swing.JInternalFrame {
-     private final DefaultTableModel modelo = new NonEditableTableModel();
+    private final DefaultTableModel modelo = new NonEditableTableModel();
     PacienteData pacienteData;
     
 

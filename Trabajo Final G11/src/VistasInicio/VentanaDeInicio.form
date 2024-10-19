@@ -99,12 +99,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuNuevoAlimentoActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuBorrarComida">
+            <MenuItem class="javax.swing.JMenuItem" name="menuBorrarAlimento">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Editar/Borrar Alimento"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuBorrarComidaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuBorrarAlimentoActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuListarComidas">
@@ -114,8 +114,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuAltaBajaComida">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Alta/Baja Comida"/>
+                <Property name="text" type="java.lang.String" value="Alta/Baja Alimento"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuAltaBajaComidaActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

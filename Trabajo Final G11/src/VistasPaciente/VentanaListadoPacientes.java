@@ -1,4 +1,4 @@
-package Vistas;
+package VistasPaciente;
 
 import Utilities.Conexion;
 import Entidades.Paciente;
@@ -130,7 +130,7 @@ public class VentanaListadoPacientes extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("- Listado de Pacientes: Seleccione el paciente a dar de Alta-Baja -");
+        jLabel4.setText("- Listado de Pacientes -");
         jLabel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
         tabPacientes.setModel(new javax.swing.table.DefaultTableModel(

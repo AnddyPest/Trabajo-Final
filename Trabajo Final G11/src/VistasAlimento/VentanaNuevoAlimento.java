@@ -1,4 +1,4 @@
-package Vistas;
+package VistasAlimento;
 
 import Entidades.Alimento;
 import Persistencia.AlimentoData;
