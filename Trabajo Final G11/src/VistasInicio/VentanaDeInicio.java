@@ -34,11 +34,19 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuBorrarDieta = new javax.swing.JMenuItem();
         menuListarDietas = new javax.swing.JMenuItem();
         menuAltaBajaDieta = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        menuCrearMenuDiario = new javax.swing.JMenuItem();
+        menuEditarBorrarMenuDiario = new javax.swing.JMenuItem();
+        menuListarMenuDiario = new javax.swing.JMenuItem();
+        menuAltaBajaMenuDiario = new javax.swing.JMenuItem();
         menuComidas = new javax.swing.JMenu();
         menuNuevoAlimento = new javax.swing.JMenuItem();
         menuBorrarAlimento = new javax.swing.JMenuItem();
         menuListarComidas = new javax.swing.JMenuItem();
         menuAltaBajaComida = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        menuCrearKey = new javax.swing.JMenuItem();
+        menuHandleKeys = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         menuExit = new javax.swing.JMenuItem();
 
@@ -120,6 +128,22 @@ public class VentanaDeInicio extends javax.swing.JFrame {
 
         jMenuBar1.add(menuDietas);
 
+        jMenu2.setText("Menu Diario");
+
+        menuCrearMenuDiario.setText("Crear Menu Diario");
+        jMenu2.add(menuCrearMenuDiario);
+
+        menuEditarBorrarMenuDiario.setText("Editar/Borrar Menu Diario");
+        jMenu2.add(menuEditarBorrarMenuDiario);
+
+        menuListarMenuDiario.setText("Listar/Buscar Menu Diario");
+        jMenu2.add(menuListarMenuDiario);
+
+        menuAltaBajaMenuDiario.setText("Alta/Baja Menu Diario");
+        jMenu2.add(menuAltaBajaMenuDiario);
+
+        jMenuBar1.add(jMenu2);
+
         menuComidas.setText("Alimento");
 
         menuNuevoAlimento.setText("Nuevo Alimento");
@@ -150,6 +174,16 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuComidas.add(menuAltaBajaComida);
 
         jMenuBar1.add(menuComidas);
+
+        jMenu3.setText("Keywords");
+
+        menuCrearKey.setText("Crear Keyword");
+        jMenu3.add(menuCrearKey);
+
+        menuHandleKeys.setText("Listar/Editar/Borrar Keyword");
+        jMenu3.add(menuHandleKeys);
+
+        jMenuBar1.add(jMenu3);
 
         jMenu1.setText("Salir");
 
@@ -343,20 +377,28 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem menuAltaBajaComida;
     private javax.swing.JMenuItem menuAltaBajaDieta;
+    private javax.swing.JMenuItem menuAltaBajaMenuDiario;
     private javax.swing.JMenuItem menuAltaBajaPaciente;
     private javax.swing.JMenuItem menuAsignarDieta;
     private javax.swing.JMenuItem menuBorrarAlimento;
     private javax.swing.JMenuItem menuBorrarDieta;
     private javax.swing.JMenu menuComidas;
     private javax.swing.JMenuItem menuCrearDieta;
+    private javax.swing.JMenuItem menuCrearKey;
+    private javax.swing.JMenuItem menuCrearMenuDiario;
     private javax.swing.JMenu menuDietas;
+    private javax.swing.JMenuItem menuEditarBorrarMenuDiario;
     private javax.swing.JMenuItem menuEditarPaciente;
     private javax.swing.JMenuItem menuExit;
+    private javax.swing.JMenuItem menuHandleKeys;
     private javax.swing.JMenuItem menuListarComidas;
     private javax.swing.JMenuItem menuListarDietas;
+    private javax.swing.JMenuItem menuListarMenuDiario;
     private javax.swing.JMenuItem menuListarPacientes;
     private javax.swing.JMenuItem menuNuevoAlimento;
     private javax.swing.JMenuItem menuNuevoPaciente;

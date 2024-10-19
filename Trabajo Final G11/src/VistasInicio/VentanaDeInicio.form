@@ -86,6 +86,33 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Menu Diario"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuCrearMenuDiario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Crear Menu Diario"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuEditarBorrarMenuDiario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Editar/Borrar Menu Diario"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuListarMenuDiario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Listar/Buscar Menu Diario"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuAltaBajaMenuDiario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Alta/Baja Menu Diario"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="menuComidas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Alimento"/>
@@ -119,6 +146,23 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuAltaBajaComidaActionPerformed"/>
               </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Keywords"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuCrearKey">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Crear Keyword"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuHandleKeys">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Listar/Editar/Borrar Keyword"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
