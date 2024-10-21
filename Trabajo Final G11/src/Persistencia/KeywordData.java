@@ -1,6 +1,7 @@
 package Persistencia;
 
 import Entidades.Keywords;
+import Utilities.FuncionDe;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,8 +26,8 @@ public class KeywordData {
             validado = true;
         } else {
             for (Keywords listedKeys : keys) {
-
-                if (listedKeys.getKeyword() != nwKey.getKeyword()) {
+                //PROBAR
+                if (!listedKeys.getKeyword().equals(nwKey.getKeyword())) {
                     validado = true;
 
                 } else {
@@ -45,7 +46,7 @@ public class KeywordData {
                 ps.executeUpdate();
                 ps.close();
             } catch (SQLException ex) {
-                Logger.getLogger(KeywordData.class.getName()).log(Level.SEVERE, null, ex);
+                FuncionDe.mostrarMensajeError("No se pudo crear la keyWord", ex, "crearKeyword", "KeywordData", "22");
             }
         }
     }
@@ -72,7 +73,7 @@ public class KeywordData {
         }
         
     } catch (SQLException ex) {
-        Logger.getLogger(KeywordData.class.getName()).log(Level.SEVERE, null, ex);
+        FuncionDe.mostrarMensajeError(ex.getMessage(), ex, "listarKeywords", "KeywordData", "54");
     }
     return listadoKeys;
 }
