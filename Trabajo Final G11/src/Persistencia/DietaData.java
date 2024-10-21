@@ -12,7 +12,7 @@ import java.util.List;
 
 
 public class DietaData {
-    Connection conexion ;
+    private final Connection conexion;
     public DietaData(Connection conexion){
         this.conexion = conexion;
     }    

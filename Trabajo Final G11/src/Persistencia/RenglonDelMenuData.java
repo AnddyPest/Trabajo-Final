@@ -13,10 +13,9 @@ import java.util.ArrayList;
 
 
 public class RenglonDelMenuData {
-    //MARQUITOS DEJAME LA BD AMI (MAXI) HACE UNA VISTA
     
     
-    private Connection conexion;
+    private final Connection conexion;
     public RenglonDelMenuData(Connection conexion){
         this.conexion = conexion;
     }
