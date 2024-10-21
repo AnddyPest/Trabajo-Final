@@ -51,30 +51,31 @@ public class KeywordData {
     }
 
     public ArrayList<Keywords> listarKeywords() {
-        ArrayList<Keywords> listadoKeys = new ArrayList<>();
-        try {
-            Keywords key;
-            String query = "SELECT * FROM keywords";
+    ArrayList<Keywords> listadoKeys = new ArrayList<>();
+    try {
+        String query = "SELECT * FROM keywords";
+        PreparedStatement ps = conexion.prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
 
-            PreparedStatement ps = conexion.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                key = new Keywords();
-                key.setIdKeyword(rs.getInt("idKeyword"));
-                key.setKeyword("keyword");
-                listadoKeys.add(key);
-            }
-            ps.close();
-            if(listadoKeys== null){
-                throw new SQLException();
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(KeywordData.class.getName()).log(Level.SEVERE, null, ex);
+        while (rs.next()) {
+            System.out.println("ID: " + rs.getInt("idKeyword") + ", Keyword: " + rs.getString("keyword"));
+            Keywords key = new Keywords(rs.getString("keyword")); 
+            key.setIdKeyword(rs.getInt("idKeyword")); 
+            listadoKeys.add(key);
         }
-        return listadoKeys;
+       
+        rs.close();
+        ps.close();
+
+        if (listadoKeys.isEmpty()) {
+            throw new SQLException("No se encontraron palabras clave.");
+        }
+        
+    } catch (SQLException ex) {
+        Logger.getLogger(KeywordData.class.getName()).log(Level.SEVERE, null, ex);
     }
+    return listadoKeys;
+}
 
 }
 
