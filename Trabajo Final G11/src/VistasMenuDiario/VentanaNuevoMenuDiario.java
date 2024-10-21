@@ -1,16 +1,40 @@
 
 package VistasMenuDiario;
 
+import Entidades.Keywords;
+import Persistencia.KeywordData;
+import Utilities.Conexion;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
+import java.sql.Connection;
 
 
 public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
-    private final DefaultListModel modelLista = new NotEditableListModel();
-    private final DefaultTableModel modelTabla = new NotEditableTableModel();
+    private final DefaultListModel modelLista = new NonEditableListModel();
+    private final DefaultTableModel modelTabla = new NonEditableTableModel();
+    KeywordData keywordData;
     
     public VentanaNuevoMenuDiario() {
         initComponents();
+        Connection con = Conexion.getConexion();
+        keywordData = new KeywordData(con);
+        
+    }
+    
+    private class NonEditableTableModel extends DefaultTableModel {
+
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    }
+    
+      private class NonEditableListModel extends DefaultListModel {
+
+        public boolean isRowEditable(int row) {
+            return false;
+        }
     }
 
     
@@ -549,7 +573,11 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarListaKeys() {
-        
+       ArrayList<Keywords> keysList= keywordData.listarKeywords();
+       
+       for(Keywords k : keysList) {
+           
+       }
     }
     
     

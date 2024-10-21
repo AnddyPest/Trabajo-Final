@@ -7,7 +7,7 @@ public class RenglonDelMenu {
     private int idRenglonDeMenu;
     private Alimento alimento;
     private double cantidadGramos;
-    private int subTotalCalorias	;
+    private int subTotalCalorias;
 
     public RenglonDelMenu() {
     }
