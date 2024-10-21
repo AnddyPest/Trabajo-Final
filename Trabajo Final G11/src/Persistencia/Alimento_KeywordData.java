@@ -11,7 +11,7 @@ import Utilities.FuncionDe;
 
 public class Alimento_KeywordData {
     
-    private Connection conexion;
+    private final Connection conexion;
     
     public Alimento_KeywordData( Connection conexion ){
         this.conexion = conexion;

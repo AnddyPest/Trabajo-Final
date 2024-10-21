@@ -12,7 +12,7 @@ import java.sql.Connection;
 
 public class MenuDiarioData {
     
-    private Connection conexion;
+    private final Connection conexion;
     public MenuDiarioData(Connection conexion){
         this.conexion = conexion;
     }

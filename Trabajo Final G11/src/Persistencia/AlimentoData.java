@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AlimentoData {
-    //MARQUITOS DEJAME LA BD AMI (MAXI) HACE UNA VISTA
-    Connection conexion;
+    
+    private final Connection conexion;
     
     public AlimentoData(Connection conexion){
         this.conexion = conexion;

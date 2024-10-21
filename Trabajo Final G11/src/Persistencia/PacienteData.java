@@ -13,7 +13,7 @@ import java.util.List;
 
 public class PacienteData {
     
-    Connection conexion;
+    private final Connection conexion;
     
     public PacienteData(Connection conexion){
         this.conexion = conexion;

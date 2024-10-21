@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class RenglonDelMenuData {
     
     
-    private Connection conexion;
+    private final Connection conexion;
     public RenglonDelMenuData(Connection conexion){
         this.conexion = conexion;
     }

@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class KeywordData {
 
-    Connection conexion;
+     private final Connection conexion;
 
     public KeywordData(Connection conexion) {
         this.conexion = conexion;
