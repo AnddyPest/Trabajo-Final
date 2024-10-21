@@ -11,7 +11,7 @@ import java.sql.Connection;
 
 
 public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
-    private final DefaultListModel modelLista = new NonEditableListModel();
+    private final DefaultListModel<String> modelLista = new NonEditableListModel();
     private final DefaultTableModel modelTabla = new NonEditableTableModel();
     KeywordData keywordData;
     
@@ -19,6 +19,7 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         initComponents();
         Connection con = Conexion.getConexion();
         keywordData = new KeywordData(con);
+        cargarListaKeys();
         
     }
     
@@ -30,10 +31,22 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         }
     }
     
-      private class NonEditableListModel extends DefaultListModel {
-
-        public boolean isRowEditable(int row) {
-            return false;
+    private class NonEditableListModel extends DefaultListModel<String> {
+        @Override
+        public void setElementAt(String element, int index) {
+            // No permitir la edición del elemento
+            throw new UnsupportedOperationException("No se puede editar el elemento.");
+        }
+        
+        @Override
+        public void removeElementAt(int index) {
+            // Permitir eliminar elementos
+            super.removeElementAt(index);
+        }
+        
+        @Override
+        public void addElement(String element) {
+            super.addElement(element);
         }
     }
 
@@ -387,11 +400,11 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
 
         btnAddNot.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btnAddNot.setText(">");
-        jPanel4.add(btnAddNot, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 121, 35, -1));
+        jPanel4.add(btnAddNot, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 121, 40, -1));
 
         btnRemoveNot.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btnRemoveNot.setText("<");
-        jPanel4.add(btnRemoveNot, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 162, 35, -1));
+        jPanel4.add(btnRemoveNot, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 162, 40, -1));
 
         jPanel10.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -574,8 +587,10 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
 
     private void cargarListaKeys() {
        ArrayList<Keywords> keysList= keywordData.listarKeywords();
+       listKeywords.setModel(modelLista);
        
        for(Keywords k : keysList) {
+           modelLista.addElement(k.getKeyword());
            
        }
     }
