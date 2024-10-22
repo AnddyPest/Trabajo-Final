@@ -2,13 +2,16 @@
 package Utilities;
 //
 //import Persistencia.ComidaData;
+
 import Entidades.Alimento;
 import Entidades.Dieta;
 import Entidades.MenuDiario;
 import Entidades.Paciente;
 import Entidades.RenglonDelMenu;
 import Persistencia.AlimentoData;
+import Entidades.Keywords;
 import Persistencia.DietaData;
+import Persistencia.KeywordData;
 import Persistencia.MenuDiarioData;
 import Persistencia.PacienteData;
 import Persistencia.RenglonDelMenuData;
@@ -94,6 +97,14 @@ public class FuncionDe {
 //        comidaCreada.setEstadoComida(resultados.getBoolean("estado"));
 //        return comidaCreada;
 //    }
+    
+    public static Keywords crearKeyword(ResultSet resultados) throws SQLException{
+        Keywords keyCreada = new Keywords();
+        keyCreada.setIdKeyword(resultados.getInt("idKeyword"));
+        keyCreada.setKeyword(resultados.getString("keyword"));
+        return keyCreada;
+    }
+    
     public static Alimento crearAlimento(ResultSet resultados) throws SQLException{
         Alimento alimentoCreado = new Alimento();
         alimentoCreado.setIdAlimento(resultados.getInt("idAlimento"));
@@ -124,6 +135,7 @@ public class FuncionDe {
                 throw new SQLException();
             }
     }
+    
     public static void validarSiExisteId(RenglonDelMenuData metodo, int id) throws SQLException{
         if(metodo.buscarRenglonDelMenuPorID(id) == null){
                 throw new SQLException();
@@ -145,6 +157,12 @@ public class FuncionDe {
                 throw new SQLException();
             }
     }
+    
+    public static void validarSiExisteId(KeywordData metodo, int id) throws SQLException{
+            if(metodo.buscarKeyporId(id) == null){
+                throw new SQLException();
+            }
+        }
     public static void validarSiYaEstabaLogicamenteEnDichoEstado(PacienteData metodo, int id,boolean estadoAValidar) throws SQLException{
         if(estadoAValidar){
             if(metodo.buscarEstadoPorId(id) == true){

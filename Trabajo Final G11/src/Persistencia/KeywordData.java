@@ -77,7 +77,80 @@ public class KeywordData {
     }
     return listadoKeys;
 }
+    
+    //Listar keyWords
+    
+    public Keywords buscarKeyporId(int id){
+        Keywords keyDevuelta = null;
+        try{
+            
+        String query = "select * from keywords where idKeyword = ?";
+        PreparedStatement ps = conexion.prepareStatement(query);
+        ps.setInt(1, id);
+        
+        ResultSet resultados = ps.executeQuery();
+        
+        while(resultados.next()){
+           keyDevuelta = FuncionDe.crearKeyword(resultados); //Hecho el crear el metodo en funcionDe
+        }
+        if(keyDevuelta == null){
+            throw new SQLException();
+        }else{
+            FuncionDe.mostrarMensajeCorrecto("buscarKeyporId", "Keyword encontrada");
+        }
+        resultados.close();
+        ps.close();
+    } catch (SQLException ex){
+        FuncionDe.mostrarMensajeError("No se pudo encontrar la key", ex, "buscarKeyporId", "KeywordData", "84");
+    }
+        return keyDevuelta;
+    }
+    
+    //Actualizar keyWords ¿Es necesario? Por las dudas lo hago
+    
+    public void actualizarKeywordPorId (Keywords keySent){//Hecho "validarSiExiste" para la keywords
+    
+        try{
+        FuncionDe.validarSiExisteId(this, keySent.getIdKeyword());
+        
+        String Query = "UPDATE keywords SET keywords.keyword = ? WHERE keywords.idKeyword";
+        PreparedStatement ps = conexion.prepareStatement(Query);
+        ps.setInt(1, keySent.getIdKeyword());
+        ps.setInt(2, keySent.getIdKeyword());
+        ps.executeUpdate();
+        ps.close();
+        
+        FuncionDe.mostrarMensajeCorrecto("actualizarKeywordporId", "Keyword actualizada!");
+        
+    
+    } catch (SQLException ex){
+        FuncionDe.mostrarMensajeError("No se pudo actualizar el Keyword", ex, "actualizarKeywordporId", "KeywordData", "160");
+    }
+    }
+    
+    //Borrar Keyword ¿ESTA BIEN?
+    
+    public boolean borrarKeyword(int idKeyword) {
+             
+        try {
+            FuncionDe.validarSiExisteId(this, idKeyword);
+            
+            String Query = "DELETE FROM keywords WHERE idKeyword =?";
+            PreparedStatement ps = conexion.prepareStatement(Query);
 
+            ps.setInt(1, idKeyword);
+            ps.setInt(2, idKeyword);
+            ps.executeUpdate();
+            ps.close();
+            
+            FuncionDe.mostrarMensajeCorrecto("borrarKeyword", "Keyword borrado con exito");
+
+
+        } catch (SQLException e) {
+          FuncionDe.mostrarMensajeError("No se pudo borrar la Keyword", e, "borrarKeyword", "KeywordData", "138");
+        }
+        return false;
+    }
 }
 
 
