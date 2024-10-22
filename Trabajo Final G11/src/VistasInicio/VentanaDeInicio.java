@@ -10,6 +10,7 @@ import VistasPaciente.VentanaListadoPacientes;
 import VistasPaciente.VentanaNuevoPaciente;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import vistasKeyword.VentanaLEBKeyword;
 
 public class VentanaDeInicio extends javax.swing.JFrame {
 
@@ -187,6 +188,11 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         jMenu3.add(menuCrearKey);
 
         menuHandleKeys.setText("Listar/Editar/Borrar Keyword");
+        menuHandleKeys.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuHandleKeysActionPerformed(evt);
+            }
+        });
         jMenu3.add(menuHandleKeys);
 
         jMenuBar1.add(jMenu3);
@@ -371,6 +377,25 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         desktop.revalidate();
         desktop.repaint();
     }//GEN-LAST:event_menuCrearMenuDiarioActionPerformed
+
+    private void menuHandleKeysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHandleKeysActionPerformed
+       desktop.removeAll();
+       VentanaLEBKeyword LEBKeyword = new VentanaLEBKeyword();
+       desktop.add(LEBKeyword);
+       LEBKeyword.addComponentListener(new ComponentAdapter(){
+           
+           @Override
+           public void componentShown(ComponentEvent e){
+               LEBKeyword.setLocation((desktop.getWidth() - LEBKeyword.getWidth())/ 2,
+                       (desktop.getHeight() - LEBKeyword.getHeight()) / 2
+               );
+           }
+       });
+       desktop.moveToFront(LEBKeyword);
+       LEBKeyword.setVisible(true);
+       desktop.revalidate();
+       desktop.repaint();
+    }//GEN-LAST:event_menuHandleKeysActionPerformed
 
     public static void main(String args[]) {
 
