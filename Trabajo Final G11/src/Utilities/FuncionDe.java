@@ -7,14 +7,14 @@ import Entidades.Alimento;
 import Entidades.Dieta;
 import Entidades.MenuDiario;
 import Entidades.Paciente;
-import Entidades.RenglonDelMenu;
+
 import Persistencia.AlimentoData;
 import Entidades.Keywords;
 import Persistencia.DietaData;
 import Persistencia.KeywordData;
 import Persistencia.MenuDiarioData;
 import Persistencia.PacienteData;
-import Persistencia.RenglonDelMenuData;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -67,25 +67,25 @@ public class FuncionDe {
         Dieta dieta = new Dieta();
         dieta.setIdDieta(resultados.getInt("idDieta"));
         menuCreado.setEstado(resultados.getBoolean("estado"));
-        RenglonDelMenu renglonDeMenu = new RenglonDelMenu();
-        renglonDeMenu.setIdRenglonDelMenu(resultados.getInt("idRenglonDelMenu"));
+        //RenglonDelMenu renglonDeMenu = new RenglonDelMenu();
+        //renglonDeMenu.setIdRenglonDelMenu(resultados.getInt("idRenglonDelMenu"));
   
         
         return menuCreado;
     }
-    public static RenglonDelMenu crearRengloDeMenu(ResultSet resultados) throws SQLException{
-
-        RenglonDelMenu renglonDelMenu = new RenglonDelMenu();
-        renglonDelMenu.setIdRenglonDelMenu(resultados.getInt("idRenglonDelMenu"));
-        Alimento alimento = new Alimento();
-        alimento.setIdAlimento(resultados.getInt("idAlimento"));
-        renglonDelMenu.setAlimento(alimento);
-        renglonDelMenu.setCantidadGramos(resultados.getDouble("cantidadGramos"));
-        renglonDelMenu.setSubtotalCalorias(resultados.getInt("subTotalCalorias"));
-  
-        
-        return renglonDelMenu;
-    }
+//    public static RenglonDelMenu crearRengloDeMenu(ResultSet resultados) throws SQLException{
+//
+//        RenglonDelMenu renglonDelMenu = new RenglonDelMenu();
+//        renglonDelMenu.setIdRenglonDelMenu(resultados.getInt("idRenglonDelMenu"));
+//        Alimento alimento = new Alimento();
+//        alimento.setIdAlimento(resultados.getInt("idAlimento"));
+//        renglonDelMenu.setAlimento(alimento);
+//        renglonDelMenu.setCantidadGramos(resultados.getDouble("cantidadGramos"));
+//        renglonDelMenu.setSubtotalCalorias(resultados.getInt("subTotalCalorias"));
+//  
+//        
+//        return renglonDelMenu;
+//    }
   
     
 //    public static Comida crearComida(ResultSet resultados) throws SQLException{
@@ -136,11 +136,11 @@ public class FuncionDe {
             }
     }
     
-    public static void validarSiExisteId(RenglonDelMenuData metodo, int id) throws SQLException{
-        if(metodo.buscarRenglonDelMenuPorID(id) == null){
-                throw new SQLException();
-            }
-    }
+//    public static void validarSiExisteId(RenglonDelMenuData metodo, int id) throws SQLException{
+//        if(metodo.buscarRenglonDelMenuPorID(id) == null){
+//                throw new SQLException();
+//            }
+//    }
     
     public static void validarSiExisteId(MenuDiarioData metodo, int id) throws SQLException{
         if(metodo.buscarMenuPorID(id) == null){
