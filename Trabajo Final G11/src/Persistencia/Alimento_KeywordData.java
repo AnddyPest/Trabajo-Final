@@ -63,11 +63,11 @@ public class Alimento_KeywordData {
         return alimentoDevuelto;
     }
     
-    public ArrayList<Alimento> obtenerAlimentosPorKeywordsYaEspecificadas(String query){
+    public ArrayList<Alimento> obtenerAlimentosPorKeywordsYaEspecificadas(ArrayList<String> elementosQueSi , ArrayList<String> elementosQueNo){
         ArrayList<Alimento> alimentosDevueltos = new ArrayList<Alimento>();
         Alimento alimento = null;
         try {
-            PreparedStatement ps = conexion.prepareStatement(query);            
+            PreparedStatement ps = conexion.prepareStatement(FuncionDe.construirSQLParaBuscarAlimentos(elementosQueSi, elementosQueNo));            
             ResultSet resultados = ps.executeQuery();
             while(resultados.next()){
                 alimento = FuncionDe.crearAlimento(resultados);
