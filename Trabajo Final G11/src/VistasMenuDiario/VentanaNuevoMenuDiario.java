@@ -1,9 +1,11 @@
 package VistasMenuDiario;
 
+import Entidades.Alimento;
 import Entidades.Keywords;
+import Persistencia.AlimentoData;
+import Persistencia.Alimento_KeywordData;
 import Persistencia.KeywordData;
 import Utilities.Conexion;
-import static java.awt.Color.*;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
@@ -20,18 +22,23 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     private final DefaultTableModel modelTablaFiltered = new NonEditableTableModel();
     private final DefaultTableModel modelTablaMenu = new NonEditableTableModel();
     KeywordData keywordData;
+    AlimentoData alimentoData;
+    Alimento_KeywordData alimento_KeywordData;
 
     public VentanaNuevoMenuDiario() {
         initComponents();
-       
+
         Connection con = Conexion.getConexion();
         keywordData = new KeywordData(con);
+        alimentoData = new AlimentoData(con);
+        alimento_KeywordData = new Alimento_KeywordData(con);
         listIncluye.setModel(modelListaKeysIn);
         listNoIncluye.setModel(modelListaKeysNotIn);
         cargarListaKeys();
         cargarCabecerasGenerico((NonEditableTableModel) modelTablaFiltered, tabListadoFiltered);
         cargarCabecerasGenerico((NonEditableTableModel) modelTablaMenu, tabMenuDiario);
-               
+        cargarAlimentosAll();
+
     }
 
     private class NonEditableTableModel extends DefaultTableModel {
@@ -570,18 +577,22 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
 
     private void btnAddInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddInActionPerformed
         moverElementoEntreListas(listKeywords, listIncluye, modelListaKeys, modelListaKeysIn);
+        filtroKeywords();
     }//GEN-LAST:event_btnAddInActionPerformed
 
     private void btnRemoveInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInActionPerformed
         moverElementoEntreListas(listIncluye, listKeywords, modelListaKeysIn, modelListaKeys);
+        filtroKeywords();
     }//GEN-LAST:event_btnRemoveInActionPerformed
 
     private void btnAddNotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNotActionPerformed
         moverElementoEntreListas(listKeywords, listNoIncluye, modelListaKeys, modelListaKeysNotIn);
+        filtroKeywords();
     }//GEN-LAST:event_btnAddNotActionPerformed
 
     private void btnRemoveNotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveNotActionPerformed
         moverElementoEntreListas(listNoIncluye, listKeywords, modelListaKeysNotIn, modelListaKeys);
+        filtroKeywords();
     }//GEN-LAST:event_btnRemoveNotActionPerformed
 
 
@@ -676,17 +687,72 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
             modelo.addElement(elemento);
         }
     }
-    
-    private void cargarCabecerasGenerico (NonEditableTableModel modelo, JTable table) {
+
+    private void cargarCabecerasGenerico(NonEditableTableModel modelo, JTable table) {
+        modelo.addColumn("ID Alimento");
+        modelo.addColumn("Tipo");
         modelo.addColumn("Alimento");
         modelo.addColumn("Calorias");
-        modelo.addColumn("Contiene");
-        modelo.addColumn("Excluye");
-        
-        table.setModel(modelo);
-        
-    }
-    
-    
 
+        table.setModel(modelo);
+
+    }
+
+    private void cargarAlimentosAll() {
+        ArrayList<Alimento> alimentosAll = alimentoData.listarAlimentos();
+        for (Alimento a : alimentosAll) {
+            modelTablaFiltered.addRow(new Object[]{
+                a.getIdAlimento(),
+                a.getTipoComida(),
+                a.getNombre(),
+                a.getCaloriasPor100g()
+
+            });
+
+        }
+
+    }
+
+    private void filtroKeywords() {
+        modelTablaFiltered.setRowCount(0);
+        ArrayList<String> keysIn = new ArrayList<>();
+        ArrayList<String> keysOut = new ArrayList<>();
+        if (!keysIn.isEmpty()) {
+            keysIn.removeAll(keysIn);
+        }
+        if (!keysOut.isEmpty()) {
+            keysOut.removeAll(keysOut);
+        }
+
+        DefaultListModel<String> modeloIn = (DefaultListModel<String>) listIncluye.getModel();
+
+        for (int i = 0; i < modeloIn.getSize(); i++) {
+            String keyIn = modeloIn.getElementAt(i);
+            keysIn.add(keyIn);
+            System.out.println("Keys IN: " + keysIn.toString());
+        }
+
+        DefaultListModel<String> modeloOut = (DefaultListModel<String>) listNoIncluye.getModel();
+
+        for (int i = 0; i < modeloOut.getSize(); i++) {
+            String keyOut = modeloOut.getElementAt(i);
+            keysOut.add(keyOut);
+            System.out.println("Keys OUT: " + keysOut.toString());
+        }
+
+        ArrayList<Alimento> listadoFiltrado = alimento_KeywordData.obtenerAlimentosPorKeywordsYaEspecificadas(keysIn, keysOut);
+        for (Alimento a : listadoFiltrado) {
+            modelTablaFiltered.addRow(new Object[]{
+                a.getIdAlimento(),
+                a.getTipoComida(),
+                a.getNombre(),
+                a.getCaloriasPor100g()
+
+            });
+        }
+        
+        if(keysIn.isEmpty() && keysOut.isEmpty()) {
+            cargarAlimentosAll();
+        }
+    }
 }
