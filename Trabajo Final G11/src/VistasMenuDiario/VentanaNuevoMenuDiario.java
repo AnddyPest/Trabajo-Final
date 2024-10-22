@@ -1,28 +1,39 @@
-
 package VistasMenuDiario;
 
 import Entidades.Keywords;
 import Persistencia.KeywordData;
 import Utilities.Conexion;
+import static java.awt.Color.*;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
-
+import java.util.Collections;
+import javax.swing.JList;
+import javax.swing.JTable;
 
 public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
-    private final DefaultListModel<String> modelLista = new NonEditableListModel();
-    private final DefaultTableModel modelTabla = new NonEditableTableModel();
+
+    private final DefaultListModel<String> modelListaKeys = new NonEditableListModel();
+    private final DefaultListModel<String> modelListaKeysIn = new NonEditableListModel();
+    private final DefaultListModel<String> modelListaKeysNotIn = new NonEditableListModel();
+    private final DefaultTableModel modelTablaFiltered = new NonEditableTableModel();
+    private final DefaultTableModel modelTablaMenu = new NonEditableTableModel();
     KeywordData keywordData;
-    
+
     public VentanaNuevoMenuDiario() {
         initComponents();
+       
         Connection con = Conexion.getConexion();
         keywordData = new KeywordData(con);
+        listIncluye.setModel(modelListaKeysIn);
+        listNoIncluye.setModel(modelListaKeysNotIn);
         cargarListaKeys();
-        
+        cargarCabecerasGenerico((NonEditableTableModel) modelTablaFiltered, tabListadoFiltered);
+        cargarCabecerasGenerico((NonEditableTableModel) modelTablaMenu, tabMenuDiario);
+               
     }
-    
+
     private class NonEditableTableModel extends DefaultTableModel {
 
         @Override
@@ -30,27 +41,27 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
             return false;
         }
     }
-    
+
     private class NonEditableListModel extends DefaultListModel<String> {
+
         @Override
         public void setElementAt(String element, int index) {
             // No permitir la edición del elemento
             throw new UnsupportedOperationException("No se puede editar el elemento.");
         }
-        
+
         @Override
         public void removeElementAt(int index) {
             // Permitir eliminar elementos
             super.removeElementAt(index);
         }
-        
+
         @Override
         public void addElement(String element) {
             super.addElement(element);
         }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -292,7 +303,6 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         listIncluye.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         listIncluye.setForeground(new java.awt.Color(204, 204, 204));
         listIncluye.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listIncluye.setEnabled(false);
         jScrollPane1.setViewportView(listIncluye);
 
         jLabel3.setBackground(new java.awt.Color(102, 102, 102));
@@ -357,7 +367,6 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         listNoIncluye.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 0, 0), 3, true));
         listNoIncluye.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         listNoIncluye.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listNoIncluye.setEnabled(false);
         jScrollPane3.setViewportView(listNoIncluye);
 
         jLabel4.setBackground(new java.awt.Color(102, 102, 102));
@@ -392,18 +401,38 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
 
         btnAddIn.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btnAddIn.setText("<");
+        btnAddIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddInActionPerformed(evt);
+            }
+        });
         jPanel4.add(btnAddIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 121, 40, -1));
 
         btnRemoveIn.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btnRemoveIn.setText(">");
+        btnRemoveIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveInActionPerformed(evt);
+            }
+        });
         jPanel4.add(btnRemoveIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 162, 40, -1));
 
         btnAddNot.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btnAddNot.setText(">");
+        btnAddNot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddNotActionPerformed(evt);
+            }
+        });
         jPanel4.add(btnAddNot, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 121, 40, -1));
 
         btnRemoveNot.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btnRemoveNot.setText("<");
+        btnRemoveNot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveNotActionPerformed(evt);
+            }
+        });
         jPanel4.add(btnRemoveNot, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 162, 40, -1));
 
         jPanel10.setBackground(new java.awt.Color(51, 51, 51));
@@ -532,12 +561,28 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
-        
+
     }//GEN-LAST:event_btnSelectActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         dispose();
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnAddInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddInActionPerformed
+        moverElementoEntreListas(listKeywords, listIncluye, modelListaKeys, modelListaKeysIn);
+    }//GEN-LAST:event_btnAddInActionPerformed
+
+    private void btnRemoveInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInActionPerformed
+        moverElementoEntreListas(listIncluye, listKeywords, modelListaKeysIn, modelListaKeys);
+    }//GEN-LAST:event_btnRemoveInActionPerformed
+
+    private void btnAddNotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNotActionPerformed
+        moverElementoEntreListas(listKeywords, listNoIncluye, modelListaKeys, modelListaKeysNotIn);
+    }//GEN-LAST:event_btnAddNotActionPerformed
+
+    private void btnRemoveNotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveNotActionPerformed
+        moverElementoEntreListas(listNoIncluye, listKeywords, modelListaKeysNotIn, modelListaKeys);
+    }//GEN-LAST:event_btnRemoveNotActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -586,14 +631,62 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarListaKeys() {
-       ArrayList<Keywords> keysList= keywordData.listarKeywords();
-       listKeywords.setModel(modelLista);
-       
-       for(Keywords k : keysList) {
-           modelLista.addElement(k.getKeyword());
-           
-       }
+        listKeywords.removeAll();
+        ArrayList<Keywords> keysList = keywordData.listarKeywords();
+        listKeywords.setModel(modelListaKeys);
+
+        for (Keywords k : keysList) {
+            modelListaKeys.addElement(k.getKeyword());
+
+        }
+        ordenarListaAlfabeticamente(listKeywords);
+        ordenarListaAlfabeticamente(listIncluye);
+    }
+
+    // D-R-Y
+    private void moverElementoEntreListas(JList<String> listaOrigen, JList<String> listaDestino, DefaultListModel<String> modeloOrigen, DefaultListModel<String> modeloDestino) {
+        String selectedKey = listaOrigen.getSelectedValue();
+
+        if (selectedKey != null) {
+
+            modeloOrigen.removeElement(selectedKey);
+
+            modeloDestino.addElement(selectedKey);
+
+            ordenarListaAlfabeticamente(listaOrigen);
+
+            ordenarListaAlfabeticamente(listaDestino);
+        }
+    }
+
+    private void ordenarListaAlfabeticamente(JList<String> lista) {
+        DefaultListModel<String> modelo = (DefaultListModel<String>) lista.getModel();
+
+        ArrayList<String> elementos = new ArrayList<>();
+
+        for (int i = 0; i < modelo.size(); i++) {
+            elementos.add(modelo.getElementAt(i));
+        }
+
+        Collections.sort(elementos);
+
+        modelo.clear();
+
+        for (String elemento : elementos) {
+            modelo.addElement(elemento);
+        }
+    }
+    
+    private void cargarCabecerasGenerico (NonEditableTableModel modelo, JTable table) {
+        modelo.addColumn("Alimento");
+        modelo.addColumn("Calorias");
+        modelo.addColumn("Contiene");
+        modelo.addColumn("Excluye");
+        
+        table.setModel(modelo);
+        
     }
     
     
+
 }
