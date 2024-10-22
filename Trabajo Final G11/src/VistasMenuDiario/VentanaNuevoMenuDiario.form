@@ -333,6 +333,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Desayuno"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radDesayunoActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="radAlmuerzo">
                   <Properties>
@@ -350,6 +353,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Almuerzo"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radAlmuerzoActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="radMerienda">
                   <Properties>
@@ -367,6 +373,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Merienda"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radMeriendaActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="radSnack">
                   <Properties>
@@ -384,6 +393,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Snack"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radSnackActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="radCena">
                   <Properties>
@@ -401,6 +413,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cena"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radCenaActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
