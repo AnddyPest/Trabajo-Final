@@ -1,5 +1,5 @@
 
-package vistasKeyword;
+package VistasKeyword;
 
 import Entidades.Keywords;
 import Persistencia.KeywordData;

@@ -10,7 +10,7 @@ import VistasPaciente.VentanaListadoPacientes;
 import VistasPaciente.VentanaNuevoPaciente;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import vistasKeyword.VentanaLEBKeyword;
+import VistasKeyword.VentanaLEBKeyword;
 
 public class VentanaDeInicio extends javax.swing.JFrame {
 
