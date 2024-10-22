@@ -221,6 +221,11 @@ public class VentanaEditarBorrarAlimento extends javax.swing.JInternalFrame {
         txtId.setSelectedTextColor(new java.awt.Color(51, 0, 0));
         txtId.setSelectionColor(new java.awt.Color(51, 0, 0));
         txtId.setVerifyInputWhenFocusTarget(false);
+        txtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -256,7 +261,6 @@ public class VentanaEditarBorrarAlimento extends javax.swing.JInternalFrame {
         txtName.setEditable(false);
         txtName.setBackground(new java.awt.Color(153, 153, 153));
         txtName.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        txtName.setForeground(new java.awt.Color(0, 0, 0));
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNameKeyTyped(evt);
@@ -356,7 +360,6 @@ public class VentanaEditarBorrarAlimento extends javax.swing.JInternalFrame {
         txtCal.setEditable(false);
         txtCal.setBackground(new java.awt.Color(153, 153, 153));
         txtCal.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        txtCal.setForeground(new java.awt.Color(0, 0, 0));
         txtCal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCalKeyTyped(evt);
@@ -413,7 +416,6 @@ public class VentanaEditarBorrarAlimento extends javax.swing.JInternalFrame {
         txtDescripcion.setBackground(new java.awt.Color(153, 153, 153));
         txtDescripcion.setColumns(20);
         txtDescripcion.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         txtDescripcion.setRows(5);
         jScrollPane2.setViewportView(txtDescripcion);
 
@@ -463,7 +465,6 @@ public class VentanaEditarBorrarAlimento extends javax.swing.JInternalFrame {
 
         boxTipo.setBackground(new java.awt.Color(153, 153, 153));
         boxTipo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        boxTipo.setForeground(new java.awt.Color(0, 0, 0));
         boxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Desayuno", "Almuerzo", "Merienda", "Snack", "Cena" }));
         boxTipo.setEnabled(false);
 
@@ -615,6 +616,10 @@ public class VentanaEditarBorrarAlimento extends javax.swing.JInternalFrame {
         entradaNumerosSinPunto(evt);
         validarEntradas();
     }//GEN-LAST:event_txtCalKeyTyped
+
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
