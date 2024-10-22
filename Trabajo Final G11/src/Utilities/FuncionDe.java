@@ -242,52 +242,74 @@ public class FuncionDe {
         
     }
     //MEJORAR EL NOMBRE
-    public static String construirSQLParaBuscarAlimentos(ArrayList<String> elementosQueSi , ArrayList<String> elementosQueNo){
-        
-        ArrayList<String> elementosValidadosUtilizados = sacarEspaciosYElementosVacios(elementosQueSi);
-        ArrayList<String> elementosNoUtilizadosValidados = sacarEspaciosYElementosVacios(elementosQueNo);
-        String armadorDeMensaje = "(";
-        String query =  "SELECT\n" +
-                        "    a.idAlimento,\n" +
-                        "    a.nombre,\n" +
-                        "    a.tipoComida,\n" +
-                        "    a.caloriasPor100g,\n" +
-                        "    a.detalle,\n" +
-                        "    a.estado,\n" +
-                        "    GROUP_CONCAT(DISTINCT k_incluida.keyword SEPARATOR ', ') AS Incluye\n" +
-                        " FROM \n" +
-                        "    alimento a\n " +
-                        " JOIN\n " +
-                        "    alimento_keyword ak_incluida ON a.idAlimento = ak_incluida.idAlimento\n " +
-                        " JOIN\n " +
-                        "    keywords k_incluida ON ak_incluida.idKeyword = k_incluida.idKeyword\n " +
-                        " WHERE "
-                + " k_incluida.keyword IN ";
-        
+    public static String construirSQLParaBuscarAlimentos(ArrayList<String> elementosQueSi, ArrayList<String> elementosQueNo) {
+    ArrayList<String> elementosValidadosUtilizados = sacarEspaciosYElementosVacios(elementosQueSi);
+    ArrayList<String> elementosNoUtilizadosValidados = sacarEspaciosYElementosVacios(elementosQueNo);
+    
+    String query = "";
+    
+    if (!elementosValidadosUtilizados.isEmpty()) {
+        query = "SELECT\n" +
+                "    a.idAlimento,\n" +
+                "    a.nombre,\n" +
+                "    a.tipoComida,\n" +
+                "    a.caloriasPor100g,\n" +
+                "    a.detalle,\n" +
+                "    a.estado,\n" +
+                "    GROUP_CONCAT(DISTINCT k_incluida.keyword SEPARATOR ', ') AS Incluye\n" +
+                " FROM \n" +
+                "    alimento a\n " +
+                " JOIN\n " +
+                "    alimento_keyword ak_incluida ON a.idAlimento = ak_incluida.idAlimento\n " +
+                " JOIN\n " +
+                "    keywords k_incluida ON ak_incluida.idKeyword = k_incluida.idKeyword\n " +
+                " WHERE k_incluida.keyword IN ";
         
         query += auxiliarParaArmarConsultaSQL(elementosValidadosUtilizados);
-        if(!elementosNoUtilizadosValidados.isEmpty()){
-            query +=    " AND a.idAlimento NOT IN (\n" +
-                    "         SELECT\n " +
-                    "             ak_excluida.idAlimento\n " +
-                    "        FROM\n " +
-                    "            alimento_keyword ak_excluida\n " +
-                    "        JOIN\n " +
-                    "            keywords k_excluida ON ak_excluida.idKeyword = k_excluida.idKeyword\n " +
-                    "        WHERE\n " +
+        
+        if (!elementosNoUtilizadosValidados.isEmpty()) {
+            query += " AND a.idAlimento NOT IN (\n" +
+                    "         SELECT\n" +
+                    "             ak_excluida.idAlimento\n" +
+                    "        FROM\n" +
+                    "            alimento_keyword ak_excluida\n" +
+                    "        JOIN\n" +
+                    "            keywords k_excluida ON ak_excluida.idKeyword = k_excluida.idKeyword\n" +
+                    "        WHERE\n" +
                     "            k_excluida.keyword IN ";
             query += auxiliarParaArmarConsultaSQL(elementosNoUtilizadosValidados);
             query += ")";
         }
         
-        query +=  
-                "\nGROUP BY\n " +
+        query += "\nGROUP BY\n " +
                 "    a.idAlimento\n " +
                 "HAVING\n " +
                 "    COUNT(DISTINCT k_incluida.keyword) = " + elementosValidadosUtilizados.size() + ";";
-        
-        return query;
-        
+    } else if (!elementosNoUtilizadosValidados.isEmpty()) {
+        query = "SELECT\n" +
+                "    a.idAlimento,\n" +
+                "    a.nombre,\n" +
+                "    a.tipoComida,\n" +
+                "    a.caloriasPor100g,\n" +
+                "    a.detalle,\n" +
+                "    a.estado\n" +
+                " FROM \n" +
+                "    alimento a\n " +
+                " WHERE a.idAlimento NOT IN (\n" +
+                "         SELECT\n" +
+                "             ak_excluida.idAlimento\n" +
+                "        FROM\n" +
+                "            alimento_keyword ak_excluida\n" +
+                "        JOIN\n" +
+                "            keywords k_excluida ON ak_excluida.idKeyword = k_excluida.idKeyword\n" +
+                "        WHERE\n" +
+                "            k_excluida.keyword IN ";
+        query += auxiliarParaArmarConsultaSQL(elementosNoUtilizadosValidados);
+        query += ")";
     }
     
+    return query;
+}
+
+
 }

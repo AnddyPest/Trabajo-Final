@@ -17,6 +17,8 @@ import javax.swing.ButtonModel;
 import javax.swing.JList;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
 
@@ -43,6 +45,19 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         cargarCabecerasGenerico((NonEditableTableModel) modelTablaMenu, tabMenuDiario);
         cargarAlimentosAll();
 
+        tabListadoFiltered.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int fila = tabListadoFiltered.getSelectedRow();
+                    if (fila != -1) {
+                        txtId.setText((tabListadoFiltered.getValueAt(fila, 0)).toString());
+                        btnSelect.setEnabled(true);
+                    }
+
+                }
+            }
+        });
     }
 
     private class NonEditableTableModel extends DefaultTableModel {
@@ -79,6 +94,7 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
 
         grpSelectorTipo = new javax.swing.ButtonGroup();
         jPanel9 = new javax.swing.JPanel();
+        jSeparator4 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -87,10 +103,15 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
         btnSelect = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        btnCrearMenu = new javax.swing.JButton();
+        btnComenzar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         txtId = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
+        panelRadios = new javax.swing.JPanel();
         radDesayuno = new javax.swing.JRadioButton();
         radAlmuerzo = new javax.swing.JRadioButton();
         radMerienda = new javax.swing.JRadioButton();
@@ -130,6 +151,9 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        jSeparator4.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator4.setForeground(new java.awt.Color(204, 204, 204));
 
         setMaximumSize(new java.awt.Dimension(802, 726));
         setMinimumSize(new java.awt.Dimension(802, 726));
@@ -171,19 +195,48 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
             }
         });
 
+        jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
+
+        jSeparator3.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator3.setForeground(new java.awt.Color(204, 204, 204));
+
+        jSeparator5.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator5.setForeground(new java.awt.Color(204, 204, 204));
+
+        btnCrearMenu.setText("Crear Menu");
+        btnCrearMenu.setEnabled(false);
+        btnCrearMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearMenuActionPerformed(evt);
+            }
+        });
+
+        btnComenzar.setText("Comenzar");
+        btnComenzar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComenzarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                    .addComponent(btnSelect, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnComenzar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCrearMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator1)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                    .addComponent(btnSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator5))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -197,9 +250,19 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(144, 144, 144)
-                .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnComenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCrearMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -209,8 +272,8 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(0, 102, 102));
 
         txtId.setEditable(false);
-        txtId.setBackground(new java.awt.Color(0, 51, 0));
-        txtId.setForeground(new java.awt.Color(0, 51, 0));
+        txtId.setBackground(new java.awt.Color(0, 102, 102));
+        txtId.setForeground(new java.awt.Color(0, 102, 102));
         txtId.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtId.setBorder(null);
         txtId.setCaretColor(new java.awt.Color(51, 0, 0));
@@ -242,17 +305,19 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         jPanel4.setBackground(new java.awt.Color(153, 153, 153));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel7.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 102), 2, true));
+        panelRadios.setBackground(new java.awt.Color(51, 51, 51));
+        panelRadios.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 102), 2, true));
 
         radDesayuno.setBackground(new java.awt.Color(51, 51, 51));
         grpSelectorTipo.add(radDesayuno);
         radDesayuno.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
         radDesayuno.setForeground(new java.awt.Color(204, 204, 204));
         radDesayuno.setText("Desayuno");
-        radDesayuno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radDesayunoActionPerformed(evt);
+        radDesayuno.setEnabled(false);
+        radDesayuno.setFocusable(false);
+        radDesayuno.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                radDesayunoItemStateChanged(evt);
             }
         });
 
@@ -261,9 +326,11 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         radAlmuerzo.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
         radAlmuerzo.setForeground(new java.awt.Color(204, 204, 204));
         radAlmuerzo.setText("Almuerzo");
-        radAlmuerzo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radAlmuerzoActionPerformed(evt);
+        radAlmuerzo.setEnabled(false);
+        radAlmuerzo.setFocusable(false);
+        radAlmuerzo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                radAlmuerzoItemStateChanged(evt);
             }
         });
 
@@ -272,9 +339,10 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         radMerienda.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
         radMerienda.setForeground(new java.awt.Color(204, 204, 204));
         radMerienda.setText("Merienda");
-        radMerienda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radMeriendaActionPerformed(evt);
+        radMerienda.setEnabled(false);
+        radMerienda.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                radMeriendaItemStateChanged(evt);
             }
         });
 
@@ -283,9 +351,10 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         radSnack.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
         radSnack.setForeground(new java.awt.Color(204, 204, 204));
         radSnack.setText("Snack");
-        radSnack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radSnackActionPerformed(evt);
+        radSnack.setEnabled(false);
+        radSnack.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                radSnackItemStateChanged(evt);
             }
         });
 
@@ -294,17 +363,18 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         radCena.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
         radCena.setForeground(new java.awt.Color(204, 204, 204));
         radCena.setText("Cena");
-        radCena.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radCenaActionPerformed(evt);
+        radCena.setEnabled(false);
+        radCena.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                radCenaItemStateChanged(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelRadiosLayout = new javax.swing.GroupLayout(panelRadios);
+        panelRadios.setLayout(panelRadiosLayout);
+        panelRadiosLayout.setHorizontalGroup(
+            panelRadiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRadiosLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(radDesayuno)
                 .addGap(30, 30, 30)
@@ -317,11 +387,11 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
                 .addComponent(radCena, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(54, Short.MAX_VALUE))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        panelRadiosLayout.setVerticalGroup(
+            panelRadiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRadiosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelRadiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(radDesayuno)
                     .addComponent(radAlmuerzo)
                     .addComponent(radMerienda)
@@ -330,7 +400,7 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 618, -1));
+        jPanel4.add(panelRadios, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 618, -1));
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -492,6 +562,7 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabListadoFiltered.setEnabled(false);
         tabListadoFiltered.setGridColor(new java.awt.Color(153, 153, 153));
         tabListadoFiltered.setSelectionBackground(new java.awt.Color(0, 153, 204));
         tabListadoFiltered.setSelectionForeground(new java.awt.Color(204, 204, 204));
@@ -554,6 +625,7 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabMenuDiario.setEnabled(false);
         tabMenuDiario.setGridColor(new java.awt.Color(153, 153, 153));
         jScrollPane7.setViewportView(tabMenuDiario);
 
@@ -597,6 +669,55 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
+        ArrayList<Alimento> alimentoSelected = new ArrayList<>();
+        alimentoSelected.add(alimentoData.buscarAlimentoPorID(Integer.parseInt(txtId.getText())));
+
+        for (Alimento a : alimentoSelected) {
+            modelTablaMenu.addRow(new Object[]{
+                a.getIdAlimento(),
+                a.getTipoComida(),
+                a.getNombre(),
+                a.getCaloriasPor100g()
+
+            });
+
+            if (radCena.isSelected()) {
+                radCena.setEnabled(false);
+                btnCrearMenu.setEnabled(true);
+                grpSelectorTipo.clearSelection();
+
+            }
+            if (radSnack.isSelected()) {
+                radCena.setEnabled(true);
+                radSnack.setEnabled(false);
+
+                radCena.setSelected(true);
+            }
+            if (radMerienda.isSelected()) {
+                radSnack.setEnabled(true);
+                radMerienda.setEnabled(false);
+
+                radSnack.setSelected(true);
+            }
+            if (radAlmuerzo.isSelected()) {
+                radMerienda.setEnabled(true);
+                radAlmuerzo.setEnabled(false);
+
+                radMerienda.setSelected(true);
+            }
+
+            if (radDesayuno.isSelected()) {
+                radAlmuerzo.setEnabled(true);
+                radDesayuno.setEnabled(false);
+
+                radAlmuerzo.setSelected(true);
+            }
+
+            btnSelect.setEnabled(false);
+            cargarListaKeys();
+            modelListaKeysIn.removeAllElements();
+            modelListaKeysNotIn.removeAllElements();
+        }
 
     }//GEN-LAST:event_btnSelectActionPerformed
 
@@ -607,51 +728,68 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     private void btnAddInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddInActionPerformed
         moverElementoEntreListas(listKeywords, listIncluye, modelListaKeys, modelListaKeysIn);
         filtroKeywords();
-        //accionBotonesAddRemove();
+        accionBotonesAddRemove();
     }//GEN-LAST:event_btnAddInActionPerformed
 
     private void btnRemoveInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInActionPerformed
         moverElementoEntreListas(listIncluye, listKeywords, modelListaKeysIn, modelListaKeys);
         filtroKeywords();
-        //accionBotonesAddRemove();
+        accionBotonesAddRemove();
     }//GEN-LAST:event_btnRemoveInActionPerformed
 
     private void btnAddNotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNotActionPerformed
         moverElementoEntreListas(listKeywords, listNoIncluye, modelListaKeys, modelListaKeysNotIn);
         filtroKeywords();
-       // accionBotonesAddRemove();
+        accionBotonesAddRemove();
     }//GEN-LAST:event_btnAddNotActionPerformed
 
     private void btnRemoveNotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveNotActionPerformed
         moverElementoEntreListas(listNoIncluye, listKeywords, modelListaKeysNotIn, modelListaKeys);
         filtroKeywords();
-       // accionBotonesAddRemove();
+        accionBotonesAddRemove();
     }//GEN-LAST:event_btnRemoveNotActionPerformed
 
-    private void radDesayunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radDesayunoActionPerformed
-       accionRadioButton();
-    }//GEN-LAST:event_radDesayunoActionPerformed
+    private void btnComenzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarActionPerformed
+        radDesayuno.setEnabled(true);
+        radDesayuno.setSelected(true);
+        btnComenzar.setEnabled(false);
+    }//GEN-LAST:event_btnComenzarActionPerformed
 
-    private void radAlmuerzoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radAlmuerzoActionPerformed
-        accionRadioButton();
-    }//GEN-LAST:event_radAlmuerzoActionPerformed
+    private void btnCrearMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMenuActionPerformed
+        btnComenzar.setEnabled(true);
+    }//GEN-LAST:event_btnCrearMenuActionPerformed
 
-    private void radMeriendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radMeriendaActionPerformed
+    private void radDesayunoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radDesayunoItemStateChanged
         accionRadioButton();
-    }//GEN-LAST:event_radMeriendaActionPerformed
+        activarTablaFiltrada();
+    }//GEN-LAST:event_radDesayunoItemStateChanged
 
-    private void radSnackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radSnackActionPerformed
+    private void radAlmuerzoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radAlmuerzoItemStateChanged
         accionRadioButton();
-    }//GEN-LAST:event_radSnackActionPerformed
+        activarTablaFiltrada();
+    }//GEN-LAST:event_radAlmuerzoItemStateChanged
 
-    private void radCenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radCenaActionPerformed
+    private void radMeriendaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radMeriendaItemStateChanged
         accionRadioButton();
-    }//GEN-LAST:event_radCenaActionPerformed
+        activarTablaFiltrada();
+    }//GEN-LAST:event_radMeriendaItemStateChanged
+
+    private void radSnackItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radSnackItemStateChanged
+        accionRadioButton();
+        activarTablaFiltrada();
+    }//GEN-LAST:event_radSnackItemStateChanged
+
+    private void radCenaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radCenaItemStateChanged
+        accionRadioButton();
+        activarTablaFiltrada();
+    }//GEN-LAST:event_radCenaItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddIn;
     private javax.swing.JButton btnAddNot;
+    private javax.swing.JButton btnComenzar;
+    private javax.swing.JButton btnCrearMenu;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnRemoveIn;
     private javax.swing.JButton btnRemoveNot;
@@ -672,7 +810,6 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
@@ -681,9 +818,14 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JList<String> listIncluye;
     private javax.swing.JList<String> listKeywords;
     private javax.swing.JList<String> listNoIncluye;
+    private javax.swing.JPanel panelRadios;
     private javax.swing.JRadioButton radAlmuerzo;
     private javax.swing.JRadioButton radCena;
     private javax.swing.JRadioButton radDesayuno;
@@ -695,7 +837,7 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarListaKeys() {
-        listKeywords.removeAll();
+        modelListaKeys.removeAllElements();
         ArrayList<Keywords> keysList = keywordData.listarKeywords();
         listKeywords.setModel(modelListaKeys);
 
@@ -752,6 +894,7 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     }
 
     private void cargarAlimentosAll() {
+        modelTablaFiltered.setRowCount(0);
         ArrayList<Alimento> alimentosAll = alimentoData.listarAlimentos();
         for (Alimento a : alimentosAll) {
             modelTablaFiltered.addRow(new Object[]{
@@ -794,16 +937,17 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         }
 
         ArrayList<Alimento> listadoFiltrado = alimento_KeywordData.obtenerAlimentosPorKeywordsYaEspecificadas(keysIn, keysOut);
-        for (Alimento a : listadoFiltrado) {
-            modelTablaFiltered.addRow(new Object[]{
-                a.getIdAlimento(),
-                a.getTipoComida(),
-                a.getNombre(),
-                a.getCaloriasPor100g()
+        if (listadoFiltrado != null && !listadoFiltrado.isEmpty()) {
+            for (Alimento a : listadoFiltrado) {
+                modelTablaFiltered.addRow(new Object[]{
+                    a.getIdAlimento(),
+                    a.getTipoComida(),
+                    a.getNombre(),
+                    a.getCaloriasPor100g()
 
-            });
+                });
+            }
         }
-
         if (keysIn.isEmpty() && keysOut.isEmpty()) {
             cargarAlimentosAll();
         }
@@ -835,23 +979,41 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         }
 
         return null;
-        
-        
-        
+
     }
-    private void accionRadioButton () {
+
+    private void accionRadioButton() {
         cargarAlimentosAll();
         JRadioButton selectedButton = recorrerRadios();
-         if (selectedButton != null) {
+        if (selectedButton != null) {
             filtroTipo(selectedButton);
         }
     }
-    
-    private void accionBotonesAddRemove () {
-        
+
+    private void accionBotonesAddRemove() {
+        btnSelect.setEnabled(false);
         JRadioButton selectedButton = recorrerRadios();
-         if (selectedButton != null) {
+        if (selectedButton != null) {
             filtroTipo(selectedButton);
+        }
+    }
+
+    private void activarTablaFiltrada() {
+        Enumeration<AbstractButton> buttons = grpSelectorTipo.getElements();
+
+        boolean anySelected = false;
+
+        while (buttons.hasMoreElements()) {
+            AbstractButton button = buttons.nextElement();
+            if (button.isSelected()) {
+                anySelected = true;
+            }
+        }
+
+        if (anySelected) {
+            tabListadoFiltered.setEnabled(true);
+        } else {
+            tabListadoFiltered.setEnabled(false);
         }
     }
 

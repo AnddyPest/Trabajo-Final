@@ -64,6 +64,7 @@ public class Alimento_KeywordData {
     }
     
     public ArrayList<Alimento> obtenerAlimentosPorKeywordsYaEspecificadas(ArrayList<String> elementosQueSi, ArrayList<String> elementosQueNo){
+        if(!elementosQueSi.isEmpty() || !elementosQueNo.isEmpty()) {
         ArrayList<Alimento> alimentosDevueltos = new ArrayList<Alimento>();
         Alimento alimento = null;
         try {
@@ -79,5 +80,6 @@ public class Alimento_KeywordData {
         }
         return alimentosDevueltos;
     }
-    
+        return null;
+    }  
 }

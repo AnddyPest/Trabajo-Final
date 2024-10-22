@@ -8,9 +8,9 @@ public class MenuDiario {
     private int idMenuDiario;
     private int dia;
     private int caloriasDelMenu;
-    private Dieta dieta;
+    private Dieta dieta; // BORRAR
     private boolean estado;
-    private List<RenglonDelMenu> idRenglonDeMenus;
+    private List<RenglonDelMenu> idRenglonDeMenus; //MODIFICAR ArrayList<Alimento> alimento;
 
     public MenuDiario() {
     }
