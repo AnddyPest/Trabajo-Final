@@ -8,6 +8,9 @@ import java.sql.ResultSet;
 
 import java.sql.SQLException;
 import Utilities.FuncionDe;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Alimento_KeywordData {
     
@@ -60,5 +63,21 @@ public class Alimento_KeywordData {
         return alimentoDevuelto;
     }
     
+    public ArrayList<Alimento> obtenerAlimentosPorKeywordsYaEspecificadas(String query){
+        ArrayList<Alimento> alimentosDevueltos = new ArrayList<Alimento>();
+        Alimento alimento = null;
+        try {
+            PreparedStatement ps = conexion.prepareStatement(query);            
+            ResultSet resultados = ps.executeQuery();
+            while(resultados.next()){
+                alimento = FuncionDe.crearAlimento(resultados);
+                alimentosDevueltos.add(alimento);
+            }
+            FuncionDe.mostrarMensajeCorrecto("obtenerAlimentosPorKeywordsYaEspecificadas", "Alimentos por keywords enviados correctamente");
+        } catch (SQLException ex) {
+            FuncionDe.mostrarMensajeError("No se pudo obtener los alimentos keywords", ex, "obtenerAlimentosPorKeywordsYaEspecificadas", "Alimento_KeywordData", query);
+        }
+        return alimentosDevueltos;
+    }
     
 }
