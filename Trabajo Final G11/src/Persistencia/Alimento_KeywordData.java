@@ -63,7 +63,7 @@ public class Alimento_KeywordData {
         return alimentoDevuelto;
     }
     
-    public ArrayList<Alimento> obtenerAlimentosPorKeywordsYaEspecificadas(ArrayList<String> elementosQueSi , ArrayList<String> elementosQueNo){
+    public ArrayList<Alimento> obtenerAlimentosPorKeywordsYaEspecificadas(ArrayList<String> elementosQueSi, ArrayList<String> elementosQueNo){
         ArrayList<Alimento> alimentosDevueltos = new ArrayList<Alimento>();
         Alimento alimento = null;
         try {

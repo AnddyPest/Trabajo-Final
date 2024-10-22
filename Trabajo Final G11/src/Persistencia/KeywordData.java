@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class KeywordData {
 
@@ -107,6 +105,7 @@ public class KeywordData {
     }
     
     //Actualizar keyWords ¿Es necesario? Por las dudas lo hago
+    //Si marquitos, se pudo haber cargado una key mal escrita y seria necesario poder rectificarla
     
     public void actualizarKeywordPorId (Keywords keySent){//Hecho "validarSiExiste" para la keywords
     
