@@ -75,7 +75,7 @@ public class Alimento_KeywordData {
             }
             FuncionDe.mostrarMensajeCorrecto("obtenerAlimentosPorKeywordsYaEspecificadas", "Alimentos por keywords enviados correctamente");
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo obtener los alimentos keywords", ex, "obtenerAlimentosPorKeywordsYaEspecificadas", "Alimento_KeywordData", query);
+            FuncionDe.mostrarMensajeError("No se pudo obtener los alimentos keywords", ex, "obtenerAlimentosPorKeywordsYaEspecificadas", "Alimento_KeywordData", "66");
         }
         return alimentosDevueltos;
     }
