@@ -1,53 +1,42 @@
 package Entidades;
 
-import java.util.List;
+import java.util.ArrayList;
 
 
 public class MenuDiario {
-    
+    //SE ELIMINÓ DIETA DIETA Y SE MIDIFICO EL LIST PARA QUE SEA UN ALIMENTO
     private int idMenuDiario;
-    private int dia;
+    private String nombreMenu;
+    private int dia; //LO ELIMINARIA Y DIRECTAMENTE AGREGAR DIA A DIA EN EL CALENDAR EN DIETA
     private int caloriasDelMenu;
-    private Dieta dieta; // BORRAR
+    private Alimento alimento;
     private boolean estado;
-    private List<RenglonDelMenu> idRenglonDeMenus; //MODIFICAR ArrayList<Alimento> alimento;
 
     public MenuDiario() {
     }
 
-    public MenuDiario(int dia, int caloriasDelMenu) {
+    public MenuDiario(String nombreMenu, int dia, int caloriasDelMenu, Alimento alimento) {
+        this.nombreMenu = nombreMenu;
         this.dia = dia;
         this.caloriasDelMenu = caloriasDelMenu;
+        this.alimento = alimento;
     }
 
-    public MenuDiario(int dia, int caloriasDelMenu, Dieta dieta) {
-        this.dia = dia;
-        this.caloriasDelMenu = caloriasDelMenu;
-        this.dieta = dieta;
-    }
-
-    public MenuDiario(int dia, int caloriasDelMenu, Dieta dieta, boolean estado) {
-        this.dia = dia;
-        this.caloriasDelMenu = caloriasDelMenu;
-        this.dieta = dieta;
-        this.estado = estado;
-    }
-
-    public MenuDiario(int dia, List<RenglonDelMenu> idRenglonDeMenus, int caloriasDelMenu, Dieta dieta, boolean estado) {
-        this.dia = dia;
-        this.idRenglonDeMenus = idRenglonDeMenus;
-        this.caloriasDelMenu = caloriasDelMenu;
-        this.dieta = dieta;
-        this.estado = estado;
-    }
-
-    public MenuDiario(int idMenuDiario, int dia, List<RenglonDelMenu> idRenglonDeMenus, int caloriasDelMenu, Dieta dieta, boolean estado) {
+    public MenuDiario(int idMenuDiario, String nombreMenu, int dia, int caloriasDelMenu, Alimento alimento, boolean estado) {
         this.idMenuDiario = idMenuDiario;
+        this.nombreMenu = nombreMenu;
         this.dia = dia;
-        this.idRenglonDeMenus = idRenglonDeMenus;
         this.caloriasDelMenu = caloriasDelMenu;
-        this.dieta = dieta;
+        this.alimento = alimento;
         this.estado = estado;
+    }
+
+    public MenuDiario(int idMenuDiario, String nombreMenu, int dia, int caloriasDelMenu, Alimento alimento) {
+        this.idMenuDiario = idMenuDiario;
+        this.nombreMenu = nombreMenu;
+        this.dia = dia;
+        this.caloriasDelMenu = caloriasDelMenu;
+        this.alimento = alimento;
     }
 
     public int getIdMenuDiario() {
@@ -58,20 +47,20 @@ public class MenuDiario {
         this.idMenuDiario = idMenuDiario;
     }
 
+    public String getNombreMenu() {
+        return nombreMenu;
+    }
+
+    public void setNombreMenu(String nombreMenu) {
+        this.nombreMenu = nombreMenu;
+    }
+
     public int getDia() {
         return dia;
     }
 
     public void setDia(int dia) {
         this.dia = dia;
-    }
-
-    public List<RenglonDelMenu> getIdRenglonDeMenus() {
-        return idRenglonDeMenus;
-    }
-
-    public void setIdRenglonDeMenus(List<RenglonDelMenu> idRenglonDeMenus) {
-        this.idRenglonDeMenus = idRenglonDeMenus;
     }
 
     public int getCaloriasDelMenu() {
@@ -82,12 +71,12 @@ public class MenuDiario {
         this.caloriasDelMenu = caloriasDelMenu;
     }
 
-    public Dieta getDieta() {
-        return dieta;
+    public Alimento getAlimento() {
+        return alimento;
     }
 
-    public void setDieta(Dieta dieta) {
-        this.dieta = dieta;
+    public void setAlimento(Alimento alimento) {
+        this.alimento = alimento;
     }
 
     public boolean isEstado() {
@@ -98,18 +87,18 @@ public class MenuDiario {
         this.estado = estado;
     }
 
-//    public void alterarDietaDiaria(){
-//        
-//    }
-//    public void generarDietaDiaria(){
-//        
-//    }
-//    public void armarDietaDiaria(){
-//        
-//    }
-//    public void addRenglon(){
-//        
-//    }
-            
+
+
+
     
 }
+
+
+
+
+
+
+    
+    
+    
+    

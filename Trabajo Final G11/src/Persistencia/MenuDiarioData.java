@@ -106,13 +106,13 @@ public class MenuDiarioData {
             //REVISAR SI FUNCIONA
             FuncionDe.validarSiExisteId(this, menuEnviado.getIdMenuDiario());
                                                            
-            String Query = "UPDATE menudiario SET  menudiario.dia = ?, menudiario.caloriasDelMenu = ?, menudiario.idDieta = ?, menudiario.estado = ? WHERE menuDiario.idMenu = ?";
+            String Query = "UPDATE menudiario SET  menudiario.dia = ?, menudiario.caloriasDelMenu = ?, menudiario.estado = ? WHERE menuDiario.idMenu = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setInt(1, menuEnviado.getDia());
             ps.setInt(2, menuEnviado.getCaloriasDelMenu());
-            ps.setInt(3, menuEnviado.getDieta().getIdDieta());
-            ps.setBoolean(4, menuEnviado.isEstado());
-            ps.setInt(5 ,menuEnviado.getIdMenuDiario());
+            //ps.setInt(3, menuEnviado.getDieta().getIdDieta());
+            ps.setBoolean(3, menuEnviado.isEstado());
+            ps.setInt(4 ,menuEnviado.getIdMenuDiario());
             ps.executeUpdate();
             ps.close();
 
