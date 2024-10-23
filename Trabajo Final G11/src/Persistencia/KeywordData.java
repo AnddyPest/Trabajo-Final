@@ -112,9 +112,9 @@ public class KeywordData {
         try{
         FuncionDe.validarSiExisteId(this, keySent.getIdKeyword());
         
-        String Query = "UPDATE keywords SET keywords.keyword = ? WHERE keywords.idKeyword";
+        String Query = "UPDATE keywords SET keyword = ? WHERE idKeyword = ?";
         PreparedStatement ps = conexion.prepareStatement(Query);
-        ps.setInt(1, keySent.getIdKeyword());
+        ps.setString(1, keySent.getKeyword());
         ps.setInt(2, keySent.getIdKeyword());
         ps.executeUpdate();
         ps.close();
@@ -127,28 +127,26 @@ public class KeywordData {
     }
     }
     
-    //Borrar Keyword ¿ESTA BIEN?
+    //Borrar Keyword 
     
     public boolean borrarKeyword(int idKeyword) {
              
         try {
             FuncionDe.validarSiExisteId(this, idKeyword);
             
-            String Query = "DELETE FROM keywords WHERE idKeyword =?";
+            String Query = "DELETE FROM keywords WHERE idKeyword = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
 
             ps.setInt(1, idKeyword);
-            ps.setInt(2, idKeyword);
             ps.executeUpdate();
-            ps.close();
             
             FuncionDe.mostrarMensajeCorrecto("borrarKeyword", "Keyword borrado con exito");
-
+            ps.close();
 
         } catch (SQLException e) {
           FuncionDe.mostrarMensajeError("No se pudo borrar la Keyword", e, "borrarKeyword", "KeywordData", "138");
         }
-        return false;
+        return true;
     }
 }
 
