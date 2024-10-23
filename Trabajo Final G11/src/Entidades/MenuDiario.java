@@ -9,34 +9,32 @@ public class MenuDiario {
     private String nombreMenu;
     private int dia; //LO ELIMINARIA Y DIRECTAMENTE AGREGAR DIA A DIA EN EL CALENDAR EN DIETA
     private int caloriasDelMenu;
-    private Alimento alimento;
     private boolean estado;
 
     public MenuDiario() {
     }
 
-    public MenuDiario(String nombreMenu, int dia, int caloriasDelMenu, Alimento alimento) {
+    public MenuDiario(String nombreMenu, int dia, int caloriasDelMenu) {
         this.nombreMenu = nombreMenu;
         this.dia = dia;
         this.caloriasDelMenu = caloriasDelMenu;
-        this.alimento = alimento;
+        
     }
 
-    public MenuDiario(int idMenuDiario, String nombreMenu, int dia, int caloriasDelMenu, Alimento alimento, boolean estado) {
+    public MenuDiario(int idMenuDiario, String nombreMenu, int dia, int caloriasDelMenu, boolean estado) {
         this.idMenuDiario = idMenuDiario;
         this.nombreMenu = nombreMenu;
         this.dia = dia;
-        this.caloriasDelMenu = caloriasDelMenu;
-        this.alimento = alimento;
+        this.caloriasDelMenu = caloriasDelMenu;        
         this.estado = estado;
     }
 
-    public MenuDiario(int idMenuDiario, String nombreMenu, int dia, int caloriasDelMenu, Alimento alimento) {
+    public MenuDiario(int idMenuDiario, String nombreMenu, int dia, int caloriasDelMenu) {
         this.idMenuDiario = idMenuDiario;
         this.nombreMenu = nombreMenu;
         this.dia = dia;
         this.caloriasDelMenu = caloriasDelMenu;
-        this.alimento = alimento;
+        
     }
 
     public int getIdMenuDiario() {
@@ -71,14 +69,7 @@ public class MenuDiario {
         this.caloriasDelMenu = caloriasDelMenu;
     }
 
-    public Alimento getAlimento() {
-        return alimento;
-    }
-
-    public void setAlimento(Alimento alimento) {
-        this.alimento = alimento;
-    }
-
+  
     public boolean isEstado() {
         return estado;
     }

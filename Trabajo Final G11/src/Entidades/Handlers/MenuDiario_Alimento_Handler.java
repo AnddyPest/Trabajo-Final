@@ -1,32 +1,39 @@
 
 package Entidades.Handlers;
 
+import Entidades.Alimento;
+import Entidades.MenuDiario;
+
 
 public class MenuDiario_Alimento_Handler {
     
-    private int idMenuDiario;
-    private int idAlimento;
+    private MenuDiario idMenuDiario;
+    private Alimento idAlimento;
 
-    public MenuDiario_Alimento_Handler(int idMenuDiario, int idAlimento) {
+    public MenuDiario_Alimento_Handler() {
+    }
+
+    public MenuDiario_Alimento_Handler(MenuDiario idMenuDiario, Alimento idAlimento) {
         this.idMenuDiario = idMenuDiario;
         this.idAlimento = idAlimento;
     }
 
-    public int getIdMenuDiario() {
+    public MenuDiario getIdMenuDiario() {
         return idMenuDiario;
     }
 
-    public void setIdMenuDiario(int idMenuDiario) {
+    public void setIdMenuDiario(MenuDiario idMenuDiario) {
         this.idMenuDiario = idMenuDiario;
     }
 
-    public int getIdAlimento() {
+    public Alimento getIdAlimento() {
         return idAlimento;
     }
 
-    public void setIdAlimento(int idAlimento) {
+    public void setIdAlimento(Alimento idAlimento) {
         this.idAlimento = idAlimento;
     }
+
     
     
 }
