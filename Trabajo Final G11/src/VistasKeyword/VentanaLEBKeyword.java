@@ -282,7 +282,12 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
 
         txtID.setEditable(false);
         txtID.setBackground(new java.awt.Color(51, 51, 51));
+        txtID.setForeground(new java.awt.Color(51, 51, 51));
+        txtID.setBorder(null);
+        txtID.setCaretColor(new java.awt.Color(51, 51, 51));
         txtID.setEnabled(false);
+        txtID.setSelectedTextColor(new java.awt.Color(51, 51, 51));
+        txtID.setSelectionColor(new java.awt.Color(51, 51, 51));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -343,7 +348,7 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 630, 540));
@@ -377,7 +382,7 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
                keyWordData.actualizarKeywordPorId(keyEdit);
                botonActualizarBorrar();
             }else if(radioBorrar.isSelected()){
-              keyWordData.buscarKeyporId(Integer.parseInt(txtID.getText()));
+              keyWordData.borrarKeyword(Integer.parseInt(txtID.getText()));
               botonActualizarBorrar();
             }
         }
