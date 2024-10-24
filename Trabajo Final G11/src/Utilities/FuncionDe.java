@@ -5,6 +5,8 @@ package Utilities;
 
 import Entidades.Alimento;
 import Entidades.Dieta;
+import Entidades.Handlers.Alimento_Keyword_Handler;
+import Entidades.Handlers.Dieta_MenuDiario_Handler;
 import Entidades.Handlers.MenuDiario_Alimento_Handler;
 import Entidades.MenuDiario;
 import Entidades.Paciente;
@@ -12,6 +14,8 @@ import Entidades.Paciente;
 import Persistencia.AlimentoData;
 import Entidades.Keywords;
 import Persistencia.DietaData;
+import Persistencia.Handlers.Alimento_Keyword_Handler_DATA;
+import Persistencia.Handlers.Dieta_MenuDiario_Handler_DATA;
 import Persistencia.Handlers.MenuDiario_Alimento_Handler_DATA;
 import Persistencia.KeywordData;
 import Persistencia.MenuDiarioData;
@@ -68,6 +72,30 @@ public class FuncionDe {
         menuDiario.setIdMenuDiario(resultados.getInt("idMenuDiario"));
         handlerCreado.setIdAlimento(alimento);
         handlerCreado.setIdMenuDiario(menuDiario);
+        
+        return handlerCreado;
+    } 
+    public static Dieta_MenuDiario_Handler crearDieta_MenuDiario_Handler(ResultSet resultados) throws SQLException{
+
+        Dieta_MenuDiario_Handler handlerCreado = new Dieta_MenuDiario_Handler();
+        Dieta dieta = new Dieta();
+        MenuDiario menuDiario = new MenuDiario();
+        dieta.setIdDieta(resultados.getInt("idDieta"));
+        menuDiario.setIdMenuDiario(resultados.getInt("idMenuDiario"));
+        handlerCreado.setIdDieta(dieta);
+        handlerCreado.setIdMenuDiario(menuDiario);
+        
+        return handlerCreado;
+    } 
+    public static Alimento_Keyword_Handler crearAlimento_Keyword_Handler(ResultSet resultados) throws SQLException{
+
+        Alimento_Keyword_Handler handlerCreado = new Alimento_Keyword_Handler();
+        Alimento alimento = new Alimento();
+        Keywords keywords = new Keywords();
+        alimento.setIdAlimento(resultados.getInt("idAlimento"));
+        keywords.setIdKeyword(resultados.getInt("idKeyword"));
+        handlerCreado.setIdAlimento(alimento);
+        handlerCreado.setIdKeyword(keywords);
         
         return handlerCreado;
     } 
@@ -151,6 +179,20 @@ public class FuncionDe {
     }
     public static boolean validarSiExisteId(MenuDiario_Alimento_Handler_DATA metodo, int idMenuDiario, int idAlimento) throws SQLException{
         if(metodo.buscarHandler_MenuDiario_AlimentoPorIDS(idMenuDiario, idAlimento) == null){
+                return false;
+        } else{
+            return true;
+        }
+    }
+    public static boolean validarSiExisteId(Dieta_MenuDiario_Handler_DATA metodo, int idMenuDiario, int idDieta) throws SQLException{
+        if(metodo.buscarDieta_MenuDiario_HandlerIDS(idDieta, idMenuDiario ) == null){
+                return false;
+        } else{
+            return true;
+        }
+    }
+    public static boolean validarSiExisteId(Alimento_Keyword_Handler_DATA metodo, int idKeyword, int idAlimento) throws SQLException{
+        if(metodo.buscarAlimento_Keyword_HandlerIDS(idKeyword, idAlimento) == null){
                 return false;
         } else{
             return true;
