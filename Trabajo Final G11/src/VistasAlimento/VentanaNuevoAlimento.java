@@ -1,24 +1,48 @@
 package VistasAlimento;
 
 import Entidades.Alimento;
+import Entidades.Keywords;
 import Persistencia.AlimentoData;
+import Persistencia.Handlers.Alimento_Keyword_Handler_DATA;
+import Persistencia.KeywordData;
 import Utilities.Conexion;
 import java.awt.Color;
 import java.sql.Connection;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
+import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
 
     AlimentoData alimentoData;
+    KeywordData keywordData;
+    Alimento_Keyword_Handler_DATA alimento_Keyword_Handler_DATA;
+    private final DefaultTableModel modelListKeys = new NonEditableTableModel();
+    private final DefaultTableModel modelAddedKeys = new NonEditableTableModel();
 
     public VentanaNuevoAlimento() {
         initComponents();
         Connection con = Conexion.getConexion();
         alimentoData = new AlimentoData(con);
+        keywordData = new KeywordData(con);
+        alimento_Keyword_Handler_DATA = new Alimento_Keyword_Handler_DATA(con);
         txtErrorDesc.setForeground(Color.green);
-         
-        
+        cargarCabecerasGenerico((NonEditableTableModel) modelListKeys, tabKeys);
+        cargarCabecerasGenerico((NonEditableTableModel) modelAddedKeys, tabAddedKeys);
+        cargarTablaKeys();
+
+    }
+
+    private class NonEditableTableModel extends DefaultTableModel {
+
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -62,16 +86,16 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
         txtCalorias = new javax.swing.JTextField();
         txtErrorCal = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        listKeysAdd = new javax.swing.JList<>();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnRemoveKey = new javax.swing.JButton();
+        btnAddKey = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        listKeysAdd1 = new javax.swing.JList<>();
         txtIdNuevoAlimento = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        btnFinalizar = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tabAddedKeys = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tabKeys = new javax.swing.JTable();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -372,7 +396,7 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 204, 204));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Calorias c/ 100g");
+        jLabel5.setText("Calorias del plato");
         jLabel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 2, true));
 
         txtCalorias.setEditable(false);
@@ -394,37 +418,70 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
         jSeparator6.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator6.setForeground(new java.awt.Color(204, 204, 204));
 
-        listKeysAdd.setBackground(new java.awt.Color(153, 153, 153));
-        listKeysAdd.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        listKeysAdd.setForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane2.setViewportView(listKeysAdd);
-
         jLabel8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Keys añadidas");
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
-        jButton1.setText("<");
+        btnRemoveKey.setText("<");
+        btnRemoveKey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveKeyActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText(">");
+        btnAddKey.setText(">");
+        btnAddKey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddKeyActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Seleccione al menos 1 key");
         jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-
-        listKeysAdd1.setBackground(new java.awt.Color(153, 153, 153));
-        listKeysAdd1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 51), 3, true));
-        listKeysAdd1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        listKeysAdd1.setForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane3.setViewportView(listKeysAdd1);
 
         txtIdNuevoAlimento.setEditable(false);
         txtIdNuevoAlimento.setBackground(new java.awt.Color(51, 51, 51));
         txtIdNuevoAlimento.setForeground(new java.awt.Color(51, 51, 51));
         txtIdNuevoAlimento.setBorder(null);
 
-        jButton3.setText("Añadir y Finalizar");
+        btnFinalizar.setText("Añadir y Finalizar");
+        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarActionPerformed(evt);
+            }
+        });
+
+        tabAddedKeys.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2"
+            }
+        ));
+        jScrollPane4.setViewportView(tabAddedKeys);
+
+        tabKeys.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tabKeys.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2"
+            }
+        ));
+        jScrollPane5.setViewportView(tabKeys);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -432,47 +489,50 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtErrorDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtErrorDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel8Layout.createSequentialGroup()
-                                        .addGap(122, 122, 122)
-                                        .addComponent(txtErrorCal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(txtCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(122, 122, 122)
+                                .addComponent(txtErrorCal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84)
+                .addComponent(txtIdNuevoAlimento, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(88, 88, 88)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtIdNuevoAlimento, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                            .addComponent(btnAddKey, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRemoveKey, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -495,25 +555,24 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
                         .addComponent(txtCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(6, 6, 6)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(9, 9, 9)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIdNuevoAlimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(2, 2, 2)
+                        .addComponent(txtIdNuevoAlimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jButton2)
+                        .addGap(15, 15, 15)
+                        .addComponent(btnAddKey)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                        .addComponent(btnRemoveKey)
+                        .addGap(42, 42, 42)
+                        .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -623,13 +682,9 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
                 btnNw.setEnabled(true);
                 txtErrorNameAli.setForeground(Color.green);
                 txtErrorNameAli.setText("*Nuevo alimento agregado con éxito.");
-                
-                
-                
-                
-                
-                
-                
+                Alimento completo = alimentoData.buscarAlimentoPorNombre(nombre);
+                txtIdNuevoAlimento.setText(String.valueOf(completo.getIdAlimento())); 
+
             }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
@@ -688,15 +743,66 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtDescriptionKeyTyped
 
+    private void btnAddKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddKeyActionPerformed
+        if (tabKeys.getSelectedRow() != -1) {
+            int fila = tabKeys.getSelectedRow();
+            int colId = 0;
+            int colKey = 1;
+            modelAddedKeys.addRow(new Object[]{
+                tabKeys.getValueAt(fila, colId),
+                tabKeys.getValueAt(fila, colKey)
+            });
+            modelListKeys.removeRow(fila);
+        } else {
+            System.out.println("Seleccione una fila");
+        }
+        
+        ordenarTablaAlfabeticamente(tabAddedKeys);
+    }//GEN-LAST:event_btnAddKeyActionPerformed
+
+    private void btnRemoveKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveKeyActionPerformed
+        if (tabAddedKeys.getSelectedRow() != -1) {
+            int fila = tabAddedKeys.getSelectedRow();
+            int colId = 0;
+            int colKey = 1;
+            modelListKeys.addRow(new Object[]{
+                tabAddedKeys.getValueAt(fila, colId),
+                tabAddedKeys.getValueAt(fila, colKey)
+            });
+            modelAddedKeys.removeRow(fila);
+        } else {
+            System.out.println("Seleccione una fila");
+        }
+        ordenarTablaAlfabeticamente(tabKeys);
+        
+
+    }//GEN-LAST:event_btnRemoveKeyActionPerformed
+
+    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
+        DefaultTableModel modelo = (NonEditableTableModel) tabAddedKeys.getModel();
+
+        ArrayList<String> listaKeysAdded = new ArrayList<>();
+
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            String idKey = (String) modelo.getValueAt(i, 0);
+            
+            listaKeysAdded.add(idKey);
+        }
+        
+        for(int i = 0; i< listaKeysAdded.size(); i++) {
+            alimento_Keyword_Handler_DATA.createAlimento_Keyword_Handler(Integer.parseInt(listaKeysAdded.get(i)), Integer.parseInt(txtIdNuevoAlimento.getText()));
+        }
+    }//GEN-LAST:event_btnFinalizarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddKey;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnFinalizar;
     private javax.swing.JButton btnNw;
+    private javax.swing.JButton btnRemoveKey;
     private javax.swing.JButton btnSave;
     private javax.swing.ButtonGroup grpComidas;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -714,21 +820,21 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JList<String> listKeysAdd;
-    private javax.swing.JList<String> listKeysAdd1;
     private javax.swing.JRadioButton rbtBreak;
     private javax.swing.JRadioButton rbtDinner;
     private javax.swing.JRadioButton rbtLunch;
     private javax.swing.JRadioButton rbtSnack;
     private javax.swing.JRadioButton rbtTea;
+    private javax.swing.JTable tabAddedKeys;
+    private javax.swing.JTable tabKeys;
     private javax.swing.JTextField txtCalorias;
     private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextField txtErrorCal;
@@ -753,4 +859,45 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
         rbtSnack.setEnabled(false);
         rbtTea.setEnabled(false);
     }
+
+    private void cargarCabecerasGenerico(NonEditableTableModel modelo, JTable table) {
+        modelo.addColumn("ID Key");
+        modelo.addColumn("key");
+
+        table.setModel(modelo);
+
+    }
+
+    private void cargarTablaKeys() {
+        modelListKeys.setRowCount(0);
+        ArrayList<Keywords> keyList = keywordData.listarKeywords();
+        for (Keywords k : keyList) {
+            modelListKeys.addRow(new Object[]{
+                k.getIdKeyword(),
+                k.getKeyword()
+            });
+        }
+
+    }
+
+    private void ordenarTablaAlfabeticamente(JTable tabla) {
+        DefaultTableModel modelo = (NonEditableTableModel) tabla.getModel();
+
+        ArrayList<Object[]> filas = new ArrayList<>();
+
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            int valorColumna0 = (int) modelo.getValueAt(i, 0);
+            String valorColumna1 = modelo.getValueAt(i, 1).toString();
+            filas.add(new Object[]{valorColumna0, valorColumna1});
+        }
+        
+         Collections.sort(filas, (a, b) -> ((String) a[1]).compareTo((String) b[1]));
+
+        modelo.setRowCount(0);
+
+        for (Object[] fila : filas) {
+            modelo.addRow(fila);
+        }
+    }
+
 }

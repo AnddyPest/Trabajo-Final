@@ -118,18 +118,18 @@ public class AlimentoData {
         return alimentoDevuelto;
     }
     //Listar Paciente por nombre
-    public ArrayList<Alimento> buscarAlimentoPorNombre(String nombreEnviado){
-        ArrayList<Alimento> alimentosEncontrados = new ArrayList<>();
+    public Alimento buscarAlimentoPorNombre(String nombreEnviado){
+        Alimento alimentoDevuelto =null;
         try {            
             String query = "Select * from alimento where alimento.nombre = ?";
             PreparedStatement ps = conexion.prepareStatement(query);
             ps.setString(1, nombreEnviado.trim().toLowerCase());
             ResultSet resultados = ps.executeQuery();
             while(resultados.next()){
-                Alimento alimento = FuncionDe.crearAlimento(resultados);
-                alimentosEncontrados.add(alimento);
+                alimentoDevuelto = FuncionDe.crearAlimento(resultados);
+                
             }
-            if(!alimentosEncontrados.isEmpty()){
+            if(alimentoDevuelto == null){
                 FuncionDe.mostrarMensajeCorrecto("buscarAlimentosPorNombre", "Alimento con nombre: " + nombreEnviado + " enviados correctamente");
             } else{
                 throw new SQLException();
@@ -141,7 +141,7 @@ public class AlimentoData {
             FuncionDe.mostrarMensajeError("No se encontraron alimentos con dicho nombre",ex, "buscarAlimentoPorNombre", "AlimentoData", "122");
         }
         
-        return alimentosEncontrados;
+        return alimentoDevuelto;
         
     }
     //UPDATE

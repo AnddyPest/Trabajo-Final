@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import org.mariadb.jdbc.Connection;
+import java.sql.Connection;
 
 
 public class Alimento_Keyword_Handler_DATA {
@@ -23,27 +23,27 @@ public class Alimento_Keyword_Handler_DATA {
         this.conexion = conexion;
     }
     
-    public int createAlimento_Keyword_Handler( Keywords idKeyword, Alimento idAlimentoEnviado)  {
+    public int createAlimento_Keyword_Handler( int idKeyword, int idAlimentoEnviado)  {
         boolean validado = false;   
         int codigoDevuelto = 1;
-        //UNA VEZ CREADO EL METODO HAY QUE ACTUALIZAR ESTO Y AÑADIR UN IF AL TRY DE ABAJO
-        List<Alimento_Keyword_Handler> listadoDeHandlers = this.listarAlimento_Keyword_Handler();
-
-        if(listadoDeHandlers.isEmpty()){           
-            validado = true;
-        } else{
-            for(Alimento_Keyword_Handler handlerRevisado: listadoDeHandlers){
-
-                if(handlerRevisado.getIdKeyword().getIdKeyword() != idKeyword.getIdKeyword() && handlerRevisado.getIdAlimento().getIdAlimento() != idAlimentoEnviado.getIdAlimento() ){                                       
-                    validado = true;
-
-                }else{
-                    validado = false;
-                    System.out.println("Validacion Metodo: createAlimento_Keyword_Handler|| Mensaje: Handlers ya relacionados no son admitidos\n");                    
-                    break;
-                }
-            }
-        }
+        //UNA VEZ CREADO EL METODO HAY QUE ACTUALIZAR ESTO Y AÑADIR UN IF AL TRY DE ABAJO ---- REVER VALIDACION
+//        List<Alimento_Keyword_Handler> listadoDeHandlers = this.listarAlimento_Keyword_Handler();
+//
+//        if(listadoDeHandlers.isEmpty()){           
+//            validado = true;
+//        } else{
+//            for(Alimento_Keyword_Handler handlerRevisado: listadoDeHandlers){
+//
+//                if(handlerRevisado.getIdKeyword().getIdKeyword() != idKeyword.getIdKeyword() && handlerRevisado.getIdAlimento().getIdAlimento() != idAlimentoEnviado.getIdAlimento() ){                                       
+//                    validado = true;
+//
+//                }else{
+//                    validado = false;
+//                    System.out.println("Validacion Metodo: createAlimento_Keyword_Handler|| Mensaje: Handlers ya relacionados no son admitidos\n");                    
+//                    break;
+//                }
+//            }
+//        }
         if(validado){
 
 
@@ -51,8 +51,8 @@ public class Alimento_Keyword_Handler_DATA {
                 String query = "Insert into alimento_keyword_handler( idKeyword, idAlimento ) values( ? , ?  )";
 
                 PreparedStatement ps = conexion.prepareStatement(query);
-                ps.setInt(1, idKeyword.getIdKeyword());
-                ps.setInt(2, idAlimentoEnviado.getIdAlimento());
+                ps.setInt(1, idKeyword);
+                ps.setInt(2, idAlimentoEnviado);
 
                 ps.executeUpdate();
 
