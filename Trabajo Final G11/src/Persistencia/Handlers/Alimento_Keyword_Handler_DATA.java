@@ -27,23 +27,23 @@ public class Alimento_Keyword_Handler_DATA {
         boolean validado = false;   
         int codigoDevuelto = 1;
         //UNA VEZ CREADO EL METODO HAY QUE ACTUALIZAR ESTO Y AÑADIR UN IF AL TRY DE ABAJO ---- REVER VALIDACION
-//        List<Alimento_Keyword_Handler> listadoDeHandlers = this.listarAlimento_Keyword_Handler();
-//
-//        if(listadoDeHandlers.isEmpty()){           
-//            validado = true;
-//        } else{
-//            for(Alimento_Keyword_Handler handlerRevisado: listadoDeHandlers){
-//
-//                if(handlerRevisado.getIdKeyword().getIdKeyword() != idKeyword.getIdKeyword() && handlerRevisado.getIdAlimento().getIdAlimento() != idAlimentoEnviado.getIdAlimento() ){                                       
-//                    validado = true;
-//
-//                }else{
-//                    validado = false;
-//                    System.out.println("Validacion Metodo: createAlimento_Keyword_Handler|| Mensaje: Handlers ya relacionados no son admitidos\n");                    
-//                    break;
-//                }
-//            }
-//        }
+        List<Alimento_Keyword_Handler> listadoDeHandlers = this.listarAlimento_Keyword_Handler();
+
+        if(listadoDeHandlers.isEmpty()){           
+            validado = true;
+        } else{
+            for(Alimento_Keyword_Handler handlerRevisado: listadoDeHandlers){
+
+                if( handlerRevisado.getIdKeyword().getIdKeyword() != idKeyword && handlerRevisado.getIdAlimento().getIdAlimento() != idAlimentoEnviado){                                       
+                    validado = true;
+
+                }else{
+                    validado = false;
+                    System.out.println("Validacion Metodo: createAlimento_Keyword_Handler|| Mensaje: Handlers ya relacionados no son admitidos\n");                    
+                    break;
+                }
+            }
+        }
         if(validado){
 
 
