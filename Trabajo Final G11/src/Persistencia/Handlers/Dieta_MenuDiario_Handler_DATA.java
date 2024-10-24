@@ -30,22 +30,22 @@ public class Dieta_MenuDiario_Handler_DATA {
         //UNA VEZ CREADO EL METODO HAY QUE ACTUALIZAR ESTO Y AÑADIR UN IF AL TRY DE ABAJO
         List<Dieta_MenuDiario_Handler> listadoDeHandlers = this.listarDieta_MenuDiario_Handler();
         
-        if(listadoDeHandlers.isEmpty()){           
-            validado = true;
-        } else{
-            for(Dieta_MenuDiario_Handler handlerRevisado: listadoDeHandlers){
-                
-                if(handlerRevisado.getIdDieta().getIdDieta() != idDieta.getIdDieta() && handlerRevisado.getIdMenuDiario().getIdMenuDiario() != idMenuDiario.getIdMenuDiario() ){                                       
-                    validado = true;
-                    
-                }else{
-                    validado = false;
-                    System.out.println("Validacion Metodo: createDieta_MenuDiario_Handler|| Mensaje: Handlers ya relacionados no son admitidos\n");                    
-                    break;
-                }
-            }
-        }
-        if(validado){
+//        if(listadoDeHandlers.isEmpty()){           
+//            validado = true;
+//        } else{
+//            for(Dieta_MenuDiario_Handler handlerRevisado: listadoDeHandlers){
+//                
+//                if(handlerRevisado.getIdDieta().getIdDieta() != idDieta.getIdDieta() && handlerRevisado.getIdMenuDiario().getIdMenuDiario() != idMenuDiario.getIdMenuDiario() ){                                       
+//                    validado = true;
+//                    
+//                }else{
+//                    validado = false;
+//                    System.out.println("Validacion Metodo: createDieta_MenuDiario_Handler|| Mensaje: Handlers ya relacionados no son admitidos\n");                    
+//                    break;
+//                }
+//            }
+//        }
+        if(!validado){
           
         
             try {

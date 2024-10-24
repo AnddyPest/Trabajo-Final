@@ -8,11 +8,8 @@ import Persistencia.KeywordData;
 import Utilities.Conexion;
 import java.awt.Color;
 import java.sql.Connection;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
-import javax.swing.DefaultListModel;
-import javax.swing.JDialog;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -682,8 +679,8 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
                 btnNw.setEnabled(true);
                 txtErrorNameAli.setForeground(Color.green);
                 txtErrorNameAli.setText("*Nuevo alimento agregado con éxito.");
-                Alimento completo = alimentoData.buscarAlimentoPorNombre(nombre);
-                txtIdNuevoAlimento.setText(String.valueOf(completo.getIdAlimento())); 
+                
+                
 
             }
         }
@@ -780,17 +777,20 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         DefaultTableModel modelo = (NonEditableTableModel) tabAddedKeys.getModel();
-
+        Alimento completo = alimentoData.buscarAlimentoPorNombre(txtNameAli.getText());
+        System.out.println("El nombnre enviado es "+txtNameAli.getText());
+        System.out.println("ID DEL ALIMENTO "+completo.getIdAlimento());
         ArrayList<Integer> listaKeysAdded = new ArrayList<>();
 
-        for (int i = 0; i < modelo.getRowCount(); i++) {
-            int idKey = (int) modelo.getValueAt(i, 0);
+        for (int i = 0; i < tabAddedKeys.getRowCount(); i++) {
+            int idKey = (int) tabAddedKeys.getValueAt(i, 0);
             
-            listaKeysAdded.add(idKey);
+            System.out.println("Keys sacadas de la tabla de added: "+idKey);
+                        listaKeysAdded.add(idKey);
         }
         
         for(int i = 0; i< listaKeysAdded.size(); i++) {
-            alimento_Keyword_Handler_DATA.createAlimento_Keyword_Handler(listaKeysAdded.get(i), Integer.parseInt(txtIdNuevoAlimento.getText()));
+            alimento_Keyword_Handler_DATA.createAlimento_Keyword_Handler(keywordData.buscarKeyporId(listaKeysAdded.get(i)), completo);
         }
     }//GEN-LAST:event_btnFinalizarActionPerformed
 

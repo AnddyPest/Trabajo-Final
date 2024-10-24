@@ -323,7 +323,7 @@ public class FuncionDe {
                 " FROM \n" +
                 "    alimento a\n " +
                 " JOIN\n " +
-                "    alimento_keyword ak_incluida ON a.idAlimento = ak_incluida.idAlimento\n " +
+                "    alimento_keyword_handler ak_incluida ON a.idAlimento = ak_incluida.idAlimento\n " +
                 " JOIN\n " +
                 "    keywords k_incluida ON ak_incluida.idKeyword = k_incluida.idKeyword\n " +
                 " WHERE k_incluida.keyword IN ";
@@ -335,7 +335,7 @@ public class FuncionDe {
                     "         SELECT\n" +
                     "             ak_excluida.idAlimento\n" +
                     "        FROM\n" +
-                    "            alimento_keyword ak_excluida\n" +
+                    "            alimento_keyword_handler ak_excluida\n" +
                     "        JOIN\n" +
                     "            keywords k_excluida ON ak_excluida.idKeyword = k_excluida.idKeyword\n" +
                     "        WHERE\n" +
@@ -362,7 +362,7 @@ public class FuncionDe {
                 "         SELECT\n" +
                 "             ak_excluida.idAlimento\n" +
                 "        FROM\n" +
-                "            alimento_keyword ak_excluida\n" +
+                "            alimento_keyword_handler ak_excluida\n" +
                 "        JOIN\n" +
                 "            keywords k_excluida ON ak_excluida.idKeyword = k_excluida.idKeyword\n" +
                 "        WHERE\n" +

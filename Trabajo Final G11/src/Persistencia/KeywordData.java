@@ -80,6 +80,7 @@ public class KeywordData {
     
     public Keywords buscarKeyporId(int id){
         Keywords keyDevuelta = null;
+        System.out.println(id+ " ID ENVIADO AL METODO DE BUSCAR EN LA BD");
         try{
             
         String query = "select * from keywords where idKeyword = ?";

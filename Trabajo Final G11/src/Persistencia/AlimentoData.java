@@ -121,6 +121,7 @@ public class AlimentoData {
  
     public Alimento buscarAlimentoPorNombre(String nombreEnviado){
         //AKA
+        System.out.println("Nombre enviado " +nombreEnviado);
         Alimento alimentoDevuelto =null;
         try {            
             String query = "Select * from alimento where alimento.nombre = ?";

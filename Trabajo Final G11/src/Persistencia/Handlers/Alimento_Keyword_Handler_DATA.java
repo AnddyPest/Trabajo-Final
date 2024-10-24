@@ -23,12 +23,13 @@ public class Alimento_Keyword_Handler_DATA {
         this.conexion = conexion;
     }
     
-    public int createAlimento_Keyword_Handler( int idKeyword, int idAlimentoEnviado)  {
+    public int createAlimento_Keyword_Handler( Keywords idKeyword, Alimento idAlimentoEnviado)  {
         boolean validado = false;   
         int codigoDevuelto = 1;
-        //UNA VEZ CREADO EL METODO HAY QUE ACTUALIZAR ESTO Y AÑADIR UN IF AL TRY DE ABAJO ---- REVER VALIDACION
-//        List<Alimento_Keyword_Handler> listadoDeHandlers = this.listarAlimento_Keyword_Handler();
-//
+        System.out.println("ID RECIBIDO POR EL CREADOR DE RELACIONES ALIM//KEY "+idKeyword.getIdKeyword()+"ID ALIM: "+idAlimentoEnviado.getIdAlimento());
+        //UNA VEZ CREADO EL METODO HAY QUE ACTUALIZAR ESTO Y AÑADIR UN IF AL TRY DE ABAJO
+        List<Alimento_Keyword_Handler> listadoDeHandlers = this.listarAlimento_Keyword_Handler();
+
 //        if(listadoDeHandlers.isEmpty()){           
 //            validado = true;
 //        } else{
@@ -44,15 +45,15 @@ public class Alimento_Keyword_Handler_DATA {
 //                }
 //            }
 //        }
-        if(validado){
+        if(!validado){
 
 
             try {
                 String query = "Insert into alimento_keyword_handler( idKeyword, idAlimento ) values( ? , ?  )";
 
                 PreparedStatement ps = conexion.prepareStatement(query);
-                ps.setInt(1, idKeyword);
-                ps.setInt(2, idAlimentoEnviado);
+                ps.setInt(1, idKeyword.getIdKeyword());
+                ps.setInt(2, idAlimentoEnviado.getIdAlimento());
 
                 ps.executeUpdate();
 
