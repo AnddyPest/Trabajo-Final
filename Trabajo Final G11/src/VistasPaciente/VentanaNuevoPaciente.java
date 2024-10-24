@@ -180,6 +180,11 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
         txtName.setBackground(new java.awt.Color(153, 153, 153));
         txtName.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         txtName.setForeground(new java.awt.Color(0, 0, 0));
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNameKeyTyped(evt);
@@ -653,6 +658,10 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
         entradaNumerosConPunto(evt);
         validarEntradas();
     }//GEN-LAST:event_txtPesoBuscadoKeyTyped
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
