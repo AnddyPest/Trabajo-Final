@@ -781,16 +781,16 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         DefaultTableModel modelo = (NonEditableTableModel) tabAddedKeys.getModel();
 
-        ArrayList<String> listaKeysAdded = new ArrayList<>();
+        ArrayList<Integer> listaKeysAdded = new ArrayList<>();
 
         for (int i = 0; i < modelo.getRowCount(); i++) {
-            String idKey = (String) modelo.getValueAt(i, 0);
+            int idKey = (int) modelo.getValueAt(i, 0);
             
             listaKeysAdded.add(idKey);
         }
         
         for(int i = 0; i< listaKeysAdded.size(); i++) {
-            alimento_Keyword_Handler_DATA.createAlimento_Keyword_Handler(Integer.parseInt(listaKeysAdded.get(i)), Integer.parseInt(txtIdNuevoAlimento.getText()));
+            alimento_Keyword_Handler_DATA.createAlimento_Keyword_Handler(listaKeysAdded.get(i), Integer.parseInt(txtIdNuevoAlimento.getText()));
         }
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
