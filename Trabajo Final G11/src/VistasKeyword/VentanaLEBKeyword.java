@@ -38,7 +38,6 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
                     if (fila != -1) {
                         txtID.setText((tabKeywords.getValueAt(fila, 0)).toString());
                         txtName.setText(tabKeywords.getValueAt(fila, 1).toString());
-                        txtName.setEditable(true);
                         btnUpdateD.setEnabled(true);
                         radioEditar.setEnabled(true);
                         radioBorrar.setEnabled(true);
@@ -285,7 +284,7 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
         txtID.setForeground(new java.awt.Color(51, 51, 51));
         txtID.setBorder(null);
         txtID.setCaretColor(new java.awt.Color(51, 51, 51));
-        txtID.setEnabled(false);
+        txtID.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         txtID.setSelectedTextColor(new java.awt.Color(51, 51, 51));
         txtID.setSelectionColor(new java.awt.Color(51, 51, 51));
 
@@ -331,7 +330,7 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -348,7 +347,7 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 630, 540));
@@ -377,7 +376,6 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
                 txtErrorName.setText("*No puede queda vacio este campo");
                 txtName.requestFocus();
             } else if (radioEditar.isSelected()){
-//                txtName.setEnabled(true); aqui no va
                Keywords keyEdit = new Keywords(Integer.parseInt(txtID.getText()), txtName.getText());
                keyWordData.actualizarKeywordPorId(keyEdit);
                botonActualizarBorrar();
@@ -385,6 +383,8 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
               keyWordData.borrarKeyword(Integer.parseInt(txtID.getText()));
               botonActualizarBorrar();
             }
+            radioEditar.setEnabled(false);
+            radioBorrar.setEnabled(false);
         }
     }//GEN-LAST:event_btnUpdateDActionPerformed
 
@@ -399,21 +399,25 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
        txtErrorName.setForeground(Color.red);
        txtErrorName.setText("");
        txtName.setText("");
-       txtName.setEditable(true);
+       txtName.setEditable(false);
        btnSelect.setEnabled(false);
        radioEditar.setEnabled(false);
        radioBorrar.setEnabled(false);
+       btnUpdateD.setEnabled(false);
     }//GEN-LAST:event_btnSelectActionPerformed
 
     private void radioEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEditarActionPerformed
         //BOTON PARA HABILITAR LA EDICION DEL NOMBRE DE LA KEY!!!!!
         btnSelect.setEnabled(true);
+        txtName.setEditable(true);
         btnUpdateD.setText("Editar");
        
     }//GEN-LAST:event_radioEditarActionPerformed
 
     private void radioBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBorrarActionPerformed
       btnSelect.setEnabled(true);
+      txtName.setEditable(false);
+      txtName.setText(".");
         btnUpdateD.setText("Borrar");
     }//GEN-LAST:event_radioBorrarActionPerformed
 
@@ -485,6 +489,6 @@ private void botonActualizarBorrar(){
     actualizarTabla();
     GroupSelect.clearSelection();
     radioEditar.setEnabled(true);
-    radioBorrar.setEnabled(true);
+    radioBorrar.setEnabled(true);  
 }
 }

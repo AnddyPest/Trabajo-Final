@@ -11,6 +11,7 @@ import VistasPaciente.VentanaNuevoPaciente;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import VistasKeyword.VentanaLEBKeyword;
+import VistasKeyword.VentanaNuevaKeyword;
 
 public class VentanaDeInicio extends javax.swing.JFrame {
 
@@ -185,6 +186,11 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         jMenu3.setText("Keywords");
 
         menuCrearKey.setText("Crear Keyword");
+        menuCrearKey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCrearKeyActionPerformed(evt);
+            }
+        });
         jMenu3.add(menuCrearKey);
 
         menuHandleKeys.setText("Listar/Editar/Borrar Keyword");
@@ -396,6 +402,25 @@ public class VentanaDeInicio extends javax.swing.JFrame {
        desktop.revalidate();
        desktop.repaint();
     }//GEN-LAST:event_menuHandleKeysActionPerformed
+
+    private void menuCrearKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCrearKeyActionPerformed
+        desktop.removeAll();
+       VentanaNuevaKeyword NuevaKeyword = new  VentanaNuevaKeyword();
+       desktop.add(NuevaKeyword);
+       NuevaKeyword.addComponentListener(new ComponentAdapter(){
+           
+           @Override
+           public void componentShown(ComponentEvent e){
+               NuevaKeyword.setLocation((desktop.getWidth() - NuevaKeyword.getWidth())/ 2,
+                       (desktop.getHeight() - NuevaKeyword.getHeight()) / 2
+               );
+           }
+       });
+       desktop.moveToFront(NuevaKeyword);
+       NuevaKeyword.setVisible(true);
+       desktop.revalidate();
+       desktop.repaint();
+    }//GEN-LAST:event_menuCrearKeyActionPerformed
 
     public static void main(String args[]) {
 
