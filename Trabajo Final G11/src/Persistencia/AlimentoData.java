@@ -95,6 +95,7 @@ public class AlimentoData {
     //Listar Paciente por id
     
     public Alimento buscarAlimentoPorID(int id){
+        
         Alimento alimentoDevuelto = null;
         try {
             String query = "Select * from alimento where idAlimento = ?";
@@ -117,8 +118,9 @@ public class AlimentoData {
         
         return alimentoDevuelto;
     }
-    //Listar Paciente por nombre
+ 
     public Alimento buscarAlimentoPorNombre(String nombreEnviado){
+        //AKA
         Alimento alimentoDevuelto =null;
         try {            
             String query = "Select * from alimento where alimento.nombre = ?";
