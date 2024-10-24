@@ -5,12 +5,14 @@ package Utilities;
 
 import Entidades.Alimento;
 import Entidades.Dieta;
+import Entidades.Handlers.MenuDiario_Alimento_Handler;
 import Entidades.MenuDiario;
 import Entidades.Paciente;
 
 import Persistencia.AlimentoData;
 import Entidades.Keywords;
 import Persistencia.DietaData;
+import Persistencia.Handlers.MenuDiario_Alimento_Handler_DATA;
 import Persistencia.KeywordData;
 import Persistencia.MenuDiarioData;
 import Persistencia.PacienteData;
@@ -56,6 +58,18 @@ public class FuncionDe {
         pacienteCreado.setEstado(resultados.getBoolean("estado"));
         
         return pacienteCreado;
+    } 
+    public static MenuDiario_Alimento_Handler crearMenuDiario_Alimento_Handler(ResultSet resultados) throws SQLException{
+
+        MenuDiario_Alimento_Handler handlerCreado = new MenuDiario_Alimento_Handler();
+        Alimento alimento = new Alimento();
+        MenuDiario menuDiario = new MenuDiario();
+        alimento.setIdAlimento(resultados.getInt("idAlimento"));
+        menuDiario.setIdMenuDiario(resultados.getInt("idMenuDiario"));
+        handlerCreado.setIdAlimento(alimento);
+        handlerCreado.setIdMenuDiario(menuDiario);
+        
+        return handlerCreado;
     } 
    
     public static MenuDiario crearMenu(ResultSet resultados) throws SQLException{
@@ -134,6 +148,13 @@ public class FuncionDe {
         if(metodo.buscarPacientePorID(id) == null){
                 throw new SQLException();
             }
+    }
+    public static boolean validarSiExisteId(MenuDiario_Alimento_Handler_DATA metodo, int idMenuDiario, int idAlimento) throws SQLException{
+        if(metodo.buscarHandler_MenuDiario_AlimentoPorIDS(idMenuDiario, idAlimento) == null){
+                return false;
+        } else{
+            return true;
+        }
     }
     
 //    public static void validarSiExisteId(RenglonDelMenuData metodo, int id) throws SQLException{
