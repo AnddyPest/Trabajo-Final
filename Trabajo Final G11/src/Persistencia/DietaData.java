@@ -19,7 +19,7 @@ public class DietaData {
     public int crearDieta(Dieta dietaEnviada)  {
         boolean validado = false;   
         int codigoDevuelto = 1;
-        //UNA VEZ CREADO EL METODO HAY QUE ACTUALIZAR ESTO Y AÑADIR UN IF AL TRY DE ABAJO
+       
         List<Dieta> dietas = this.listarDietas();
         
         if(dietas.isEmpty()){           
@@ -65,9 +65,6 @@ public class DietaData {
        
     }
     
-    //READ
-    //Listar Todos Los Pacientes
-    
     public ArrayList<Dieta> listarDietas(){
         ArrayList<Dieta> dietasDevueltas = new ArrayList<>();
         try {            
@@ -93,7 +90,7 @@ public class DietaData {
         return dietasDevueltas;
     }
     
-    //Listar Paciente por id
+
     
     public Dieta buscarDietaPorID(int id){
         Dieta dietaDevuelta = null;
@@ -118,7 +115,7 @@ public class DietaData {
         
         return dietaDevuelta;
     }
-    //Listar Paciente por nombre
+    
     public ArrayList<Dieta> buscarDietasPorNombre(String nombreEnviado){
         ArrayList<Dieta> dietasEncontradas = new ArrayList<>();
         try {            
@@ -146,7 +143,7 @@ public class DietaData {
         
     }
     //UPDATE
-    //actualizar paciente por id
+    
     
     public void actualizarDietaPorId(Dieta dietaEnviada){
         
@@ -178,7 +175,7 @@ public class DietaData {
     
         
     //DELETE    
-     //buscar por estado individual
+    //buscar por estado individual AUXILIAR DE ALTA Y BAJA LOGICA
     public boolean buscarEstadoPorId(int id){
         Dieta resultadoEstado = null;
         try {

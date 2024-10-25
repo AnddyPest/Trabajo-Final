@@ -108,36 +108,9 @@ public class FuncionDe {
         menuCreado.setDia(resultados.getInt("dia"));
         menuCreado.setCaloriasDelMenu(resultados.getInt("caloriasDelMenu"));
         menuCreado.setEstado(resultados.getBoolean("estado"));
-        //RenglonDelMenu renglonDeMenu = new RenglonDelMenu();
-        //renglonDeMenu.setIdRenglonDelMenu(resultados.getInt("idRenglonDelMenu"));
-  
-        
         return menuCreado;
     }
-//    public static RenglonDelMenu crearRengloDeMenu(ResultSet resultados) throws SQLException{
-//
-//        RenglonDelMenu renglonDelMenu = new RenglonDelMenu();
-//        renglonDelMenu.setIdRenglonDelMenu(resultados.getInt("idRenglonDelMenu"));
-//        Alimento alimento = new Alimento();
-//        alimento.setIdAlimento(resultados.getInt("idAlimento"));
-//        renglonDelMenu.setAlimento(alimento);
-//        renglonDelMenu.setCantidadGramos(resultados.getDouble("cantidadGramos"));
-//        renglonDelMenu.setSubtotalCalorias(resultados.getInt("subTotalCalorias"));
-//  
-//        
-//        return renglonDelMenu;
-//    }
-  
-    
-//    public static Comida crearComida(ResultSet resultados) throws SQLException{
-//        Comida comidaCreada = new Comida();
-//        comidaCreada.setIdComida(resultados.getInt("idComida"));
-//        comidaCreada.setNombre(resultados.getString("nombre"));
-//        comidaCreada.setDetalle(resultados.getString("detalle"));
-//        comidaCreada.setCantidadCalorias(resultados.getInt("cantCalorias"));
-//        comidaCreada.setEstadoComida(resultados.getBoolean("estado"));
-//        return comidaCreada;
-//    }
+
     
     public static Keywords crearKeyword(ResultSet resultados) throws SQLException{
         Keywords keyCreada = new Keywords();
@@ -197,12 +170,6 @@ public class FuncionDe {
             return true;
         }
     }
-    
-//    public static void validarSiExisteId(RenglonDelMenuData metodo, int id) throws SQLException{
-//        if(metodo.buscarRenglonDelMenuPorID(id) == null){
-//                throw new SQLException();
-//            }
-//    }
     
     public static void validarSiExisteId(MenuDiarioData metodo, int id) throws SQLException{
         if(metodo.buscarMenuPorID(id) == null){
