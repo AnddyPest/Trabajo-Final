@@ -156,7 +156,7 @@ public class TestClass {
 //        }
         //actualizar dieta por id || Correcto
 //        
-//        Dieta dieta1 = new Dieta(1,"arvejas Con arroz", paciente4, 1600, LocalDate.of(2024, Month.MARCH, 3), 73.4, LocalDate.of(2025, Month.MARCH, 1));
+//        Dieta dieta1 = new Dieta(1,"arvejas Con arroz", paciente4, LocalDate.of(2024, Month.MARCH, 3), LocalDate.of(2025, Month.MARCH, 1), 73.4, 1600);
 //        dietaData.actualizarDietaPorId(dieta1);
 
         //alta logica || Correcto
@@ -170,5 +170,9 @@ public class TestClass {
         //borrar dieta || Correcto
         
        // dietaData.borrarDietaPorId(1);
+       
+       
+       
+       
     }
 }
