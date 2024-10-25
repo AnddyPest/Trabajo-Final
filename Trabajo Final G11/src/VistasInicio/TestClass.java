@@ -131,6 +131,7 @@ public class TestClass {
         ////////////////////////////
         //////Testeo Dietas/////////
         ////////////////////////////
+        
         DietaData dietaData = new DietaData(conexion);
         //Crear Dieta || CORRECTO
 //        
@@ -171,8 +172,34 @@ public class TestClass {
         
        // dietaData.borrarDietaPorId(1);
        
+       ////////////////////////////
+       //////Testeo menuDiario/////
+       ////////////////////////////
        
        
        
+       
+        ///////////////////////////
+        //////Testeo Keywords//////
+        ///////////////////////////
+       
+        
+        
+        
+        ///////////////////////////////////////////
+        //////Testeo dieta-menudiario-handler//////
+        ///////////////////////////////////////////
+        
+       
+        
+        
+        ///////////////////////////////////////////
+        //////Testeo menudiario-alimento-handler///
+        ///////////////////////////////////////////
+        
+        
+        ////////////////////////////////////////
+        //////Testeo alimento-keyword-handler///
+        ////////////////////////////////////////
     }
 }
