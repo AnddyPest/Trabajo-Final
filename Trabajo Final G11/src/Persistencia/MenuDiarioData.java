@@ -23,7 +23,7 @@ public class MenuDiarioData {
         int codigoDevuelto = 1;
         if (validado) {
             try {
-                String query = "Insert into menudiario(Nombre del Menu, dia, caloriasDelMenu, estado ) values(  ? , ? , ?, ? )";
+                String query = "Insert into menudiario( nombreMenu, dia, caloriasDelMenu, estado ) values(  ? , ? , ?, ? )";
 
                 PreparedStatement ps = conexion.prepareStatement(query);
                 ps.setString(1, menuDiarioEnviada.getNombreMenu());
@@ -32,10 +32,10 @@ public class MenuDiarioData {
                 ps.setBoolean(4, true);
                 ps.executeUpdate();
 
-                FuncionDe.mostrarMensajeCorrecto("Crear Dieta", "La dieta ha sido añadida");
+                FuncionDe.mostrarMensajeCorrecto("Crear Menu Diario", "El menu ha sido añadida");
                 ps.close();
             } catch (SQLException ex) {
-                FuncionDe.mostrarMensajeError(ex, "Crear Dieta", "DietaData", "22");
+                FuncionDe.mostrarMensajeError(ex, "Crear Menu Diario", "MenuDiarioData", "22");
                 codigoDevuelto = ex.getErrorCode();
             }
 
@@ -99,9 +99,9 @@ public class MenuDiarioData {
     public MenuDiario buscarMenuPorNombre(String nombreEnviado) {
         MenuDiario menuEncontrado = null;
         try {
-            String query = "Select * from menudiario where paciente.nombre = ?";
+            String query = "Select * from menudiario where menudiario.nombreMenu = ?";
             PreparedStatement ps = conexion.prepareStatement(query);
-            ps.setString(1, nombreEnviado.trim().toLowerCase());
+            ps.setString(1, nombreEnviado.trim());
             ResultSet resultados = ps.executeQuery();
             while (resultados.next()) {
                 menuEncontrado = FuncionDe.crearMenu(resultados);
