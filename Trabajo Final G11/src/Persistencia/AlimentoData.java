@@ -75,7 +75,7 @@ public class AlimentoData {
             PreparedStatement ps = conexion.prepareStatement(Query);
             
             ResultSet resultados = ps.executeQuery();
-            
+           
             while(resultados.next()){
                 Alimento alimentoCreado = FuncionDe.crearAlimento(resultados);
                 
