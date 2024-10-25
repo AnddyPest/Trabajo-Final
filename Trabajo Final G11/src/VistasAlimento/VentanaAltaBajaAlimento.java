@@ -118,7 +118,7 @@ public class VentanaAltaBajaAlimento extends javax.swing.JInternalFrame {
         grupoSelect.add(radioAlta);
         radioAlta.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         radioAlta.setForeground(new java.awt.Color(204, 204, 204));
-        radioAlta.setText("Alta Paciente");
+        radioAlta.setText("Alta Alimento");
         radioAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioAltaActionPerformed(evt);
@@ -129,7 +129,7 @@ public class VentanaAltaBajaAlimento extends javax.swing.JInternalFrame {
         grupoSelect.add(radioBaja);
         radioBaja.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         radioBaja.setForeground(new java.awt.Color(204, 204, 204));
-        radioBaja.setText("Baja Paciente");
+        radioBaja.setText("Baja Alimento");
         radioBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioBajaActionPerformed(evt);

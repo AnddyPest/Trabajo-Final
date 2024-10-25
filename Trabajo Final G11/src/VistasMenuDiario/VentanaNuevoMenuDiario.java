@@ -856,6 +856,7 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnComenzarActionPerformed
 
     private void btnCrearMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMenuActionPerformed
+        if(!txtDay.getText().isEmpty()){
         btnComenzar.setEnabled(true);
         String nombreMenu = txtMenuName.getText();
         int diaMenu = Integer.parseInt(txtDay.getText());
@@ -872,6 +873,20 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
             System.out.println("ID ALIMENTO ENVIADO "+idAlimentoMenu);
             System.out.println("ID MENU ENVIADO "+ menuEnviado.getIdMenuDiario());
             menuDiario_Alimento_Handler_DATA.createHandler_MenuDiario_Alimento(menuEnviado, alimentoData.buscarAlimentoPorID(idAlimentoMenu)); 
+        }
+        
+        txtMenuName.setText("");
+        modelTablaMenu.setRowCount(0);
+        txtCalTotal.setText("");
+        txtDay.setEditable(false);
+        txtDay.setText("");
+        listIncluye.removeAll();
+        listNoIncluye.removeAll();
+        cargarListaKeys();
+        cargarAlimentosAll();
+        btnCrearMenu.setEnabled(false);
+        }else{
+            txtDay.requestFocus();
         }
         
     }//GEN-LAST:event_btnCrearMenuActionPerformed
@@ -914,7 +929,7 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         if (!numero) {
             evt.consume();
         }
-        if(!txtDay.getText().isEmpty()) {
+        if(!txtDay.getText().isBlank()) {
             btnCrearMenu.setEnabled(true);
         }
     }//GEN-LAST:event_txtDayKeyTyped
