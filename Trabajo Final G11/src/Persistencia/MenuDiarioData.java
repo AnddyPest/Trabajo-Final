@@ -23,12 +23,13 @@ public class MenuDiarioData {
         int codigoDevuelto = 1;
         if(validado){
             try {
-                String query = "Insert into menudiario(dia, caloriasDelMenu, estado ) values(  ? , ? , ?)";
+                String query = "Insert into menudiario(Nombre del Menu, dia, caloriasDelMenu, estado ) values(  ? , ? , ?, ?)";
 
                 PreparedStatement ps = conexion.prepareStatement(query);
-                ps.setInt(1, menuDiarioEnviada.getDia());
-                ps.setInt(2, menuDiarioEnviada.getCaloriasDelMenu());
-                ps.setBoolean(3, menuDiarioEnviada.isEstado());
+                ps.setString(1, menuDiarioEnviada.getNombreMenu());
+                ps.setInt(2, menuDiarioEnviada.getDia());
+                ps.setInt(3, menuDiarioEnviada.getCaloriasDelMenu());
+                ps.setBoolean(4, true);
                 ps.executeUpdate();
 
                 FuncionDe.mostrarMensajeCorrecto("Crear Dieta", "La dieta ha sido añadida");

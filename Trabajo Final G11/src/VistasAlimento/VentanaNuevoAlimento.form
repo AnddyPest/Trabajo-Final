@@ -802,6 +802,7 @@
                 <Component class="javax.swing.JButton" name="btnRemoveKey">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&lt;"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveKeyActionPerformed"/>
@@ -810,6 +811,7 @@
                 <Component class="javax.swing.JButton" name="btnAddKey">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&gt;"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddKeyActionPerformed"/>
@@ -851,6 +853,7 @@
                 <Component class="javax.swing.JButton" name="btnFinalizar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="A&#xf1;adir y Finalizar"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFinalizarActionPerformed"/>
