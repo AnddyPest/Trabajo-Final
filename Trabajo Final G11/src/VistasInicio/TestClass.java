@@ -1,12 +1,16 @@
 package VistasInicio;
 
 import Entidades.Alimento;
+import Entidades.Dieta;
 import Utilities.Conexion;
 import java.sql.Connection;
 import Entidades.Paciente;
 import Persistencia.AlimentoData;
+import Persistencia.DietaData;
 
 import Persistencia.PacienteData;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 
 
@@ -22,10 +26,10 @@ public class TestClass {
         
         PacienteData pacienteData = new PacienteData(conexion);
 //
-//        Paciente paciente1 = new Paciente("maximo", 44, 21, "446503175",75, 78);
-//        Paciente paciente2 = new Paciente("ramon", 33, 25, "33411",75, 79);
-//        Paciente paciente3 = new Paciente("tomas", 45, 23, "4465033",72, 71);
-//        Paciente paciente4 = new Paciente("maximoasdsd", 4667, 11, "546503175",65, 78);
+        Paciente paciente1 = new Paciente(1,"maximo", 44, 21, "446503175",75, 78);
+        Paciente paciente2 = new Paciente("ramon", 33, 25, "33411",75, 79);
+        Paciente paciente3 = new Paciente("tomas", 45, 23, "4465033",72, 71);
+        Paciente paciente4 = new Paciente("maximoasdsd", 4667, 11, "546503175",65, 78);
        
         //Crear || FUNCIONA CORRECTAMENTE ||   Nota Hay que VALIDAR el telefono, para saber si es un numero y no contiene letras
 //        
@@ -127,6 +131,30 @@ public class TestClass {
         ////////////////////////////
         //////Testeo Dietas/////////
         ////////////////////////////
+        DietaData dietaData = new DietaData(conexion);
+        //Crear Dieta
         
+        Dieta dieta1 = new Dieta("Arvejas", paciente1, 1500, LocalDate.of(2024, Month.MARCH, 3), 70);
+        
+        
+        //Listar dietas
+        
+        
+        //buscar dietas por id
+        
+        
+        //buscar dietas por nombre
+        
+        
+        //actualizar dieta por id
+        
+        
+        //alta logica
+        
+        
+        //baja logica
+        
+        
+        //borrar dieta
     }
 }
