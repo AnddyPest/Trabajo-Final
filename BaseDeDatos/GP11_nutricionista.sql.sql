@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-10-2024 a las 22:47:42
+-- Tiempo de generación: 25-10-2024 a las 21:35:20
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -42,26 +42,30 @@ CREATE TABLE `alimento` (
 
 INSERT INTO `alimento` (`idAlimento`, `nombre`, `tipoComida`, `caloriasPor100g`, `detalle`, `estado`) VALUES
 (1, 'Arroz con Pollo', 'Almuerzo', 400, 'Pollo con Arroz blanco', 1),
-(2, 'Arroz con Atun', 'Almuerzo', 350, 'Arroz blanco con Atun', 1),
+(2, 'Ensalada Rusa', 'Cena', 120, 'Una simple ensalada con papa, zanahoria y mayonesa', 1),
 (3, 'Bife con ensalada de tomate y zanahoria', 'Cena', 350, 'Bife de lomo a la plancha con ensalada de tomate y zanahoria.', 1),
-(4, 'Ensalada Waldorf', 'Cena', 300, 'Ensalada de tomate, apio, almendras, manzana verde con un toque de crema de leche.', 1);
+(4, 'Ensalada Waldorf', 'Cena', 300, 'Ensalada de tomate, apio, almendras, manzana verde con un toque de crema de leche.', 1),
+(5, 'Tostadas con mermelada light y cafe con leche descremada', 'Desayuno', 150, '2 tostadas de pan lactal integral con una cucharada de te de mermelada light a eleccion. Cafe tostado (NO TORRADO) con leche light deslactosada.', 1),
+(6, 'Yoghurt con frutas citricas', 'Merienda', 120, '1 Mandarina, Naranja o Pomelo mediano con 150g de yoghurt sin azucar.', 1),
+(7, 'Barritas de cereal Naturales', 'Snack', 80, '1 Barrita de cereal NaturSweet', 1),
+(9, 'Ensalada rusa', 'Almuerzo', 230, 'PAPA zanahoria y nose que mas', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `alimento_keyword`
+-- Estructura de tabla para la tabla `alimento_keyword_handler`
 --
 
-CREATE TABLE `alimento_keyword` (
+CREATE TABLE `alimento_keyword_handler` (
   `idAlimento` int(11) NOT NULL,
   `idKeyword` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `alimento_keyword`
+-- Volcado de datos para la tabla `alimento_keyword_handler`
 --
 
-INSERT INTO `alimento_keyword` (`idAlimento`, `idKeyword`) VALUES
+INSERT INTO `alimento_keyword_handler` (`idAlimento`, `idKeyword`) VALUES
 (1, 1),
 (1, 3),
 (2, 3),
@@ -73,7 +77,18 @@ INSERT INTO `alimento_keyword` (`idAlimento`, `idKeyword`) VALUES
 (4, 14),
 (4, 15),
 (4, 16),
-(4, 17);
+(4, 17),
+(5, 18),
+(5, 19),
+(5, 20),
+(5, 21),
+(6, 18),
+(6, 19),
+(6, 22),
+(6, 23),
+(6, 24),
+(7, 4),
+(7, 17);
 
 -- --------------------------------------------------------
 
@@ -91,6 +106,17 @@ CREATE TABLE `dieta` (
   `pesoFinal` double DEFAULT NULL,
   `totalCalorias` int(11) NOT NULL,
   `estado` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `dieta_menudiario_handler`
+--
+
+CREATE TABLE `dieta_menudiario_handler` (
+  `idDieta` int(11) NOT NULL,
+  `idMenuDiario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -117,12 +143,19 @@ INSERT INTO `keywords` (`idKeyword`, `keyword`) VALUES
 (6, 'Celiaco'),
 (8, 'Cerdo'),
 (14, 'Crema'),
+(19, 'Deslactosado'),
 (11, 'Hojas Verdes'),
 (10, 'Huevo'),
+(18, 'Leche'),
+(23, 'Mandarina'),
 (16, 'Manzana'),
+(21, 'Mermelada'),
+(22, 'Naranja'),
 (4, 'Nuez'),
+(20, 'Pan'),
 (9, 'Pescado'),
 (1, 'Pollo'),
+(24, 'Pomelo'),
 (12, 'Tomate'),
 (13, 'Zanahoria');
 
@@ -134,11 +167,21 @@ INSERT INTO `keywords` (`idKeyword`, `keyword`) VALUES
 
 CREATE TABLE `menudiario` (
   `idMenuDiario` int(11) NOT NULL,
+  `nombreMenu` varchar(100) NOT NULL,
   `dia` int(11) NOT NULL,
   `caloriasDelMenu` int(11) NOT NULL,
-  `idDieta` int(11) DEFAULT NULL,
-  `estado` tinyint(1) DEFAULT 1,
-  `idRenglonDelMenu` int(11) DEFAULT NULL
+  `estado` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `menudiario_alimento_handler`
+--
+
+CREATE TABLE `menudiario_alimento_handler` (
+  `idAlimento` int(11) NOT NULL,
+  `idMenuDiario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -152,24 +195,22 @@ CREATE TABLE `paciente` (
   `nombre` varchar(100) NOT NULL,
   `dni` int(11) DEFAULT NULL,
   `edad` int(11) NOT NULL,
-  `telefono` int(11) NOT NULL,
+  `telefono` varchar(20) NOT NULL,
   `pesoActual` double NOT NULL,
   `pesoBuscado` double NOT NULL,
   `estado` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Estructura de tabla para la tabla `renglondelmenu`
+-- Volcado de datos para la tabla `paciente`
 --
 
-CREATE TABLE `renglondelmenu` (
-  `idRenglonDelMenu` int(11) NOT NULL,
-  `idAlimento` int(11) NOT NULL,
-  `cantidadGramos` double NOT NULL,
-  `subTotalCalorias` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `paciente` (`idPaciente`, `nombre`, `dni`, `edad`, `telefono`, `pesoActual`, `pesoBuscado`, `estado`) VALUES
+(1, 'maximo', 44, 21, '446503175', 75, 78, 1),
+(2, 'ramon', 461132111, 0, '244232', 0, 0, 1),
+(3, 'tomas', 45, 23, '4465033', 72, 71, 1),
+(4, 'maximoasdsd', 4667, 11, '546503175', 65, 78, 1),
+(5, 'Emilio Di pierro', 123123, 32, '2664332211', 73, 78, 1);
 
 --
 -- Índices para tablas volcadas
@@ -182,11 +223,11 @@ ALTER TABLE `alimento`
   ADD PRIMARY KEY (`idAlimento`);
 
 --
--- Indices de la tabla `alimento_keyword`
+-- Indices de la tabla `alimento_keyword_handler`
 --
-ALTER TABLE `alimento_keyword`
+ALTER TABLE `alimento_keyword_handler`
   ADD PRIMARY KEY (`idAlimento`,`idKeyword`),
-  ADD KEY `idKeyword` (`idKeyword`);
+  ADD KEY `alimento_keyword_ibfk_2` (`idKeyword`);
 
 --
 -- Indices de la tabla `dieta`
@@ -194,6 +235,13 @@ ALTER TABLE `alimento_keyword`
 ALTER TABLE `dieta`
   ADD PRIMARY KEY (`idDieta`),
   ADD KEY `idPaciente` (`idPaciente`);
+
+--
+-- Indices de la tabla `dieta_menudiario_handler`
+--
+ALTER TABLE `dieta_menudiario_handler`
+  ADD PRIMARY KEY (`idDieta`,`idMenuDiario`),
+  ADD KEY `idMenuDiario` (`idMenuDiario`);
 
 --
 -- Indices de la tabla `keywords`
@@ -206,22 +254,20 @@ ALTER TABLE `keywords`
 -- Indices de la tabla `menudiario`
 --
 ALTER TABLE `menudiario`
-  ADD PRIMARY KEY (`idMenuDiario`),
-  ADD KEY `idDieta` (`idDieta`),
-  ADD KEY `idRenglonDelMenu` (`idRenglonDelMenu`);
+  ADD PRIMARY KEY (`idMenuDiario`);
+
+--
+-- Indices de la tabla `menudiario_alimento_handler`
+--
+ALTER TABLE `menudiario_alimento_handler`
+  ADD PRIMARY KEY (`idAlimento`,`idMenuDiario`),
+  ADD KEY `idMenuDiario` (`idMenuDiario`);
 
 --
 -- Indices de la tabla `paciente`
 --
 ALTER TABLE `paciente`
   ADD PRIMARY KEY (`idPaciente`);
-
---
--- Indices de la tabla `renglondelmenu`
---
-ALTER TABLE `renglondelmenu`
-  ADD PRIMARY KEY (`idRenglonDelMenu`),
-  ADD KEY `idAlimento` (`idAlimento`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -231,7 +277,7 @@ ALTER TABLE `renglondelmenu`
 -- AUTO_INCREMENT de la tabla `alimento`
 --
 ALTER TABLE `alimento`
-  MODIFY `idAlimento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idAlimento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `dieta`
@@ -243,7 +289,7 @@ ALTER TABLE `dieta`
 -- AUTO_INCREMENT de la tabla `keywords`
 --
 ALTER TABLE `keywords`
-  MODIFY `idKeyword` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idKeyword` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `menudiario`
@@ -255,43 +301,38 @@ ALTER TABLE `menudiario`
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `renglondelmenu`
---
-ALTER TABLE `renglondelmenu`
-  MODIFY `idRenglonDelMenu` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `alimento_keyword`
+-- Filtros para la tabla `alimento_keyword_handler`
 --
-ALTER TABLE `alimento_keyword`
-  ADD CONSTRAINT `alimento_keyword_ibfk_1` FOREIGN KEY (`idAlimento`) REFERENCES `alimento` (`idAlimento`) ON DELETE CASCADE,
-  ADD CONSTRAINT `alimento_keyword_ibfk_2` FOREIGN KEY (`idKeyword`) REFERENCES `keywords` (`idkeyword`) ON DELETE CASCADE;
+ALTER TABLE `alimento_keyword_handler`
+  ADD CONSTRAINT `alimento_keyword_handler_ibfk_1` FOREIGN KEY (`idAlimento`) REFERENCES `alimento` (`idAlimento`),
+  ADD CONSTRAINT `alimento_keyword_handler_ibfk_2` FOREIGN KEY (`idKeyword`) REFERENCES `keywords` (`idKeyword`);
 
 --
 -- Filtros para la tabla `dieta`
 --
 ALTER TABLE `dieta`
-  ADD CONSTRAINT `dieta_ibfk_1` FOREIGN KEY (`idPaciente`) REFERENCES `paciente` (`idPaciente`) ON DELETE CASCADE;
+  ADD CONSTRAINT `dieta_ibfk_1` FOREIGN KEY (`idPaciente`) REFERENCES `paciente` (`idPaciente`);
 
 --
--- Filtros para la tabla `menudiario`
+-- Filtros para la tabla `dieta_menudiario_handler`
 --
-ALTER TABLE `menudiario`
-  ADD CONSTRAINT `menudiario_ibfk_1` FOREIGN KEY (`idDieta`) REFERENCES `dieta` (`idDieta`) ON DELETE CASCADE,
-  ADD CONSTRAINT `menudiario_ibfk_2` FOREIGN KEY (`idRenglonDelMenu`) REFERENCES `renglondelmenu` (`idRenglonDelMenu`) ON DELETE CASCADE;
+ALTER TABLE `dieta_menudiario_handler`
+  ADD CONSTRAINT `dieta_menudiario_handler_ibfk_1` FOREIGN KEY (`idDieta`) REFERENCES `dieta` (`idDieta`),
+  ADD CONSTRAINT `dieta_menudiario_handler_ibfk_2` FOREIGN KEY (`idMenuDiario`) REFERENCES `menudiario` (`idMenuDiario`);
 
 --
--- Filtros para la tabla `renglondelmenu`
+-- Filtros para la tabla `menudiario_alimento_handler`
 --
-ALTER TABLE `renglondelmenu`
-  ADD CONSTRAINT `renglondelmenu_ibfk_1` FOREIGN KEY (`idAlimento`) REFERENCES `alimento` (`idAlimento`) ON DELETE CASCADE;
+ALTER TABLE `menudiario_alimento_handler`
+  ADD CONSTRAINT `menudiario_alimento_handler_ibfk_1` FOREIGN KEY (`idAlimento`) REFERENCES `alimento` (`idAlimento`),
+  ADD CONSTRAINT `menudiario_alimento_handler_ibfk_2` FOREIGN KEY (`idMenuDiario`) REFERENCES `menudiario` (`idMenuDiario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
