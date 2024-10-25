@@ -151,6 +151,9 @@ public class DietaData {
     public void actualizarDietaPorId(Dieta dietaEnviada){
         
         try {
+             if(dietaEnviada.getPesoFinal() == null){
+                dietaEnviada.setPesoFinal(0.0);
+            }
             //REVISAR SI FUNCIONA
             FuncionDe.validarSiExisteId(this, dietaEnviada.getIdDieta());
             
