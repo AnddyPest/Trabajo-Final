@@ -864,14 +864,14 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         MenuDiario menuDiario = new MenuDiario(nombreMenu, diaMenu, caloriasDelMenu);
         
         menuDiarioData.crearMenuDiario(menuDiario);
-        //menuDiarioData NECESITAMOS UN METODO BUSCAR MENU POR ID, DE TODAS MANERAS NO SE ESTA MANDANDO EL MENU
+       
         
         
         for(int i = 0; i<tabMenuDiario.getRowCount(); i++) {
             int idAlimentoMenu = (int) tabMenuDiario.getValueAt(i, 0);
             System.out.println("ID ALIMENTO ENVIADO "+idAlimentoMenu);
             System.out.println("ID MENU ENVIADO "+ menuDiario.getIdMenuDiario());
-            menuDiario_Alimento_Handler_DATA.createHandler_MenuDiario_Alimento(menuDiario, alimentoData.buscarAlimentoPorID(idAlimentoMenu)); 
+            menuDiario_Alimento_Handler_DATA.createHandler_MenuDiario_Alimento(menuDiarioData.buscarMenuPorNombre(nombreMenu), alimentoData.buscarAlimentoPorID(idAlimentoMenu)); 
         }
         
     }//GEN-LAST:event_btnCrearMenuActionPerformed
