@@ -38,10 +38,13 @@ public class DietaData {
             }
         }
         if(validado){
-           
-        
+            
+            if(dietaEnviada.getPesoFinal() == null){
+                dietaEnviada.setPesoFinal(0.0);
+            }
+            
             try {
-                String query = "Insert into dieta( nombre, fechaInicio, fechaFinal, pesoInicial, pesoFinal,totalCalorias ,estado ) values( ? , ? , ? , ? , ?,? , ? )";
+                String query = "Insert into dieta( nombre, fechaInicio, fechaFinal, pesoInicial, pesoFinal,totalCalorias ,estado ) values( ? , ? , ? , ? , ?, ? , ? )";
 
                 PreparedStatement ps = conexion.prepareStatement(query);
                 ps.setString(1, dietaEnviada.getNombre());

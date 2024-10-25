@@ -136,10 +136,10 @@ public class FuncionDe {
         Paciente paciente = new Paciente();
         paciente.setIdPaciente(resultados.getInt("idPaciente"));
         dietaCreada.setIdPaciente(paciente);
-        dietaCreada.setFechaInicio(resultados.getDate("fechaInicial").toLocalDate());
+        dietaCreada.setFechaInicio(resultados.getDate("fechaInicio").toLocalDate());
         dietaCreada.setFechaFinal(resultados.getDate("fechaFinal").toLocalDate());
         dietaCreada.setPesoInicial(resultados.getDouble("pesoInicial"));
-        dietaCreada.setPesoInicial(resultados.getDouble("pesoFinal"));
+        dietaCreada.setPesoFinal(resultados.getDouble("pesoFinal"));
         dietaCreada.setTotalCalorias(resultados.getInt("totalCalorias"));        
         dietaCreada.setEstadoDieta(resultados.getBoolean("estado"));
         return dietaCreada;

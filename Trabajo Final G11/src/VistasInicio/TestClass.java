@@ -132,29 +132,41 @@ public class TestClass {
         //////Testeo Dietas/////////
         ////////////////////////////
         DietaData dietaData = new DietaData(conexion);
-        //Crear Dieta
+        //Crear Dieta || CORRECTO
+//        
+//        Dieta dieta1 = new Dieta("arvejas", paciente4, 1400, LocalDate.of(2024, Month.MARCH, 3), 73.4, LocalDate.of(2025, Month.MARCH, 1));
+//        dietaData.crearDieta(dieta1);
         
-        Dieta dieta1 = new Dieta("Arvejas", paciente1, 1500, LocalDate.of(2024, Month.MARCH, 3), 70);
+        //Listar dietas || Correcto
+//        ArrayList<Dieta> dietasEnviadas = dietaData.listarDietas();
+//        for(Dieta dieta: dietasEnviadas){
+//            System.out.println(dieta);
+//        }
+
+        //buscar dietas por id || Correcto
         
+//        Dieta dieta = dietaData.buscarDietaPorID(12);
+//        System.out.println(dieta);
+
+        //buscar dietas por nombre || Correcto
         
-        //Listar dietas
-        
-        
-        //buscar dietas por id
-        
-        
-        //buscar dietas por nombre
-        
-        
+//        ArrayList<Dieta> dieta = dietaData.buscarDietasPorNombre("arvejass ");
+//        for(Dieta dieta1 : dieta){
+//            System.out.println(dieta1);
+//        }
+
         //actualizar dieta por id
         
         
-        //alta logica
+        
+        //alta logica || Correcto
+        //dietaData.altaLogicaDieta(1);
         
         
-        //baja logica
+        //baja logica || Correcto
         
-        
+        //dietaData.bajaLogicaDieta(1);
+                
         //borrar dieta
     }
 }
