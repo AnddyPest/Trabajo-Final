@@ -134,7 +134,7 @@ public class TestClass {
         DietaData dietaData = new DietaData(conexion);
         //Crear Dieta || CORRECTO
 //        
-//        Dieta dieta1 = new Dieta("arvejas", paciente4, 1400, LocalDate.of(2024, Month.MARCH, 3), 73.4, LocalDate.of(2025, Month.MARCH, 1));
+//        Dieta dieta1 = new Dieta("arvejas2", paciente3, LocalDate.of(2024, Month.MARCH, 3), LocalDate.of(2025, Month.MARCH, 1), 73.4 , 1400);
 //        dietaData.crearDieta(dieta1);
         
         //Listar dietas || Correcto
@@ -156,7 +156,7 @@ public class TestClass {
 //        }
         //actualizar dieta por id || Correcto
 //        
-//        Dieta dieta1 = new Dieta(1,"arvejas Con arroz", paciente4, LocalDate.of(2024, Month.MARCH, 3), LocalDate.of(2025, Month.MARCH, 1), 73.4, 1600);
+//        Dieta dieta1 = new Dieta(2,"arvejas2 Con arroz", paciente4, LocalDate.of(2024, Month.MARCH, 3), LocalDate.of(2025, Month.MARCH, 1), 73.4,20.0, 1700);
 //        dietaData.actualizarDietaPorId(dieta1);
 
         //alta logica || Correcto
