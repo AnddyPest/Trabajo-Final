@@ -422,6 +422,7 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         btnRemoveKey.setText("<");
+        btnRemoveKey.setEnabled(false);
         btnRemoveKey.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRemoveKeyActionPerformed(evt);
@@ -429,6 +430,7 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
         });
 
         btnAddKey.setText(">");
+        btnAddKey.setEnabled(false);
         btnAddKey.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddKeyActionPerformed(evt);
@@ -447,6 +449,7 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
         txtIdNuevoAlimento.setBorder(null);
 
         btnFinalizar.setText("Añadir y Finalizar");
+        btnFinalizar.setEnabled(false);
         btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFinalizarActionPerformed(evt);
@@ -633,6 +636,8 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
         txtErrorCal.setText("");
         txtCalorias.setText("");
         txtCalorias.setEditable(true);
+        modelAddedKeys.setRowCount(0);
+        cargarTablaKeys();
 
 
     }//GEN-LAST:event_btnNwActionPerformed
@@ -676,9 +681,11 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
                 txtDescription.setEditable(false);
                 txtCalorias.setEditable(false);
                 btnSave.setEnabled(false);
-                btnNw.setEnabled(true);
+                btnExit.setEnabled(false);
                 txtErrorNameAli.setForeground(Color.green);
-                txtErrorNameAli.setText("*Nuevo alimento agregado con éxito.");
+                txtErrorNameAli.setText("*Nuevo alimento agregado con éxito, agregue al menos 1 KEYWORD");
+                btnAddKey.setEnabled(true);
+                btnRemoveKey.setEnabled(true);
                 
                 
 
@@ -755,6 +762,12 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
         }
         
         ordenarTablaAlfabeticamente(tabAddedKeys);
+        if(tabAddedKeys.getRowCount() != 0) {
+            btnFinalizar.setEnabled(true);
+            
+        }else{
+            btnFinalizar.setEnabled(false);
+        }
     }//GEN-LAST:event_btnAddKeyActionPerformed
 
     private void btnRemoveKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveKeyActionPerformed
@@ -771,6 +784,12 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
             System.out.println("Seleccione una fila");
         }
         ordenarTablaAlfabeticamente(tabKeys);
+         if(tabAddedKeys.getRowCount() != 0) {
+            btnFinalizar.setEnabled(true);
+            
+        }else{
+            btnFinalizar.setEnabled(false);
+        }
         
 
     }//GEN-LAST:event_btnRemoveKeyActionPerformed
@@ -792,6 +811,12 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
         for(int i = 0; i< listaKeysAdded.size(); i++) {
             alimento_Keyword_Handler_DATA.createAlimento_Keyword_Handler(keywordData.buscarKeyporId(listaKeysAdded.get(i)), completo);
         }
+        
+        btnNw.setEnabled(true);
+        btnAddKey.setEnabled(false);
+        btnRemoveKey.setEnabled(false);
+        btnFinalizar.setEnabled(false);
+        btnExit.setEnabled(false);
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
 

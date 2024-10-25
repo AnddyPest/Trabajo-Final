@@ -2,9 +2,12 @@ package VistasMenuDiario;
 
 import Entidades.Alimento;
 import Entidades.Keywords;
+import Entidades.MenuDiario;
 import Persistencia.AlimentoData;
 import Persistencia.Alimento_KeywordData;
+import Persistencia.Handlers.MenuDiario_Alimento_Handler_DATA;
 import Persistencia.KeywordData;
+import Persistencia.MenuDiarioData;
 import Utilities.Conexion;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -30,14 +33,19 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     KeywordData keywordData;
     AlimentoData alimentoData;
     Alimento_KeywordData alimento_KeywordData;
+    MenuDiarioData menuDiarioData;
+    MenuDiario_Alimento_Handler_DATA menuDiario_Alimento_Handler_DATA;
+   
 
     public VentanaNuevoMenuDiario() {
         initComponents();
-
+        txtMenuName.requestFocus();
         Connection con = Conexion.getConexion();
         keywordData = new KeywordData(con);
         alimentoData = new AlimentoData(con);
         alimento_KeywordData = new Alimento_KeywordData(con);
+        menuDiarioData = new MenuDiarioData(con);
+        menuDiario_Alimento_Handler_DATA = new MenuDiario_Alimento_Handler_DATA(con);
         listIncluye.setModel(modelListaKeysIn);
         listNoIncluye.setModel(modelListaKeysNotIn);
         cargarListaKeys();
@@ -110,6 +118,8 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         btnComenzar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         txtId = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtMenuName = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         panelRadios = new javax.swing.JPanel();
         radDesayuno = new javax.swing.JRadioButton();
@@ -140,6 +150,12 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         tabMenuDiario = new javax.swing.JTable();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtCalTotal = new javax.swing.JTextField();
+        txtDay = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -213,6 +229,7 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         });
 
         btnComenzar.setText("Comenzar");
+        btnComenzar.setEnabled(false);
         btnComenzar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnComenzarActionPerformed(evt);
@@ -283,12 +300,30 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         txtId.setSelectionColor(new java.awt.Color(51, 0, 0));
         txtId.setVerifyInputWhenFocusTarget(false);
 
+        jLabel11.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel11.setText("Nombre del Menu:");
+
+        txtMenuName.setBackground(new java.awt.Color(0, 255, 204));
+        txtMenuName.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        txtMenuName.setForeground(new java.awt.Color(0, 0, 0));
+        txtMenuName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtMenuName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMenuNameKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(558, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtMenuName, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -298,6 +333,12 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtMenuName)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 640, 50));
@@ -596,7 +637,7 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jPanel4.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 258, 618, -1));
+        jPanel4.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 618, -1));
 
         jPanel11.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -646,11 +687,48 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel4.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 421, -1, -1));
+        jPanel4.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, -1, 150));
+
+        jPanel7.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel8.setText("TOTAL CALORIAS:");
+        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 130, 40));
+
+        jLabel9.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel9.setText("DIA DIETA:");
+        jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, 40));
+
+        txtCalTotal.setEditable(false);
+        txtCalTotal.setBackground(new java.awt.Color(51, 51, 51));
+        txtCalTotal.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        txtCalTotal.setForeground(new java.awt.Color(204, 204, 204));
+        jPanel7.add(txtCalTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 90, 40));
+
+        txtDay.setEditable(false);
+        txtDay.setBackground(new java.awt.Color(51, 51, 51));
+        txtDay.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        txtDay.setForeground(new java.awt.Color(204, 204, 204));
+        txtDay.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDayKeyTyped(evt);
+            }
+        });
+        jPanel7.add(txtDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 120, 40));
+
+        jLabel10.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel10.setText("cal");
+        jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, 30, 40));
+
+        jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 600, 60));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 640, 640));
 
@@ -717,6 +795,23 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
             cargarListaKeys();
             modelListaKeysIn.removeAllElements();
             modelListaKeysNotIn.removeAllElements();
+            txtCalTotal.setText("");
+            
+            int calMenu =0;
+            for(int i = 0; i<tabMenuDiario.getRowCount(); i++) {
+                
+                int calAli = (int) tabMenuDiario.getValueAt(i, 3);
+                calMenu += calAli;
+            }   
+                String caloriasMenu = String.valueOf(calMenu);
+                txtCalTotal.setText(caloriasMenu); 
+            
+            
+            if(tabMenuDiario.getRowCount() == 5) {
+                txtDay.setEditable(true);
+                txtDay.requestFocus();
+                btnSelect.setEnabled(false);
+            }
         }
 
     }//GEN-LAST:event_btnSelectActionPerformed
@@ -750,13 +845,35 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnRemoveNotActionPerformed
 
     private void btnComenzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarActionPerformed
+        if(txtMenuName.getText().isEmpty()) {
+            txtMenuName.requestFocus();
+        }else{
         radDesayuno.setEnabled(true);
         radDesayuno.setSelected(true);
         btnComenzar.setEnabled(false);
+        txtMenuName.setEditable(false);
+        }
     }//GEN-LAST:event_btnComenzarActionPerformed
 
     private void btnCrearMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMenuActionPerformed
         btnComenzar.setEnabled(true);
+        String nombreMenu = txtMenuName.getText();
+        int diaMenu = Integer.parseInt(txtDay.getText());
+        int caloriasDelMenu = Integer.parseInt(txtCalTotal.getText());
+        
+        MenuDiario menuDiario = new MenuDiario(nombreMenu, diaMenu, caloriasDelMenu);
+        
+        menuDiarioData.crearMenuDiario(menuDiario);
+        //menuDiarioData NECESITAMOS UN METODO BUSCAR MENU POR ID, DE TODAS MANERAS NO SE ESTA MANDANDO EL MENU
+        
+        
+        for(int i = 0; i<tabMenuDiario.getRowCount(); i++) {
+            int idAlimentoMenu = (int) tabMenuDiario.getValueAt(i, 0);
+            System.out.println("ID ALIMENTO ENVIADO "+idAlimentoMenu);
+            System.out.println("ID MENU ENVIADO "+ menuDiario.getIdMenuDiario());
+            menuDiario_Alimento_Handler_DATA.createHandler_MenuDiario_Alimento(menuDiario, alimentoData.buscarAlimentoPorID(idAlimentoMenu)); 
+        }
+        
     }//GEN-LAST:event_btnCrearMenuActionPerformed
 
     private void radDesayunoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radDesayunoItemStateChanged
@@ -784,6 +901,24 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         activarTablaFiltrada();
     }//GEN-LAST:event_radCenaItemStateChanged
 
+    private void txtMenuNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMenuNameKeyTyped
+        if(!txtMenuName.getText().isEmpty()) {
+            btnComenzar.setEnabled(true);
+        }
+    }//GEN-LAST:event_txtMenuNameKeyTyped
+
+    private void txtDayKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDayKeyTyped
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;
+
+        if (!numero) {
+            evt.consume();
+        }
+        if(!txtDay.getText().isEmpty()) {
+            btnCrearMenu.setEnabled(true);
+        }
+    }//GEN-LAST:event_txtDayKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddIn;
@@ -796,12 +931,16 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSelect;
     private javax.swing.ButtonGroup grpSelectorTipo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -810,6 +949,7 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
@@ -833,7 +973,10 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton radSnack;
     private javax.swing.JTable tabListadoFiltered;
     private javax.swing.JTable tabMenuDiario;
+    private javax.swing.JTextField txtCalTotal;
+    private javax.swing.JTextField txtDay;
     private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtMenuName;
     // End of variables declaration//GEN-END:variables
 
     private void cargarListaKeys() {
