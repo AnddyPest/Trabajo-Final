@@ -1,0 +1,1772 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Trabajo Final G11">
+  <ClassDiagramComponents>
+    <Class name="Alimento" package="Entidades" visibility="public" xPosition="112.0" yPosition="41.0">
+      <Fields>
+        <Field name="idAlimento" type="int" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="tipoComida" type="String" visibility="private"/>
+        <Field name="caloriasPor100g" type="int" visibility="private"/>
+        <Field name="detalle" type="String" visibility="private"/>
+        <Field name="estado" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="tipoComida"/>
+          <Argument type="int" name="caloriasPor100g"/>
+          <Argument type="String" name="detalle"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="idAlimento"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="tipoComida"/>
+          <Argument type="int" name="caloriasPor100g"/>
+          <Argument type="String" name="detalle"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="tipoComida"/>
+          <Argument type="int" name="caloriasPor100g"/>
+          <Argument type="String" name="detalle"/>
+          <Argument type="boolean" name="estado"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="idAlimento"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="tipoComida"/>
+          <Argument type="int" name="caloriasPor100g"/>
+          <Argument type="String" name="detalle"/>
+          <Argument type="boolean" name="estado"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdAlimento" returnType="int" visibility="public"/>
+        <Method name="setIdAlimento" returnType="void" visibility="public">
+          <Argument type="int" name="idAlimento"/>
+        </Method>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getTipoComida" returnType="String" visibility="public"/>
+        <Method name="setTipoComida" returnType="void" visibility="public">
+          <Argument type="String" name="tipoComida"/>
+        </Method>
+        <Method name="getCaloriasPor100g" returnType="int" visibility="public"/>
+        <Method name="setCaloriasPor100g" returnType="void" visibility="public">
+          <Argument type="int" name="caloriasPor100g"/>
+        </Method>
+        <Method name="getDetalle" returnType="String" visibility="public"/>
+        <Method name="setDetalle" returnType="void" visibility="public">
+          <Argument type="String" name="detalle"/>
+        </Method>
+        <Method name="isEstado" returnType="boolean" visibility="public"/>
+        <Method name="setEstado" returnType="void" visibility="public">
+          <Argument type="boolean" name="estado"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Dieta" package="Entidades" visibility="public" xPosition="996.0" yPosition="41.0">
+      <Fields>
+        <Field name="idDieta" type="int" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="idPaciente" type="Paciente" visibility="private"/>
+        <Field name="menus" type="List&lt;MenuDiario&gt;" visibility="private"/>
+        <Field name="fechaInicio" type="LocalDate" visibility="private"/>
+        <Field name="fechaFinal" type="LocalDate" visibility="private"/>
+        <Field name="pesoInicial" type="double" visibility="private"/>
+        <Field name="pesoFinal" type="double" visibility="private"/>
+        <Field name="totalCalorias" type="int" visibility="private"/>
+        <Field name="estadoDieta" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="int" name="totalCalorias"/>
+          <Argument type="boolean" name="estadoDieta"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="Paciente" name="idPaciente"/>
+          <Argument type="int" name="totalCalorias"/>
+          <Argument type="boolean" name="estadoDieta"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="Paciente" name="idPaciente"/>
+          <Argument type="int" name="totalCalorias"/>
+          <Argument type="LocalDate" name="fechaInicio"/>
+          <Argument type="double" name="pesoInicial"/>
+          <Argument type="boolean" name="estadoDieta"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="Paciente" name="idPaciente"/>
+          <Argument type="List&lt;MenuDiario&gt;" name="menus"/>
+          <Argument type="int" name="totalCalorias"/>
+          <Argument type="LocalDate" name="fechaInicio"/>
+          <Argument type="double" name="pesoInicial"/>
+          <Argument type="boolean" name="estadoDieta"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="Paciente" name="idPaciente"/>
+          <Argument type="int" name="totalCalorias"/>
+          <Argument type="LocalDate" name="fechaInicio"/>
+          <Argument type="double" name="pesoInicial"/>
+          <Argument type="double" name="pesoFinal"/>
+          <Argument type="LocalDate" name="fechaFinal"/>
+          <Argument type="boolean" name="estadoDieta"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="Paciente" name="idPaciente"/>
+          <Argument type="List&lt;MenuDiario&gt;" name="menus"/>
+          <Argument type="int" name="totalCalorias"/>
+          <Argument type="LocalDate" name="fechaInicio"/>
+          <Argument type="double" name="pesoInicial"/>
+          <Argument type="double" name="pesoFinal"/>
+          <Argument type="LocalDate" name="fechaFinal"/>
+          <Argument type="boolean" name="estadoDieta"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="idDieta"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="Paciente" name="idPaciente"/>
+          <Argument type="int" name="totalCalorias"/>
+          <Argument type="LocalDate" name="fechaInicio"/>
+          <Argument type="double" name="pesoInicial"/>
+          <Argument type="double" name="pesoFinal"/>
+          <Argument type="LocalDate" name="fechaFinal"/>
+          <Argument type="boolean" name="estadoDieta"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="idDieta"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="Paciente" name="idPaciente"/>
+          <Argument type="int" name="totalCalorias"/>
+          <Argument type="List&lt;MenuDiario&gt;" name="menus"/>
+          <Argument type="LocalDate" name="fechaInicio"/>
+          <Argument type="double" name="pesoInicial"/>
+          <Argument type="double" name="pesoFinal"/>
+          <Argument type="LocalDate" name="fechaFinal"/>
+          <Argument type="boolean" name="estadoDieta"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdDieta" returnType="int" visibility="public"/>
+        <Method name="setIdDieta" returnType="void" visibility="public">
+          <Argument type="int" name="idDieta"/>
+        </Method>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getIdPaciente" returnType="Paciente" visibility="public"/>
+        <Method name="setIdPaciente" returnType="void" visibility="public">
+          <Argument type="Paciente" name="idPaciente"/>
+        </Method>
+        <Method name="getMenus" returnType="List&lt;MenuDiario&gt;" visibility="public"/>
+        <Method name="setMenus" returnType="void" visibility="public">
+          <Argument type="List&lt;MenuDiario&gt;" name="menus"/>
+        </Method>
+        <Method name="getFechaInicio" returnType="LocalDate" visibility="public"/>
+        <Method name="setFechaInicio" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="fechaInicio"/>
+        </Method>
+        <Method name="getFechaFinal" returnType="LocalDate" visibility="public"/>
+        <Method name="setFechaFinal" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="fechaFinal"/>
+        </Method>
+        <Method name="getPesoInicial" returnType="double" visibility="public"/>
+        <Method name="setPesoInicial" returnType="void" visibility="public">
+          <Argument type="double" name="pesoInicial"/>
+        </Method>
+        <Method name="getPesoFinal" returnType="double" visibility="public"/>
+        <Method name="setPesoFinal" returnType="void" visibility="public">
+          <Argument type="double" name="pesoFinal"/>
+        </Method>
+        <Method name="getTotalCalorias" returnType="int" visibility="public"/>
+        <Method name="setTotalCalorias" returnType="void" visibility="public">
+          <Argument type="int" name="totalCalorias"/>
+        </Method>
+        <Method name="isEstadoDieta" returnType="boolean" visibility="public"/>
+        <Method name="setEstadoDieta" returnType="void" visibility="public">
+          <Argument type="boolean" name="estadoDieta"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Alimento_Keyword_Handler" package="Entidades.Handlers" visibility="public" xPosition="4088.0" yPosition="559.0">
+      <Fields>
+        <Field name="idKeyword" type="Keywords" visibility="private"/>
+        <Field name="idAlimento" type="Alimento" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Keywords" name="idKeyword"/>
+          <Argument type="Alimento" name="idAlimento"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdKeyword" returnType="Keywords" visibility="public"/>
+        <Method name="setIdKeyword" returnType="void" visibility="public">
+          <Argument type="Keywords" name="idKeyword"/>
+        </Method>
+        <Method name="getIdAlimento" returnType="Alimento" visibility="public"/>
+        <Method name="setIdAlimento" returnType="void" visibility="public">
+          <Argument type="Alimento" name="idAlimento"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Dieta_MenuDiario_Handler" package="Entidades.Handlers" visibility="public" xPosition="4317.0" yPosition="1462.0">
+      <Fields>
+        <Field name="idDieta" type="Dieta" visibility="private"/>
+        <Field name="idMenuDiario" type="MenuDiario" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Dieta" name="idDieta"/>
+          <Argument type="MenuDiario" name="idMenuDiario"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdDieta" returnType="Dieta" visibility="public"/>
+        <Method name="setIdDieta" returnType="void" visibility="public">
+          <Argument type="Dieta" name="idDieta"/>
+        </Method>
+        <Method name="getIdMenuDiario" returnType="MenuDiario" visibility="public"/>
+        <Method name="setIdMenuDiario" returnType="void" visibility="public">
+          <Argument type="MenuDiario" name="idMenuDiario"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MenuDiario_Alimento_Handler" package="Entidades.Handlers" visibility="public" xPosition="3836.0" yPosition="1462.0">
+      <Fields>
+        <Field name="idMenuDiario" type="MenuDiario" visibility="private"/>
+        <Field name="idAlimento" type="Alimento" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="MenuDiario" name="idMenuDiario"/>
+          <Argument type="Alimento" name="idAlimento"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdMenuDiario" returnType="MenuDiario" visibility="public"/>
+        <Method name="setIdMenuDiario" returnType="void" visibility="public">
+          <Argument type="MenuDiario" name="idMenuDiario"/>
+        </Method>
+        <Method name="getIdAlimento" returnType="Alimento" visibility="public"/>
+        <Method name="setIdAlimento" returnType="void" visibility="public">
+          <Argument type="Alimento" name="idAlimento"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Keywords" package="Entidades" visibility="public" xPosition="1053.0" yPosition="1157.0">
+      <Fields>
+        <Field name="idKeyword" type="int" visibility="private"/>
+        <Field name="keyword" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="keyword"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="idKeyword"/>
+          <Argument type="String" name="keyword"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdKeyword" returnType="int" visibility="public"/>
+        <Method name="setIdKeyword" returnType="void" visibility="public">
+          <Argument type="int" name="idKeyword"/>
+        </Method>
+        <Method name="getKeyword" returnType="String" visibility="public"/>
+        <Method name="setKeyword" returnType="void" visibility="public">
+          <Argument type="String" name="keyword"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MenuDiario" package="Entidades" visibility="public" xPosition="2160.0" yPosition="67.0">
+      <Fields>
+        <Field name="idMenuDiario" type="int" visibility="private"/>
+        <Field name="nombreMenu" type="String" visibility="private"/>
+        <Field name="dia" type="int" visibility="private"/>
+        <Field name="caloriasDelMenu" type="int" visibility="private"/>
+        <Field name="estado" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombreMenu"/>
+          <Argument type="int" name="dia"/>
+          <Argument type="int" name="caloriasDelMenu"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="idMenuDiario"/>
+          <Argument type="String" name="nombreMenu"/>
+          <Argument type="int" name="dia"/>
+          <Argument type="int" name="caloriasDelMenu"/>
+          <Argument type="boolean" name="estado"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="idMenuDiario"/>
+          <Argument type="String" name="nombreMenu"/>
+          <Argument type="int" name="dia"/>
+          <Argument type="int" name="caloriasDelMenu"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdMenuDiario" returnType="int" visibility="public"/>
+        <Method name="setIdMenuDiario" returnType="void" visibility="public">
+          <Argument type="int" name="idMenuDiario"/>
+        </Method>
+        <Method name="getNombreMenu" returnType="String" visibility="public"/>
+        <Method name="setNombreMenu" returnType="void" visibility="public">
+          <Argument type="String" name="nombreMenu"/>
+        </Method>
+        <Method name="getDia" returnType="int" visibility="public"/>
+        <Method name="setDia" returnType="void" visibility="public">
+          <Argument type="int" name="dia"/>
+        </Method>
+        <Method name="getCaloriasDelMenu" returnType="int" visibility="public"/>
+        <Method name="setCaloriasDelMenu" returnType="void" visibility="public">
+          <Argument type="int" name="caloriasDelMenu"/>
+        </Method>
+        <Method name="isEstado" returnType="boolean" visibility="public"/>
+        <Method name="setEstado" returnType="void" visibility="public">
+          <Argument type="boolean" name="estado"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Paciente" package="Entidades" visibility="public" xPosition="2834.0" yPosition="51.0">
+      <Fields>
+        <Field name="idPaciente" type="int" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="dni" type="int" visibility="private"/>
+        <Field name="edad" type="int" visibility="private"/>
+        <Field name="telefono" type="String" visibility="private"/>
+        <Field name="pesoActual" type="double" visibility="private"/>
+        <Field name="pesoBuscado" type="double" visibility="private"/>
+        <Field name="estado" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="int" name="dni"/>
+          <Argument type="int" name="edad"/>
+          <Argument type="String" name="telefono"/>
+          <Argument type="double" name="pesoActual"/>
+          <Argument type="double" name="pesoBuscado"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="idPaciente"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="int" name="dni"/>
+          <Argument type="int" name="edad"/>
+          <Argument type="String" name="telefono"/>
+          <Argument type="double" name="pesoActual"/>
+          <Argument type="double" name="pesoBuscado"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="int" name="dni"/>
+          <Argument type="int" name="edad"/>
+          <Argument type="String" name="telefono"/>
+          <Argument type="double" name="pesoActual"/>
+          <Argument type="double" name="pesoBuscado"/>
+          <Argument type="boolean" name="estado"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="idPaciente"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="int" name="dni"/>
+          <Argument type="int" name="edad"/>
+          <Argument type="String" name="telefono"/>
+          <Argument type="double" name="pesoActual"/>
+          <Argument type="double" name="pesoBuscado"/>
+          <Argument type="boolean" name="estado"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdPaciente" returnType="int" visibility="public"/>
+        <Method name="setIdPaciente" returnType="void" visibility="public">
+          <Argument type="int" name="idPaciente"/>
+        </Method>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getDni" returnType="int" visibility="public"/>
+        <Method name="setDni" returnType="void" visibility="public">
+          <Argument type="int" name="dni"/>
+        </Method>
+        <Method name="getEdad" returnType="int" visibility="public"/>
+        <Method name="setEdad" returnType="void" visibility="public">
+          <Argument type="int" name="edad"/>
+        </Method>
+        <Method name="getTelefono" returnType="String" visibility="public"/>
+        <Method name="setTelefono" returnType="void" visibility="public">
+          <Argument type="String" name="telefono"/>
+        </Method>
+        <Method name="getPesoActual" returnType="double" visibility="public"/>
+        <Method name="setPesoActual" returnType="void" visibility="public">
+          <Argument type="double" name="pesoActual"/>
+        </Method>
+        <Method name="getPesoBuscado" returnType="double" visibility="public"/>
+        <Method name="setPesoBuscado" returnType="void" visibility="public">
+          <Argument type="double" name="pesoBuscado"/>
+        </Method>
+        <Method name="isEstado" returnType="boolean" visibility="public"/>
+        <Method name="setEstado" returnType="void" visibility="public">
+          <Argument type="boolean" name="estado"/>
+        </Method>
+        <Method name="seAcercaAlPeso" returnType="boolean" visibility="public">
+          <Argument type="Dieta" name="dieta"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="AlimentoData" package="Persistencia" visibility="public" xPosition="1923.0" yPosition="1532.0">
+      <Fields>
+        <Field name="conexion" type="Connection" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Connection" name="conexion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="crearAlimento" returnType="int" visibility="public">
+          <Argument type="Alimento" name="alimentoEnviado"/>
+        </Method>
+        <Method name="listarAlimentos" returnType="ArrayList&lt;Alimento&gt;" visibility="public"/>
+        <Method name="buscarAlimentoPorID" returnType="Alimento" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="buscarAlimentoPorNombre" returnType="Alimento" visibility="public">
+          <Argument type="String" name="nombreEnviado"/>
+        </Method>
+        <Method name="actualizarAlimentoPorId" returnType="void" visibility="public">
+          <Argument type="Alimento" name="alimentoEnviado"/>
+        </Method>
+        <Method name="buscarEstadoPorId" returnType="boolean" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="altaLogicaAlimento" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="bajaLogicaAlimento" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="borrarAlimentoPorId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Alimento_KeywordData" package="Persistencia" visibility="public" xPosition="4793.0" yPosition="1462.0">
+      <Fields>
+        <Field name="conexion" type="Connection" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Connection" name="conexion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="obtenerAlimentoPorKeywordId" returnType="Alimento" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="obtenerAlimentoPorKeywordName" returnType="Alimento" visibility="public">
+          <Argument type="String" name="keywordName"/>
+        </Method>
+        <Method name="obtenerAlimentosPorKeywordsYaEspecificadas" returnType="ArrayList&lt;Alimento&gt;" visibility="public">
+          <Argument type="ArrayList&lt;String&gt;" name="elementosQueSi"/>
+          <Argument type="ArrayList&lt;String&gt;" name="elementosQueNo"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DietaData" package="Persistencia" visibility="public" xPosition="933.0" yPosition="1514.0">
+      <Fields>
+        <Field name="conexion" type="Connection" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Connection" name="conexion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="crearDieta" returnType="int" visibility="public">
+          <Argument type="Dieta" name="dietaEnviada"/>
+        </Method>
+        <Method name="listarDietas" returnType="ArrayList&lt;Dieta&gt;" visibility="public"/>
+        <Method name="buscarDietaPorID" returnType="Dieta" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="buscarDietasPorNombre" returnType="ArrayList&lt;Dieta&gt;" visibility="public">
+          <Argument type="String" name="nombreEnviado"/>
+        </Method>
+        <Method name="actualizarDietaPorId" returnType="void" visibility="public">
+          <Argument type="Dieta" name="dietaEnviada"/>
+        </Method>
+        <Method name="buscarEstadoPorId" returnType="boolean" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="altaLogicaDieta" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="bajaLogicaDieta" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="borrarDietaPorId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Alimento_Keyword_Handler_DATA" package="Persistencia.Handlers" visibility="public" xPosition="3802.0" yPosition="1195.0">
+      <Fields>
+        <Field name="conexion" type="Connection" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Connection" name="conexion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="createAlimento_Keyword_Handler" returnType="int" visibility="public">
+          <Argument type="Keywords" name="idKeyword"/>
+          <Argument type="Alimento" name="idAlimentoEnviado"/>
+        </Method>
+        <Method name="listarAlimento_Keyword_Handler" returnType="ArrayList&lt;Alimento_Keyword_Handler&gt;" visibility="public"/>
+        <Method name="buscarAlimento_Keyword_HandlerIDS" returnType="Alimento_Keyword_Handler" visibility="public">
+          <Argument type="int" name="idKeyword"/>
+          <Argument type="int" name="idAlimento"/>
+        </Method>
+        <Method name="actualizarHandler_Keyword_AlimentoPorIDS" returnType="void" visibility="public">
+          <Argument type="Alimento_Keyword_Handler" name="handlerEnviado"/>
+          <Argument type="Alimento_Keyword_Handler" name="handlerViejo"/>
+        </Method>
+        <Method name="borrarAlimento_Keyword_HandlerPorIds" returnType="void" visibility="public">
+          <Argument type="int" name="idKeyword"/>
+          <Argument type="int" name="idAlimento"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Dieta_MenuDiario_Handler_DATA" package="Persistencia.Handlers" visibility="public" xPosition="2444.0" yPosition="1741.0">
+      <Fields>
+        <Field name="conexion" type="Connection" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Connection" name="conexion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="createDieta_MenuDiario_Handler" returnType="int" visibility="public">
+          <Argument type="Dieta" name="idDieta"/>
+          <Argument type="MenuDiario" name="idMenuDiario"/>
+        </Method>
+        <Method name="listarDieta_MenuDiario_Handler" returnType="ArrayList&lt;Dieta_MenuDiario_Handler&gt;" visibility="public"/>
+        <Method name="buscarDieta_MenuDiario_HandlerIDS" returnType="Dieta_MenuDiario_Handler" visibility="public">
+          <Argument type="int" name="idDieta"/>
+          <Argument type="int" name="idMenuDiario"/>
+        </Method>
+        <Method name="actualizarDieta_MenuDiario_HandlerPorIDS" returnType="void" visibility="public">
+          <Argument type="Dieta_MenuDiario_Handler" name="handlerEnviado"/>
+          <Argument type="Dieta_MenuDiario_Handler" name="handlerViejo"/>
+        </Method>
+        <Method name="borrarDieta_MenuDiario_HandlerPorIds" returnType="void" visibility="public">
+          <Argument type="int" name="idDieta"/>
+          <Argument type="int" name="idMenuDiario"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MenuDiario_Alimento_Handler_DATA" package="Persistencia.Handlers" visibility="public" xPosition="4711.0" yPosition="1195.0">
+      <Fields>
+        <Field name="conexion" type="Connection" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Connection" name="conexion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="createHandler_MenuDiario_Alimento" returnType="int" visibility="public">
+          <Argument type="MenuDiario" name="idMenuDiarioEnviado"/>
+          <Argument type="Alimento" name="idAlimentoEnviado"/>
+        </Method>
+        <Method name="listarHandler_MenuDiario_Alimento" returnType="ArrayList&lt;MenuDiario_Alimento_Handler&gt;" visibility="public"/>
+        <Method name="buscarHandler_MenuDiario_AlimentoPorIDS" returnType="MenuDiario_Alimento_Handler" visibility="public">
+          <Argument type="int" name="idMenuDiario"/>
+          <Argument type="int" name="idAlimento"/>
+        </Method>
+        <Method name="actualizarHandler_MenuDiario_AlimentoPorIDS" returnType="void" visibility="public">
+          <Argument type="MenuDiario_Alimento_Handler" name="handlerEnviado"/>
+          <Argument type="MenuDiario_Alimento_Handler" name="handlerViejo"/>
+        </Method>
+        <Method name="borrarHandler_MenuDiario_AlimentoPorIds" returnType="void" visibility="public">
+          <Argument type="int" name="idMenuDiario"/>
+          <Argument type="int" name="idAlimento"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="KeywordData" package="Persistencia" visibility="public" xPosition="1885.0" yPosition="1157.0">
+      <Fields>
+        <Field name="conexion" type="Connection" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Connection" name="conexion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="crearKeyword" returnType="void" visibility="public">
+          <Argument type="Keywords" name="nwKey"/>
+        </Method>
+        <Method name="listarKeywords" returnType="ArrayList&lt;Keywords&gt;" visibility="public"/>
+        <Method name="buscarKeyporId" returnType="Keywords" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="actualizarKeywordPorId" returnType="void" visibility="public">
+          <Argument type="Keywords" name="keySent"/>
+        </Method>
+        <Method name="borrarKeyword" returnType="boolean" visibility="public">
+          <Argument type="int" name="idKeyword"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MenuDiarioData" package="Persistencia" visibility="public" xPosition="1428.0" yPosition="1157.0">
+      <Fields>
+        <Field name="conexion" type="Connection" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Connection" name="conexion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="crearMenuDiario" returnType="int" visibility="public">
+          <Argument type="MenuDiario" name="menuDiarioEnviada"/>
+        </Method>
+        <Method name="listarMenus" returnType="ArrayList&lt;MenuDiario&gt;" visibility="public"/>
+        <Method name="buscarMenuPorID" returnType="MenuDiario" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="actualizarMenuPorId" returnType="void" visibility="public">
+          <Argument type="MenuDiario" name="menuEnviado"/>
+        </Method>
+        <Method name="buscarEstadoPorId" returnType="boolean" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="altaLogicaMenuDiario" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="bajaLogicaMenuDiario" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="borrarMenuDiarioPorId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PacienteData" package="Persistencia" visibility="public" xPosition="1374.0" yPosition="1532.0">
+      <Fields>
+        <Field name="conexion" type="Connection" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Connection" name="conexion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="crearPaciente" returnType="int" visibility="public">
+          <Argument type="Paciente" name="pacienteEnviado"/>
+        </Method>
+        <Method name="listarPacientes" returnType="ArrayList&lt;Paciente&gt;" visibility="public"/>
+        <Method name="buscarPacientePorID" returnType="Paciente" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="buscarPacientesPorNombre" returnType="ArrayList&lt;Paciente&gt;" visibility="public">
+          <Argument type="String" name="nombreEnviado"/>
+        </Method>
+        <Method name="actualizarPacientePorId" returnType="void" visibility="public">
+          <Argument type="Paciente" name="pacienteEnviado"/>
+        </Method>
+        <Method name="buscarEstadoPorId" returnType="boolean" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="altaLogicaPaciente" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="bajaLogicaPaciente" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="borrarPacientePorId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Conexion" package="Utilities" visibility="public" xPosition="3886.0" yPosition="51.0">
+      <Fields>
+        <Field name="conexion" type="Conexion" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getConexion" returnType="java.sql.Connection" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="FuncionDe" package="Utilities" visibility="public" xPosition="5316.0" yPosition="487.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="mostrarMensajeCorrecto" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="nombreMetodo"/>
+          <Argument type="String" name="mensajeEnviado"/>
+        </Method>
+        <Method name="mostrarMensajeError" returnType="void" visibility="public" isStatic="true">
+          <Argument type="SQLException" name="ex"/>
+          <Argument type="String" name="nombreMetodo"/>
+          <Argument type="String" name="nombreClase"/>
+          <Argument type="String" name="linea"/>
+        </Method>
+        <Method name="mostrarMensajeError" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="mensajeEnviado"/>
+          <Argument type="SQLException" name="ex"/>
+          <Argument type="String" name="nombreMetodo"/>
+          <Argument type="String" name="nombreClase"/>
+          <Argument type="String" name="linea"/>
+        </Method>
+        <Method name="crearPaciente" returnType="Paciente" visibility="public" isStatic="true">
+          <Argument type="ResultSet" name="resultados"/>
+        </Method>
+        <Method name="crearMenuDiario_Alimento_Handler" returnType="MenuDiario_Alimento_Handler" visibility="public" isStatic="true">
+          <Argument type="ResultSet" name="resultados"/>
+        </Method>
+        <Method name="crearDieta_MenuDiario_Handler" returnType="Dieta_MenuDiario_Handler" visibility="public" isStatic="true">
+          <Argument type="ResultSet" name="resultados"/>
+        </Method>
+        <Method name="crearAlimento_Keyword_Handler" returnType="Alimento_Keyword_Handler" visibility="public" isStatic="true">
+          <Argument type="ResultSet" name="resultados"/>
+        </Method>
+        <Method name="crearMenu" returnType="MenuDiario" visibility="public" isStatic="true">
+          <Argument type="ResultSet" name="resultados"/>
+        </Method>
+        <Method name="crearKeyword" returnType="Keywords" visibility="public" isStatic="true">
+          <Argument type="ResultSet" name="resultados"/>
+        </Method>
+        <Method name="crearAlimento" returnType="Alimento" visibility="public" isStatic="true">
+          <Argument type="ResultSet" name="resultados"/>
+        </Method>
+        <Method name="crearDieta" returnType="Dieta" visibility="public" isStatic="true">
+          <Argument type="ResultSet" name="resultados"/>
+        </Method>
+        <Method name="validarSiExisteId" returnType="void" visibility="public" isStatic="true">
+          <Argument type="PacienteData" name="metodo"/>
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="validarSiExisteId" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="MenuDiario_Alimento_Handler_DATA" name="metodo"/>
+          <Argument type="int" name="idMenuDiario"/>
+          <Argument type="int" name="idAlimento"/>
+        </Method>
+        <Method name="validarSiExisteId" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="Dieta_MenuDiario_Handler_DATA" name="metodo"/>
+          <Argument type="int" name="idMenuDiario"/>
+          <Argument type="int" name="idDieta"/>
+        </Method>
+        <Method name="validarSiExisteId" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="Alimento_Keyword_Handler_DATA" name="metodo"/>
+          <Argument type="int" name="idKeyword"/>
+          <Argument type="int" name="idAlimento"/>
+        </Method>
+        <Method name="validarSiExisteId" returnType="void" visibility="public" isStatic="true">
+          <Argument type="MenuDiarioData" name="metodo"/>
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="validarSiExisteId" returnType="void" visibility="public" isStatic="true">
+          <Argument type="AlimentoData" name="metodo"/>
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="validarSiExisteId" returnType="void" visibility="public" isStatic="true">
+          <Argument type="DietaData" name="metodo"/>
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="validarSiExisteId" returnType="void" visibility="public" isStatic="true">
+          <Argument type="KeywordData" name="metodo"/>
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="validarSiYaEstabaLogicamenteEnDichoEstado" returnType="void" visibility="public" isStatic="true">
+          <Argument type="PacienteData" name="metodo"/>
+          <Argument type="int" name="id"/>
+          <Argument type="boolean" name="estadoAValidar"/>
+        </Method>
+        <Method name="validarSiYaEstabaLogicamenteEnDichoEstado" returnType="void" visibility="public" isStatic="true">
+          <Argument type="MenuDiarioData" name="metodo"/>
+          <Argument type="int" name="id"/>
+          <Argument type="boolean" name="estadoAValidar"/>
+        </Method>
+        <Method name="validarSiYaEstabaLogicamenteEnDichoEstado" returnType="void" visibility="public" isStatic="true">
+          <Argument type="AlimentoData" name="metodo"/>
+          <Argument type="int" name="id"/>
+          <Argument type="boolean" name="estadoAValidar"/>
+        </Method>
+        <Method name="validarSiYaEstabaLogicamenteEnDichoEstado" returnType="void" visibility="public" isStatic="true">
+          <Argument type="DietaData" name="metodo"/>
+          <Argument type="int" name="id"/>
+          <Argument type="boolean" name="estadoAValidar"/>
+        </Method>
+        <Method name="sacarEspaciosYElementosVacios" returnType="ArrayList&lt;String&gt;" visibility="public" isStatic="true">
+          <Argument type="ArrayList&lt;String&gt;" name="elementos"/>
+        </Method>
+        <Method name="auxiliarParaArmarConsultaSQL" returnType="String" visibility="public" isStatic="true">
+          <Argument type="ArrayList&lt;String&gt;" name="elementos"/>
+        </Method>
+        <Method name="construirSQLParaBuscarAlimentos" returnType="String" visibility="public" isStatic="true">
+          <Argument type="ArrayList&lt;String&gt;" name="elementosQueSi"/>
+          <Argument type="ArrayList&lt;String&gt;" name="elementosQueNo"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="VentanaAltaBajaAlimento" package="VistasAlimento" visibility="public" xPosition="1794.0" yPosition="4314.0">
+      <Fields>
+        <Field name="modelo" type="DefaultTableModel" visibility="private" isFinal="true"/>
+        <Field name="alimentoData" type="AlimentoData" visibility="package"/>
+        <Field name="btnActualizar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnExit" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnSelect" type="javax.swing.JButton" visibility="private"/>
+        <Field name="grupoSelect" type="javax.swing.ButtonGroup" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel5" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel6" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator2" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="radioAlta" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="radioBaja" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="tabAlimentos" type="javax.swing.JTable" visibility="private"/>
+        <Field name="txtErrorName" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtId" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtName" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnSelectActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnExitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="radioAltaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="radioBajaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnActualizarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="cargarCabecera" returnType="void" visibility="private"/>
+        <Method name="actualizarTabla" returnType="void" visibility="private"/>
+        <Method name="botonActualizarBorrar" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="VentanaEditarBorrarAlimento" package="VistasAlimento" visibility="public" xPosition="806.0" yPosition="4572.0">
+      <Fields>
+        <Field name="alimentoData" type="AlimentoData" visibility="package"/>
+        <Field name="modelo" type="DefaultTableModel" visibility="private" isFinal="true"/>
+        <Field name="boxTipo" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="btnActualizar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnExit" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnSelect" type="javax.swing.JButton" visibility="private"/>
+        <Field name="groupSelection" type="javax.swing.ButtonGroup" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel11" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel8" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel12" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel5" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel6" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel8" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel9" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane2" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator2" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator4" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator5" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator7" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="radioActualizar" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="radioBorrar" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="tabAlimentos" type="javax.swing.JTable" visibility="private"/>
+        <Field name="txtCal" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtDescripcion" type="javax.swing.JTextArea" visibility="private"/>
+        <Field name="txtErrorCal" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtErrorDesc" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtErrorName" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtErrorTipo" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtId" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtName" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnSelectActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnActualizarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnExitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="radioActualizarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="radioBorrarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="txtNameKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="txtCalKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="txtIdActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="validarEntradas" returnType="boolean" visibility="private"/>
+        <Method name="cargarCabecera" returnType="void" visibility="private"/>
+        <Method name="actualizarTabla" returnType="void" visibility="private"/>
+        <Method name="botonActualizarBorrar" returnType="void" visibility="private"/>
+        <Method name="entradaNumerosConPunto" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="entradaNumerosSinPunto" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="VentanaListadoAlimentos" package="VistasAlimento" visibility="public" xPosition="2444.0" yPosition="1195.0">
+      <Fields>
+        <Field name="modelo" type="DefaultTableModel" visibility="private" isFinal="true"/>
+        <Field name="alimentoData" type="AlimentoData" visibility="package"/>
+        <Field name="btnExit" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel6" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="tabAlimentos" type="javax.swing.JTable" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnExitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="cargarCabecera" returnType="void" visibility="private"/>
+        <Method name="actualizarTabla" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="VentanaNuevoAlimento" package="VistasAlimento" visibility="public" xPosition="2871.0" yPosition="2258.0">
+      <Fields>
+        <Field name="alimentoData" type="AlimentoData" visibility="package"/>
+        <Field name="keywordData" type="KeywordData" visibility="package"/>
+        <Field name="alimento_Keyword_Handler_DATA" type="Alimento_Keyword_Handler_DATA" visibility="package"/>
+        <Field name="modelListKeys" type="DefaultTableModel" visibility="private" isFinal="true"/>
+        <Field name="modelAddedKeys" type="DefaultTableModel" visibility="private" isFinal="true"/>
+        <Field name="btnAddKey" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnExit" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnFinalizar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnNw" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRemoveKey" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnSave" type="javax.swing.JButton" visibility="private"/>
+        <Field name="grpComidas" type="javax.swing.ButtonGroup" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel8" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel9" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel5" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel6" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel8" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane4" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane5" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator2" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator3" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator4" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator5" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator6" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="rbtBreak" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="rbtDinner" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="rbtLunch" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="rbtSnack" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="rbtTea" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="tabAddedKeys" type="javax.swing.JTable" visibility="private"/>
+        <Field name="tabKeys" type="javax.swing.JTable" visibility="private"/>
+        <Field name="txtCalorias" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtDescription" type="javax.swing.JTextArea" visibility="private"/>
+        <Field name="txtErrorCal" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtErrorDesc" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtErrorNameAli" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtErrorTipoComida" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtIdNuevoAlimento" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtNameAli" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnNwActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnSaveActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnExitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="txtNameAliKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="rbtBreakActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="rbtLunchActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="rbtTeaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="rbtSnackActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="rbtDinnerActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="txtCaloriasKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="txtDescriptionKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="btnAddKeyActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnRemoveKeyActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnFinalizarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="validarEntradas" returnType="boolean" visibility="private"/>
+        <Method name="cerrarRadios" returnType="void" visibility="private"/>
+        <Method name="cargarCabecerasGenerico" returnType="void" visibility="private">
+          <Argument type="NonEditableTableModel" name="modelo"/>
+          <Argument type="JTable" name="table"/>
+        </Method>
+        <Method name="cargarTablaKeys" returnType="void" visibility="private"/>
+        <Method name="ordenarTablaAlfabeticamente" returnType="void" visibility="private">
+          <Argument type="JTable" name="tabla"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TestClass" package="VistasInicio" visibility="public" xPosition="3649.0" yPosition="51.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="VentanaDeInicio" package="VistasInicio" visibility="public" xPosition="20.0" yPosition="1220.0">
+      <Fields>
+        <Field name="desktop" type="javax.swing.JDesktopPane" visibility="private"/>
+        <Field name="jMenu1" type="javax.swing.JMenu" visibility="private"/>
+        <Field name="jMenu2" type="javax.swing.JMenu" visibility="private"/>
+        <Field name="jMenu3" type="javax.swing.JMenu" visibility="private"/>
+        <Field name="jMenuBar1" type="javax.swing.JMenuBar" visibility="private"/>
+        <Field name="menuAltaBajaComida" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuAltaBajaDieta" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuAltaBajaMenuDiario" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuAltaBajaPaciente" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuAsignarDieta" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuBorrarAlimento" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuBorrarDieta" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuComidas" type="javax.swing.JMenu" visibility="private"/>
+        <Field name="menuCrearDieta" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuCrearKey" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuCrearMenuDiario" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuDietas" type="javax.swing.JMenu" visibility="private"/>
+        <Field name="menuEditarBorrarMenuDiario" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuEditarPaciente" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuExit" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuHandleKeys" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuListarComidas" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuListarDietas" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuListarMenuDiario" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuListarPacientes" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuNuevoAlimento" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuNuevoPaciente" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="menuPacientes" type="javax.swing.JMenu" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="menuNuevoPacienteActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="menuExitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="menuEditarPacienteActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="menuAltaBajaPacienteActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="menuListarPacientesActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="menuNuevoAlimentoActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="menuBorrarAlimentoActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="menuAltaBajaComidaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="menuCrearMenuDiarioActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="menuHandleKeysActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="menuCrearKeyActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="VentanaLEBKeyword" package="VistasKeyword" visibility="public" xPosition="76.0" yPosition="2813.0">
+      <Fields>
+        <Field name="modelo" type="DefaultTableModel" visibility="private" isFinal="true"/>
+        <Field name="keyWordData" type="KeywordData" visibility="package"/>
+        <Field name="GroupSelect" type="javax.swing.ButtonGroup" visibility="private"/>
+        <Field name="btnExit" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnSelect" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnUpdateD" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel5" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel6" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator2" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator3" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="radioBorrar" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="radioEditar" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="tabKeywords" type="javax.swing.JTable" visibility="private"/>
+        <Field name="txtErrorName" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtID" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtName" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnExitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnUpdateDActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="txtNameKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="btnSelectActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="radioEditarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="radioBorrarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="cargarCabecera" returnType="void" visibility="private"/>
+        <Method name="actualizarTabla" returnType="void" visibility="private"/>
+        <Method name="validarEntradas" returnType="boolean" visibility="private"/>
+        <Method name="botonActualizarBorrar" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="VentanaNuevaKeyword" package="VistasKeyword" visibility="public" xPosition="76.0" yPosition="2205.0">
+      <Fields>
+        <Field name="keywordData" type="KeywordData" visibility="package"/>
+        <Field name="btnExit" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnNw" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnSave" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel5" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator2" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="txtErrorName" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtNameKey" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnNwActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnSaveActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnExitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="txtNameKeyKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="validarEntradas" returnType="boolean" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="VentanaNuevoMenuDiario" package="VistasMenuDiario" visibility="public" xPosition="806.0" yPosition="2813.0">
+      <Fields>
+        <Field name="modelListaKeys" type="DefaultListModel&lt;String&gt;" visibility="private" isFinal="true"/>
+        <Field name="modelListaKeysIn" type="DefaultListModel&lt;String&gt;" visibility="private" isFinal="true"/>
+        <Field name="modelListaKeysNotIn" type="DefaultListModel&lt;String&gt;" visibility="private" isFinal="true"/>
+        <Field name="modelTablaFiltered" type="DefaultTableModel" visibility="private" isFinal="true"/>
+        <Field name="modelTablaMenu" type="DefaultTableModel" visibility="private" isFinal="true"/>
+        <Field name="keywordData" type="KeywordData" visibility="package"/>
+        <Field name="alimentoData" type="AlimentoData" visibility="package"/>
+        <Field name="alimento_KeywordData" type="Alimento_KeywordData" visibility="package"/>
+        <Field name="btnAddIn" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnAddNot" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnComenzar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnCrearMenu" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnExit" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRemoveIn" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRemoveNot" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnSelect" type="javax.swing.JButton" visibility="private"/>
+        <Field name="grpSelectorTipo" type="javax.swing.ButtonGroup" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel10" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel11" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel5" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel6" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel8" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel9" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane2" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane3" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane6" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jScrollPane7" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator2" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator3" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator4" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator5" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="listIncluye" type="javax.swing.JList&lt;String&gt;" visibility="private"/>
+        <Field name="listKeywords" type="javax.swing.JList&lt;String&gt;" visibility="private"/>
+        <Field name="listNoIncluye" type="javax.swing.JList&lt;String&gt;" visibility="private"/>
+        <Field name="panelRadios" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="radAlmuerzo" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="radCena" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="radDesayuno" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="radMerienda" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="radSnack" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="tabListadoFiltered" type="javax.swing.JTable" visibility="private"/>
+        <Field name="tabMenuDiario" type="javax.swing.JTable" visibility="private"/>
+        <Field name="txtId" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnSelectActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnExitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnAddInActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnRemoveInActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnAddNotActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnRemoveNotActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnComenzarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnCrearMenuActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="radDesayunoItemStateChanged" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ItemEvent" name="evt"/>
+        </Method>
+        <Method name="radAlmuerzoItemStateChanged" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ItemEvent" name="evt"/>
+        </Method>
+        <Method name="radMeriendaItemStateChanged" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ItemEvent" name="evt"/>
+        </Method>
+        <Method name="radSnackItemStateChanged" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ItemEvent" name="evt"/>
+        </Method>
+        <Method name="radCenaItemStateChanged" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ItemEvent" name="evt"/>
+        </Method>
+        <Method name="cargarListaKeys" returnType="void" visibility="private"/>
+        <Method name="moverElementoEntreListas" returnType="void" visibility="private">
+          <Argument type="JList&lt;String&gt;" name="listaOrigen"/>
+          <Argument type="JList&lt;String&gt;" name="listaDestino"/>
+          <Argument type="DefaultListModel&lt;String&gt;" name="modeloOrigen"/>
+          <Argument type="DefaultListModel&lt;String&gt;" name="modeloDestino"/>
+        </Method>
+        <Method name="ordenarListaAlfabeticamente" returnType="void" visibility="private">
+          <Argument type="JList&lt;String&gt;" name="lista"/>
+        </Method>
+        <Method name="cargarCabecerasGenerico" returnType="void" visibility="private">
+          <Argument type="NonEditableTableModel" name="modelo"/>
+          <Argument type="JTable" name="table"/>
+        </Method>
+        <Method name="cargarAlimentosAll" returnType="void" visibility="private"/>
+        <Method name="filtroKeywords" returnType="void" visibility="private"/>
+        <Method name="filtroTipo" returnType="void" visibility="private">
+          <Argument type="JRadioButton" name="selectedRad"/>
+        </Method>
+        <Method name="recorrerRadios" returnType="JRadioButton" visibility="private"/>
+        <Method name="accionRadioButton" returnType="void" visibility="private"/>
+        <Method name="accionBotonesAddRemove" returnType="void" visibility="private"/>
+        <Method name="activarTablaFiltrada" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="VentanaAltaBajaPaciente" package="VistasPaciente" visibility="public" xPosition="76.0" yPosition="3710.0">
+      <Fields>
+        <Field name="modelo" type="DefaultTableModel" visibility="private" isFinal="true"/>
+        <Field name="pacienteData" type="PacienteData" visibility="package"/>
+        <Field name="btnActualizar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnExit" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnSelect" type="javax.swing.JButton" visibility="private"/>
+        <Field name="grupoSelect" type="javax.swing.ButtonGroup" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel5" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel6" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator2" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="radioAlta" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="radioBaja" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="tabPacientes" type="javax.swing.JTable" visibility="private"/>
+        <Field name="txtErrorName" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtId" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtName" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnSelectActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnActualizarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnExitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="radioAltaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="radioBajaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="cargarCabecera" returnType="void" visibility="private"/>
+        <Method name="actualizarTabla" returnType="void" visibility="private"/>
+        <Method name="botonActualizarBorrar" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="VentanaEditarBorrarPaciente" package="VistasPaciente" visibility="public" xPosition="1794.0" yPosition="2825.0">
+      <Fields>
+        <Field name="modelo" type="DefaultTableModel" visibility="private" isFinal="true"/>
+        <Field name="pacienteData" type="PacienteData" visibility="package"/>
+        <Field name="btnActualizar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnExit" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnSelect" type="javax.swing.JButton" visibility="private"/>
+        <Field name="grupoSelect" type="javax.swing.ButtonGroup" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel11" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel12" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel14" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel8" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel12" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel13" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel15" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel5" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel6" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel8" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel9" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator10" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator2" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator4" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator5" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator7" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator8" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="radioActualizar" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="radioBorrar" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="tabPacientes" type="javax.swing.JTable" visibility="private"/>
+        <Field name="txtDni" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtEdad" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtErrorDni" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtErrorEdad" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtErrorName" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtErrorPesoB" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtErrorPesoI" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtErrorTel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtId" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtName" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtPesoBuscado" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtPesoInicial" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtTelefono" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnSelectActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnActualizarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnExitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="txtNameKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="txtEdadKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="txtTelefonoKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="radioActualizarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="radioBorrarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="txtDniKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="txtPesoInicialKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="txtPesoBuscadoKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="validarEntradas" returnType="boolean" visibility="private"/>
+        <Method name="cargarCabecera" returnType="void" visibility="private"/>
+        <Method name="actualizarTabla" returnType="void" visibility="private"/>
+        <Method name="botonActualizarBorrar" returnType="void" visibility="private"/>
+        <Method name="entradaNumerosConPunto" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="entradaNumerosSinPunto" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="VentanaListadoPacientes" package="VistasPaciente" visibility="public" xPosition="3130.0" yPosition="1195.0">
+      <Fields>
+        <Field name="modelo" type="DefaultTableModel" visibility="private" isFinal="true"/>
+        <Field name="pacienteData" type="PacienteData" visibility="package"/>
+        <Field name="btnExit" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel6" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="tabPacientes" type="javax.swing.JTable" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnExitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="cargarCabecera" returnType="void" visibility="private"/>
+        <Method name="actualizarTabla" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="VentanaNuevoPaciente" package="VistasPaciente" visibility="public" xPosition="3740.0" yPosition="1776.0">
+      <Fields>
+        <Field name="pacienteData" type="PacienteData" visibility="package"/>
+        <Field name="btnExit" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnNw" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnSave" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel8" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel9" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel10" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel5" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel6" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel7" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel8" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel9" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator2" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator3" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator4" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator5" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator6" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator7" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="txtDni" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtEdad" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtErrorDni" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtErrorEdad" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtErrorName" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtErrorPesoB" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtErrorPesoI" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtErrorTelefono" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txtName" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtPesoBuscado" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtPesoInicial" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtTelefono" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnExitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnNwActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="txtNameKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="txtDniKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="txtEdadKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="txtTelefonoKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="btnSaveActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="txtPesoInicialKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="txtPesoBuscadoKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="txtNameActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="validarEntradas" returnType="boolean" visibility="private"/>
+        <Method name="entradaNumerosConPunto" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="entradaNumerosSinPunto" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="idDieta" source="Entidades.Handlers.Dieta_MenuDiario_Handler" target="Entidades.Dieta" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entidades.Handlers.Dieta_MenuDiario_Handler" target="Entidades.Dieta" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Persistencia.Alimento_KeywordData" target="Entidades.Alimento" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Utilities.FuncionDe" target="Entidades.Paciente" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Persistencia.MenuDiarioData" target="Entidades.MenuDiario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Persistencia.Handlers.Alimento_Keyword_Handler_DATA" target="Entidades.Handlers.Alimento_Keyword_Handler" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Utilities.FuncionDe" target="Persistencia.Handlers.MenuDiario_Alimento_Handler_DATA" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idAlimento" source="Entidades.Handlers.Alimento_Keyword_Handler" target="Entidades.Alimento" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entidades.Handlers.Alimento_Keyword_Handler" target="Entidades.Alimento" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Utilities.FuncionDe" target="Persistencia.DietaData" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entidades.Paciente" target="Entidades.Dieta" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Persistencia.PacienteData" target="Entidades.Paciente" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entidades.Dieta" target="Entidades.MenuDiario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Persistencia.Handlers.Dieta_MenuDiario_Handler_DATA" target="Entidades.MenuDiario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entidades.Handlers.MenuDiario_Alimento_Handler" target="Entidades.MenuDiario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="alimento_Keyword_Handler_DATA" source="VistasAlimento.VentanaNuevoAlimento" target="Persistencia.Handlers.Alimento_Keyword_Handler_DATA" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="alimento_KeywordData" source="VistasMenuDiario.VentanaNuevoMenuDiario" target="Persistencia.Alimento_KeywordData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="alimentoData" source="VistasAlimento.VentanaListadoAlimentos" target="Persistencia.AlimentoData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Persistencia.Handlers.MenuDiario_Alimento_Handler_DATA" target="Entidades.MenuDiario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entidades.Handlers.Dieta_MenuDiario_Handler" target="Entidades.MenuDiario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pacienteData" source="VistasPaciente.VentanaListadoPacientes" target="Persistencia.PacienteData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="keywordData" source="VistasKeyword.VentanaNuevaKeyword" target="Persistencia.KeywordData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idPaciente" source="Entidades.Dieta" target="Entidades.Paciente" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entidades.Handlers.Alimento_Keyword_Handler" target="Entidades.Keywords" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idKeyword" source="Entidades.Handlers.Alimento_Keyword_Handler" target="Entidades.Keywords" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="alimentoData" source="VistasAlimento.VentanaNuevoAlimento" target="Persistencia.AlimentoData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entidades.Dieta" target="Entidades.Paciente" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Utilities.FuncionDe" target="Persistencia.MenuDiarioData" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Utilities.FuncionDe" target="Entidades.MenuDiario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pacienteData" source="VistasPaciente.VentanaAltaBajaPaciente" target="Persistencia.PacienteData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="keywordData" source="VistasAlimento.VentanaNuevoAlimento" target="Persistencia.KeywordData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Persistencia.DietaData" target="Entidades.Dieta" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pacienteData" source="VistasPaciente.VentanaNuevoPaciente" target="Persistencia.PacienteData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="keyWordData" source="VistasKeyword.VentanaLEBKeyword" target="Persistencia.KeywordData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idMenuDiario" source="Entidades.Handlers.Dieta_MenuDiario_Handler" target="Entidades.MenuDiario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Utilities.FuncionDe" target="Persistencia.PacienteData" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="alimentoData" source="VistasMenuDiario.VentanaNuevoMenuDiario" target="Persistencia.AlimentoData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="keywordData" source="VistasMenuDiario.VentanaNuevoMenuDiario" target="Persistencia.KeywordData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="alimentoData" source="VistasAlimento.VentanaAltaBajaAlimento" target="Persistencia.AlimentoData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Persistencia.Handlers.Alimento_Keyword_Handler_DATA" target="Entidades.Keywords" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Persistencia.KeywordData" target="Entidades.Keywords" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Utilities.FuncionDe" target="Entidades.Dieta" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Utilities.FuncionDe" target="Persistencia.KeywordData" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Utilities.FuncionDe" target="Persistencia.AlimentoData" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idAlimento" source="Entidades.Handlers.MenuDiario_Alimento_Handler" target="Entidades.Alimento" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="menus" source="Entidades.Dieta" target="Entidades.MenuDiario" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;MenuDiario&gt;"/>
+    <UseRelation source="Utilities.FuncionDe" target="Entidades.Keywords" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entidades.Handlers.MenuDiario_Alimento_Handler" target="Entidades.Alimento" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="conexion" source="Utilities.Conexion" target="Utilities.Conexion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Utilities.FuncionDe" target="Entidades.Alimento" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Utilities.FuncionDe" target="Entidades.Handlers.Alimento_Keyword_Handler" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Utilities.FuncionDe" target="Persistencia.Handlers.Dieta_MenuDiario_Handler_DATA" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Persistencia.AlimentoData" target="Entidades.Alimento" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pacienteData" source="VistasPaciente.VentanaEditarBorrarPaciente" target="Persistencia.PacienteData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="alimentoData" source="VistasAlimento.VentanaEditarBorrarAlimento" target="Persistencia.AlimentoData" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Utilities.FuncionDe" target="Persistencia.Handlers.Alimento_Keyword_Handler_DATA" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idMenuDiario" source="Entidades.Handlers.MenuDiario_Alimento_Handler" target="Entidades.MenuDiario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

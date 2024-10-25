@@ -1,8 +1,10 @@
 package VistasInicio;
 
+import Entidades.Alimento;
 import Utilities.Conexion;
 import java.sql.Connection;
 import Entidades.Paciente;
+import Persistencia.AlimentoData;
 
 import Persistencia.PacienteData;
 import java.util.ArrayList;
@@ -58,81 +60,69 @@ public class TestClass {
         
         
         //Actualizar paciente por id || FUNCIONA CORRECTAMENTE || Nota: Hay que enviarle todos los datos nuevos y viejos, porque si no, los  datos viejos no enviados, los borra
-        Paciente pacientePrueba = new Paciente();
-        Paciente pacienteActualizado = new Paciente(2,"Ramon", 43532211, "Casa Termo", "2952331", true);
-        pacientePrueba.setIdPaciente(2);
-        pacientePrueba.setNombre("ramon");
-        pacientePrueba.setDni(461132111);
-        pacientePrueba.setDomicilio("CasaLCOA");
-        pacientePrueba.setTelefono("244232");
-        pacientePrueba.setEstado(true);
-        
-        pacienteData.actualizarPacientePorId(pacientePrueba);
+//        Paciente pacientePrueba = new Paciente();
+//        Paciente pacienteActualizado = new Paciente(2,"ramon", 33, 25, "33411",75, 79);
+//        pacientePrueba.setIdPaciente(2);
+//        pacientePrueba.setNombre("ramon");
+//        pacientePrueba.setDni(461132111);        
+//        pacientePrueba.setTelefono("244232");
+//        pacientePrueba.setEstado(true);
+//        
+//        pacienteData.actualizarPacientePorId(pacientePrueba);
 
 
         //Alta Logica FUNCIONA CORRECTAMENTE
-      //  pacienteData.altaLogicaPaciente(10);
+//        pacienteData.altaLogicaPaciente(2);
         
         //Baja Logica FUNCIONA CORRECTAMENTE
-       // pacienteData.bajaLogicaPaciente(10);
+//        pacienteData.bajaLogicaPaciente(2);
 
         //Borrar paciente por id || FUNCIONA CORRECTAMENTE || NOTA: Valida si el usuario no existe
         
         //pacienteData.borrarPacientePorId(5);
         
         //////////////////////////
-        //////Testeo Comidas//////
+        //////Testeo Alimentos////
         //////////////////////////
         
-//        ComidaData comidaData = new ComidaData(conexion);
+        AlimentoData alimentoData = new AlimentoData(conexion);
         
-//        Comida comida1 = new Comida(1, "Ensalada", "Simple ensalada de tomate y lechuga", 500, true);
-//        Comida comida2 = new Comida(2, "Ensalada Rusa", "Simple ensalada de papa, zanahoria, arvejas y mayonesa", 600, true);
-//        Comida comida3 = new Comida(3, "Chorizo a la pomarola", "Mortal cuando hace frio", 700, true);
-//        Comida comida4 = new Comida(4, "Asado", "Nunca puede faltar un domingo", 1200, true);
-//        Comida comida5 = new Comida(5, "Ensalada de Aveeee", "Simple ensalada de papa y pollo", 450, true);
+        //CREAR ALIMENTO || Correcto
+//        Alimento alimento1 = new Alimento("Ensalada rusa", "Almuerzo", 230, "PAPA zanahoria y nose que mas");
+//        alimentoData.crearAlimento(alimento1);
         
-        //Crear //FUNCIONA
-        
-//        comidaData.crearComida(comida1);
-//        comidaData.crearComida(comida2);
-//        comidaData.crearComida(comida3);
-//        comidaData.crearComida(comida4);
-//        comidaData.crearComida(comida5);
-
-        //Listar Comida //FUNCIONA
-        
-        
-//        ArrayList<Comida> comidasBD =comidaData.listarComidas();
-//        for(Comida comida: comidasBD){
-//            System.out.println(comida.toString());
-//        }
-        //Buscar Comida por Id //FUNCIONA
-        
-//        Comida comidasBD =comidaData.buscarComidaPorID(4);
-//        if(!(comidasBD == null) ){
-//            System.out.println(comidasBD.toString());
+        //Listar alimentos || Correcto
+//        for(Alimento alimento : alimentoData.listarAlimentos()){
+//            System.out.println(alimento.toString());
 //        }
         
-        //Buscar Comida por nombre // FUNCIONA
+        //BUSCAR ALIMENTOS POR ID || Correcto
+        //System.out.println(alimentoData.buscarAlimentoPorID(3));
         
-//       ArrayList<Comida>  comidasBD = comidaData.buscarComidasPorNombre("Ensalada Rusa");
-//        for(Comida comida : comidasBD){
-//            System.out.println(comida.toString());
-//        }
-      
-        //Actualizar comida por id
-
-//        comidaData.actualizarComidaPorId(comida5);
+        //Buscar Alimento Por Nombre || Correcto
+//        System.out.println(alimentoData.buscarAlimentoPorNombre("Ensalada rusa "));
         
-        //Alta Logica // FUNCIONA
-        //comidaData.altaLogicaComida(13);
+        //Actualizar Alimneto Por Id || Correcto
         
-        //Baja Logica // FUNCIONA
-        //comidaData.bajaLogicaComida(3);
+//        Alimento alimentoActualizado = new Alimento(2,"Ensalada Rusa", "Cena", 120, "Una simple ensalada con papa, zanahoria y mayonesa", true);
+//        alimentoData.actualizarAlimentoPorId(alimentoActualizado);
         
-        //Borrar Comida por id // FUNCIONA
-        //comidaData.borrarComidaPorId(3);
+        //Buscar Estado Por ID || Correcto
+        
+//        System.out.println(alimentoData.buscarEstadoPorId(2));
+        
+        
+        //Alta logica ALimentos || Correcto
+        
+      //  alimentoData.altaLogicaAlimento(9);
+        
+        //Baja logica ALimentos || Correcto
+        
+       // alimentoData.bajaLogicaAlimento(9);
+        
+        //Borrar Alimento por id || Correcto
+        
+       // alimentoData.borrarAlimentoPorId(10);
         
         ////////////////////////////
         //////Testeo Dietas/////////

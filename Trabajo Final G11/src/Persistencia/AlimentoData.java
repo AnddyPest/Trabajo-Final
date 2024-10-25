@@ -20,7 +20,7 @@ public class AlimentoData {
      public int crearAlimento(Alimento alimentoEnviado)  {
         boolean validado = false;   
         int codigoDevuelto = 1;
-        //UNA VEZ CREADO EL METODO HAY QUE ACTUALIZAR ESTO Y AÑADIR UN IF AL TRY DE ABAJO
+       
         List<Alimento> alimentos = this.listarAlimentos();
         
         if(alimentos.isEmpty()){           
@@ -65,7 +65,7 @@ public class AlimentoData {
     }
     
     //READ
-    //Listar Todos Los Pacientes
+    //Listar Todos Los alimentos
     
     public ArrayList<Alimento> listarAlimentos(){
         ArrayList<Alimento> alimentosDevueltos = new ArrayList<>();
@@ -92,7 +92,7 @@ public class AlimentoData {
         return alimentosDevueltos;
     }
     
-    //Listar Paciente por id
+    //Listar Alimentos por id
     
     public Alimento buscarAlimentoPorID(int id){
         
@@ -120,8 +120,8 @@ public class AlimentoData {
     }
  
     public Alimento buscarAlimentoPorNombre(String nombreEnviado){
-        //AKA
-        System.out.println("Nombre enviado " +nombreEnviado);
+       
+        
         Alimento alimentoDevuelto =null;
         try {            
             String query = "Select * from alimento where alimento.nombre = ?";
@@ -132,7 +132,7 @@ public class AlimentoData {
                 alimentoDevuelto = FuncionDe.crearAlimento(resultados);
                 
             }
-            if(alimentoDevuelto == null){
+            if(alimentoDevuelto != null){
                 FuncionDe.mostrarMensajeCorrecto("buscarAlimentosPorNombre", "Alimento con nombre: " + nombreEnviado + " enviados correctamente");
             } else{
                 throw new SQLException();
@@ -148,12 +148,12 @@ public class AlimentoData {
         
     }
     //UPDATE
-    //actualizar paciente por id
+    //actualizar alimento por id
     
     public void actualizarAlimentoPorId(Alimento alimentoEnviado){
         
         try {
-            //REVISAR SI FUNCIONA 
+             
             //MAXI: Eliminé el campo para cambiar el "ESTADO" ya que este se modifica solo por ALTA/BAJA Lógica -- ANDRES
             FuncionDe.validarSiExisteId(this, alimentoEnviado.getIdAlimento());
             
