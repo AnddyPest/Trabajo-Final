@@ -816,7 +816,7 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
         btnAddKey.setEnabled(false);
         btnRemoveKey.setEnabled(false);
         btnFinalizar.setEnabled(false);
-        btnExit.setEnabled(false);
+        btnExit.setEnabled(true);
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
 

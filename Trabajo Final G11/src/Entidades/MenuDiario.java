@@ -1,7 +1,5 @@
 package Entidades;
 
-import java.util.ArrayList;
-
 
 public class MenuDiario {
     //SE ELIMINÓ DIETA DIETA Y SE MIDIFICO EL LIST PARA QUE SEA UN ALIMENTO

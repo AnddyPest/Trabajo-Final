@@ -3,6 +3,7 @@ package VistasInicio;
 import VistasAlimento.VentanaAltaBajaAlimento;
 import VistasAlimento.VentanaEditarBorrarAlimento;
 import VistasAlimento.VentanaNuevoAlimento;
+import VistasDieta.VentanaNuevaDieta;
 import VistasMenuDiario.VentanaNuevoMenuDiario;
 import VistasPaciente.VentanaAltaBajaPaciente;
 import VistasPaciente.VentanaEditarBorrarPaciente;
@@ -114,6 +115,11 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuDietas.setText("Dietas");
 
         menuCrearDieta.setText("Crear Dieta");
+        menuCrearDieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCrearDietaActionPerformed(evt);
+            }
+        });
         menuDietas.add(menuCrearDieta);
 
         menuBorrarDieta.setText("Editar/Borrar Dieta");
@@ -400,7 +406,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_menuHandleKeysActionPerformed
 
     private void menuCrearKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCrearKeyActionPerformed
-        desktop.removeAll();
+       desktop.removeAll();
        VentanaNuevaKeyword NuevaKeyword = new  VentanaNuevaKeyword();
        desktop.add(NuevaKeyword);
        NuevaKeyword.addComponentListener(new ComponentAdapter(){
@@ -417,6 +423,26 @@ public class VentanaDeInicio extends javax.swing.JFrame {
        desktop.revalidate();
        desktop.repaint();
     }//GEN-LAST:event_menuCrearKeyActionPerformed
+
+    private void menuCrearDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCrearDietaActionPerformed
+       desktop.removeAll();
+       VentanaNuevaDieta nuevaDieta = new VentanaNuevaDieta();
+       desktop.add(nuevaDieta);
+       nuevaDieta.addComponentListener(new ComponentAdapter(){
+           
+           @Override
+           public void componentShown(ComponentEvent e){
+               nuevaDieta.setLocation((desktop.getWidth() - nuevaDieta.getWidth())/ 2,
+                       (desktop.getHeight() - nuevaDieta.getHeight()) / 2
+               );
+           }
+       });
+       desktop.moveToFront(nuevaDieta);
+       nuevaDieta.setVisible(true);
+       desktop.revalidate();
+       desktop.repaint();
+       
+    }//GEN-LAST:event_menuCrearDietaActionPerformed
 
     public static void main(String args[]) {
 
