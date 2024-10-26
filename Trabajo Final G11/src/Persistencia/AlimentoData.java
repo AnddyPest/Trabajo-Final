@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AlimentoData {
     
@@ -147,6 +149,31 @@ public class AlimentoData {
         return alimentoDevuelto;
         
     }
+    public ArrayList<Alimento> buscarAlimentosPorTipoComida(String tipoComidaEnviado){
+        ArrayList<Alimento> alimentosEncontrados = new ArrayList<>();
+        try {
+            String query = "Select * FROM alimnento where alimento.tipoComida = ?";
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ps.setString(1, tipoComidaEnviado.trim());
+            ResultSet resultados = ps.executeQuery();
+            while(resultados.next()){
+                Alimento alimento = FuncionDe.crearAlimento(resultados);
+                alimentosEncontrados.add(alimento);
+            }
+            if(alimentosEncontrados.isEmpty()){
+                throw new SQLException("No se encontraron alimentos con dicho tipo");
+            }
+                
+            FuncionDe.mostrarMensajeCorrecto("buscarAlimentosPorTipoComida", "Alimentos por tipoComida enviados correctamente");
+        
+            
+        } catch (SQLException ex) {
+            FuncionDe.mostrarMensajeError("No se pudo enviar los alimentos por tipoComida", ex, "buscarAlimentosPorTipoComida", "AlimentoData", "152");
+        }
+        
+        return alimentosEncontrados;
+    }
+    
     //UPDATE
     //actualizar alimento por id
     
