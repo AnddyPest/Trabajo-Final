@@ -709,11 +709,11 @@ public class VentanaEditarBorrarAlimento extends javax.swing.JInternalFrame {
            
         if(radioActualizar.isSelected()) {
         txtErrorName.setForeground(Color.green);
-        txtErrorName.setText("*DATOS DEL PACIENTE ACTUALIZADO.");
+        txtErrorName.setText("*DATOS DEL ALIMENTO ACTUALIZADO.");
         
         }else if(radioBorrar.isSelected()) {
         txtErrorName.setForeground(Color.green);
-        txtErrorName.setText("*PACIENTE BORRADO.");
+        txtErrorName.setText("*ALIMENTO BORRADO.");
         }
         actualizarTabla();
         groupSelection.clearSelection();
