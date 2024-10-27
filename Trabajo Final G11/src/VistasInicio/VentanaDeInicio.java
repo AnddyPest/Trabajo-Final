@@ -13,6 +13,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import VistasKeyword.VentanaLEBKeyword;
 import VistasKeyword.VentanaNuevaKeyword;
+import VistasMenuDiario.VentanaLABBMenuDiario;
 
 public class VentanaDeInicio extends javax.swing.JFrame {
 
@@ -147,6 +148,11 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         jMenu2.add(menuEditarBorrarMenuDiario);
 
         menuListarMenuDiario.setText("Listar/Buscar Menu Diario");
+        menuListarMenuDiario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuListarMenuDiarioActionPerformed(evt);
+            }
+        });
         jMenu2.add(menuListarMenuDiario);
 
         menuAltaBajaMenuDiario.setText("Alta/Baja Menu Diario");
@@ -443,6 +449,25 @@ public class VentanaDeInicio extends javax.swing.JFrame {
        desktop.repaint();
        
     }//GEN-LAST:event_menuCrearDietaActionPerformed
+
+    private void menuListarMenuDiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListarMenuDiarioActionPerformed
+        desktop.removeAll();
+       VentanaLABBMenuDiario nuevoLABBMenu = new VentanaLABBMenuDiario();
+       desktop.add(nuevoLABBMenu );
+       nuevoLABBMenu .addComponentListener(new ComponentAdapter(){
+           
+           @Override
+           public void componentShown(ComponentEvent e){
+              nuevoLABBMenu .setLocation((desktop.getWidth() - nuevoLABBMenu .getWidth())/ 2,
+                       (desktop.getHeight() - nuevoLABBMenu .getHeight()) / 2
+               );
+           }
+       });
+       desktop.moveToFront(nuevoLABBMenu );
+       nuevoLABBMenu .setVisible(true);
+       desktop.revalidate();
+       desktop.repaint();
+    }//GEN-LAST:event_menuListarMenuDiarioActionPerformed
 
     public static void main(String args[]) {
 
