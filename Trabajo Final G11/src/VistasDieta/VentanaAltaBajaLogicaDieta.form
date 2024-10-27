@@ -2,7 +2,7 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="groupSelect">
+    <Component class="javax.swing.ButtonGroup" name="grupoSelect">
     </Component>
   </NonVisualComponents>
   <SyntheticProperties>
@@ -47,7 +47,7 @@
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="66" red="0" type="rgb"/>
+              <Color blue="66" green="0" red="66" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -59,7 +59,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnExit" alignment="1" max="32767" attributes="0"/>
@@ -69,10 +69,6 @@
                           <Component id="btnSelect" alignment="0" max="32767" attributes="0"/>
                           <Component id="radioBaja" alignment="0" max="32767" attributes="0"/>
                           <Component id="radioAlta" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="radioBorrar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -87,9 +83,7 @@
                       <Component id="jSeparator1" min="-2" pref="8" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
-                      <Component id="radioBorrar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
                       <Component id="radioAlta" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="radioBaja" min="-2" max="-2" attributes="0"/>
@@ -133,7 +127,7 @@
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="Menu Diario"/>
+                <Property name="text" type="java.lang.String" value="Dietas"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnSelect">
@@ -156,10 +150,7 @@
             <Component class="javax.swing.JRadioButton" name="radioAlta">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="66" red="0" type="rgb"/>
-                </Property>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="groupSelect"/>
+                  <Color blue="66" green="0" red="66" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Verdana" size="12" style="1"/>
@@ -167,7 +158,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Alta Menu diario"/>
+                <Property name="text" type="java.lang.String" value="Alta Dieta"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioAltaActionPerformed"/>
@@ -176,10 +167,7 @@
             <Component class="javax.swing.JRadioButton" name="radioBaja">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="66" red="0" type="rgb"/>
-                </Property>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="groupSelect"/>
+                  <Color blue="66" green="0" red="66" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Verdana" size="12" style="1"/>
@@ -187,30 +175,10 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Baja Menu diario"/>
+                <Property name="text" type="java.lang.String" value="Baja Dieta"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioBajaActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="radioBorrar">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="66" red="0" type="rgb"/>
-                </Property>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="groupSelect"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Verdana" size="12" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Borrar Menu"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioBorrarActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -218,7 +186,7 @@
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="66" red="0" type="rgb"/>
+              <Color blue="66" green="0" red="66" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -252,10 +220,10 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="66" red="0" type="rgb"/>
+                  <Color blue="66" green="0" red="66" type="rgb"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="66" red="0" type="rgb"/>
+                  <Color blue="0" green="33" red="0" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -345,7 +313,7 @@
                                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="btnUpdate" min="-2" pref="152" max="-2" attributes="0"/>
+                                  <Component id="btnActualizar" min="-2" pref="152" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="249" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -365,7 +333,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="txtName" min="-2" pref="93" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnUpdate" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="btnActualizar" min="-2" pref="50" max="-2" attributes="0"/>
                           <EmptySpace pref="14" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -383,7 +351,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="cc" red="cc" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Nombre y Apellido:"/>
+                    <Property name="text" type="java.lang.String" value="Alimento:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JSeparator" name="jSeparator2">
@@ -423,12 +391,12 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnUpdate">
+                <Component class="javax.swing.JButton" name="btnActualizar">
                   <Properties>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -478,7 +446,7 @@
                       <Color blue="cc" green="cc" red="cc" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="- Listado de Menus Seleccione el menu a dar de Alta-Baja -"/>
+                    <Property name="text" type="java.lang.String" value="- Listado de Dietas: Seleccione la dieta a dar de Alta-Baja -"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder roundedCorners="true">
@@ -495,7 +463,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="tabMenu">
+                    <Component class="javax.swing.JTable" name="tabDietas">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="4">

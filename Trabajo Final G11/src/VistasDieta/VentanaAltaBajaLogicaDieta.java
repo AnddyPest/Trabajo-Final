@@ -1,62 +1,58 @@
 
-package VistasMenuDiario;
+package VistasDieta;
 
-import Entidades.MenuDiario;
-import Persistencia.MenuDiarioData;
+import Entidades.Dieta;
+import Persistencia.DietaData;
 import Utilities.Conexion;
-import java.sql.Connection;
 import java.awt.Color;
+import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 
-
-public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
+public class VentanaAltaBajaLogicaDieta extends javax.swing.JInternalFrame {
     private final DefaultTableModel modelo = new NonEditableTableModel();
-    MenuDiarioData menuDiarioData;
+    DietaData dietaData;
     
-    
-    public VentanaLABBMenuDiario() {
+    public VentanaAltaBajaLogicaDieta() {
         initComponents();
         Connection con = Conexion.getConexion();
-        menuDiarioData = new MenuDiarioData(con);
+        dietaData = new DietaData(con);
         cargarCabecera();
         actualizarTabla();
-        
-        tabMenu.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-           @Override
-           public void valueChanged(ListSelectionEvent e) {
-               if(!e.getValueIsAdjusting()) {
-                   int fila = tabMenu.getSelectedRow();
-                   if(fila != -1){
-                       txtId.setText((tabMenu.getValueAt(fila, 0)).toString());
-                       txtName.setText("se dara de "+btnUpdate.getText()+" a "+tabMenu.getValueAt(fila, 1).toString());
-                       
-                       btnUpdate.setEnabled(true);
-                   }    
-               }
-           }
+
+        tabDietas.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int fila = tabDietas.getSelectedRow();
+                    if (fila != -1) {
+                        txtId.setText((tabDietas.getValueAt(fila, 0)).toString());
+                        txtName.setText("Se dará de "+btnActualizar.getText()+" la  dieta "+ tabDietas.getValueAt(fila, 1).toString());
+                        
+                        btnActualizar.setEnabled(true);
+                    }
+
+                }
+            }
         });
-        
-        
     }
     
-    private class NonEditableTableModel extends DefaultTableModel {
+     private class NonEditableTableModel extends DefaultTableModel {
 
         @Override
         public boolean isCellEditable(int row, int column) {
             return false;
         }
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        groupSelect = new javax.swing.ButtonGroup();
+        grupoSelect = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -66,7 +62,6 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
         btnExit = new javax.swing.JButton();
         radioAlta = new javax.swing.JRadioButton();
         radioBaja = new javax.swing.JRadioButton();
-        radioBorrar = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         txtId = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
@@ -75,16 +70,16 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
         jSeparator2 = new javax.swing.JSeparator();
         txtName = new javax.swing.JTextField();
         txtErrorName = new javax.swing.JLabel();
-        btnUpdate = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabMenu = new javax.swing.JTable();
+        tabDietas = new javax.swing.JTable();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel2.setBackground(new java.awt.Color(102, 0, 102));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 2, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
@@ -96,7 +91,7 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Verdana", 2, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Menu Diario");
+        jLabel2.setText("Dietas");
 
         btnSelect.setText("Seleccionar");
         btnSelect.setEnabled(false);
@@ -113,36 +108,23 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
             }
         });
 
-        radioAlta.setBackground(new java.awt.Color(0, 102, 102));
-        groupSelect.add(radioAlta);
+        radioAlta.setBackground(new java.awt.Color(102, 0, 102));
         radioAlta.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         radioAlta.setForeground(new java.awt.Color(204, 204, 204));
-        radioAlta.setText("Alta Menu diario");
+        radioAlta.setText("Alta Dieta");
         radioAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioAltaActionPerformed(evt);
             }
         });
 
-        radioBaja.setBackground(new java.awt.Color(0, 102, 102));
-        groupSelect.add(radioBaja);
+        radioBaja.setBackground(new java.awt.Color(102, 0, 102));
         radioBaja.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         radioBaja.setForeground(new java.awt.Color(204, 204, 204));
-        radioBaja.setText("Baja Menu diario");
+        radioBaja.setText("Baja Dieta");
         radioBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioBajaActionPerformed(evt);
-            }
-        });
-
-        radioBorrar.setBackground(new java.awt.Color(0, 102, 102));
-        groupSelect.add(radioBorrar);
-        radioBorrar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        radioBorrar.setForeground(new java.awt.Color(204, 204, 204));
-        radioBorrar.setText("Borrar Menu");
-        radioBorrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioBorrarActionPerformed(evt);
             }
         });
 
@@ -159,10 +141,7 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                     .addComponent(btnSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(radioBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(radioAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(radioBorrar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(radioAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -174,9 +153,7 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(129, 129, 129)
-                .addComponent(radioBorrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(162, 162, 162)
                 .addComponent(radioAlta)
                 .addGap(18, 18, 18)
                 .addComponent(radioBaja)
@@ -189,11 +166,11 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 460));
 
-        jPanel3.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel3.setBackground(new java.awt.Color(102, 0, 102));
 
         txtId.setEditable(false);
-        txtId.setBackground(new java.awt.Color(0, 102, 102));
-        txtId.setForeground(new java.awt.Color(0, 102, 102));
+        txtId.setBackground(new java.awt.Color(102, 0, 102));
+        txtId.setForeground(new java.awt.Color(0, 51, 0));
         txtId.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtId.setBorder(null);
         txtId.setCaretColor(new java.awt.Color(51, 0, 0));
@@ -229,7 +206,7 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
         jLabel3.setBackground(new java.awt.Color(51, 51, 51));
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel3.setText("Nombre y Apellido:");
+        jLabel3.setText("Alimento:");
 
         jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
@@ -243,10 +220,10 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
         txtErrorName.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         txtErrorName.setForeground(new java.awt.Color(255, 0, 0));
 
-        btnUpdate.setEnabled(false);
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setEnabled(false);
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
 
@@ -270,7 +247,7 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
                         .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(249, 249, 249))))
         );
         jPanel5Layout.setVerticalGroup(
@@ -285,7 +262,7 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -295,10 +272,10 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("- Listado de Menus Seleccione el menu a dar de Alta-Baja -");
+        jLabel4.setText("- Listado de Dietas: Seleccione la dieta a dar de Alta-Baja -");
         jLabel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
-        tabMenu.setModel(new javax.swing.table.DefaultTableModel(
+        tabDietas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -309,8 +286,8 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tabMenu.setEnabled(false);
-        jScrollPane1.setViewportView(tabMenu);
+        tabDietas.setEnabled(false);
+        jScrollPane1.setViewportView(tabDietas);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -371,14 +348,13 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
-        tabMenu.setEnabled(true);
+        tabDietas.setEnabled(true);
         txtErrorName.setForeground(Color.red);
         txtErrorName.setText("");
         txtName.setText("");
         txtId.setText("");
         radioAlta.setEnabled(false);
         radioBaja.setEnabled(false);
-        radioBorrar.setEnabled(false);
         btnSelect.setEnabled(false);
     }//GEN-LAST:event_btnSelectActionPerformed
 
@@ -388,39 +364,30 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
 
     private void radioAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAltaActionPerformed
         btnSelect.setEnabled(true);
-        btnUpdate.setText("Alta");
+        btnActualizar.setText("Alta");
     }//GEN-LAST:event_radioAltaActionPerformed
 
     private void radioBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBajaActionPerformed
         btnSelect.setEnabled(true);
-        btnUpdate.setText("Baja");
+        btnActualizar.setText("Baja");
     }//GEN-LAST:event_radioBajaActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         if (radioAlta.isSelected()) {
-           menuDiarioData.altaLogicaMenuDiario(Integer.parseInt(txtId.getText()));
-            botonUpdate();
+            dietaData.altaLogicaDieta(Integer.parseInt(txtId.getText()));
+            botonActualizarBorrar();
         } else if (radioBaja.isSelected()) {
-            menuDiarioData.bajaLogicaMenuDiario(Integer.parseInt(txtId.getText()));
-            botonUpdate();
-        } else if (radioBorrar.isSelected()){
-            menuDiarioData.borrarMenuDiarioPorId(Integer.parseInt(txtId.getText()));
-            botonUpdate();
+            dietaData.bajaLogicaDieta(Integer.parseInt(txtId.getText()));
+            botonActualizarBorrar();
         }
-
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
-    private void radioBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBorrarActionPerformed
-       btnSelect.setEnabled(true);
-        btnUpdate.setText("Borrar");
-    }//GEN-LAST:event_radioBorrarActionPerformed
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnSelect;
-    private javax.swing.JButton btnUpdate;
-    private javax.swing.ButtonGroup groupSelect;
+    private javax.swing.ButtonGroup grupoSelect;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -436,60 +403,66 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JRadioButton radioAlta;
     private javax.swing.JRadioButton radioBaja;
-    private javax.swing.JRadioButton radioBorrar;
-    private javax.swing.JTable tabMenu;
+    private javax.swing.JTable tabDietas;
     private javax.swing.JLabel txtErrorName;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 
-    //Los metodos :3
-
-    private void cargarCabecera(){
-        modelo.addColumn("ID Menu Diario");
-        modelo.addColumn("Nombre Menu");
-        modelo.addColumn("Dia");
-        modelo.addColumn("Calorias Del Menu");
-        modelo.addColumn("Estado");
-        
-        tabMenu.setModel(modelo);
-    }
     
-    private void actualizarTabla(){
+    private void cargarCabecera() {
+        modelo.addColumn("ID Dieta");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("ID Paciente");
+        modelo.addColumn("Fecha Inicial");
+        modelo.addColumn("Fecha Final");
+        modelo.addColumn("Peso Inicial");
+        modelo.addColumn("Peso Final");
+        modelo.addColumn("Total Calorias");
+        modelo.addColumn("Estado"); 
+        
+        tabDietas.setModel(modelo);
+    }
+
+    private void actualizarTabla() {
         modelo.setRowCount(0);
-        ArrayList<MenuDiario> listadoMenus = menuDiarioData.listarMenus();
-        for(MenuDiario m : listadoMenus){
+        ArrayList<Dieta> listadoDietas = dietaData.listarDietas();
+        for (Dieta d : listadoDietas) {
             modelo.addRow(new Object[]{
-                m.getIdMenuDiario(),
-                m.getNombreMenu(),
-                m.getDia(),
-                m.getCaloriasDelMenu(),
-                m.isEstado() ? "SI" : "NO"
-            
+              d.getIdDieta(),
+              d.getNombre(),
+              d.getIdPaciente(),
+              d.getFechaInicio(),
+              d.getFechaFinal(),
+              d.getPesoInicial(),
+              d.getPesoFinal(),
+              d.getTotalCalorias(),
+              d.isEstadoDieta() ? "SI" : "NO"
+
             });
         }
     }
-
-    private void botonUpdate(){
-        btnUpdate.setEnabled(false);
-        tabMenu.setEnabled(false);
-        
-        if(radioAlta.isSelected()){
-            txtErrorName.setForeground(Color.green);
-            txtErrorName.setText("MENU DADO DE ALTA.");
-        }else if(radioBaja.isSelected()){
-            txtErrorName.setForeground(Color.green);
-            txtErrorName.setText("MENU DADO DE BAJA.");
-        }else if(radioBorrar.isSelected()){
-            txtErrorName.setForeground(Color.green);
-            txtErrorName.setText("MENU BORRADO.");
+    
+    private void botonActualizarBorrar() {
+        btnActualizar.setEnabled(false);
+        tabDietas.setEnabled(false);
+                
+        if(radioAlta.isSelected()) {
+        txtErrorName.setForeground(Color.green);
+        txtErrorName.setText("*DIETA DADA DE ALTA.");
+        }else if(radioBaja.isSelected()) {
+        txtErrorName.setForeground(Color.green);
+        txtErrorName.setText("*DIETA DADA DE BAJA.");
         }
         actualizarTabla();
-        groupSelect.clearSelection();
+        grupoSelect.clearSelection();
         radioAlta.setEnabled(true);
         radioBaja.setEnabled(true);
-        radioBorrar.setEnabled(true);
+        
+        
+        
     }
+
 
 
 }

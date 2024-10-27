@@ -81,6 +81,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Alta/Baja Dieta"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuAltaBajaDietaActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -97,23 +100,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCrearMenuDiarioActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuEditarBorrarMenuDiario">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Editar/Borrar Menu Diario"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuListarMenuDiario">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listar/Buscar Menu Diario"/>
+                <Property name="text" type="java.lang.String" value="Listar/Alta/Baja/Borrar Menu"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuListarMenuDiarioActionPerformed"/>
               </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuAltaBajaMenuDiario">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Alta/Baja Menu Diario"/>
-              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
