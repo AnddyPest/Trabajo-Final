@@ -4,11 +4,13 @@ package VistasMenuDiario;
 import Entidades.MenuDiario;
 import Persistencia.MenuDiarioData;
 import Utilities.Conexion;
+import java.sql.Connection;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+
 
 
 public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
@@ -18,7 +20,7 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
     
     public VentanaLABBMenuDiario() {
         initComponents();
-        java.sql.Connection con = Conexion.getConexion();
+        Connection con = Conexion.getConexion();
         menuDiarioData = new MenuDiarioData(con);
         cargarCabecera();
         actualizarTabla();

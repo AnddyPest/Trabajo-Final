@@ -75,7 +75,7 @@ public class MenuDiarioData {
     public MenuDiario buscarMenuPorID(int id) {
         MenuDiario MenuDevuelto = null;
         try {
-            String query = "SELECT * FROM menudiario WHERE idMenu = ?";
+            String query = "SELECT * FROM menudiario WHERE menudiario.idMenuDiario = ?";
             PreparedStatement ps = conexion.prepareStatement(query);
             ps.setInt(1, id);
             ResultSet resultados = ps.executeQuery();
@@ -129,7 +129,6 @@ public class MenuDiarioData {
         try {
             //REVISAR SI FUNCIONA
             FuncionDe.validarSiExisteId(this, menuEnviado.getIdMenuDiario());
-
             String Query = "UPDATE menudiario SET  menudiario.dia = ?, menudiario.caloriasDelMenu = ?, menudiario.estado = ? WHERE menuDiario.idMenu = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setInt(1, menuEnviado.getDia());
