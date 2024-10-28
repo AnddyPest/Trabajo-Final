@@ -2,18 +2,15 @@
 package Persistencia.Handlers;
 
 
-import Entidades.Dieta;
-import Entidades.Handlers.Alimento_Keyword_Handler;
 import Entidades.Handlers.Dieta_MenuDiario_Handler;
 
-import Entidades.MenuDiario;
 import Utilities.FuncionDe;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import org.mariadb.jdbc.Connection;
+import java.sql.Connection;
 
 
 public class Dieta_MenuDiario_Handler_DATA {
@@ -24,36 +21,21 @@ public class Dieta_MenuDiario_Handler_DATA {
         this.conexion = conexion;
     }
     
-    public int createDieta_MenuDiario_Handler( Dieta idDieta, MenuDiario idMenuDiario)  {
+    public int createDieta_MenuDiario_Handler( int idDieta, int idMenuDiario)  {
         boolean validado = false;   
         int codigoDevuelto = 1;
         //UNA VEZ CREADO EL METODO HAY QUE ACTUALIZAR ESTO Y AÑADIR UN IF AL TRY DE ABAJO
-        List<Dieta_MenuDiario_Handler> listadoDeHandlers = this.listarDieta_MenuDiario_Handler();
         
-//        if(listadoDeHandlers.isEmpty()){           
-//            validado = true;
-//        } else{
-//            for(Dieta_MenuDiario_Handler handlerRevisado: listadoDeHandlers){
-//                
-//                if(handlerRevisado.getIdDieta().getIdDieta() != idDieta.getIdDieta() && handlerRevisado.getIdMenuDiario().getIdMenuDiario() != idMenuDiario.getIdMenuDiario() ){                                       
-//                    validado = true;
-//                    
-//                }else{
-//                    validado = false;
-//                    System.out.println("Validacion Metodo: createDieta_MenuDiario_Handler|| Mensaje: Handlers ya relacionados no son admitidos\n");                    
-//                    break;
-//                }
-//            }
-//        }
+        
         if(!validado){
           
         
             try {
-                String query = "Insert into dieta_menudiario_handler( idDieta, idMenuDiario ) values( ? , ?  )";
+                String query = "Insert into dieta_menudiario_handler( idDieta, idMenuDiario ) values ( ? , ?  )";
 
                 PreparedStatement ps = conexion.prepareStatement(query);
-                ps.setInt(1, idDieta.getIdDieta());
-                ps.setInt(2, idMenuDiario.getIdMenuDiario());
+                ps.setInt(1, idDieta);
+                ps.setInt(2, idMenuDiario);
 
                 ps.executeUpdate();
                 

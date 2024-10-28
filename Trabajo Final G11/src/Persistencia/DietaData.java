@@ -17,26 +17,10 @@ public class DietaData {
         this.conexion = conexion;
     }    
     public int crearDieta(Dieta dietaEnviada)  {
-        boolean validado = false;   
+        boolean validado = true;   
         int codigoDevuelto = 1;
        
-        List<Dieta> dietas = this.listarDietas();
-        
-        if(dietas.isEmpty()){           
-            validado = true;
-        } else{
-            for(Dieta dietaRevisada: dietas){
-                
-                if(!dietaRevisada.getNombre().equals(dietaEnviada.getNombre()) ){                                       
-                    validado = true;
-                    
-                }else{
-                    validado = false;
-                    System.out.println("Validacion Metodo: CrearDieta || Mensaje: Dietas con nombres identicos no son admitidas\n");                    
-                    break;
-                }
-            }
-        }
+//       
         if(validado){
             
             if(dietaEnviada.getPesoFinal() == null){
@@ -44,16 +28,17 @@ public class DietaData {
             }
             
             try {
-                String query = "Insert into dieta( nombre, fechaInicio, fechaFinal, pesoInicial, pesoFinal,totalCalorias ,estado ) values( ? , ? , ? , ? , ?, ? , ? )";
+                String query = "Insert into dieta( nombre, idPaciente, fechaInicio, fechaFinal, pesoInicial, pesoFinal,totalCalorias ,estado ) values( ? , ? , ? , ? , ?, ? , ? , ? )";
 
                 PreparedStatement ps = conexion.prepareStatement(query);
                 ps.setString(1, dietaEnviada.getNombre());
-                ps.setDate(2, Date.valueOf(dietaEnviada.getFechaInicio()));
-                ps.setDate(3, Date.valueOf(dietaEnviada.getFechaFinal()));
-                ps.setDouble(4, dietaEnviada.getPesoInicial());
-                ps.setDouble(5, dietaEnviada.getPesoFinal());
-                ps.setInt(6, dietaEnviada.getTotalCalorias());
-                ps.setBoolean(7, true);
+                ps.setInt(2, dietaEnviada.getIdPaciente());
+                ps.setDate(3, Date.valueOf(dietaEnviada.getFechaInicio()));
+                ps.setDate(4, Date.valueOf(dietaEnviada.getFechaFinal()));
+                ps.setDouble(5, dietaEnviada.getPesoInicial());
+                ps.setDouble(6, dietaEnviada.getPesoFinal());
+                ps.setInt(7, dietaEnviada.getTotalCalorias());
+                ps.setBoolean(8, true);
                 ps.executeUpdate();
 
                 FuncionDe.mostrarMensajeCorrecto("Crear Dieta", "La dieta ha sido añadida");
@@ -119,30 +104,30 @@ public class DietaData {
         return dietaDevuelta;
     }
     
-    public ArrayList<Dieta> buscarDietasPorNombre(String nombreEnviado){
-        ArrayList<Dieta> dietasEncontradas = new ArrayList<>();
-        try {            
+    public Dieta buscarDietasPorNombre(String nombreEnviado){
+       Dieta dietaEncontrada = null;
+        try {
             String query = "SELECT * FROM dieta WHERE dieta.nombre = ?";
             PreparedStatement ps = conexion.prepareStatement(query);
-            ps.setString(1, nombreEnviado.trim().toLowerCase());
+            ps.setString(1, nombreEnviado);
             ResultSet resultados = ps.executeQuery();
-            while(resultados.next()){
-                Dieta dieta = FuncionDe.crearDieta(resultados);
-                dietasEncontradas.add(dieta);
+            while (resultados.next()) {
+                dietaEncontrada = FuncionDe.crearDieta(resultados);
+
             }
-            if(!dietasEncontradas.isEmpty()){
-                FuncionDe.mostrarMensajeCorrecto("buscarDietasPorNombre", "Dietas con nombre: " + nombreEnviado + " enviadas correctamente");
-            } else{
+            if (dietaEncontrada != null) {
+                FuncionDe.mostrarMensajeCorrecto("buscarDietaPorNombre", "Dieta con nombre: " + nombreEnviado + " enviado correctamente");
+            } else {
                 throw new SQLException();
             }
             resultados.close();
             ps.close();
-            
+
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se encontraron dietas con dicho nombre",ex, "buscarDietasPorNombre", "DietaData", "122");
+            FuncionDe.mostrarMensajeError("No se encontraron Dietas con dicho nombre", ex, "buscarDietaPorNombre", "MenuDietaData", "131");
         }
-        
-        return dietasEncontradas;
+
+        return dietaEncontrada;
         
     }
     //UPDATE
@@ -160,7 +145,7 @@ public class DietaData {
             String Query = "UPDATE dieta SET dieta.nombre = ?,dieta.idPaciente = ?, dieta.fechaInicio = ?, dieta.fechaFinal = ? , dieta.pesoInicial = ? ,dieta.pesoFinal = ? , dieta.totalCalorias = ? , dieta.estado = ? WHERE dieta.idDieta = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setString(1, dietaEnviada.getNombre());
-            ps.setInt(2, dietaEnviada.getIdPaciente().getIdPaciente());
+            ps.setInt(2, dietaEnviada.getIdPaciente());
             ps.setDate(3, Date.valueOf(dietaEnviada.getFechaInicio()));
             ps.setDate(4, Date.valueOf(dietaEnviada.getFechaFinal()));
             ps.setDouble(5, dietaEnviada.getPesoInicial());

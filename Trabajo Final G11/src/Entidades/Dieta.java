@@ -7,7 +7,7 @@ public class Dieta {
     
     private int idDieta;
     private String nombre;
-    private Paciente idPaciente;
+    private int idPaciente;
     private LocalDate fechaInicio;
     private LocalDate fechaFinal;
     private Double pesoInicial;
@@ -17,104 +17,39 @@ public class Dieta {
 
     public Dieta() {
     }
-    public Dieta(String nombre,int totalCalorias, boolean estadoDieta) {
-        this.nombre = nombre;        
-        this.totalCalorias = totalCalorias;
-        this.estadoDieta = estadoDieta;
-    }
-    public Dieta(String nombre, Paciente idPaciente ,int totalCalorias, boolean estadoDieta) {
-        this.nombre = nombre;
-        this.idPaciente = idPaciente;        
-        this.totalCalorias = totalCalorias;
-        this.estadoDieta = estadoDieta;
-    }  
 
-    
-    public Dieta(String nombre, Paciente idPaciente , LocalDate fechaInicio, Double pesoInicial,int totalCalorias , boolean estadoDieta) {
-        this.nombre = nombre;
-        this.idPaciente = idPaciente;        
-        this.totalCalorias = totalCalorias;
-        this.fechaInicio = fechaInicio;
-        this.pesoInicial = pesoInicial;
-        this.estadoDieta = estadoDieta;
-    }
-    public Dieta(int idDieta, String nombre, Paciente idPaciente ,LocalDate fechaInicio, Double pesoInicial, Double pesoFinal,int totalCalorias) {
-        this.idDieta = idDieta;
-        this.nombre = nombre;
-        this.idPaciente = idPaciente;      
-        this.totalCalorias = totalCalorias;
-        this.fechaInicio = fechaInicio;
-        this.pesoInicial = pesoInicial;
-        this.pesoFinal = pesoFinal;
-       
-        
-    }
-     public Dieta(String nombre, Paciente idPaciente, LocalDate fechaInicio, LocalDate fechaFinal, Double pesoInicial,int totalCalorias) {
+    public Dieta(String nombre, int idPaciente, LocalDate fechaInicio, LocalDate fechaFinal, Double pesoInicial, Double pesoFinal, int totalCalorias) {
         this.nombre = nombre;
         this.idPaciente = idPaciente;
-        this.totalCalorias = totalCalorias;
         this.fechaInicio = fechaInicio;
-        this.pesoInicial = pesoInicial;
         this.fechaFinal = fechaFinal;
-        
-       
-    }
-     public Dieta(String nombre, Paciente idPaciente, LocalDate fechaInicio, LocalDate fechaFinal, Double pesoInicial, Double pesoFinal,int totalCalorias) {
-        this.nombre = nombre;
-        this.idPaciente = idPaciente;
-        this.totalCalorias = totalCalorias;
-        this.fechaInicio = fechaInicio;
         this.pesoInicial = pesoInicial;
         this.pesoFinal = pesoFinal;
-        this.fechaFinal = fechaFinal;
-       
+        this.totalCalorias = totalCalorias;
     }
 
-    public Dieta(String nombre, Paciente idPaciente, LocalDate fechaInicio, LocalDate fechaFinal, Double pesoInicial, Double pesoFinal,int totalCalorias, boolean estadoDieta) {
+    public Dieta(int idDieta, String nombre, int idPaciente, LocalDate fechaInicio, LocalDate fechaFinal, Double pesoInicial, Double pesoFinal, int totalCalorias, boolean estadoDieta) {
+        this.idDieta = idDieta;
         this.nombre = nombre;
         this.idPaciente = idPaciente;
-        this.totalCalorias = totalCalorias;
         this.fechaInicio = fechaInicio;
+        this.fechaFinal = fechaFinal;
         this.pesoInicial = pesoInicial;
         this.pesoFinal = pesoFinal;
-        this.fechaFinal = fechaFinal;
+        this.totalCalorias = totalCalorias;
         this.estadoDieta = estadoDieta;
     }
-   
-    public Dieta(int idDieta, String nombre, Paciente idPaciente ,LocalDate fechaInicio,LocalDate fechaFinal , Double pesoInicial,int totalCalorias) {
+
+    public Dieta(int idDieta, String nombre, int idPaciente, LocalDate fechaInicio, LocalDate fechaFinal, Double pesoInicial, Double pesoFinal, int totalCalorias) {
         this.idDieta = idDieta;
         this.nombre = nombre;
-        this.idPaciente = idPaciente;      
-        this.totalCalorias = totalCalorias;
+        this.idPaciente = idPaciente;
         this.fechaInicio = fechaInicio;
-        this.pesoInicial = pesoInicial;
         this.fechaFinal = fechaFinal;
-        
-    }
-    
-    public Dieta(int idDieta, String nombre, Paciente idPaciente ,LocalDate fechaInicio, LocalDate fechaFinal , Double pesoInicial, Double pesoFinal,int totalCalorias) {
-        this.idDieta = idDieta;
-        this.nombre = nombre;
-        this.idPaciente = idPaciente;      
-        this.totalCalorias = totalCalorias;
-        this.fechaInicio = fechaInicio;
         this.pesoInicial = pesoInicial;
         this.pesoFinal = pesoFinal;
-        this.fechaFinal = fechaFinal;
-        
-    }
-    public Dieta(int idDieta, String nombre, Paciente idPaciente ,LocalDate fechaInicio, Double pesoInicial, LocalDate fechaFinal, Double pesoFinal,int totalCalorias, boolean estadoDieta) {
-        this.idDieta = idDieta;
-        this.nombre = nombre;
-        this.idPaciente = idPaciente;      
         this.totalCalorias = totalCalorias;
-        this.fechaInicio = fechaInicio;
-        this.pesoInicial = pesoInicial;
-        this.pesoFinal = pesoFinal;
-        this.fechaFinal = fechaFinal;
-        this.estadoDieta = estadoDieta;
     }
-    
 
     public int getIdDieta() {
         return idDieta;
@@ -132,14 +67,13 @@ public class Dieta {
         this.nombre = nombre;
     }
 
-    public Paciente getIdPaciente() {
+    public int getIdPaciente() {
         return idPaciente;
     }
 
-    public void setIdPaciente(Paciente idPaciente) {
+    public void setIdPaciente(int idPaciente) {
         this.idPaciente = idPaciente;
     }
-
 
     public LocalDate getFechaInicio() {
         return fechaInicio;
@@ -189,14 +123,10 @@ public class Dieta {
         this.estadoDieta = estadoDieta;
     }
 
-    
-    
-    @Override
-    public String toString() {
-        return "Dieta= " + "\n\tidDieta=" + idDieta + " \n\tnombre=" + nombre + " \n\tidPaciente=" + idPaciente +  "\n\tfechaInicio=" + fechaInicio + " \n\tfechaFinal=" + fechaFinal + ", \n\tpesoInicial=" + pesoInicial + ", \n\tpesoFinal=" + pesoFinal + ", \n\ttotalCalorias=" + totalCalorias + ", \n\testadoDieta=" + estadoDieta ;
-    }
 
-   
-   
     
+
+
+
+
 }

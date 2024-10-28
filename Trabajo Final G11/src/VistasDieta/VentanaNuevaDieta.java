@@ -1,13 +1,20 @@
 package VistasDieta;
 
+import Entidades.Dieta;
 import Entidades.MenuDiario;
 import Entidades.Paciente;
+import Persistencia.DietaData;
+import Persistencia.Handlers.Dieta_MenuDiario_Handler_DATA;
 import Persistencia.MenuDiarioData;
 import Persistencia.PacienteData;
 import Utilities.Conexion;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -17,12 +24,16 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
     private final DefaultTableModel modelDietas = new NonEditableTableModel();
     PacienteData pacienteData;
     MenuDiarioData menuDiarioData;
+    DietaData dietaData;
+    Dieta_MenuDiario_Handler_DATA dieta_MenuDiario_Handler_DATA;
 
     public VentanaNuevaDieta() {
         initComponents();
         Connection con = Conexion.getConexion();
         pacienteData = new PacienteData(con);
         menuDiarioData = new MenuDiarioData(con);
+        dietaData = new DietaData(con);
+        dieta_MenuDiario_Handler_DATA = new Dieta_MenuDiario_Handler_DATA(con);
         cargarCabeceraDieta();
         cargarCabeceraMenu();
         cargarCombo();
@@ -40,6 +51,7 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
                 }
             }
         });
+
     }
 
     private class NonEditableTableModel extends DefaultTableModel {
@@ -70,7 +82,7 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         txtId = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtMenuName = new javax.swing.JTextField();
+        txtDietaName = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -132,7 +144,7 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSelect.setText("Seleccionar");
+        btnSelect.setText("Seleccionar Fechas");
         btnSelect.setEnabled(false);
         btnSelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,13 +245,13 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
         jLabel11.setForeground(new java.awt.Color(204, 204, 204));
         jLabel11.setText("Nombre Dieta:");
 
-        txtMenuName.setBackground(new java.awt.Color(255, 153, 255));
-        txtMenuName.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        txtMenuName.setForeground(new java.awt.Color(0, 0, 0));
-        txtMenuName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtMenuName.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtDietaName.setBackground(new java.awt.Color(255, 153, 255));
+        txtDietaName.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        txtDietaName.setForeground(new java.awt.Color(0, 0, 0));
+        txtDietaName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDietaName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtMenuNameKeyTyped(evt);
+                txtDietaNameKeyTyped(evt);
             }
         });
 
@@ -251,7 +263,7 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtMenuName, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addComponent(txtDietaName, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
@@ -265,7 +277,7 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtMenuName)
+                    .addComponent(txtDietaName)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -285,10 +297,19 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
 
         cmbPaciente.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cmbPaciente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        cmbPaciente.setEnabled(false);
+        cmbPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPacienteActionPerformed(evt);
+            }
+        });
 
         txtIdPaciente.setEditable(false);
+        txtIdPaciente.setBackground(new java.awt.Color(102, 102, 102));
+        txtIdPaciente.setForeground(new java.awt.Color(102, 102, 102));
 
         btnSelectPatient.setText("Select");
+        btnSelectPatient.setEnabled(false);
         btnSelectPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSelectPatientActionPerformed(evt);
@@ -342,6 +363,7 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
         jSeparator6.setForeground(new java.awt.Color(204, 204, 204));
 
         calInicio.setDateFormatString("yyyy-MM-dd");
+        calInicio.setEnabled(false);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -379,6 +401,8 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(204, 204, 204));
         jLabel8.setText("Inicial:");
+
+        txtW8tEnd.setText("0");
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 204, 204));
@@ -434,6 +458,7 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
         jSeparator7.setForeground(new java.awt.Color(204, 204, 204));
 
         calFinal.setDateFormatString("yyyy-MM-dd");
+        calFinal.setEnabled(false);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -497,6 +522,7 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabMenus.setEnabled(false);
         jScrollPane2.setViewportView(tabMenus);
 
         jPanel10.setBackground(new java.awt.Color(51, 51, 51));
@@ -505,7 +531,6 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
         jLabel13.setText("Total de Calorías -------------------------------->>>");
 
         txtCalTotal.setEditable(false);
-        txtCalTotal.setText("jTextField3");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -613,33 +638,104 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
-        int sumarFecha;
-        if (modelDietas.getRowCount() < 1) {
-            modelDietas.addRow(new Object[]{
-                calInicio.getDate(),
-                modelMenus.getValueAt(tabMenus.getSelectedRow(), 1),
-                modelMenus.getValueAt(tabMenus.getSelectedRow(), 2)
-            });
+        if (!tabMenus.isEnabled() && calInicio.getDate() != null && calFinal.getDate() != null) {
+            calInicio.setEnabled(false);
+            calFinal.setEnabled(false);
+            btnSelect.setText("Seleccionar Menus");
+            tabMenus.setEnabled(true);
+        } else if (!calInicio.isEnabled() && !calFinal.isEnabled()) {
+            DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate fechaInicial = calInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fechaFinal = calFinal.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            int filas = modelDietas.getRowCount();
+            LocalDate nuevaFecha = fechaInicial.plusDays(filas);
+            if (filas < 1) {
+                modelDietas.addRow(new Object[]{
+                    fechaInicial.format(formatoFecha),
+                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 0),
+                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 1),
+                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 2)
+                });
+            } else if (!nuevaFecha.equals(fechaFinal)) {
+
+                modelDietas.addRow(new Object[]{
+                    nuevaFecha.format(formatoFecha),
+                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 0),
+                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 1),
+                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 2)
+                });
+            } else if (nuevaFecha.equals(fechaFinal)) {
+                modelDietas.addRow(new Object[]{
+                    nuevaFecha.format(formatoFecha),
+                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 0),
+                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 1),
+                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 2)
+                });
+                tabMenus.setEnabled(false);
+                btnSelect.setEnabled(false);
+                btnCrearMenu.setEnabled(true);
+
+            }
+            int calDieta = 0;
+            for (int i = 0; i < tabDietas.getRowCount(); i++) {
+
+                int calAli = (int) tabDietas.getValueAt(i, 3);
+                calDieta += calAli;
+            }
+            String caloriasMenu = String.valueOf(calDieta);
+            txtCalTotal.setText(caloriasMenu);
         }
+
+
     }//GEN-LAST:event_btnSelectActionPerformed
 
     private void btnCrearMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMenuActionPerformed
+        String nombreDieta = txtDietaName.getText();
+        int idPac = Integer.parseInt(txtIdPaciente.getText());
+        LocalDate inicioDieta = calInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate finalDieta = calFinal.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        double pesoI = Double.parseDouble(txtW8tInit.getText());
+        double pesoF = Double.parseDouble(txtW8tEnd.getText());
+        int caloriasTotal = Integer.parseInt(txtCalTotal.getText());
+
+        Dieta nuevaDieta = new Dieta(nombreDieta, idPac, inicioDieta, finalDieta, pesoI, pesoF, caloriasTotal);
+        dietaData.crearDieta(nuevaDieta);
+       
+        System.out.println("Nombre nueva dieta ----------- " + nuevaDieta.getNombre());
+
+        Dieta dietaEnviada = dietaData.buscarDietasPorNombre(nombreDieta);
+
+        if (dietaEnviada == null) {
+            System.out.println("No se encontró ninguna dieta con el nombre: " + nombreDieta);
+        } else {
+            System.out.println("Id dieta enviada " + dietaEnviada.getIdDieta());
+        }
+
+        for (int i = 0; i < tabDietas.getRowCount(); i++) {
+            int idMenuEnviado = (int) tabDietas.getValueAt(i, 1);
+            System.out.println("ID MENU ENVIADO " + idMenuEnviado);
+            dieta_MenuDiario_Handler_DATA.createDieta_MenuDiario_Handler(dietaEnviada.getIdDieta(), idMenuEnviado);
+
+        }
+
 
     }//GEN-LAST:event_btnCrearMenuActionPerformed
 
     private void btnComenzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarActionPerformed
-        if (txtMenuName.getText().isEmpty()) {
-            txtMenuName.requestFocus();
+        if (txtDietaName.getText().isEmpty()) {
+            txtDietaName.requestFocus();
         } else {
+
+            cmbPaciente.setEnabled(true);
 
         }
     }//GEN-LAST:event_btnComenzarActionPerformed
 
-    private void txtMenuNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMenuNameKeyTyped
-        if (!txtMenuName.getText().isBlank()) {
+    private void txtDietaNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDietaNameKeyTyped
+        if (!txtDietaName.getText().isBlank()) {
             btnComenzar.setEnabled(true);
         }
-    }//GEN-LAST:event_txtMenuNameKeyTyped
+    }//GEN-LAST:event_txtDietaNameKeyTyped
 
     private void btnSelectPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectPatientActionPerformed
         ArrayList<Paciente> pacienteElecto = pacienteData.buscarPacientesPorNombre(cmbPaciente.getSelectedItem().toString());
@@ -648,9 +744,16 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
             txtW8tInit.setText(String.valueOf(p.getPesoActual()));
             btnSelectPatient.setEnabled(false);
             cmbPaciente.setEnabled(false);
+            calInicio.setEnabled(true);
+            calFinal.setEnabled(true);
+            btnSelect.setEnabled(true);
 
         }
     }//GEN-LAST:event_btnSelectPatientActionPerformed
+
+    private void cmbPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPacienteActionPerformed
+        btnSelectPatient.setEnabled(true);
+    }//GEN-LAST:event_cmbPacienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -698,9 +801,9 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
     private javax.swing.JTable tabDietas;
     private javax.swing.JTable tabMenus;
     private javax.swing.JTextField txtCalTotal;
+    private javax.swing.JTextField txtDietaName;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtIdPaciente;
-    private javax.swing.JTextField txtMenuName;
     private javax.swing.JTextField txtW8tEnd;
     private javax.swing.JTextField txtW8tInit;
     // End of variables declaration//GEN-END:variables
@@ -723,6 +826,7 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
 
     private void cargarCabeceraDieta() {
         modelDietas.addColumn("Día");
+        modelDietas.addColumn("ID Menu");
         modelDietas.addColumn("Menu");
         modelDietas.addColumn("Calorías");
 
