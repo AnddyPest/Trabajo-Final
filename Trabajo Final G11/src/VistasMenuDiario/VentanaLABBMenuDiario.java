@@ -464,7 +464,7 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
                 m.getNombreMenu(),
                 m.getDia(),
                 m.getCaloriasDelMenu(),
-                m.isEstado() ? "SI" : "NO"
+                m.isEstado() ? "Activo" : "Inactivo"
             
             });
         }
