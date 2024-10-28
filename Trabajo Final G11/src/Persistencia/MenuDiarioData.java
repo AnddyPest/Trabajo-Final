@@ -149,22 +149,22 @@ public class MenuDiarioData {
     //DELETE    
     //buscar por estado individual
     public boolean buscarEstadoPorId(int id) {
-        Dieta resultadoEstado = null;
+        MenuDiario resultadoEstado = null;
         try {
             FuncionDe.validarSiExisteId(this, id);
-            String query = "SELECT menudiario.estado FROM dieta WHERE menudiario.idMenuDiario= ?";
+            String query = "SELECT estado FROM menudiario WHERE menudiario.idMenuDiario= ?";
             PreparedStatement ps = conexion.prepareStatement(query);
             ps.setInt(1, id);
             ResultSet resultados = ps.executeQuery();
             while (resultados.next()) {
-                resultadoEstado = new Dieta();
-                resultadoEstado.setEstadoDieta(resultados.getBoolean("estado"));
+                resultadoEstado = new MenuDiario();
+                resultadoEstado.setEstado(resultados.getBoolean("estado"));
             }
             FuncionDe.mostrarMensajeCorrecto("BuscarEstadoPorId", "Estado Logico del menu enviado correctamente");
         } catch (SQLException ex) {
             FuncionDe.mostrarMensajeError("No se pudo enviar el estado logico del menu", ex, "BuscarEstadoPorID", "MenuDiarioData", "132");
         }
-        return resultadoEstado.isEstadoDieta();
+        return resultadoEstado.isEstado();
     }
 
     //Alta logica
