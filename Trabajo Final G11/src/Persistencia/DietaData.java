@@ -72,7 +72,7 @@ public class DietaData {
             resultados.close();
             ps.close();
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se puede listar las dietas",ex, "Listar Dietas", "DietasData", "71");
+            FuncionDe.mostrarMensajeError("No se puede listar las dietas",ex, "Listar Dietas", "DietaData", "71");
         }
         
         return dietasDevueltas;
@@ -124,7 +124,7 @@ public class DietaData {
             ps.close();
 
         } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se encontraron Dietas con dicho nombre", ex, "buscarDietaPorNombre", "MenuDietaData", "131");
+            FuncionDe.mostrarMensajeError("No se encontraron Dietas con dicho nombre", ex, "buscarDietaPorNombre", "DietaData", "131");
         }
 
         return dietaEncontrada;
