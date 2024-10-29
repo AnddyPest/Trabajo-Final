@@ -200,7 +200,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnCrearMenu">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Crear Menu"/>
+                <Property name="text" type="java.lang.String" value="Crear Dieta"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
@@ -388,7 +388,8 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel3" min="-2" pref="150" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="txtMsg" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jSeparator4" max="32767" attributes="0"/>
                                   </Group>
@@ -399,7 +400,7 @@
                                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                   <Component id="btnSelectPatient" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtIdPaciente" max="32767" attributes="0"/>
+                                  <Component id="txtIdPaciente" pref="110" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -410,7 +411,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" pref="18" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel3" alignment="3" min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="txtMsg" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jSeparator4" min="-2" pref="10" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -474,6 +478,9 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="66" red="66" type="rgb"/>
                     </Property>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="null"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnSelectPatient">
@@ -484,6 +491,23 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelectPatientActionPerformed"/>
                   </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtMsg">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="66" red="66" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Verdana" size="12" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="66" red="66" type="rgb"/>
+                    </Property>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="null"/>
+                    </Property>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
