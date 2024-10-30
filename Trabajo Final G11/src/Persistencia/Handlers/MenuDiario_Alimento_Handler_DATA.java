@@ -121,6 +121,24 @@ public class MenuDiario_Alimento_Handler_DATA {
         return handlerDevuelto;
     }
     
+     public ArrayList<Integer> listarAlimentosPorMenuDiarioID(int idMenu) {
+    ArrayList<Integer> alimentoIdHandler = new ArrayList<>();
+    try {
+        String query = "SELECT idAlimento FROM menudiario_alimento_handler WHERE idMenuDiario = ?";
+        PreparedStatement ps = conexion.prepareStatement(query);
+        ps.setInt(1, idMenu);
+        ResultSet resultados = ps.executeQuery();
+        while (resultados.next()) {
+            alimentoIdHandler.add(resultados.getInt("idAlimento"));
+        }
+        resultados.close();
+        ps.close();
+    } catch (SQLException ex) {
+        FuncionDe.mostrarMensajeError("No se pudo encontrar el registro en MenuDiario_Alimento_Handler", ex, "listarAlimentosPorMenuDiarioID", "MenuDiario_Alimento_Handler_DATA", "103");
+    }
+    return alimentoIdHandler;
+}
+
     //UPDATE
     //actualizar paciente por id
     

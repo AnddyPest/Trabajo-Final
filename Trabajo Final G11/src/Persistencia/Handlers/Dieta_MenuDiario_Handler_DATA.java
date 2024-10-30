@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.sql.Connection;
 
 
@@ -106,6 +105,25 @@ public class Dieta_MenuDiario_Handler_DATA {
         
         return handlerDevuelto;
     }
+    
+     public ArrayList<Integer> listarMenuDiario_DietaID(int idDieta) {
+    ArrayList<Integer> menuDiarioIdHandler = new ArrayList<>();
+    try {
+        String query = "SELECT idMenuDiario FROM dieta_menudiario_handler WHERE idDieta = ?";
+        PreparedStatement ps = conexion.prepareStatement(query);
+        ps.setInt(1, idDieta);
+        ResultSet resultados = ps.executeQuery();
+        while (resultados.next()) {
+            menuDiarioIdHandler.add(resultados.getInt("idMenuDiario"));
+        }
+        resultados.close();
+        ps.close();
+    } catch (SQLException ex) {
+        FuncionDe.mostrarMensajeError("No se pudo encontrar el registro Dieta_MenuDiario_Handler", ex, "listarMenuDiario_DietaID", "Dieta_MenuDiario_Handler_DATA", "103");
+    }
+    return menuDiarioIdHandler;
+}
+
     
     //UPDATE
     //actualizar paciente por id

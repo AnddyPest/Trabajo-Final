@@ -4,6 +4,7 @@ import VistasAlimento.VentanaAltaBajaAlimento;
 import VistasAlimento.VentanaEditarBorrarAlimento;
 import VistasAlimento.VentanaNuevoAlimento;
 import VistasDieta.VentanaAltaBajaLogicaDieta;
+import VistasDieta.VentanaExportarDieta;
 import VistasDieta.VentanaNuevaDieta;
 import VistasMenuDiario.VentanaNuevoMenuDiario;
 import VistasPaciente.VentanaAltaBajaPaciente;
@@ -125,7 +126,12 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuBorrarDieta.setText("Editar/Borrar Dieta");
         menuDietas.add(menuBorrarDieta);
 
-        menuListarDietas.setText("Listar/Buscar Dietas");
+        menuListarDietas.setText("Mostrar/Exportar Dieta");
+        menuListarDietas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuListarDietasActionPerformed(evt);
+            }
+        });
         menuDietas.add(menuListarDietas);
 
         menuAltaBajaDieta.setText("Alta/Baja Dieta");
@@ -485,6 +491,25 @@ public class VentanaDeInicio extends javax.swing.JFrame {
        desktop.revalidate();
        desktop.repaint();
     }//GEN-LAST:event_menuAltaBajaDietaActionPerformed
+
+    private void menuListarDietasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListarDietasActionPerformed
+        desktop.removeAll();
+        VentanaExportarDieta exportDieta= new VentanaExportarDieta();
+       desktop.add(exportDieta);
+       exportDieta.addComponentListener(new ComponentAdapter(){
+           
+           @Override
+           public void componentShown(ComponentEvent e){
+              exportDieta.setLocation((desktop.getWidth() - exportDieta.getWidth())/ 2,
+                       (desktop.getHeight() - exportDieta.getHeight()) / 2
+               );
+           }
+       });
+       desktop.moveToFront(exportDieta);
+       exportDieta.setVisible(true);
+       desktop.revalidate();
+       desktop.repaint();
+    }//GEN-LAST:event_menuListarDietasActionPerformed
 
     public static void main(String args[]) {
 

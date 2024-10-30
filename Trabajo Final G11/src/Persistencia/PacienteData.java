@@ -105,29 +105,32 @@ public class PacienteData {
     
     //Listar Paciente por id
     
-    public Paciente buscarPacientePorID(int id){
-        Paciente pacienteDevuelto = null;
-        try {
-            String query = "Select * from paciente where idPaciente = ?";
-            PreparedStatement ps = conexion.prepareStatement(query);
-            ps.setInt( 1, id );
-            ResultSet resultados = ps.executeQuery();
-            while(resultados.next()){
-                pacienteDevuelto = FuncionDe.crearPaciente(resultados);                
-            }
-            if(pacienteDevuelto == null){
-                throw new SQLException();
-            }else{
-                FuncionDe.mostrarMensajeCorrecto("buscarPacientePorid", "Paciente encontrado correctamente");
-            }
-            resultados.close();
-            ps.close();
-        } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo encontrar el registro",ex, "buscarPacientePorId", "PacienteData", "107");
+    public Paciente buscarPacientePorID(int id) {
+    Paciente pacienteDevuelto = null;
+    try {
+        String query = "SELECT * FROM paciente WHERE idPaciente = ?";
+        PreparedStatement ps = conexion.prepareStatement(query);
+        ps.setInt(1, id);
+        ResultSet resultados = ps.executeQuery();
+
+        if (resultados.next()) {
+            pacienteDevuelto = FuncionDe.crearPaciente(resultados);
         }
-        
-        return pacienteDevuelto;
+
+        resultados.close();
+        ps.close();
+
+        if (pacienteDevuelto != null) {
+            FuncionDe.mostrarMensajeCorrecto("buscarPacientePorID", "Paciente encontrado correctamente");
+        } else {
+            throw new SQLException("No se pudo encontrar el registro");
+        }
+
+    } catch (SQLException ex) {
+        FuncionDe.mostrarMensajeError("No se pudo encontrar el registro", ex, "buscarPacientePorID", "PacienteData", "107");
     }
+    return pacienteDevuelto;
+}
     //Listar Paciente por nombre
     public ArrayList<Paciente> buscarPacientesPorNombre(String nombreEnviado){
         ArrayList<Paciente> pacientesEncontrados = new ArrayList<>();

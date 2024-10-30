@@ -74,8 +74,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuListarDietas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listar/Buscar Dietas"/>
+                <Property name="text" type="java.lang.String" value="Mostrar/Exportar Dieta"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuListarDietasActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuAltaBajaDieta">
               <Properties>

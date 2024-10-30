@@ -1,6 +1,5 @@
 package Persistencia;
 
-import Entidades.Dieta;
 import Utilities.FuncionDe;
 import Entidades.MenuDiario;
 import java.sql.PreparedStatement;
@@ -73,28 +72,32 @@ public class MenuDiarioData {
 
     //Listar Paciente por id
     public MenuDiario buscarMenuPorID(int id) {
-        MenuDiario MenuDevuelto = null;
-        try {
-            String query = "SELECT * FROM menudiario WHERE menudiario.idMenuDiario = ?";
-            PreparedStatement ps = conexion.prepareStatement(query);
-            ps.setInt(1, id);
-            ResultSet resultados = ps.executeQuery();
-            while (resultados.next()) {
-                MenuDevuelto = FuncionDe.crearMenu(resultados);
-            }
-            if (MenuDevuelto == null) {
-                throw new SQLException();
-            } else {
-                FuncionDe.mostrarMensajeCorrecto("buscarMenuPorId", "Menu encontrado correctamente");
-            }
-            resultados.close();
-            ps.close();
-        } catch (SQLException ex) {
-            FuncionDe.mostrarMensajeError("No se pudo encontrar el registro", ex, "buscarMenuPorId", "MenuData", "78");
+    MenuDiario MenuDevuelto = null;
+    try {
+        String query = "SELECT * FROM menudiario WHERE menudiario.idMenuDiario = ?";
+        PreparedStatement ps = conexion.prepareStatement(query);
+        ps.setInt(1, id);
+        ResultSet resultados = ps.executeQuery();
+        
+        if (resultados.next()) {
+            MenuDevuelto = FuncionDe.crearMenu(resultados);
         }
 
-        return MenuDevuelto;
+        resultados.close();
+        ps.close();
+
+        if (MenuDevuelto != null) {
+            FuncionDe.mostrarMensajeCorrecto("buscarMenuPorId", "Menu encontrado correctamente");
+        } else {
+            throw new SQLException("No se pudo encontrar el registro");
+        }
+
+    } catch (SQLException ex) {
+        FuncionDe.mostrarMensajeError("No se pudo encontrar el registro", ex, "buscarMenuPorId", "MenuData", "78");
     }
+    return MenuDevuelto;
+}
+
 
     public MenuDiario buscarMenuPorNombre(String nombreEnviado) {
         MenuDiario menuEncontrado = null;

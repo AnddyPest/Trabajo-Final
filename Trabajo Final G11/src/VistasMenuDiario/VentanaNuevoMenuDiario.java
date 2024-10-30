@@ -885,6 +885,9 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         cargarListaKeys();
         cargarAlimentosAll();
         btnCrearMenu.setEnabled(false);
+      
+        txtMenuName.requestFocus();
+        btnComenzar.setEnabled(false);        
         }else{
             txtDay.requestFocus();
         }
