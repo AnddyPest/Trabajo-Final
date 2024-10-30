@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-10-2024 a las 22:21:45
+-- Tiempo de generación: 30-10-2024 a las 23:57:14
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `nutricionista`
 --
-CREATE DATABASE IF NOT EXISTS `nutricionista` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `nutricionista`;
 
 -- --------------------------------------------------------
 
@@ -111,7 +109,8 @@ CREATE TABLE `menudiario` (
 
 CREATE TABLE `menudiario_alimento_handler` (
   `idAlimento` int(11) NOT NULL,
-  `idMenuDiario` int(11) NOT NULL
+  `idMenuDiario` int(11) NOT NULL,
+  `fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
