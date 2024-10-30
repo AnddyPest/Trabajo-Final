@@ -52,6 +52,7 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         cargarCabecerasGenerico((NonEditableTableModel) modelTablaFiltered, tabListadoFiltered);
         cargarCabecerasGenerico((NonEditableTableModel) modelTablaMenu, tabMenuDiario);
         cargarAlimentosAll();
+        txtMenuName.requestFocus();
 
         tabListadoFiltered.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
