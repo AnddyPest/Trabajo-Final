@@ -4,6 +4,7 @@ import VistasAlimento.VentanaAltaBajaAlimento;
 import VistasAlimento.VentanaEditarBorrarAlimento;
 import VistasAlimento.VentanaNuevoAlimento;
 import VistasDieta.VentanaAltaBajaLogicaDieta;
+import VistasDieta.VentanaEditEraseDieta;
 import VistasDieta.VentanaExportarDieta;
 import VistasDieta.VentanaNuevaDieta;
 import VistasMenuDiario.VentanaNuevoMenuDiario;
@@ -124,6 +125,11 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuDietas.add(menuCrearDieta);
 
         menuBorrarDieta.setText("Editar/Borrar Dieta");
+        menuBorrarDieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBorrarDietaActionPerformed(evt);
+            }
+        });
         menuDietas.add(menuBorrarDieta);
 
         menuListarDietas.setText("Mostrar/Exportar Dieta");
@@ -510,6 +516,25 @@ public class VentanaDeInicio extends javax.swing.JFrame {
        desktop.revalidate();
        desktop.repaint();
     }//GEN-LAST:event_menuListarDietasActionPerformed
+
+    private void menuBorrarDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBorrarDietaActionPerformed
+    desktop.removeAll();
+        VentanaEditEraseDieta editDieta= new VentanaEditEraseDieta();
+       desktop.add(editDieta);
+       editDieta.addComponentListener(new ComponentAdapter(){
+           
+           @Override
+           public void componentShown(ComponentEvent e){
+              editDieta.setLocation((desktop.getWidth() - editDieta.getWidth())/ 2,
+                       (desktop.getHeight() - editDieta.getHeight()) / 2
+               );
+           }
+       });
+       desktop.moveToFront(editDieta);
+       editDieta.setVisible(true);
+       desktop.revalidate();
+       desktop.repaint();
+    }//GEN-LAST:event_menuBorrarDietaActionPerformed
 
     public static void main(String args[]) {
 
