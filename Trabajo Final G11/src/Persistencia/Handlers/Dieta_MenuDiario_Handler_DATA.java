@@ -32,7 +32,7 @@ public class Dieta_MenuDiario_Handler_DATA {
           
         
             try {
-                String query = "Insert into dieta_menudiario_handler( idDieta, idMenuDiario ) values ( ? , ? , ? )";
+                String query = "Insert into dieta_menudiario_handler( idDieta, idMenuDiario, fecha ) values ( ? , ? , ? )";
 
                 PreparedStatement ps = conexion.prepareStatement(query);
                 ps.setInt(1, idDieta);

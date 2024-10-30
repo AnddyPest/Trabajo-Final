@@ -411,7 +411,7 @@ public class VentanaExportarDieta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnVerDietaActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        ExportarPDF.exportarJTextAreaAPdf(txtAreaDieta);
+        ExportarPDF.exportarJTextAreaAPdf(txtAreaDieta); 
     }//GEN-LAST:event_btnExportarActionPerformed
 
 

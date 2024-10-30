@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -730,10 +731,11 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
         }
 
         for (int i = 0; i < tabDietas.getRowCount(); i++) {
-            LocalDate fechaMenu = (LocalDate) tabDietas.getValueAt(i, 0);
+            LocalDate fechaDia = LocalDate.parse(tabDietas.getValueAt(i, 0).toString());
+            
             int idMenuEnviado = (int) tabDietas.getValueAt(i, 1);
             System.out.println("ID MENU ENVIADO " + idMenuEnviado);
-            dieta_MenuDiario_Handler_DATA.createDieta_MenuDiario_Handler(dietaEnviada.getIdDieta(), idMenuEnviado, fechaMenu);
+            dieta_MenuDiario_Handler_DATA.createDieta_MenuDiario_Handler(dietaEnviada.getIdDieta(), idMenuEnviado, fechaDia);
 
         }
         txtMsg.setText("**Dieta "+txtDietaName.getText()+" creada. Ingrese nuevo nomrbe**");
