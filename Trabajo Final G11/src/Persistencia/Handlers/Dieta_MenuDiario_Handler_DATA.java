@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Connection;
+import java.time.LocalDate;
+
 
 
 public class Dieta_MenuDiario_Handler_DATA {
@@ -20,7 +22,7 @@ public class Dieta_MenuDiario_Handler_DATA {
         this.conexion = conexion;
     }
     
-    public int createDieta_MenuDiario_Handler( int idDieta, int idMenuDiario)  {
+    public int createDieta_MenuDiario_Handler( int idDieta, int idMenuDiario, LocalDate fecha)  {
         boolean validado = false;   
         int codigoDevuelto = 1;
         //UNA VEZ CREADO EL METODO HAY QUE ACTUALIZAR ESTO Y AÑADIR UN IF AL TRY DE ABAJO
@@ -30,11 +32,12 @@ public class Dieta_MenuDiario_Handler_DATA {
           
         
             try {
-                String query = "Insert into dieta_menudiario_handler( idDieta, idMenuDiario ) values ( ? , ?  )";
+                String query = "Insert into dieta_menudiario_handler( idDieta, idMenuDiario ) values ( ? , ? , ? )";
 
                 PreparedStatement ps = conexion.prepareStatement(query);
                 ps.setInt(1, idDieta);
                 ps.setInt(2, idMenuDiario);
+                ps.setDate(3, java.sql.Date.valueOf(fecha));
 
                 ps.executeUpdate();
                 
@@ -137,12 +140,13 @@ public class Dieta_MenuDiario_Handler_DATA {
             if(!FuncionDe.validarSiExisteId(this, handlerEnviado.getIdDieta().getIdDieta(), handlerEnviado.getIdMenuDiario().getIdMenuDiario())){
                 throw new SQLException("Validacion linea 133: No se encontro handler con dichos ids");
             }else{
-                String Query = "UPDATE dieta_menudiario_handler SET dieta_menudiario_handler.idDieta = ? , dieta_menudiario_handler.idMenuDiario = ? WHERE dieta_menudiario_handler.idDieta = ? AND dieta_menudiario_handler.idMenuDiario = ?";
+                String Query = "UPDATE dieta_menudiario_handler SET dieta_menudiario_handler.idDieta = ? , dieta_menudiario_handler.idMenuDiario = ? , dieta_menudiario_handler.fecha = ? WHERE dieta_menudiario_handler.idDieta = ? AND dieta_menudiario_handler.idMenuDiario = ?";
                 PreparedStatement ps = conexion.prepareStatement(Query);
                 ps.setInt(1, handlerEnviado.getIdDieta().getIdDieta());
                 ps.setInt(2, handlerEnviado.getIdMenuDiario().getIdMenuDiario());
-                ps.setInt(3, handlerViejo.getIdDieta().getIdDieta());
-                ps.setInt(4, handlerViejo.getIdMenuDiario().getIdMenuDiario());
+                ps.setDate(3, java.sql.Date.valueOf(handlerEnviado.getFecha()));
+                ps.setInt(4, handlerViejo.getIdDieta().getIdDieta());
+                ps.setInt(5, handlerViejo.getIdMenuDiario().getIdMenuDiario());
                 ps.executeUpdate();
                 ps.close();
 

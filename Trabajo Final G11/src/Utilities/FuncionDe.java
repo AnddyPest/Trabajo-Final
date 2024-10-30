@@ -84,6 +84,7 @@ public class FuncionDe {
         menuDiario.setIdMenuDiario(resultados.getInt("idMenuDiario"));
         handlerCreado.setIdDieta(dieta);
         handlerCreado.setIdMenuDiario(menuDiario);
+        handlerCreado.setFecha(resultados.getDate("fecha").toLocalDate());
         
         return handlerCreado;
     } 
