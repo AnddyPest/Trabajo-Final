@@ -730,9 +730,10 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
         }
 
         for (int i = 0; i < tabDietas.getRowCount(); i++) {
+            LocalDate fechaMenu = (LocalDate) tabDietas.getValueAt(i, 0);
             int idMenuEnviado = (int) tabDietas.getValueAt(i, 1);
             System.out.println("ID MENU ENVIADO " + idMenuEnviado);
-            dieta_MenuDiario_Handler_DATA.createDieta_MenuDiario_Handler(dietaEnviada.getIdDieta(), idMenuEnviado);
+            dieta_MenuDiario_Handler_DATA.createDieta_MenuDiario_Handler(dietaEnviada.getIdDieta(), idMenuEnviado, fechaMenu);
 
         }
         txtMsg.setText("**Dieta "+txtDietaName.getText()+" creada. Ingrese nuevo nomrbe**");

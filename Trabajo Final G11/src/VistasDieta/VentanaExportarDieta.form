@@ -59,7 +59,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="btnVerDieta" alignment="1" max="32767" attributes="0"/>
-                          <Component id="btnCrearMenu" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnExportar" alignment="1" max="32767" attributes="0"/>
                           <Component id="btnExit" alignment="1" max="32767" attributes="0"/>
                           <Component id="jLabel7" alignment="1" max="32767" attributes="0"/>
                           <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
@@ -90,7 +90,7 @@
                       <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                       <Component id="jSeparator5" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnCrearMenu" min="-2" pref="44" max="-2" attributes="0"/>
+                      <Component id="btnExportar" min="-2" pref="44" max="-2" attributes="0"/>
                       <EmptySpace pref="89" max="32767" attributes="0"/>
                       <Component id="btnExit" min="-2" pref="51" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -173,11 +173,14 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnCrearMenu">
+            <Component class="javax.swing.JButton" name="btnExportar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Export PDF"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExportarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnVerDieta">
               <Properties>

@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import Utilities.ExportarPDF;
 
 public class VentanaExportarDieta extends javax.swing.JInternalFrame {
 
@@ -25,6 +26,7 @@ public class VentanaExportarDieta extends javax.swing.JInternalFrame {
     MenuDiarioData menuDiarioData;
     AlimentoData alimentoData;
     MenuDiario_Alimento_Handler_DATA menuDiario_Alimento_Handler_DATA;
+    
 
     public VentanaExportarDieta() {
         initComponents();
@@ -51,7 +53,7 @@ public class VentanaExportarDieta extends javax.swing.JInternalFrame {
         btnExit = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
-        btnCrearMenu = new javax.swing.JButton();
+        btnExportar = new javax.swing.JButton();
         btnVerDieta = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         txtId = new javax.swing.JTextField();
@@ -101,8 +103,13 @@ public class VentanaExportarDieta extends javax.swing.JInternalFrame {
         jSeparator5.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator5.setForeground(new java.awt.Color(204, 204, 204));
 
-        btnCrearMenu.setText("Export PDF");
-        btnCrearMenu.setEnabled(false);
+        btnExportar.setText("Export PDF");
+        btnExportar.setEnabled(false);
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportarActionPerformed(evt);
+            }
+        });
 
         btnVerDieta.setText("Ver Dieta");
         btnVerDieta.setEnabled(false);
@@ -120,7 +127,7 @@ public class VentanaExportarDieta extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnVerDieta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCrearMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
@@ -148,7 +155,7 @@ public class VentanaExportarDieta extends javax.swing.JInternalFrame {
                 .addGap(100, 100, 100)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCrearMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
@@ -400,13 +407,17 @@ public class VentanaExportarDieta extends javax.swing.JInternalFrame {
     
     txtAreaDieta.append("Calorías totales de la dieta: " + selectedDiet.getTotalCalorias() + "\n");
 
-
+    btnExportar.setEnabled(true);
     }//GEN-LAST:event_btnVerDietaActionPerformed
+
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        ExportarPDF.exportarJTextAreaAPdf(txtAreaDieta);
+    }//GEN-LAST:event_btnExportarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCrearMenu;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnExportar;
     private javax.swing.JButton btnSelectDieta;
     private javax.swing.JButton btnVerDieta;
     private javax.swing.JComboBox<String> cmbDietas;
