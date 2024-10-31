@@ -22,13 +22,13 @@ public class MenuDiarioData {
         int codigoDevuelto = 1;
         if (validado) {
             try {
-                String query = "Insert into menudiario( nombreMenu, dia, caloriasDelMenu, estado ) values(  ? , ? , ?, ? )";
+                String query = "Insert into menudiario( nombreMenu, caloriasDelMenu, estado ) values(  ? , ? , ? )";
 
                 PreparedStatement ps = conexion.prepareStatement(query);
                 ps.setString(1, menuDiarioEnviada.getNombreMenu());
-                ps.setInt(2, menuDiarioEnviada.getDia());
-                ps.setInt(3, menuDiarioEnviada.getCaloriasDelMenu());
-                ps.setBoolean(4, true);
+                //ps.setInt(2, menuDiarioEnviada.getDia());
+                ps.setInt(2, menuDiarioEnviada.getCaloriasDelMenu());
+                ps.setBoolean(3, true);
                 ps.executeUpdate();
 
                 FuncionDe.mostrarMensajeCorrecto("Crear Menu Diario", "El menu ha sido añadida");
@@ -132,13 +132,13 @@ public class MenuDiarioData {
         try {
             //REVISAR SI FUNCIONA
             FuncionDe.validarSiExisteId(this, menuEnviado.getIdMenuDiario());
-            String Query = "UPDATE menudiario SET  menudiario.dia = ?, menudiario.caloriasDelMenu = ?, menudiario.estado = ? WHERE menuDiario.idMenu = ?";
+            String Query = "UPDATE menudiario SET   menudiario.caloriasDelMenu = ?, menudiario.estado = ? WHERE menuDiario.idMenu = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
-            ps.setInt(1, menuEnviado.getDia());
-            ps.setInt(2, menuEnviado.getCaloriasDelMenu());
+            //ps.setInt(1, menuEnviado.getDia());
+            ps.setInt(1, menuEnviado.getCaloriasDelMenu());
             //ps.setInt(3, menuEnviado.getDieta().getIdDieta());
-            ps.setBoolean(3, menuEnviado.isEstado());
-            ps.setInt(4, menuEnviado.getIdMenuDiario());
+            ps.setBoolean(2, menuEnviado.isEstado());
+            ps.setInt(3, menuEnviado.getIdMenuDiario());
             ps.executeUpdate();
             ps.close();
 

@@ -106,7 +106,7 @@ public class FuncionDe {
         MenuDiario menuCreado = new MenuDiario();
         menuCreado.setIdMenuDiario(resultados.getInt("idMenuDiario"));
         menuCreado.setNombreMenu(resultados.getString("nombreMenu")); 
-        menuCreado.setDia(resultados.getInt("dia"));
+        //menuCreado.setDia(resultados.getInt("dia"));
         menuCreado.setCaloriasDelMenu(resultados.getInt("caloriasDelMenu"));
         menuCreado.setEstado(resultados.getBoolean("estado"));
         return menuCreado;

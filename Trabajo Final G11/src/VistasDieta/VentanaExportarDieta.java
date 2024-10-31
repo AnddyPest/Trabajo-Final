@@ -17,6 +17,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import Utilities.ExportarPDF;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.Comparator;
 
 public class VentanaExportarDieta extends javax.swing.JInternalFrame {
 
@@ -343,37 +348,49 @@ public class VentanaExportarDieta extends javax.swing.JInternalFrame {
 
     private void btnVerDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDietaActionPerformed
       
-    Dieta selectedDiet = dietaData.buscarDietasPorNombre(cmbDietas.getSelectedItem().toString());
+     Dieta selectedDiet = dietaData.buscarDietasPorNombre(cmbDietas.getSelectedItem().toString());
 
     // Arraylist con los Id de Menu que estan relacionados con el Id de la Dieta
     ArrayList<Integer> handlerDietaMenu = dieta_MenuDiario_Handler_DATA.listarMenuDiario_DietaID(selectedDiet.getIdDieta());
 
-    // Arraylist con los Menus que se encuentran en la Dieta
-    ArrayList<MenuDiario> menusEnDieta = new ArrayList<>();
+    // Lista para almacenar los menús con sus fechas formateadas
+    List<SimpleEntry<MenuDiario, LocalDate>> menusConFechas = new ArrayList<>();
 
     for (Integer idMenu : handlerDietaMenu) {
         MenuDiario menu = menuDiarioData.buscarMenuPorID(idMenu);
         if (menu != null) {
-            menusEnDieta.add(menu);
+            // Obtener y formatear la fecha
+            String fechaString = dieta_MenuDiario_Handler_DATA.obtenerFechaPorMenuYDieta(selectedDiet.getIdDieta(), menu.getIdMenuDiario());
+            LocalDate fechaSinFormat = LocalDate.parse(fechaString);  // Asegúrate de que el formato original sea yyyy-MM-dd
+            menusConFechas.add(new AbstractMap.SimpleEntry<>(menu, fechaSinFormat));
             System.out.println("ID DE MENU ENVIADO: " + idMenu);
         } else {
             System.out.println("No se encontró el menú con ID: " + idMenu);
         }
     }
 
+    // Ordenar los menús por fecha
+    menusConFechas.sort(Comparator.comparing(Map.Entry::getValue));
+
+    String separador = "-".repeat(120);
     txtAreaDieta.setText("");
     txtAreaDieta.append("Dieta: " + selectedDiet.getNombre() + "\n");
     txtAreaDieta.append("Paciente: " + txtPacienteName.getText() + "\n");
     txtAreaDieta.append("Fecha inicio dieta: " + selectedDiet.getFechaInicio() + " Peso inicial: " + selectedDiet.getPesoInicial() + "Kg\n");
     txtAreaDieta.append("Fecha final dieta: " + selectedDiet.getFechaFinal() + " Peso final: " + selectedDiet.getPesoFinal() + "Kg\n");
-    txtAreaDieta.append("-----------------------------------------------------------\n");
+    txtAreaDieta.append(separador + "\n");
 
     // Orden de las comidas
     String[] ordenComidas = {"Desayuno", "Almuerzo", "Merienda", "Snack", "Cena"};
 
-    for (MenuDiario menu : menusEnDieta) {
-        txtAreaDieta.append("Menu dia " + menu.getDia() + " Necesitamos agregar fecha en el handler " + menu.getNombreMenu() + "\n");
-        txtAreaDieta.append("-----------------------------------------------------------\n");
+    for (Map.Entry<MenuDiario, LocalDate> entry : menusConFechas) {
+        MenuDiario menu = entry.getKey();
+        LocalDate fechaSinFormat = entry.getValue();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String fechaConFormato = fechaSinFormat.format(formatter);
+
+        txtAreaDieta.append("Dia " + fechaConFormato + ", Menú: " + menu.getNombreMenu() + "\n");
+        txtAreaDieta.append(separador +"\n");
 
         // Obtener alimentos del menú diario usando menudiario_alimento_handler
         ArrayList<Integer> alimentosIdEnMenuActual = menuDiario_Alimento_Handler_DATA.listarAlimentosPorMenuDiarioID(menu.getIdMenuDiario());
@@ -395,13 +412,13 @@ public class VentanaExportarDieta extends javax.swing.JInternalFrame {
                     txtAreaDieta.append("Nombre del alimento: " + alimento.getNombre() + "\n");
                     txtAreaDieta.append("Descripción del alimento: " + alimento.getDetalle() + "\n");
                     txtAreaDieta.append("Calorías: " + alimento.getCaloriasPor100g() + "\n");
-                    txtAreaDieta.append("-----------------------\n");
+                    txtAreaDieta.append(separador+"\n");
                 }
             }
         }
         txtAreaDieta.append("Total de calorias del Día: " +menu.getCaloriasDelMenu() +"\n");
-        txtAreaDieta.append("-----------------------------------------------------------\n");
-        txtAreaDieta.append("-----------------------------------------------------------\n");
+        txtAreaDieta.append(separador+"\n");
+        txtAreaDieta.append(separador+"\n");
     }
 
     

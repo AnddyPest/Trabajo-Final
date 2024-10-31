@@ -185,6 +185,25 @@ public class Dieta_MenuDiario_Handler_DATA {
         }
         
     }
+    
+    public String obtenerFechaPorMenuYDieta(int idDieta, int idMenuDiario) {
+    String fecha = "";
+    try {
+        String query = "SELECT fecha FROM dieta_menudiario_handler WHERE idDieta = ? AND idMenuDiario = ?";
+        PreparedStatement ps = conexion.prepareStatement(query);
+        ps.setInt(1, idDieta);
+        ps.setInt(2, idMenuDiario);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            fecha = rs.getString("fecha");
+        }
+        rs.close();
+        ps.close();
+    } catch (SQLException ex) {
+        FuncionDe.mostrarMensajeError("No se pudo encontrar la fecha", ex, "obtenerFechaPorMenuYDieta", "Dieta_MenuDiario_Handler_DATA", "104");
+    }
+    return fecha;
+}
 }
     
 

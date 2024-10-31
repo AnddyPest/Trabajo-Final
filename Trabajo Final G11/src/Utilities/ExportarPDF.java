@@ -15,38 +15,38 @@ public class ExportarPDF {
     public static void exportarJTextAreaAPdf(JTextArea textArea) {
         Document documento = new Document();
 
-        // Crear el JFileChooser
+        //Creamos la ventana para elegir el destino del archivo PDF generado.
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Guardar PDF");
-        fileChooser.setSelectedFile(new File("ejemplo_textarea.pdf")); // Nombre predeterminado
+        fileChooser.setSelectedFile(new File(""));
 
-        // Mostrar el diálogo para seleccionar la ubicación
+        // Mmostramos la ventanita de seleccion de capeta.
         int userSelection = fileChooser.showSaveDialog(null);
         if (userSelection != JFileChooser.APPROVE_OPTION) {
-            return; // Si el usuario cancela, salir del método
+            return; // Si llega a cancelar, sale de la ventana.
         }
 
-        // Obtener el archivo seleccionado
+        // Obtenemos el archivo seleccionado.
         File fileToSave = fileChooser.getSelectedFile();
 
-        // Asegurarse de que la extensión del archivo sea .pdf
+        // Verificamos que sea un pdf
         String filePath = fileToSave.getAbsolutePath();
         if (!filePath.endsWith(".pdf")) {
             filePath += ".pdf"; // Agregar .pdf si no está presente
         }
 
         try {
-            // Crear el escritor de PDF
+            // Crear PDF
             PdfWriter.getInstance(documento, new FileOutputStream(filePath));
 
-            // Abrir el documento para escribir
+            // Abre el pdf para escrib irle, pero no lo muestra jeje
             documento.open();
 
-            // Obtener el contenido del JTextArea y añadirlo al documento
+            // Obtener el contenido del JTextArea y añadirlo al documento de texto a exportar wacho
             String contenido = textArea.getText();
             documento.add(new Paragraph(contenido));
 
-            // Cerrar el documento
+            // Aca cierra el pdf, asi que esta perfecto. El tema del forrmato del pdf te lo debo jeje
             documento.close();
 
             JOptionPane.showMessageDialog(null, "PDF generado exitosamente en: " + filePath);

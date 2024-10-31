@@ -153,9 +153,7 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         tabMenuDiario = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         txtCalTotal = new javax.swing.JTextField();
-        txtDay = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -700,34 +698,18 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(204, 204, 204));
         jLabel8.setText("TOTAL CALORIAS:");
-        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 130, 40));
-
-        jLabel9.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel9.setText("DIA DIETA:");
-        jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, 40));
+        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 130, 40));
 
         txtCalTotal.setEditable(false);
         txtCalTotal.setBackground(new java.awt.Color(51, 51, 51));
         txtCalTotal.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         txtCalTotal.setForeground(new java.awt.Color(204, 204, 204));
-        jPanel7.add(txtCalTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 90, 40));
-
-        txtDay.setEditable(false);
-        txtDay.setBackground(new java.awt.Color(51, 51, 51));
-        txtDay.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        txtDay.setForeground(new java.awt.Color(204, 204, 204));
-        txtDay.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDayKeyTyped(evt);
-            }
-        });
-        jPanel7.add(txtDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 120, 40));
+        jPanel7.add(txtCalTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 90, 40));
 
         jLabel10.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 204, 204));
         jLabel10.setText("cal");
-        jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, 30, 40));
+        jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 30, 40));
 
         jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 600, 60));
 
@@ -809,8 +791,7 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
             
             
             if(tabMenuDiario.getRowCount() == 5) {
-                txtDay.setEditable(true);
-                txtDay.requestFocus();
+                
                 btnSelect.setEnabled(false);
             }
         }
@@ -857,13 +838,13 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnComenzarActionPerformed
 
     private void btnCrearMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMenuActionPerformed
-        if(!txtDay.getText().isEmpty()){
-        btnComenzar.setEnabled(true);
+        
+        btnComenzar.setEnabled(false);
         String nombreMenu = txtMenuName.getText();
-        int diaMenu = Integer.parseInt(txtDay.getText());
+        
         int caloriasDelMenu = Integer.parseInt(txtCalTotal.getText());
         
-        MenuDiario menuDiario = new MenuDiario(nombreMenu, diaMenu, caloriasDelMenu);
+        MenuDiario menuDiario = new MenuDiario(nombreMenu, caloriasDelMenu);
         
         menuDiarioData.crearMenuDiario(menuDiario);
         MenuDiario menuEnviado = menuDiarioData.buscarMenuPorNombre(nombreMenu);
@@ -879,19 +860,16 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         txtMenuName.setText("");
         modelTablaMenu.setRowCount(0);
         txtCalTotal.setText("");
-        txtDay.setEditable(false);
-        txtDay.setText("");
+        
         listIncluye.removeAll();
         listNoIncluye.removeAll();
         cargarListaKeys();
         cargarAlimentosAll();
         btnCrearMenu.setEnabled(false);
-      
+        txtMenuName.setEditable(true);
         txtMenuName.requestFocus();
         btnComenzar.setEnabled(false);        
-        }else{
-            txtDay.requestFocus();
-        }
+        
         
     }//GEN-LAST:event_btnCrearMenuActionPerformed
 
@@ -926,18 +904,6 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtMenuNameKeyTyped
 
-    private void txtDayKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDayKeyTyped
-        int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57;
-
-        if (!numero) {
-            evt.consume();
-        }
-        if(!txtDay.getText().isBlank()) {
-            btnCrearMenu.setEnabled(true);
-        }
-    }//GEN-LAST:event_txtDayKeyTyped
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddIn;
@@ -959,7 +925,6 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -993,7 +958,6 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
     private javax.swing.JTable tabListadoFiltered;
     private javax.swing.JTable tabMenuDiario;
     private javax.swing.JTextField txtCalTotal;
-    private javax.swing.JTextField txtDay;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtMenuName;
     // End of variables declaration//GEN-END:variables

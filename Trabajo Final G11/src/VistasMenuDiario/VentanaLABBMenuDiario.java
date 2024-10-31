@@ -462,7 +462,7 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
             modelo.addRow(new Object[]{
                 m.getIdMenuDiario(),
                 m.getNombreMenu(),
-                m.getDia(),
+                //m.getDia(),
                 m.getCaloriasDelMenu(),
                 m.isEstado() ? "Activo" : "Inactivo"
             
