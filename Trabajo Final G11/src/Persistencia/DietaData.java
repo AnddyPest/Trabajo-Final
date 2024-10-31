@@ -245,4 +245,79 @@ public class DietaData {
         }
 
     }
+    
+     public  Dieta buscarDietaSoloPorId(int id){
+        
+            Dieta dietaEnviada = new Dieta();
+            
+            String query = "SELECT * FROM dietas WHERE dieta.idDieta = ?";
+        try {   
+            
+            
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+               dietaEnviada = new Dieta();
+               dietaEnviada.setIdDieta(rs.getInt("idAlumno"));
+               dietaEnviada.setNombre(rs.getString("nombre"));
+               dietaEnviada.setIdPaciente(rs.getInt("idPaciente"));
+               dietaEnviada.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+               dietaEnviada.setFechaFinal(rs.getDate("fechaFinal").toLocalDate());
+               dietaEnviada.setPesoInicial(rs.getDouble("pesoInicial"));
+               dietaEnviada.setPesoFinal(rs.getDouble("pesoFinal"));
+               dietaEnviada.setTotalCalorias(rs.getInt("totalCalorias"));
+               dietaEnviada.setEstadoDieta(rs.getBoolean("estado")); 
+            }
+              ps.close();
+            if(dietaEnviada == null){
+                throw new SQLException();
+            }
+        } catch (SQLException ex) {            
+            System.out.println("Error, no se pudo encontrar el registro!");
+            System.out.println("Mensaje de error: " + ex.getMessage());
+            
+        }
+        return dietaEnviada;
+   
+    } 
+    
+    public void actualizarPesoDietas(int idDieta, int pesoFinal) {
+    String query = "UPDATE dieta SET dieta.pesoFinal = ? WHERE dieta.idDieta = ?";
+    try {
+        PreparedStatement ps = conexion.prepareStatement(query);
+        ps.setInt(1, pesoFinal);
+        ps.setInt(2, idDieta);
+        ps.executeUpdate();
+        ps.close();
+
+        FuncionDe.mostrarMensajeCorrecto("actualizarDietaPorId", "Dieta actualizada con éxito");
+
+    } catch (SQLException ex) {
+        FuncionDe.mostrarMensajeError("No se pudo actualizar la dieta", ex, "actualizarDietaPorId", "DietaData", "151");
+    }
+}
+
+   public ArrayList<Dieta> listarDietasPorIdPaciente(int idPaciente) {
+    ArrayList<Dieta> dietasPorPaciente = new ArrayList<>();
+    String query = "SELECT * FROM dieta WHERE dieta.idPaciente = ?";
+
+    try {
+        PreparedStatement ps = conexion.prepareStatement(query);
+        ps.setInt(1, idPaciente);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Dieta dietaCreada = FuncionDe.crearDieta(rs);
+            dietasPorPaciente.add(dietaCreada);
+        }
+
+        rs.close();
+        ps.close();
+    } catch (SQLException ex) {
+        System.out.println("Error, no se pudo encontrar el registro!");
+        System.out.println("Mensaje de error: " + ex.getMessage());
+    }
+    return dietasPorPaciente;
+}
 }

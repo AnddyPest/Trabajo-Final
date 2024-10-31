@@ -158,6 +158,31 @@ public class PacienteData {
         return pacientesEncontrados;
         
     }
+    
+    public Paciente buscarPacientesPorNombreUnoSolo(String nombreEnviado) {
+    Paciente pacienteEncontrado = null;
+    try {
+        String query = "SELECT * FROM paciente WHERE paciente.nombre = ?";
+        PreparedStatement ps = conexion.prepareStatement(query);
+        ps.setString(1, nombreEnviado);
+        ResultSet resultados = ps.executeQuery();
+        while (resultados.next()) {
+            pacienteEncontrado = FuncionDe.crearPaciente(resultados);
+        }
+        resultados.close();
+        ps.close();
+        
+        if (pacienteEncontrado != null) {
+            FuncionDe.mostrarMensajeCorrecto("buscarPacientesPorNombre", "Paciente con nombre: " + nombreEnviado + " encontrado correctamente");
+        } else {
+            throw new SQLException("No se encontraron pacientes con dicho nombre");
+        }
+    } catch (SQLException ex) {
+        FuncionDe.mostrarMensajeError("No se encontraron pacientes con dicho nombre", ex, "buscarPacientesPorNombre", "PacienteData", "131");
+    }
+    return pacienteEncontrado;
+}
+
     //UPDATE
     //actualizar paciente por id
     

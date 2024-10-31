@@ -12,7 +12,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;

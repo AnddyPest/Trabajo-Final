@@ -76,7 +76,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel2.setBackground(new java.awt.Color(102, 0, 102));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 2, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
@@ -105,7 +105,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
             }
         });
 
-        radioAlta.setBackground(new java.awt.Color(0, 102, 102));
+        radioAlta.setBackground(new java.awt.Color(102, 0, 102));
         radioAlta.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         radioAlta.setForeground(new java.awt.Color(204, 204, 204));
         radioAlta.setText("Alta Menu diario");
@@ -115,7 +115,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
             }
         });
 
-        radioBaja.setBackground(new java.awt.Color(0, 102, 102));
+        radioBaja.setBackground(new java.awt.Color(102, 0, 102));
         radioBaja.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         radioBaja.setForeground(new java.awt.Color(204, 204, 204));
         radioBaja.setText("Baja Menu diario");
@@ -125,7 +125,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
             }
         });
 
-        radioBorrar.setBackground(new java.awt.Color(0, 102, 102));
+        radioBorrar.setBackground(new java.awt.Color(102, 0, 102));
         radioBorrar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         radioBorrar.setForeground(new java.awt.Color(204, 204, 204));
         radioBorrar.setText("Borrar Menu");
@@ -178,11 +178,11 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 460));
 
-        jPanel3.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel3.setBackground(new java.awt.Color(102, 0, 102));
 
         txtId.setEditable(false);
-        txtId.setBackground(new java.awt.Color(0, 102, 102));
-        txtId.setForeground(new java.awt.Color(0, 102, 102));
+        txtId.setBackground(new java.awt.Color(102, 0, 102));
+        txtId.setForeground(new java.awt.Color(102, 0, 102));
         txtId.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtId.setBorder(null);
         txtId.setCaretColor(new java.awt.Color(51, 0, 0));
