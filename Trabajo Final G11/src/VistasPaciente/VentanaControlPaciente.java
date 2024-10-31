@@ -1,4 +1,3 @@
-
 package VistasPaciente;
 
 import Entidades.Dieta;
@@ -9,23 +8,44 @@ import java.util.ArrayList;
 import java.sql.Connection;
 import Utilities.Conexion;
 import java.awt.Color;
+import java.time.LocalDate;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-
 public class VentanaControlPaciente extends javax.swing.JInternalFrame {
+
     PacienteData pacienteData;
     DietaData dietaData;
     private final DefaultTableModel modelo = new NonEditableTableModel();
+    private final DefaultTableModel modelo1 = new NonEditableTableModel();
 
-  
     public VentanaControlPaciente() {
         Connection con = Conexion.getConexion();
         pacienteData = new PacienteData(con);
         dietaData = new DietaData(con);
         initComponents();
         txtError.setForeground(Color.red);
-        cargarCabecera();
+        cargarCabeceraDietas();
         cargarComboPacientes();
+        cargarCabeceraSeguimientoDePeso();
+
+        tabDietas.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int fila = tabDietas.getSelectedRow();
+                    if (fila != -1) {
+                        btnSelectDieta.setEnabled(true);
+
+                    }
+
+                }
+            }
+        });
+
     }
 
     private class NonEditableTableModel extends DefaultTableModel {
@@ -35,7 +55,7 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
             return false;
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -63,7 +83,7 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         txtPesoBusq = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabDietas = new javax.swing.JTable();
+        tabSeguimiento = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -71,6 +91,8 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
         btnSelectDieta = new javax.swing.JButton();
         txtPesoFinalImput = new javax.swing.JTextField();
         btnStablishPeso = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabDietas = new javax.swing.JTable();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -168,8 +190,8 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txtPesoInicial)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,8 +279,8 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPesoBusq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addComponent(txtPesoBusq, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,7 +292,7 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tabDietas.setModel(new javax.swing.table.DefaultTableModel(
+        tabSeguimiento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -281,7 +303,8 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2"
             }
         ));
-        jScrollPane1.setViewportView(tabDietas);
+        tabSeguimiento.setEnabled(false);
+        jScrollPane1.setViewportView(tabSeguimiento);
 
         jPanel9.setBackground(new java.awt.Color(102, 102, 102));
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -298,8 +321,27 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
         jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
 
         btnSelectDieta.setText("Seleccionar Dieta");
+        btnSelectDieta.setEnabled(false);
+        btnSelectDieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectDietaActionPerformed(evt);
+            }
+        });
+
+        txtPesoFinalImput.setEnabled(false);
+        txtPesoFinalImput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPesoFinalImputKeyTyped(evt);
+            }
+        });
 
         btnStablishPeso.setText("Establecer Peso");
+        btnStablishPeso.setEnabled(false);
+        btnStablishPeso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStablishPesoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -311,10 +353,10 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
                     .addComponent(jSeparator2)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtPesoFinalImput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnStablishPeso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPesoFinalImput, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnStablishPeso, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -338,6 +380,20 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
                 .addGap(11, 11, 11))
         );
 
+        tabDietas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2"
+            }
+        ));
+        tabDietas.setEnabled(false);
+        jScrollPane2.setViewportView(tabDietas);
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -351,7 +407,8 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -363,11 +420,13 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -408,19 +467,59 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
-        if(cmbPacientes.getSelectedIndex() != 0) {
+        if (cmbPacientes.getSelectedIndex() != 0) {
             Paciente pacienteSelected = pacienteData.buscarPacientesPorNombreUnoSolo(cmbPacientes.getSelectedItem().toString());
             btnSelect.setEnabled(false);
             txtError.setForeground(Color.green);
-            txtError.setText("*Paciente "+cmbPacientes.getSelectedItem().toString()+" seleccionado.");
+            txtError.setText("*Paciente " + cmbPacientes.getSelectedItem().toString() + " seleccionado.");
             txtIdPaciente.setText(String.valueOf(pacienteSelected.getIdPaciente()));
             txtPesoInicial.setText(String.valueOf(pacienteSelected.getPesoActual()));
             txtPesoBusq.setText(String.valueOf(pacienteSelected.getPesoBuscado()));
             cargarTablaDietas();
-        }else{
-        txtError.setText("*Debe seleccionar un paciente.");
+            tabDietas.setEnabled(true);
+            btnSelectDieta.setEnabled(true);
+        } else {
+            txtError.setText("*Debe seleccionar un paciente.");
         }
     }//GEN-LAST:event_btnSelectActionPerformed
+
+    private void btnSelectDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectDietaActionPerformed
+        tabDietas.setEnabled(false);
+        txtPesoFinalImput.setEnabled(true);
+        btnStablishPeso.setEnabled(true);
+        btnSelectDieta.setEnabled(false);
+    }//GEN-LAST:event_btnSelectDietaActionPerformed
+
+    private void txtPesoFinalImputKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesoFinalImputKeyTyped
+
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57 || key == 46;
+        txtError.setForeground(Color.red);
+        if (!numero) {
+            evt.consume();
+
+            txtError.setText("*Solo números.");
+        } else {
+            txtError.setText("");
+        }
+        btnStablishPeso.setEnabled(true);
+
+    }//GEN-LAST:event_txtPesoFinalImputKeyTyped
+
+    private void btnStablishPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStablishPesoActionPerformed
+        if (!txtPesoFinalImput.getText().isEmpty()) {
+
+            dietaData.actualizarPesoDietas((int) (modelo.getValueAt(tabDietas.getSelectedRow(), 0)), Double.parseDouble(txtPesoFinalImput.getText()));
+            cargarTablaDietas();
+            txtError.setForeground(Color.green);
+            txtError.setText("*Se ha establecido el peso para la fecha final de la dieta seleccionada.");
+            LocalDate fechaInicial = (LocalDate) tabDietas.getValueAt(0, 1);
+            
+            cargarTablaSeguimiento(fechaInicial); 
+        } else {
+            txtError.setText("*Debe ingresar un peso.");
+        }
+    }//GEN-LAST:event_btnStablishPesoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -447,9 +546,11 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable tabDietas;
+    private javax.swing.JTable tabSeguimiento;
     private javax.swing.JTextField txtError;
     private javax.swing.JTextField txtIdPaciente;
     private javax.swing.JTextField txtPesoBusq;
@@ -457,36 +558,72 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPesoInicial;
     // End of variables declaration//GEN-END:variables
 
-private void cargarComboPacientes () {
-    ArrayList<Paciente> listadoPacientes = pacienteData.listarPacientes();
-    for(Paciente p : listadoPacientes) {
-        cmbPacientes.addItem(p.getNombre());
+    private void cargarComboPacientes() {
+        ArrayList<Paciente> listadoPacientes = pacienteData.listarPacientes();
+        for (Paciente p : listadoPacientes) {
+            cmbPacientes.addItem(p.getNombre());
+        }
     }
-}
 
-private void cargarCabecera () {
-    modelo.addColumn("idDieta");
-    modelo.addColumn("Fecha Inicial");
-    modelo.addColumn("Peso Inicial");
-    modelo.addColumn("Fecha Final");
-    modelo.addColumn("Peso Final");
-    
-    tabDietas.setModel(modelo);
-}
+    private void cargarCabeceraDietas() {
+        modelo.addColumn("idDieta");
+        modelo.addColumn("Fecha Inicial");
+        modelo.addColumn("Peso Inicial");
+        modelo.addColumn("Fecha Final");
+        modelo.addColumn("Peso Final");
 
-private void cargarTablaDietas() {
-    ArrayList<Dieta> listaDietas = dietaData.listarDietasPorIdPaciente(Integer.parseInt(txtIdPaciente.getText()));  
-    modelo.setRowCount(0);
-    for(Dieta d : listaDietas){
-        modelo.addRow(new Object []{
-            d.getIdDieta(),
-            d.getFechaInicio(),
-            d.getPesoInicial(),
-            d.getFechaFinal(),
-            d.getPesoFinal()
+        tabDietas.setModel(modelo);
+    }
+
+    private void cargarTablaDietas() {
+        modelo.setRowCount(0);
+        ArrayList<Dieta> listaDietas = dietaData.listarDietasPorIdPaciente(Integer.parseInt(txtIdPaciente.getText()));
+
+        for (Dieta d : listaDietas) {
+            modelo.addRow(new Object[]{
+                d.getIdDieta(),
+                d.getFechaInicio(),
+                d.getPesoInicial(),
+                d.getFechaFinal(),
+                d.getPesoFinal()
+            });
+        }
+    }
+
+    private void cargarCabeceraSeguimientoDePeso() {
+        modelo1.addColumn("Fecha");
+        modelo1.addColumn("Peso");
+        modelo1.addColumn("Diferencia");
+        modelo1.addColumn("Al objetivo");
+
+        tabSeguimiento.setModel(modelo1);
+    }
+
+    private void cargarTablaSeguimiento(LocalDate fechaInicial) {
+        modelo1.setRowCount(0);
+        ArrayList<Dieta> listaDietas = dietaData.listarDietasPorIdPaciente(Integer.parseInt(txtIdPaciente.getText()));
+        Paciente pacienteControl = pacienteData.buscarPacientesPorNombreUnoSolo(cmbPacientes.getSelectedItem().toString());
+
+        modelo1.addRow(new Object[]{
+            fechaInicial,
+            pacienteControl.getPesoActual(),
+            "0",
+            pacienteControl.getPesoActual() - pacienteControl.getPesoBuscado()
+        
         });
+        
+        double pesoAnterior = pacienteControl.getPesoActual();
+        for (Dieta d : listaDietas) {
+            double diferencia = d.getPesoFinal() - pesoAnterior;
+            double alObjetivoDieta = d.getPesoFinal() - pacienteControl.getPesoBuscado();
+            modelo1.addRow(new Object[]{
+                d.getFechaFinal(),
+                d.getPesoFinal(),
+                diferencia,
+                alObjetivoDieta
+            });
+            pesoAnterior = d.getPesoFinal();
+        }
     }
-}
-
 
 }

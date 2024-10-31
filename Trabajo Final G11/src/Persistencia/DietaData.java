@@ -282,11 +282,11 @@ public class DietaData {
    
     } 
     
-    public void actualizarPesoDietas(int idDieta, int pesoFinal) {
+    public void actualizarPesoDietas(int idDieta, double pesoFinal) {
     String query = "UPDATE dieta SET dieta.pesoFinal = ? WHERE dieta.idDieta = ?";
     try {
         PreparedStatement ps = conexion.prepareStatement(query);
-        ps.setInt(1, pesoFinal);
+        ps.setDouble(1, pesoFinal);
         ps.setInt(2, idDieta);
         ps.executeUpdate();
         ps.close();
