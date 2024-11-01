@@ -109,6 +109,7 @@ public class VentanaAltaBajaLogicaDieta extends javax.swing.JInternalFrame {
         });
 
         radioAlta.setBackground(new java.awt.Color(102, 0, 102));
+        grupoSelect.add(radioAlta);
         radioAlta.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         radioAlta.setForeground(new java.awt.Color(204, 204, 204));
         radioAlta.setText("Alta Dieta");
@@ -119,6 +120,7 @@ public class VentanaAltaBajaLogicaDieta extends javax.swing.JInternalFrame {
         });
 
         radioBaja.setBackground(new java.awt.Color(102, 0, 102));
+        grupoSelect.add(radioBaja);
         radioBaja.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         radioBaja.setForeground(new java.awt.Color(204, 204, 204));
         radioBaja.setText("Baja Dieta");

@@ -67,6 +67,8 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
+        btnVer = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -122,6 +124,21 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
             }
         });
 
+        btnVer.setText("Ver Historial");
+        btnVer.setEnabled(false);
+        btnVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerActionPerformed(evt);
+            }
+        });
+
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -129,11 +146,13 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                    .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -147,7 +166,11 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(242, 242, 242)
+                .addGap(18, 18, 18)
+                .addComponent(btnVer, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(140, 140, 140)
+                .addComponent(btnReset)
+                .addGap(18, 18, 18)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
@@ -328,6 +351,7 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
             }
         });
 
+        txtPesoFinalImput.setEditable(false);
         txtPesoFinalImput.setEnabled(false);
         txtPesoFinalImput.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -477,7 +501,8 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
             txtPesoBusq.setText(String.valueOf(pacienteSelected.getPesoBuscado()));
             cargarTablaDietas();
             tabDietas.setEnabled(true);
-            btnSelectDieta.setEnabled(true);
+            btnVer.setEnabled(true);
+            
         } else {
             txtError.setText("*Debe seleccionar un paciente.");
         }
@@ -488,6 +513,7 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
         txtPesoFinalImput.setEnabled(true);
         btnStablishPeso.setEnabled(true);
         btnSelectDieta.setEnabled(false);
+        txtPesoFinalImput.setEditable(true);
     }//GEN-LAST:event_btnSelectDietaActionPerformed
 
     private void txtPesoFinalImputKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesoFinalImputKeyTyped
@@ -516,17 +542,43 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
             LocalDate fechaInicial = (LocalDate) tabDietas.getValueAt(0, 1);
             
             cargarTablaSeguimiento(fechaInicial); 
+            btnStablishPeso.setEnabled(false);
+            txtPesoFinalImput.setEditable(false);
         } else {
             txtError.setText("*Debe ingresar un peso.");
         }
     }//GEN-LAST:event_btnStablishPesoActionPerformed
 
+    private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
+        LocalDate fechaInicial = (LocalDate) tabDietas.getValueAt(0, 1);
+        cargarTablaSeguimiento(fechaInicial);
+    }//GEN-LAST:event_btnVerActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        btnVer.setEnabled(false);
+        tabDietas.setEnabled(false);
+        modelo.setRowCount(0);
+        modelo1.setRowCount(0);
+        btnSelect.setEnabled(true);
+        btnSelectDieta.setEnabled(false);
+        btnStablishPeso.setEnabled(false);
+        cmbPacientes.setSelectedIndex(0);
+        txtIdPaciente.setText("");
+        txtPesoBusq.setText("");
+        txtPesoInicial.setText("");
+        txtPesoFinalImput.setText("");
+        txtPesoFinalImput.setEditable(false);
+                
+    }//GEN-LAST:event_btnResetActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSelect;
     private javax.swing.JButton btnSelectDieta;
     private javax.swing.JButton btnStablishPeso;
+    private javax.swing.JButton btnVer;
     private javax.swing.JComboBox<String> cmbPacientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -51,6 +51,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -106,6 +107,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         });
 
         radioAlta.setBackground(new java.awt.Color(102, 0, 102));
+        btnGroup.add(radioAlta);
         radioAlta.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         radioAlta.setForeground(new java.awt.Color(204, 204, 204));
         radioAlta.setText("Alta Menu diario");
@@ -116,6 +118,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         });
 
         radioBaja.setBackground(new java.awt.Color(102, 0, 102));
+        btnGroup.add(radioBaja);
         radioBaja.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         radioBaja.setForeground(new java.awt.Color(204, 204, 204));
         radioBaja.setText("Baja Menu diario");
@@ -126,6 +129,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         });
 
         radioBorrar.setBackground(new java.awt.Color(102, 0, 102));
+        btnGroup.add(radioBorrar);
         radioBorrar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         radioBorrar.setForeground(new java.awt.Color(204, 204, 204));
         radioBorrar.setText("Borrar Menu");
@@ -387,6 +391,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
+    private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JButton btnSelect;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
