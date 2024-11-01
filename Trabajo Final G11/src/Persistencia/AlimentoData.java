@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class AlimentoData {
     
@@ -152,7 +150,7 @@ public class AlimentoData {
     public ArrayList<Alimento> buscarAlimentosPorTipoComida(String tipoComidaEnviado){
         ArrayList<Alimento> alimentosEncontrados = new ArrayList<>();
         try {
-            String query = "Select * FROM alimnento where alimento.tipoComida = ?";
+            String query = "Select * FROM alimento where alimento.tipoComida = ?";
             PreparedStatement ps = conexion.prepareStatement(query);
             ps.setString(1, tipoComidaEnviado.trim());
             ResultSet resultados = ps.executeQuery();

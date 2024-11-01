@@ -17,6 +17,7 @@ import java.awt.event.ComponentEvent;
 import VistasKeyword.VentanaLEBKeyword;
 import VistasKeyword.VentanaNuevaKeyword;
 import VistasMenuDiario.VentanaLABBMenuDiario;
+import VistasMenuDiario.VentanaMenuAutomatico;
 import VistasPaciente.VentanaControlPaciente;
 
 public class VentanaDeInicio extends javax.swing.JFrame {
@@ -46,6 +47,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         menuCrearMenuDiario = new javax.swing.JMenuItem();
         menuListarMenuDiario = new javax.swing.JMenuItem();
+        menuMenuAuto = new javax.swing.JMenuItem();
         menuComidas = new javax.swing.JMenu();
         menuNuevoAlimento = new javax.swing.JMenuItem();
         menuBorrarAlimento = new javax.swing.JMenuItem();
@@ -176,6 +178,14 @@ public class VentanaDeInicio extends javax.swing.JFrame {
             }
         });
         jMenu2.add(menuListarMenuDiario);
+
+        menuMenuAuto.setText("Menu Automatico");
+        menuMenuAuto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuMenuAutoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuMenuAuto);
 
         jMenuBar1.add(jMenu2);
 
@@ -338,7 +348,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
 
     private void menuNuevoAlimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevoAlimentoActionPerformed
         desktop.removeAll();
-        VentanaNuevoAlimento nuevoAlimento= new VentanaNuevoAlimento();
+        VentanaNuevoAlimento nuevoAlimento = new VentanaNuevoAlimento();
         desktop.add(nuevoAlimento);
         nuevoAlimento.addComponentListener(new ComponentAdapter() {
             @Override
@@ -356,7 +366,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
 
     private void menuBorrarAlimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBorrarAlimentoActionPerformed
         desktop.removeAll();
-        VentanaEditarBorrarAlimento editarBorrarAlimento= new VentanaEditarBorrarAlimento();
+        VentanaEditarBorrarAlimento editarBorrarAlimento = new VentanaEditarBorrarAlimento();
         desktop.add(editarBorrarAlimento);
         editarBorrarAlimento.addComponentListener(new ComponentAdapter() {
             @Override
@@ -374,7 +384,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
 
     private void menuAltaBajaComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAltaBajaComidaActionPerformed
         desktop.removeAll();
-        VentanaAltaBajaAlimento altaBajaAlimento= new VentanaAltaBajaAlimento();
+        VentanaAltaBajaAlimento altaBajaAlimento = new VentanaAltaBajaAlimento();
         desktop.add(altaBajaAlimento);
         altaBajaAlimento.addComponentListener(new ComponentAdapter() {
             @Override
@@ -391,8 +401,8 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_menuAltaBajaComidaActionPerformed
 
     private void menuCrearMenuDiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCrearMenuDiarioActionPerformed
-       desktop.removeAll();
-        VentanaNuevoMenuDiario nuevoMenuDiario= new VentanaNuevoMenuDiario();
+        desktop.removeAll();
+        VentanaNuevoMenuDiario nuevoMenuDiario = new VentanaNuevoMenuDiario();
         desktop.add(nuevoMenuDiario);
         nuevoMenuDiario.addComponentListener(new ComponentAdapter() {
             @Override
@@ -409,157 +419,176 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_menuCrearMenuDiarioActionPerformed
 
     private void menuHandleKeysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHandleKeysActionPerformed
-       desktop.removeAll();
-       VentanaLEBKeyword LEBKeyword = new VentanaLEBKeyword();
-       desktop.add(LEBKeyword);
-       LEBKeyword.addComponentListener(new ComponentAdapter(){
-           
-           @Override
-           public void componentShown(ComponentEvent e){
-               LEBKeyword.setLocation((desktop.getWidth() - LEBKeyword.getWidth())/ 2,
-                       (desktop.getHeight() - LEBKeyword.getHeight()) / 2
-               );
-           }
-       });
-       desktop.moveToFront(LEBKeyword);
-       LEBKeyword.setVisible(true);
-       desktop.revalidate();
-       desktop.repaint();
+        desktop.removeAll();
+        VentanaLEBKeyword LEBKeyword = new VentanaLEBKeyword();
+        desktop.add(LEBKeyword);
+        LEBKeyword.addComponentListener(new ComponentAdapter() {
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+                LEBKeyword.setLocation((desktop.getWidth() - LEBKeyword.getWidth()) / 2,
+                        (desktop.getHeight() - LEBKeyword.getHeight()) / 2
+                );
+            }
+        });
+        desktop.moveToFront(LEBKeyword);
+        LEBKeyword.setVisible(true);
+        desktop.revalidate();
+        desktop.repaint();
     }//GEN-LAST:event_menuHandleKeysActionPerformed
 
     private void menuCrearKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCrearKeyActionPerformed
-       desktop.removeAll();
-       VentanaNuevaKeyword NuevaKeyword = new  VentanaNuevaKeyword();
-       desktop.add(NuevaKeyword);
-       NuevaKeyword.addComponentListener(new ComponentAdapter(){
-           
-           @Override
-           public void componentShown(ComponentEvent e){
-               NuevaKeyword.setLocation((desktop.getWidth() - NuevaKeyword.getWidth())/ 2,
-                       (desktop.getHeight() - NuevaKeyword.getHeight()) / 2
-               );
-           }
-       });
-       desktop.moveToFront(NuevaKeyword);
-       NuevaKeyword.setVisible(true);
-       desktop.revalidate();
-       desktop.repaint();
+        desktop.removeAll();
+        VentanaNuevaKeyword NuevaKeyword = new VentanaNuevaKeyword();
+        desktop.add(NuevaKeyword);
+        NuevaKeyword.addComponentListener(new ComponentAdapter() {
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+                NuevaKeyword.setLocation((desktop.getWidth() - NuevaKeyword.getWidth()) / 2,
+                        (desktop.getHeight() - NuevaKeyword.getHeight()) / 2
+                );
+            }
+        });
+        desktop.moveToFront(NuevaKeyword);
+        NuevaKeyword.setVisible(true);
+        desktop.revalidate();
+        desktop.repaint();
     }//GEN-LAST:event_menuCrearKeyActionPerformed
 
     private void menuCrearDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCrearDietaActionPerformed
-       desktop.removeAll();
-       VentanaNuevaDieta nuevaDieta = new VentanaNuevaDieta();
-       desktop.add(nuevaDieta);
-       nuevaDieta.addComponentListener(new ComponentAdapter(){
-           
-           @Override
-           public void componentShown(ComponentEvent e){
-               nuevaDieta.setLocation((desktop.getWidth() - nuevaDieta.getWidth())/ 2,
-                       (desktop.getHeight() - nuevaDieta.getHeight()) / 2
-               );
-           }
-       });
-       desktop.moveToFront(nuevaDieta);
-       nuevaDieta.setVisible(true);
-       desktop.revalidate();
-       desktop.repaint();
-       
+        desktop.removeAll();
+        VentanaNuevaDieta nuevaDieta = new VentanaNuevaDieta();
+        desktop.add(nuevaDieta);
+        nuevaDieta.addComponentListener(new ComponentAdapter() {
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+                nuevaDieta.setLocation((desktop.getWidth() - nuevaDieta.getWidth()) / 2,
+                        (desktop.getHeight() - nuevaDieta.getHeight()) / 2
+                );
+            }
+        });
+        desktop.moveToFront(nuevaDieta);
+        nuevaDieta.setVisible(true);
+        desktop.revalidate();
+        desktop.repaint();
+
     }//GEN-LAST:event_menuCrearDietaActionPerformed
 
     private void menuListarMenuDiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListarMenuDiarioActionPerformed
         desktop.removeAll();
-       VentanaLABBMenuDiario nuevoLABBMenu = new VentanaLABBMenuDiario();
-       desktop.add(nuevoLABBMenu );
-       nuevoLABBMenu.addComponentListener(new ComponentAdapter(){
-           
-           @Override
-           public void componentShown(ComponentEvent e){
-              nuevoLABBMenu.setLocation((desktop.getWidth() - nuevoLABBMenu .getWidth())/ 2,
-                       (desktop.getHeight() - nuevoLABBMenu .getHeight()) / 2
-               );
-           }
-       });
-       desktop.moveToFront(nuevoLABBMenu );
-       nuevoLABBMenu .setVisible(true);
-       desktop.revalidate();
-       desktop.repaint();
+        VentanaLABBMenuDiario nuevoLABBMenu = new VentanaLABBMenuDiario();
+        desktop.add(nuevoLABBMenu);
+        nuevoLABBMenu.addComponentListener(new ComponentAdapter() {
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+                nuevoLABBMenu.setLocation((desktop.getWidth() - nuevoLABBMenu.getWidth()) / 2,
+                        (desktop.getHeight() - nuevoLABBMenu.getHeight()) / 2
+                );
+            }
+        });
+        desktop.moveToFront(nuevoLABBMenu);
+        nuevoLABBMenu.setVisible(true);
+        desktop.revalidate();
+        desktop.repaint();
     }//GEN-LAST:event_menuListarMenuDiarioActionPerformed
 
     private void menuAltaBajaDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAltaBajaDietaActionPerformed
-      desktop.removeAll();
-       VentanaAltaBajaLogicaDieta altaBajaDieta = new VentanaAltaBajaLogicaDieta();
-       desktop.add(altaBajaDieta );
-       altaBajaDieta .addComponentListener(new ComponentAdapter(){
-           
-           @Override
-           public void componentShown(ComponentEvent e){
-              altaBajaDieta.setLocation((desktop.getWidth() - altaBajaDieta .getWidth())/ 2,
-                       (desktop.getHeight() - altaBajaDieta .getHeight()) / 2
-               );
-           }
-       });
-       desktop.moveToFront(altaBajaDieta );
-       altaBajaDieta.setVisible(true);
-       desktop.revalidate();
-       desktop.repaint();
+        desktop.removeAll();
+        VentanaAltaBajaLogicaDieta altaBajaDieta = new VentanaAltaBajaLogicaDieta();
+        desktop.add(altaBajaDieta);
+        altaBajaDieta.addComponentListener(new ComponentAdapter() {
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+                altaBajaDieta.setLocation((desktop.getWidth() - altaBajaDieta.getWidth()) / 2,
+                        (desktop.getHeight() - altaBajaDieta.getHeight()) / 2
+                );
+            }
+        });
+        desktop.moveToFront(altaBajaDieta);
+        altaBajaDieta.setVisible(true);
+        desktop.revalidate();
+        desktop.repaint();
     }//GEN-LAST:event_menuAltaBajaDietaActionPerformed
 
     private void menuListarDietasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListarDietasActionPerformed
         desktop.removeAll();
-        VentanaExportarDieta exportDieta= new VentanaExportarDieta();
-       desktop.add(exportDieta);
-       exportDieta.addComponentListener(new ComponentAdapter(){
-           
-           @Override
-           public void componentShown(ComponentEvent e){
-              exportDieta.setLocation((desktop.getWidth() - exportDieta.getWidth())/ 2,
-                       (desktop.getHeight() - exportDieta.getHeight()) / 2
-               );
-           }
-       });
-       desktop.moveToFront(exportDieta);
-       exportDieta.setVisible(true);
-       desktop.revalidate();
-       desktop.repaint();
+        VentanaExportarDieta exportDieta = new VentanaExportarDieta();
+        desktop.add(exportDieta);
+        exportDieta.addComponentListener(new ComponentAdapter() {
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+                exportDieta.setLocation((desktop.getWidth() - exportDieta.getWidth()) / 2,
+                        (desktop.getHeight() - exportDieta.getHeight()) / 2
+                );
+            }
+        });
+        desktop.moveToFront(exportDieta);
+        exportDieta.setVisible(true);
+        desktop.revalidate();
+        desktop.repaint();
     }//GEN-LAST:event_menuListarDietasActionPerformed
 
     private void menuBorrarDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBorrarDietaActionPerformed
-    desktop.removeAll();
-        VentanaEditEraseDieta editDieta= new VentanaEditEraseDieta();
-       desktop.add(editDieta);
-       editDieta.addComponentListener(new ComponentAdapter(){
-           
-           @Override
-           public void componentShown(ComponentEvent e){
-              editDieta.setLocation((desktop.getWidth() - editDieta.getWidth())/ 2,
-                       (desktop.getHeight() - editDieta.getHeight()) / 2
-               );
-           }
-       });
-       desktop.moveToFront(editDieta);
-       editDieta.setVisible(true);
-       desktop.revalidate();
-       desktop.repaint();
+        desktop.removeAll();
+        VentanaEditEraseDieta editDieta = new VentanaEditEraseDieta();
+        desktop.add(editDieta);
+        editDieta.addComponentListener(new ComponentAdapter() {
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+                editDieta.setLocation((desktop.getWidth() - editDieta.getWidth()) / 2,
+                        (desktop.getHeight() - editDieta.getHeight()) / 2
+                );
+            }
+        });
+        desktop.moveToFront(editDieta);
+        editDieta.setVisible(true);
+        desktop.revalidate();
+        desktop.repaint();
     }//GEN-LAST:event_menuBorrarDietaActionPerformed
 
     private void menuControlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuControlActionPerformed
         desktop.removeAll();
-        VentanaControlPaciente control= new VentanaControlPaciente();
-       desktop.add(control);
-       control.addComponentListener(new ComponentAdapter(){
-           
-           @Override
-           public void componentShown(ComponentEvent e){
-              control.setLocation((desktop.getWidth() - control.getWidth())/ 2,
-                       (desktop.getHeight() - control.getHeight()) / 2
-               );
-           }
-       });
-       desktop.moveToFront(control);
-       control.setVisible(true);
-       desktop.revalidate();
-       desktop.repaint();
+        VentanaControlPaciente control = new VentanaControlPaciente();
+        desktop.add(control);
+        control.addComponentListener(new ComponentAdapter() {
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+                control.setLocation((desktop.getWidth() - control.getWidth()) / 2,
+                        (desktop.getHeight() - control.getHeight()) / 2
+                );
+            }
+        });
+        desktop.moveToFront(control);
+        control.setVisible(true);
+        desktop.revalidate();
+        desktop.repaint();
     }//GEN-LAST:event_menuControlActionPerformed
+
+    private void menuMenuAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMenuAutoActionPerformed
+        desktop.removeAll();
+        VentanaMenuAutomatico menuAutomatico = new VentanaMenuAutomatico();
+        desktop.add(menuAutomatico);
+        menuAutomatico.addComponentListener(new ComponentAdapter() {
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+                menuAutomatico.setLocation((desktop.getWidth() - menuAutomatico.getWidth()) / 2,
+                        (desktop.getHeight() - menuAutomatico.getHeight()) / 2
+                );
+            }
+        });
+        desktop.moveToFront(menuAutomatico);
+        menuAutomatico.setVisible(true);
+        desktop.revalidate();
+        desktop.repaint();
+    }//GEN-LAST:event_menuMenuAutoActionPerformed
 
     public static void main(String args[]) {
 
@@ -610,6 +639,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuListarDietas;
     private javax.swing.JMenuItem menuListarMenuDiario;
     private javax.swing.JMenuItem menuListarPacientes;
+    private javax.swing.JMenuItem menuMenuAuto;
     private javax.swing.JMenuItem menuNuevoAlimento;
     private javax.swing.JMenuItem menuNuevoPaciente;
     private javax.swing.JMenu menuPacientes;
