@@ -252,6 +252,17 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
         txtDietaName.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         txtDietaName.setForeground(new java.awt.Color(0, 0, 0));
         txtDietaName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDietaName.setText("Ingrese el nombre de la Dieta");
+        txtDietaName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDietaNameFocusGained(evt);
+            }
+        });
+        txtDietaName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDietaNameMouseClicked(evt);
+            }
+        });
         txtDietaName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDietaNameKeyTyped(evt);
@@ -551,7 +562,7 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 393, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCalTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -793,6 +804,14 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
     private void cmbPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPacienteActionPerformed
         btnSelectPatient.setEnabled(true);
     }//GEN-LAST:event_cmbPacienteActionPerformed
+
+    private void txtDietaNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDietaNameMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDietaNameMouseClicked
+
+    private void txtDietaNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDietaNameFocusGained
+        txtDietaName.setText("");
+    }//GEN-LAST:event_txtDietaNameFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
