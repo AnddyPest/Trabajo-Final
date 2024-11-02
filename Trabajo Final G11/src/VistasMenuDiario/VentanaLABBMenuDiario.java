@@ -33,7 +33,6 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
                    if(fila != -1){
                        txtId.setText((tabMenu.getValueAt(fila, 0)).toString());
                        txtName.setText("se dara de "+btnUpdate.getText()+" a "+tabMenu.getValueAt(fila, 1).toString());
-                       
                        btnUpdate.setEnabled(true);
                    }    
                }
