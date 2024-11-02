@@ -361,7 +361,7 @@ public class VentanaExportarDieta extends javax.swing.JInternalFrame {
         if (menu != null) {
             // Obtener y formatear la fecha
             String fechaString = dieta_MenuDiario_Handler_DATA.obtenerFechaPorMenuYDieta(selectedDiet.getIdDieta(), menu.getIdMenuDiario());
-            LocalDate fechaSinFormat = LocalDate.parse(fechaString);  // Asegúrate de que el formato original sea yyyy-MM-dd
+            LocalDate fechaSinFormat = LocalDate.parse(fechaString); 
             menusConFechas.add(new AbstractMap.SimpleEntry<>(menu, fechaSinFormat));
             System.out.println("ID DE MENU ENVIADO: " + idMenu);
         } else {
