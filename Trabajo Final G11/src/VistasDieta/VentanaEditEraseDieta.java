@@ -33,24 +33,24 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         
         //Actualiza los datos que se muestran en la tabla, entonces, no creo que aca funque mucho
         //el sistema de edicion. Tal vez si, pero por ahora no.
-        tabDieta.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        tabMenu.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
            @Override
            public void valueChanged(ListSelectionEvent e) {
                if(!e.getValueIsAdjusting()) {
-                   int fila = tabDieta.getSelectedRow();
+                   int fila = tabMenu.getSelectedRow();
                    if(fila != -1){
-                       txtId.setText((tabDieta.getValueAt(fila, 0)).toString());
-                       txtName.setText(tabDieta.getValueAt(fila, 1).toString());
-                       LocalDate inicioDiet = LocalDate.parse(tabDieta.getValueAt(fila, 2).toString());
-                       LocalDate finalDiet = LocalDate.parse(tabDieta.getValueAt(fila, 3).toString());
+                       txtId.setText((tabMenu.getValueAt(fila, 0)).toString());
+                       txtName.setText(tabMenu.getValueAt(fila, 1).toString());
+                       LocalDate inicioDiet = LocalDate.parse(tabMenu.getValueAt(fila, 2).toString());
+                       LocalDate finalDiet = LocalDate.parse(tabMenu.getValueAt(fila, 3).toString());
                        fechaInicio.setDate(Date.from(inicioDiet.atStartOfDay(ZoneId.systemDefault()).toInstant()));
                        fechaFinal.setDate(Date.from(finalDiet.atStartOfDay(ZoneId.systemDefault()).toInstant()));
                        if(radioEditar.isSelected()){
-                           txtName.setText("Esta por editar "+" a "+tabDieta.getValueAt(fila, 1).toString());
+                           txtName.setText("Esta por editar "+" a "+tabMenu.getValueAt(fila, 1).toString());
                        txtName.setForeground(Color.yellow);
                        btnFinEdit.setEnabled(true);
                        }else{
-                           txtName.setText("se dara de "+btnUpdate.getText()+" a "+tabDieta.getValueAt(fila, 1).toString());
+                           txtName.setText("se dara de "+btnUpdate.getText()+" a "+tabMenu.getValueAt(fila, 1).toString());
                        txtName.setForeground(Color.yellow);
                        }
                        btnUpdate.setEnabled(true);
@@ -101,12 +101,12 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         jSeparator11 = new javax.swing.JSeparator();
         fechaFinal = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabDieta = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tabDieta1 = new javax.swing.JTable();
+        tabDieta = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabMenu = new javax.swing.JTable();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -388,20 +388,6 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        tabDieta.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tabDieta.setEnabled(false);
-        jScrollPane1.setViewportView(tabDieta);
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -412,17 +398,11 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(369, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -438,7 +418,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         jLabel4.setText("- Listado de Dietas -");
         jLabel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
-        tabDieta1.setModel(new javax.swing.table.DefaultTableModel(
+        tabDieta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -449,8 +429,22 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tabDieta1.setEnabled(false);
-        jScrollPane2.setViewportView(tabDieta1);
+        tabDieta.setEnabled(false);
+        jScrollPane2.setViewportView(tabDieta);
+
+        tabMenu.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tabMenu.setEnabled(false);
+        jScrollPane1.setViewportView(tabMenu);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -458,25 +452,22 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel6Layout.createSequentialGroup()
-                    .addGap(2, 2, 2)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
-                    .addGap(16, 16, 16)))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(225, Short.MAX_VALUE))
-            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                    .addContainerGap(54, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -511,15 +502,16 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
-        tabDieta.setEnabled(true);
+        tabMenu.setEnabled(true);
         txtErrorName.setForeground(Color.red);
         txtErrorName.setText("");
         txtName.setText("");
@@ -578,11 +570,11 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         LocalDate nuevaFechaFinal = fechaFinal.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         
         
-        int fila = tabDieta.getSelectedRow();
+        int fila = tabMenu.getSelectedRow();
         if(fila != -1){
-            int idDieta = (int)tabDieta.getValueAt(fila, 0);
-            String nombre = tabDieta.getValueAt(fila, 1).toString();
-            int totalCalorias = Integer.parseInt(tabDieta.getValueAt(fila, 4).toString());
+            int idDieta = (int)tabMenu.getValueAt(fila, 0);
+            String nombre = tabMenu.getValueAt(fila, 1).toString();
+            int totalCalorias = Integer.parseInt(tabMenu.getValueAt(fila, 4).toString());
             //boolean estado = parseBoolean(tabDieta.getValueAt(fila, 5).toString());
             Dieta dietaNueva = new Dieta(idDieta, nombre, nuevaFechaInicio, nuevaFechaFinal,  totalCalorias, true);
             dietaNueva.setIdDieta(idDieta);
@@ -626,7 +618,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton radioBorrar;
     private javax.swing.JRadioButton radioEditar;
     private javax.swing.JTable tabDieta;
-    private javax.swing.JTable tabDieta1;
+    private javax.swing.JTable tabMenu;
     private javax.swing.JLabel txtErrorName;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtName;
@@ -640,7 +632,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         modelo.addColumn("Calorias Totales");
         modelo.addColumn("Estado");
         
-        tabDieta.setModel(modelo);
+        tabMenu.setModel(modelo);
     }
     
     private void actualizarTabla(){
@@ -661,7 +653,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
 
     private void botonUpdate(){
         btnUpdate.setEnabled(false);
-        tabDieta.setEnabled(false);
+        tabMenu.setEnabled(false);
         btnFinEdit.setEnabled(false);
         
         if(radioAlta.isSelected()){
