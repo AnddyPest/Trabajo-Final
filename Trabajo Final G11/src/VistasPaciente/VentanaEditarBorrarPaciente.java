@@ -35,6 +35,7 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
                         txtTelefono.setText(tabPacientes.getValueAt(fila, 4).toString());
                         txtPesoInicial.setText(tabPacientes.getValueAt(fila, 5).toString());
                         txtPesoBuscado.setText(tabPacientes.getValueAt(fila, 6).toString());
+                       if(btnActualizar.getText().equalsIgnoreCase("Actualizar")) {
                         txtName.setEditable(true);
                         txtDni.setEditable(true);
                         txtEdad.setEditable(true);
@@ -42,6 +43,7 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
                         txtPesoInicial.setEditable(true);
                         txtPesoBuscado.setEditable(true);
                         btnActualizar.setEnabled(true);
+                       }
                     }
 
                 }
@@ -892,6 +894,13 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
         txtTelefono.setEditable(false);
         txtPesoInicial.setEditable(false);
         txtPesoBuscado.setEditable(false);
+        txtName.setText("");
+        txtDni.setText("");
+        txtEdad.setText("");
+        txtTelefono.setText("");
+        txtPesoInicial.setText("");
+        txtPesoBuscado.setText("");
+        
         
         if(radioActualizar.isSelected()) {
         txtErrorName.setForeground(Color.green);
