@@ -50,8 +50,17 @@ public class Dieta {
         this.pesoFinal = pesoFinal;
         this.totalCalorias = totalCalorias;
     }
-
-    public int getIdDieta() {
+    
+     public Dieta(int idDieta, String nombre, LocalDate fechaInicio, LocalDate fechaFinal, int totalCalorias, boolean estadoDieta) {
+        this.idDieta = idDieta;
+        this.nombre = nombre;
+        this.fechaInicio = fechaInicio;
+        this.fechaFinal = fechaFinal;
+        this.totalCalorias = totalCalorias;
+        this.estadoDieta = estadoDieta;
+     }
+    
+     public int getIdDieta() {
         return idDieta;
     }
 

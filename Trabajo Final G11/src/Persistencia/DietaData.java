@@ -149,7 +149,7 @@ public class DietaData {
             //REVISAR SI FUNCIONA
             FuncionDe.validarSiExisteId(this, dietaEnviada.getIdDieta());
 
-            String Query = "UPDATE dieta SET dieta.nombre = ?,dieta.idPaciente = ?, dieta.fechaInicio = ?, dieta.fechaFinal = ? , dieta.pesoInicial = ? ,dieta.pesoFinal = ? , dieta.totalCalorias = ? , dieta.estado = ? WHERE dieta.idDieta = ?";
+            String Query = "UPDATE dieta SET dieta.nombre = ?,dieta.idPaciente = ?, dieta.fechaInicio = ?, dieta.fechaFinal = ? , dieta.pesoInicial = ? ,dieta.pesoFinal = ? , dieta.totalCalorias = ?, dieta.estado = ?  WHERE dieta.idDieta = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setString(1, dietaEnviada.getNombre());
             ps.setInt(2, dietaEnviada.getIdPaciente());
@@ -169,6 +169,32 @@ public class DietaData {
             FuncionDe.mostrarMensajeError("No se pudo actualizar la dieta", ex, "actualizarDietaPorId", "DietaData", "151");
         }
     }
+        public void actualizarDietaPorIdDos(Dieta dietaEnviada) {
+    try {
+        // Validar si el ID de la dieta existe
+        FuncionDe.validarSiExisteId(this, dietaEnviada.getIdDieta());
+
+        // Consulta SQL para actualizar la dieta
+        String Query = "UPDATE dieta SET dieta.nombre = ?, dieta.fechaInicio = ?, dieta.fechaFinal = ?, dieta.totalCalorias = ?, dieta.estado = ? WHERE dieta.idDieta = ?";
+        PreparedStatement ps = conexion.prepareStatement(Query);
+        ps.setString(1, dietaEnviada.getNombre());
+        ps.setDate(2, Date.valueOf(dietaEnviada.getFechaInicio()));
+        ps.setDate(3, Date.valueOf(dietaEnviada.getFechaFinal()));
+        ps.setInt(4, dietaEnviada.getTotalCalorias());
+        ps.setBoolean(5, dietaEnviada.isEstadoDieta());
+        ps.setInt(6, dietaEnviada.getIdDieta());
+        ps.executeUpdate();
+        ps.close();
+
+        // Mostrar mensaje de éxito
+        FuncionDe.mostrarMensajeCorrecto("actualizarDietaPorId", "Dieta actualizada con éxito");
+
+    } catch (SQLException ex) {
+        // Mostrar mensaje de error
+        FuncionDe.mostrarMensajeError("No se pudo actualizar la dieta", ex, "actualizarDietaPorId", "DietaData", "151");
+    }
+}
+    
 
     //DELETE    
     //buscar por estado individual AUXILIAR DE ALTA Y BAJA LOGICA
