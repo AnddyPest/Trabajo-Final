@@ -669,6 +669,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
             cmbDieta.setEnabled(true);
             txtDieta.setEnabled(true);
             cargarTablaMenu(Integer.parseInt(txtId.getText()));
+            cargarTablaMenu2(Integer.parseInt(txtId.getText()));
             sumarCalorias();
             
             
@@ -822,6 +823,28 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         }
     }
     
+    private void cargarTablaMenu2 (int idDieta) {
+        modelo2.setRowCount(0);
+        ArrayList<MenuDiario> listaIdMenu = menuDiarioData.listarMenus();
+        
+        ArrayList<Integer> listaMenuConDieta = dietaMenuHand.listarMenuDiario_DietaID(idDieta);
+        
+        ArrayList<MenuDiario> menuSinDieta = new ArrayList();
+        for(MenuDiario menu : listaIdMenu) {
+            if(!listaMenuConDieta.contains(menu.getIdMenuDiario())){
+                 menuSinDieta.add(menu);
+            }
+           
+        }
+        for(MenuDiario menu : menuSinDieta) {
+            modelo2.addRow(new Object []{
+                menu.getIdMenuDiario(),
+                menu.getNombreMenu(),
+                menu.getCaloriasDelMenu()
+            }); 
+        }
+    }
+    
     private void cargarTablaMenu (int idDieta) {
         modelo1.setRowCount(0);
         ArrayList<Integer> listaIdMenuDieta =  dietaMenuHand.listarMenuDiario_DietaID(idDieta);
@@ -837,6 +860,8 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
             }); 
         }
     }
+    
+  
 
     private void botonUpdate(){
         btnUpdate.setEnabled(false);
