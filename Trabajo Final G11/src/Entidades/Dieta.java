@@ -59,6 +59,8 @@ public class Dieta {
         this.totalCalorias = totalCalorias;
         this.estadoDieta = estadoDieta;
      }
+
+
     
      public int getIdDieta() {
         return idDieta;
