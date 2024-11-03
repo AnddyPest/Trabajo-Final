@@ -715,7 +715,6 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
             txtDieta.setEnabled(true);
             tabMenuSelect.setEnabled(true);
             tabMenuAdd.setEnabled(true);
-   
             cargarTablaMenu(Integer.parseInt(txtId.getText()));
             cargarTablaMenu2(Integer.parseInt(txtId.getText()));
             sumarCalorias();
@@ -950,6 +949,9 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         btnUpdate.setEnabled(false);
         tabListDietas.setEnabled(false);
         btnFinEdit.setEnabled(false);
+        txtDieta.setText("");
+        txtDieta.setEnabled(false);
+        cmbDieta.setSelectedIndex(0);
         
         if(radioAlta.isSelected()){
             txtErrorName.setForeground(Color.green);
