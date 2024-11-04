@@ -109,7 +109,7 @@ public class Dieta_MenuDiario_Handler_DATA {
         return handlerDevuelto;
     }
     
-     public ArrayList<Integer> listarMenuDiario_DietaID(int idDieta) {
+        public ArrayList<Integer> listarMenuDiario_DietaID(int idDieta) {
     ArrayList<Integer> menuDiarioIdHandler = new ArrayList<>();
     try {
         String query = "SELECT idMenuDiario FROM dieta_menudiario_handler WHERE idDieta = ?";
@@ -204,6 +204,26 @@ public class Dieta_MenuDiario_Handler_DATA {
     }
     return fecha;
 }
+    
+    public ArrayList<Dieta_MenuDiario_Handler> obtenerFechaYMenuPorIdDieta(int idDieta) {
+    ArrayList<Dieta_MenuDiario_Handler> idMnuFechas = new ArrayList();
+    try {
+        String query = "SELECT * FROM dieta_menudiario_handler WHERE idDieta = ? ";
+        PreparedStatement ps = conexion.prepareStatement(query);
+        ps.setInt(1, idDieta);
+        
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+             Dieta_MenuDiario_Handler handlerCreado = FuncionDe.crearDieta_MenuDiario_Handler(rs);
+             idMnuFechas.add(handlerCreado);
+        }
+        rs.close();
+        ps.close();
+    } catch (SQLException ex) {
+        FuncionDe.mostrarMensajeError("No se pudo encontrar la fecha", ex, "obtenerFechaPorMenuYDieta", "Dieta_MenuDiario_Handler_DATA", "104");
+    }
+    return idMnuFechas;
+    }
 }
     
 

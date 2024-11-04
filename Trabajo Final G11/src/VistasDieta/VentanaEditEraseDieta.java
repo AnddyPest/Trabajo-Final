@@ -1,8 +1,7 @@
-
 package VistasDieta;
 
-
 import Entidades.Dieta;
+import Entidades.Handlers.Dieta_MenuDiario_Handler;
 import Entidades.MenuDiario;
 import Entidades.Paciente;
 import Persistencia.DietaData;
@@ -14,14 +13,22 @@ import java.awt.Color;
 import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
+
     private final DefaultTableModel modelo = new NonEditableTableModel();
     private final DefaultTableModel modelo1 = new NonEditableTableModel();
     private final DefaultTableModel modelo2 = new NonEditableTableModel();
@@ -29,7 +36,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
     Dieta_MenuDiario_Handler_DATA dietaMenuHand;
     MenuDiarioData menuDiarioData;
     PacienteData pacienteData;
-    
+
     public VentanaEditEraseDieta() {
         initComponents();
         Connection con = Conexion.getConexion();
@@ -39,75 +46,74 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         pacienteData = new PacienteData(con);
         cargarCabeceraDietas();
         cargarCabeceraMenues((NonEditableTableModel) modelo1, tabMenuSelect);
-        cargarCabeceraMenues((NonEditableTableModel) modelo2, tabMenuAdd); 
+        cargarCabeceraMenues((NonEditableTableModel) modelo2, tabMenuAdd);
         actualizarTabla();
-        
+
         //Actualiza los datos que se muestran en la tabla, entonces, no creo que aca funque mucho
         //el sistema de edicion. Tal vez si, pero por ahora no.
         tabListDietas.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-           @Override
-           public void valueChanged(ListSelectionEvent e) {
-               if(!e.getValueIsAdjusting()) {
-                   int fila = tabListDietas.getSelectedRow();
-                   if(fila != -1){
-                       txtId.setText((tabListDietas.getValueAt(fila, 0)).toString());
-                       txtName.setText(tabListDietas.getValueAt(fila, 1).toString());
-                       LocalDate inicioDiet = LocalDate.parse(tabListDietas.getValueAt(fila, 2).toString());
-                       LocalDate finalDiet = LocalDate.parse(tabListDietas.getValueAt(fila, 3).toString());
-                       fechaInicio.setDate(Date.from(inicioDiet.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-                       fechaFinal.setDate(Date.from(finalDiet.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-                       if(radioEditar.isSelected()){
-                           txtName.setText("Esta por editar "+" a "+tabListDietas.getValueAt(fila, 1).toString());
-                       txtName.setForeground(Color.yellow);
-                       btnFinEdit.setEnabled(true);
-                       }else{
-                           txtName.setText("se dara de "+btnUpdate.getText()+" a "+tabListDietas.getValueAt(fila, 1).toString());
-                       txtName.setForeground(Color.yellow);
-                       }
-                       btnUpdate.setEnabled(true);
-                   }    
-               }
-           }
-        });
-        
-        //LISTENERS DE LAS TABLAS DE LOS MENUS:
-        
-        tabMenuSelect.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(!e.getValueIsAdjusting()){
-                    int fila = tabMenuSelect.getSelectedRow();
-                    if(fila != -1){
-                        cmbDieta.setEnabled(false);
-                        txtDieta.setEnabled(false);
-                        fechaInicio.setEnabled(false);
-                        fechaFinal.setEnabled(false);
-                        
+                if (!e.getValueIsAdjusting()) {
+                    int fila = tabListDietas.getSelectedRow();
+                    if (fila != -1) {
+                        txtId.setText((tabListDietas.getValueAt(fila, 0)).toString());
+                        txtName.setText(tabListDietas.getValueAt(fila, 1).toString());
+                        LocalDate inicioDiet = LocalDate.parse(tabListDietas.getValueAt(fila, 2).toString());
+                        LocalDate finalDiet = LocalDate.parse(tabListDietas.getValueAt(fila, 3).toString());
+                        fechaInicio.setDate(Date.from(inicioDiet.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                        fechaFinal.setDate(Date.from(finalDiet.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                        if (radioEditar.isSelected()) {
+                            txtName.setText("Esta por editar " + " a " + tabListDietas.getValueAt(fila, 1).toString());
+                            txtName.setForeground(Color.yellow);
+                            btnFinEdit.setEnabled(true);
+                        } else {
+                            txtName.setText("se dara de " + btnUpdate.getText() + " a " + tabListDietas.getValueAt(fila, 1).toString());
+                            txtName.setForeground(Color.yellow);
+                        }
+                        btnUpdate.setEnabled(true);
                     }
                 }
             }
         });
-        
-        // TABLA DE AGREGAR MENUS
-        tabMenuAdd.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+        //LISTENERS DE LAS TABLAS DE LOS MENUS:
+        tabMenuSelect.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(!e.getValueIsAdjusting()){
-                    int fila = tabMenuAdd.getSelectedRow();
-                    if(fila != -1){
+                if (!e.getValueIsAdjusting()) {
+                    int fila = tabMenuSelect.getSelectedRow();
+                    if (fila != -1) {
                         cmbDieta.setEnabled(false);
                         txtDieta.setEnabled(false);
                         fechaInicio.setEnabled(false);
                         fechaFinal.setEnabled(false);
-                        
+
+                    }
+                }
+            }
+        });
+
+        // TABLA DE AGREGAR MENUS
+        tabMenuAdd.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int fila = tabMenuAdd.getSelectedRow();
+                    if (fila != -1) {
+                        cmbDieta.setEnabled(false);
+                        txtDieta.setEnabled(false);
+                        fechaInicio.setEnabled(false);
+                        fechaFinal.setEnabled(false);
+
                     }
                 }
             }
         });
     }
-    
+
     //HACE QUE LAS CELDAS DE LA TABLA NO SEA EDITABLE
-     private class NonEditableTableModel extends DefaultTableModel {
+    private class NonEditableTableModel extends DefaultTableModel {
 
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -708,11 +714,11 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         } else if (radioBaja.isSelected()) {
             dietaData.bajaLogicaDieta(Integer.parseInt(txtId.getText()));
             botonUpdate();
-        } else if (radioBorrar.isSelected()){ //TERMINAR ESTO
+        } else if (radioBorrar.isSelected()) { //TERMINAR ESTO
             dietaData.borrarDietaPorId(Integer.parseInt(txtId.getText()));
             dietaMenuHand.borrarDieta_MenuDiario_HandlerPorIds(Integer.parseInt(txtId.getText()), SOMEBITS);
             botonUpdate();
-        } else if (radioEditar.isSelected()){
+        } else if (radioEditar.isSelected()) {
             fechaInicio.setEnabled(true);
             fechaFinal.setEnabled(true);
             cmbDieta.setEnabled(true);
@@ -722,29 +728,23 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
             cargarTablaMenu(Integer.parseInt(txtId.getText()));
             cargarTablaMenu2(Integer.parseInt(txtId.getText()));
             sumarCalorias();
-            
-            
-            
-            
-            
-            
+
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void radioEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEditarActionPerformed
-          btnSelect.setEnabled(true);
+        btnSelect.setEnabled(true);
         btnUpdate.setText("Editar");
         btnFinEdit.setText("Terminar edicion");
     }//GEN-LAST:event_radioEditarActionPerformed
 
     private void btnFinEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinEditActionPerformed
-         LocalDate nuevaFechaInicio = fechaInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate nuevaFechaInicio = fechaInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate nuevaFechaFinal = fechaFinal.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        
-        
+
         int fila = tabListDietas.getSelectedRow();
-        if(fila != -1){
-            int idDieta = (int)tabListDietas.getValueAt(fila, 0);
+        if (fila != -1) {
+            int idDieta = (int) tabListDietas.getValueAt(fila, 0);
             String nombre = tabListDietas.getValueAt(fila, 1).toString();
             double pesoStart = Double.parseDouble(tabListDietas.getValueAt(fila, 4).toString());
             double pesoEnd = Double.parseDouble(tabListDietas.getValueAt(fila, 5).toString());
@@ -758,53 +758,85 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
             //Condicionan la seleccion del comboBox:
             String seleccion = (String) cmbDieta.getSelectedItem();
             String nuevoValor = txtDieta.getText();
-            
+
             //Controladores que segun la opcion, van a modificar el valor de la dieta.
-            if(seleccion.equalsIgnoreCase("Nombre")){
+            if (seleccion.equalsIgnoreCase("Nombre")) {
                 dietaNueva.setNombre(nuevoValor);
-            }else if(seleccion.equalsIgnoreCase("peso inicial")){
+            } else if (seleccion.equalsIgnoreCase("peso inicial")) {
                 dietaNueva.setPesoInicial(Double.valueOf(nuevoValor));
-            }else if(seleccion.equalsIgnoreCase("peso final")){
+            } else if (seleccion.equalsIgnoreCase("peso final")) {
                 dietaNueva.setPesoFinal(Double.valueOf(nuevoValor));
             }
-            
+
             dietaData.actualizarDietaPorId(dietaNueva);
             botonUpdate();
         }
-      
+
     }//GEN-LAST:event_btnFinEditActionPerformed
 
     private void txtDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDietaActionPerformed
-        
+
     }//GEN-LAST:event_txtDietaActionPerformed
 
     private void btnRemoveMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveMenuActionPerformed
         int fila = tabMenuSelect.getSelectedRow();
-        if(fila != -1){
-           
+        if (fila != -1) {
+
             int idMenu = (int) tabMenuSelect.getValueAt(fila, 0);
             int idDieta = idDietaCaja();
-            
+
             dietaMenuHand.borrarDieta_MenuDiario_HandlerPorIds(idDieta, idMenu);
-            
+
             cargarTablaMenu(Integer.parseInt(txtId.getText()));
             cargarTablaMenu2(Integer.parseInt(txtId.getText()));
         }
-        
+        sumarCalorias();
+
     }//GEN-LAST:event_btnRemoveMenuActionPerformed
 
     private void btnAddMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMenuActionPerformed
-         int fila = tabMenuAdd.getSelectedRow();
-        if(fila != -1){
+        int largoFilas = tabMenuSelect.getRowCount();
+        int fila = tabMenuAdd.getSelectedRow();
+        LocalDate dateFinal = fechaFinal.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate dateInicial = fechaInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        long diferencia = ChronoUnit.DAYS.between(dateInicial, dateFinal);
+        ArrayList<Dieta_MenuDiario_Handler> handlerFechas = dietaMenuHand.obtenerFechaYMenuPorIdDieta(idDietaCaja());
+        ArrayList<LocalDate> fechasIncluidas = new ArrayList();
+        for (Dieta_MenuDiario_Handler DMH : handlerFechas) {
+            String fechasIncluidasString = dietaMenuHand.obtenerFechaPorMenuYDieta(DMH.getIdDieta().getIdDieta(), DMH.getIdMenuDiario().getIdMenuDiario());
+            fechasIncluidas.add(LocalDate.parse(fechasIncluidasString));
+            System.out.println("FECHAS AÑADIDAS "+ fechasIncluidasString);
+        }
+        if (fila != -1 && largoFilas <= diferencia) {
+
+            System.out.println("LA COMPARATIVA DE FECHAS DA: " + diferencia);
+
             int idMenu = (int) tabMenuAdd.getValueAt(fila, 0);
             int idDieta = idDietaCaja();
-            LocalDate fecha = LocalDate.now();
-            
-            dietaMenuHand.createDieta_MenuDiario_Handler(idDieta, idMenu, fecha);
-            
+            LocalDate fechaAsignada = null;
+
+            for (LocalDate fecha = dateInicial; !fecha.isAfter(dateFinal); fecha = fecha.plusDays(1)) {
+                if (!fechasIncluidas.contains(fecha)) {
+                    fechaAsignada = fecha;
+                    fechasIncluidas.add(fecha);
+                    break;
+                }
+            }
+
+            if (fechaAsignada != null) {
+                dietaMenuHand.createDieta_MenuDiario_Handler(idDieta, idMenu, fechaAsignada);
+                System.out.println("Fecha asignada para el menú: " + fechaAsignada);
+            } else {
+                System.out.println("No hay fechas disponibles en el rango especificado.");
+            }
+
             cargarTablaMenu(Integer.parseInt(txtId.getText()));
             cargarTablaMenu2(Integer.parseInt(txtId.getText()));
+            sumarCalorias();
+        } else {
+            System.out.println("Número de filas excede la diferencia de días.");
         }
+
     }//GEN-LAST:event_btnAddMenuActionPerformed
 
 
@@ -855,22 +887,20 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
-  
-    
-    private int idDietaCaja(){
+
+    private int idDietaCaja() {
         int fila = tabListDietas.getSelectedRow();
-        
-        if(fila != -1){
-           return (int) tabListDietas.getValueAt(fila, 0); 
+
+        if (fila != -1) {
+            return (int) tabListDietas.getValueAt(fila, 0);
         }
         return (int) tabListDietas.getValueAt(fila, 0);
     }
-    
-    
-    private void cargarCabeceraDietas(){
+
+    private void cargarCabeceraDietas() {
         modelo.addColumn("ID Dieta");
         modelo.addColumn("Nombre");
-        
+
         modelo.addColumn("Fecha Inicio");
         modelo.addColumn("Fecha Final");
         modelo.addColumn("Peso Inicial");
@@ -878,29 +908,28 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         modelo.addColumn("Calorias Totales");
         modelo.addColumn("Estado");
         modelo.addColumn("Paciente");
-        
+
         tabListDietas.setModel(modelo);
     }
-    
+
     private void cargarCabeceraMenues(NonEditableTableModel model, JTable table) {
         model.addColumn("ID Menu");
-        model.addColumn("Fecha del menu"); 
+        model.addColumn("Fecha del menu");
         model.addColumn("Nombre Menu");
         model.addColumn("Calorías del Menu");
-        
+
         table.setModel(model);
     }
-    
-    private void actualizarTabla(){
+
+    private void actualizarTabla() {
         modelo.setRowCount(0);
         ArrayList<Dieta> listadoDietas = dietaData.listarDietas();
-        
-        for(Dieta d : listadoDietas){
+
+        for (Dieta d : listadoDietas) {
             Paciente pacienteDieta = pacienteData.buscarPacientePorID(d.getIdPaciente());
             modelo.addRow(new Object[]{
                 d.getIdDieta(),
                 d.getNombre(),
-                
                 d.getFechaInicio(),
                 d.getFechaFinal(),
                 d.getPesoInicial(),
@@ -908,76 +937,82 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
                 d.getTotalCalorias(),
                 d.isEstadoDieta() ? "Activo" : "Inactivo",
                 pacienteDieta.getNombre()
-            
+
             });
         }
     }
+
     // Carga los menus en la tabla tabMenuAdd y filtra los menus, sacando los asociados con una dieta
-    private void cargarTablaMenu2 (int idDieta) {
+    private void cargarTablaMenu2(int idDieta) {
         modelo2.setRowCount(0);
         ArrayList<MenuDiario> listaIdMenu = menuDiarioData.listarMenus();
-        
+
         //Con este ArrayList capturo los menus asociados
         ArrayList<Integer> listaMenuConDieta = dietaMenuHand.listarMenuDiario_DietaID(idDieta);
-        
-        ArrayList<MenuDiario> menuSinDieta = new ArrayList();
-        for(MenuDiario menu : listaIdMenu) {
-           //Si el ArrayList con los menus asociados no contiene los menus
-           // sin dieta, entonces que solo se agreguen los menus sin dieta
-            if(!listaMenuConDieta.contains(menu.getIdMenuDiario())){
-                 menuSinDieta.add(menu);
-            }
-           
-        }
-        for(MenuDiario menu : menuSinDieta) {
-            modelo2.addRow(new Object []{
-                menu.getIdMenuDiario(),
-                menu.getNombreMenu(),
-                menu.getCaloriasDelMenu()
-            }); 
-        }
-    }
-    
-    private void cargarTablaMenu (int idDieta) {
-        modelo1.setRowCount(0);
-        ArrayList<Integer> listaIdMenuDieta =  dietaMenuHand.listarMenuDiario_DietaID(idDieta);
-        
-        ArrayList<MenuDiario> menuDietas = new ArrayList();
-        for(Integer i : listaIdMenuDieta) {
-            menuDietas.add(menuDiarioData.buscarMenuPorID(i));
-            
-        }
-        for(MenuDiario menu : menuDietas) {
-            LocalDate fechaMenu = LocalDate.parse(dietaMenuHand.obtenerFechaPorMenuYDieta(idDieta, menu.getIdMenuDiario()));
-            modelo1.addRow(new Object []{
-                menu.getIdMenuDiario(),
-                fechaMenu,
-                menu.getNombreMenu(),
-                menu.getCaloriasDelMenu()
-            }); 
-        }
-    }
-    
-  
 
-    private void botonUpdate(){
+        ArrayList<MenuDiario> menuSinDieta = new ArrayList();
+        for (MenuDiario menu : listaIdMenu) {
+            //Si el ArrayList con los menus asociados no contiene los menus
+            // sin dieta, entonces que solo se agreguen los menus sin dieta
+            if (!listaMenuConDieta.contains(menu.getIdMenuDiario())) {
+                menuSinDieta.add(menu);
+            }
+
+        }
+        for (MenuDiario menu : menuSinDieta) {
+            modelo2.addRow(new Object[]{
+                menu.getIdMenuDiario(),
+                menu.getNombreMenu(),
+                menu.getCaloriasDelMenu()
+            });
+        }
+    }
+
+    private void cargarTablaMenu(int idDieta) {
+        modelo1.setRowCount(0);
+        ArrayList<Integer> listaIdMenuDieta = dietaMenuHand.listarMenuDiario_DietaID(idDieta);
+        List<SimpleEntry<MenuDiario, LocalDate>> menusConFechas = new ArrayList();
+        ArrayList<MenuDiario> menuDietas = new ArrayList();
+        for (Integer i : listaIdMenuDieta) {
+            menuDietas.add(menuDiarioData.buscarMenuPorID(i));
+
+        }
+
+        for (MenuDiario menu : menuDietas) {
+            LocalDate fechaMenu = LocalDate.parse(dietaMenuHand.obtenerFechaPorMenuYDieta(idDieta, menu.getIdMenuDiario()));
+            menusConFechas.add(new AbstractMap.SimpleEntry<>(menu, fechaMenu));
+            menusConFechas.sort(Comparator.comparing(Map.Entry::getValue));
+
+        }
+        int longMapa = menusConFechas.size();
+        for (int i = 0; i < longMapa; i++) {
+            modelo1.addRow(new Object[]{
+                menusConFechas.get(i).getKey().getIdMenuDiario(),
+                menusConFechas.get(i).getValue(),
+                menusConFechas.get(i).getKey().getNombreMenu(),
+                menusConFechas.get(i).getKey().getCaloriasDelMenu()
+            });
+        }
+    }
+
+    private void botonUpdate() {
         btnUpdate.setEnabled(false);
         tabListDietas.setEnabled(false);
         btnFinEdit.setEnabled(false);
         txtDieta.setText("");
         txtDieta.setEnabled(false);
         cmbDieta.setSelectedIndex(0);
-        
-        if(radioAlta.isSelected()){
+
+        if (radioAlta.isSelected()) {
             txtErrorName.setForeground(Color.green);
             txtErrorName.setText("DIETA DADA DE ALTA.");
-        }else if(radioBaja.isSelected()){
+        } else if (radioBaja.isSelected()) {
             txtErrorName.setForeground(Color.green);
             txtErrorName.setText("DIETA DADA DE BAJA.");
-        }else if(radioBorrar.isSelected()){
+        } else if (radioBorrar.isSelected()) {
             txtErrorName.setForeground(Color.green);
             txtErrorName.setText("DIETA BORRADA.");
-            }else if(radioEditar.isSelected()){
+        } else if (radioEditar.isSelected()) {
             txtErrorName.setForeground(Color.green);
             txtErrorName.setText("DIETA ACTUALIZADA.");
         }
@@ -988,14 +1023,17 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         radioBorrar.setEnabled(true);
         radioEditar.setEnabled(true);
     }
-    
-    private void sumarCalorias () {
+
+    private void sumarCalorias() {
         int caloriasTotales = 0;
-        for(int i = 0; i<tabMenuSelect.getColumnCount(); i++) {
+        int filas = tabMenuSelect.getRowCount();
+        for (int i = 0; i < filas; i++) {
             int caloriasMenu = Integer.parseInt(tabMenuSelect.getValueAt(i, 3).toString());
             caloriasTotales += caloriasMenu;
             txtCalTotal.setText(String.valueOf(caloriasTotales));
+
         }
+
     }
 
 }
