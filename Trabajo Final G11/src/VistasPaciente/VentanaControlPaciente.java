@@ -568,6 +568,7 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
         txtPesoInicial.setText("");
         txtPesoFinalImput.setText("");
         txtPesoFinalImput.setEditable(false);
+        txtError.setText("");
                 
     }//GEN-LAST:event_btnResetActionPerformed
 
