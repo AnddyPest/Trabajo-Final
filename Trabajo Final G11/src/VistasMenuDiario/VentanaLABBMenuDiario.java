@@ -447,7 +447,7 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
     private void cargarCabecera(){
         modelo.addColumn("ID Menu Diario");
         modelo.addColumn("Nombre Menu");
-        modelo.addColumn("Dia");
+        //modelo.addColumn("Dia");
         modelo.addColumn("Calorias Del Menu");
         modelo.addColumn("Estado");
         

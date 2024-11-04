@@ -4,9 +4,11 @@ package VistasDieta;
 
 import Entidades.Dieta;
 import Entidades.MenuDiario;
+import Entidades.Paciente;
 import Persistencia.DietaData;
 import Persistencia.Handlers.Dieta_MenuDiario_Handler_DATA;
 import Persistencia.MenuDiarioData;
+import Persistencia.PacienteData;
 import Utilities.Conexion;
 import java.awt.Color;
 import java.sql.Connection;
@@ -26,6 +28,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
     DietaData dietaData;
     Dieta_MenuDiario_Handler_DATA dietaMenuHand;
     MenuDiarioData menuDiarioData;
+    PacienteData pacienteData;
     
     public VentanaEditEraseDieta() {
         initComponents();
@@ -33,6 +36,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         dietaData = new DietaData(con);
         dietaMenuHand = new Dieta_MenuDiario_Handler_DATA(con);
         menuDiarioData = new MenuDiarioData(con);
+        pacienteData = new PacienteData(con);
         cargarCabeceraDietas();
         cargarCabeceraMenues((NonEditableTableModel) modelo1, tabMenuSelect);
         cargarCabeceraMenues((NonEditableTableModel) modelo2, tabMenuAdd); 
@@ -866,18 +870,21 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
     private void cargarCabeceraDietas(){
         modelo.addColumn("ID Dieta");
         modelo.addColumn("Nombre");
+        
         modelo.addColumn("Fecha Inicio");
         modelo.addColumn("Fecha Final");
         modelo.addColumn("Peso Inicial");
         modelo.addColumn("Peso Final");
         modelo.addColumn("Calorias Totales");
         modelo.addColumn("Estado");
+        modelo.addColumn("Paciente");
         
         tabListDietas.setModel(modelo);
     }
     
     private void cargarCabeceraMenues(NonEditableTableModel model, JTable table) {
         model.addColumn("ID Menu");
+        model.addColumn("Fecha del menu"); 
         model.addColumn("Nombre Menu");
         model.addColumn("Calorías del Menu");
         
@@ -887,16 +894,20 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
     private void actualizarTabla(){
         modelo.setRowCount(0);
         ArrayList<Dieta> listadoDietas = dietaData.listarDietas();
+        
         for(Dieta d : listadoDietas){
+            Paciente pacienteDieta = pacienteData.buscarPacientePorID(d.getIdPaciente());
             modelo.addRow(new Object[]{
                 d.getIdDieta(),
                 d.getNombre(),
+                
                 d.getFechaInicio(),
                 d.getFechaFinal(),
                 d.getPesoInicial(),
                 d.getPesoFinal(),
                 d.getTotalCalorias(),
-                d.isEstadoDieta() ? "Activo" : "Inactivo"
+                d.isEstadoDieta() ? "Activo" : "Inactivo",
+                pacienteDieta.getNombre()
             
             });
         }
@@ -930,13 +941,17 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
     private void cargarTablaMenu (int idDieta) {
         modelo1.setRowCount(0);
         ArrayList<Integer> listaIdMenuDieta =  dietaMenuHand.listarMenuDiario_DietaID(idDieta);
+        
         ArrayList<MenuDiario> menuDietas = new ArrayList();
         for(Integer i : listaIdMenuDieta) {
             menuDietas.add(menuDiarioData.buscarMenuPorID(i));
+            
         }
         for(MenuDiario menu : menuDietas) {
+            LocalDate fechaMenu = LocalDate.parse(dietaMenuHand.obtenerFechaPorMenuYDieta(idDieta, menu.getIdMenuDiario()));
             modelo1.addRow(new Object []{
                 menu.getIdMenuDiario(),
+                fechaMenu,
                 menu.getNombreMenu(),
                 menu.getCaloriasDelMenu()
             }); 
@@ -977,7 +992,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
     private void sumarCalorias () {
         int caloriasTotales = 0;
         for(int i = 0; i<tabMenuSelect.getColumnCount(); i++) {
-            int caloriasMenu = Integer.parseInt(tabMenuSelect.getValueAt(i, 2).toString());
+            int caloriasMenu = Integer.parseInt(tabMenuSelect.getValueAt(i, 3).toString());
             caloriasTotales += caloriasMenu;
             txtCalTotal.setText(String.valueOf(caloriasTotales));
         }
