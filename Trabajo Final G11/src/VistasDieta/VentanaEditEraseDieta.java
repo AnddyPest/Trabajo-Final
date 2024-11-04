@@ -802,10 +802,8 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         long diferencia = ChronoUnit.DAYS.between(dateInicial, dateFinal);
         ArrayList<Dieta_MenuDiario_Handler> handlerFechas = dietaMenuHand.obtenerFechaYMenuPorIdDieta(idDietaCaja());
         ArrayList<LocalDate> fechasIncluidas = new ArrayList();
-        for (Dieta_MenuDiario_Handler DMH : handlerFechas) {
-            String fechasIncluidasString = dietaMenuHand.obtenerFechaPorMenuYDieta(DMH.getIdDieta().getIdDieta(), DMH.getIdMenuDiario().getIdMenuDiario());
-            fechasIncluidas.add(LocalDate.parse(fechasIncluidasString));
-            System.out.println("FECHAS AÑADIDAS "+ fechasIncluidasString);
+        for(int i = 0; i<largoFilas; i++) {
+            fechasIncluidas.add((LocalDate)tabMenuSelect.getValueAt(i, 1));
         }
         if (fila != -1 && largoFilas <= diferencia) {
 
@@ -836,6 +834,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         } else {
             System.out.println("Número de filas excede la diferencia de días.");
         }
+        
 
     }//GEN-LAST:event_btnAddMenuActionPerformed
 
