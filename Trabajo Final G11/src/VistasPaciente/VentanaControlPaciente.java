@@ -491,6 +491,9 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
+        txtIdPaciente.setText("");
+        txtPesoInicial.setText("");
+        txtPesoBusq.setText("");
         if (cmbPacientes.getSelectedIndex() != 0) {
             Paciente pacienteSelected = pacienteData.buscarPacientesPorNombreUnoSolo(cmbPacientes.getSelectedItem().toString());
             btnSelect.setEnabled(false);

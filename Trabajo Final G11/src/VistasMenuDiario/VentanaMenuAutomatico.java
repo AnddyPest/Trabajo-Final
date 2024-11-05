@@ -655,7 +655,7 @@ public class VentanaMenuAutomatico extends javax.swing.JInternalFrame {
         ArrayList<Alimento> meriendas = alimentoData.buscarAlimentosPorTipoComida("Merienda");
         ArrayList<Alimento> snacks = alimentoData.buscarAlimentosPorTipoComida("Snack");
         ArrayList<Alimento> cenas = alimentoData.buscarAlimentosPorTipoComida("Cena");
-
+        modelTablaMenu.setRowCount(0);
         if (!txtLimite.getText().isEmpty() && Integer.parseInt(txtLimite.getText()) <= 10000) {
             txtError.setText("");
             int limiteCalorias = Integer.parseInt(txtLimite.getText());

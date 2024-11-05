@@ -26,6 +26,8 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
         cargarCabecera();
         actualizarTabla();
         tabKeywords.setEnabled(false);
+        btnSelect.setEnabled(false);
+        btnUpdateD.setEnabled(false);
     
         
         
@@ -39,8 +41,7 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
                         txtID.setText((tabKeywords.getValueAt(fila, 0)).toString());
                         txtName.setText(tabKeywords.getValueAt(fila, 1).toString());
                         btnUpdateD.setEnabled(true);
-                        radioEditar.setEnabled(true);
-                        radioBorrar.setEnabled(true);
+                        
                     }
 
                 }
@@ -80,11 +81,11 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         txtName = new javax.swing.JTextField();
-        txtErrorName = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         radioEditar = new javax.swing.JRadioButton();
         radioBorrar = new javax.swing.JRadioButton();
         txtID = new javax.swing.JTextField();
+        txtErrorName = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -218,10 +219,6 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
             }
         });
 
-        txtErrorName.setBackground(new java.awt.Color(51, 51, 51));
-        txtErrorName.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        txtErrorName.setForeground(new java.awt.Color(255, 0, 0));
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -235,8 +232,7 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtErrorName, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(426, 426, 426))
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
@@ -244,9 +240,7 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtErrorName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -261,7 +255,6 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
         radioEditar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         radioEditar.setForeground(new java.awt.Color(204, 204, 204));
         radioEditar.setText("Editar");
-        radioEditar.setEnabled(false);
         radioEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioEditarActionPerformed(evt);
@@ -272,7 +265,6 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
         radioBorrar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         radioBorrar.setForeground(new java.awt.Color(204, 204, 204));
         radioBorrar.setText("Borrar");
-        radioBorrar.setEnabled(false);
         radioBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioBorrarActionPerformed(evt);
@@ -287,6 +279,10 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
         txtID.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         txtID.setSelectedTextColor(new java.awt.Color(51, 51, 51));
         txtID.setSelectionColor(new java.awt.Color(51, 51, 51));
+
+        txtErrorName.setBackground(new java.awt.Color(51, 51, 51));
+        txtErrorName.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        txtErrorName.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -311,6 +307,8 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtErrorName, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -329,8 +327,12 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 125, Short.MAX_VALUE))
+                    .addComponent(txtErrorName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -347,7 +349,7 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 630, 540));
@@ -373,19 +375,28 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
     private void btnUpdateDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateDActionPerformed
          if(validarEntradas()){
             if(txtName.getText().isEmpty()){
-                txtErrorName.setText("*No puede queda vacio este campo");
+                txtErrorName.setForeground(Color.red);
+                txtErrorName.setText("*el campo no puede quedar vacío.");
                 txtName.requestFocus();
             } else if (radioEditar.isSelected()){
                Keywords keyEdit = new Keywords(Integer.parseInt(txtID.getText()), txtName.getText());
                keyWordData.actualizarKeywordPorId(keyEdit);
                botonActualizarBorrar();
+               txtErrorName.setForeground(Color.green);
+               txtErrorName.setText("*Keyword editada correctamente");
             }else if(radioBorrar.isSelected()){
               keyWordData.borrarKeyword(Integer.parseInt(txtID.getText()));
               botonActualizarBorrar();
+              txtErrorName.setForeground(Color.orange);
+              txtErrorName.setText("*Asegurese de borrar todos los registros relacionados con la Key");
             }
-            radioEditar.setEnabled(false);
-            radioBorrar.setEnabled(false);
+            
         }
+        GroupSelect.clearSelection();
+        radioEditar.setEnabled(true);
+        radioBorrar.setEnabled(true);
+        btnUpdateD.setText("");
+        
     }//GEN-LAST:event_btnUpdateDActionPerformed
 
     private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
@@ -398,26 +409,39 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
        tabKeywords.setEnabled(true);
        txtErrorName.setForeground(Color.red);
        txtErrorName.setText("");
-       txtName.setText("");
-       txtName.setEditable(false);
        btnSelect.setEnabled(false);
+       txtName.setEditable(false);
        radioEditar.setEnabled(false);
        radioBorrar.setEnabled(false);
-       btnUpdateD.setEnabled(false);
+       
+       if(radioEditar.isSelected()) {
+           txtName.setEditable(true);
+       }else if(radioBorrar.isSelected()){
+           txtName.setEditable(false);
+       }
+       
+       
+       
+       btnUpdateD.setEnabled(true);
     }//GEN-LAST:event_btnSelectActionPerformed
 
     private void radioEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEditarActionPerformed
         //BOTON PARA HABILITAR LA EDICION DEL NOMBRE DE LA KEY!!!!!
+        txtID.setText("");
+        txtName.setText("");
         btnSelect.setEnabled(true);
-        txtName.setEditable(true);
+        txtErrorName.setForeground(Color.green);
+      txtErrorName.setText("**Modo Editar, seleccione Key a editar.");
         btnUpdateD.setText("Editar");
        
     }//GEN-LAST:event_radioEditarActionPerformed
 
     private void radioBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBorrarActionPerformed
-      btnSelect.setEnabled(true);
-      txtName.setEditable(false);
-      txtName.setText(".");
+       txtID.setText("");
+        txtName.setText("");
+        btnSelect.setEnabled(true);
+      txtErrorName.setForeground(Color.green);
+      txtErrorName.setText("**Modo Borrar, seleccione Key a borrar.");
         btnUpdateD.setText("Borrar");
     }//GEN-LAST:event_radioBorrarActionPerformed
 
