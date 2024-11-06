@@ -615,7 +615,7 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarComboPacientes() {
-        ArrayList<Paciente> listadoPacientes = pacienteData.listarPacientes();
+        ArrayList<Paciente> listadoPacientes = pacienteData.listarPacientesActivos();
         for (Paciente p : listadoPacientes) {
             cmbPacientes.addItem(p.getNombre());
         }

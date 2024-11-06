@@ -237,7 +237,7 @@ public class VentanaListadoPacientes extends javax.swing.JInternalFrame {
 
     private void actualizarTabla() {
         modelo.setRowCount(0);
-        ArrayList<Paciente> listadoPacientes = pacienteData.listarPacientes();
+        ArrayList<Paciente> listadoPacientes = pacienteData.listarPacientesActivos();
         for (Paciente p : listadoPacientes) {
             modelo.addRow(new Object[]{
                 p.getIdPaciente(),

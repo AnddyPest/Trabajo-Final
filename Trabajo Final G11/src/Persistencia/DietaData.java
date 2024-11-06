@@ -78,6 +78,31 @@ public class DietaData {
 
         return dietasDevueltas;
     }
+    
+    public ArrayList<Dieta> listarDietasActivas() {
+        ArrayList<Dieta> dietasDevueltas = new ArrayList<>();
+        try {
+
+            String Query = "SELECT * FROM dieta WHERE estado = 1";
+            PreparedStatement ps = conexion.prepareStatement(Query);
+
+            ResultSet resultados = ps.executeQuery();
+
+            while (resultados.next()) {
+                Dieta dietaCreada = FuncionDe.crearDieta(resultados);
+
+                dietasDevueltas.add(dietaCreada);
+            }
+            FuncionDe.mostrarMensajeCorrecto("Listar Dietas", "Todas las dietas han sido enviadas correctamente");
+
+            resultados.close();
+            ps.close();
+        } catch (SQLException ex) {
+            FuncionDe.mostrarMensajeError("No se puede listar las dietas", ex, "Listar Dietas", "DietaData", "71");
+        }
+
+        return dietasDevueltas;
+    }
 
     public Dieta buscarDietaPorID(int id) {
         Dieta dietaDevuelta = null;

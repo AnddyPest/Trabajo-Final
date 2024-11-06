@@ -69,6 +69,31 @@ public class MenuDiarioData {
 
         return menusDevueltos;
     }
+    
+    public ArrayList<MenuDiario> listarMenusActivos() {
+        ArrayList<MenuDiario> menusDevueltos = new ArrayList<>();
+        try {
+
+            String Query = "SELECT * FROM menudiario WHERE estado = 1";
+            PreparedStatement ps = conexion.prepareStatement(Query);
+
+            ResultSet resultados = ps.executeQuery();
+
+            while (resultados.next()) {
+                MenuDiario menuCreado = FuncionDe.crearMenu(resultados);
+
+                menusDevueltos.add(menuCreado);
+            }
+            FuncionDe.mostrarMensajeCorrecto("Listar Menus", "Todos los menus han sido enviados correctamente");
+
+            resultados.close();
+            ps.close();
+        } catch (SQLException ex) {
+            FuncionDe.mostrarMensajeError("No se puede listar los menus", ex, "Listar Menus", "MenuDiarioData", "51");
+        }
+
+        return menusDevueltos;
+    }
 
     //Listar Paciente por id
     public MenuDiario buscarMenuPorID(int id) {

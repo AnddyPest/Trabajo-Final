@@ -460,7 +460,7 @@ public class VentanaExportarDieta extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarComboDietas() {
-        ArrayList<Dieta> listDietas = dietaData.listarDietas();
+        ArrayList<Dieta> listDietas = dietaData.listarDietasActivas();
         for (Dieta d : listDietas) {
             cmbDietas.addItem(d.getNombre());
         }

@@ -92,6 +92,31 @@ public class AlimentoData {
         return alimentosDevueltos;
     }
     
+    public ArrayList<Alimento> listarAlimentosActivos(){
+        ArrayList<Alimento> alimentosDevueltos = new ArrayList<>();
+        try {            
+            
+            String Query= "Select * from alimento WHERE estado = 1";            
+            PreparedStatement ps = conexion.prepareStatement(Query);
+            
+            ResultSet resultados = ps.executeQuery();
+           
+            while(resultados.next()){
+                Alimento alimentoCreado = FuncionDe.crearAlimento(resultados);
+                
+                alimentosDevueltos.add(alimentoCreado);
+            }
+            FuncionDe.mostrarMensajeCorrecto("Listar Alimentos", "Todos los alimentos han sido enviados correctamente");
+            
+            resultados.close();
+            ps.close();
+        } catch (SQLException ex) {
+            FuncionDe.mostrarMensajeError(ex, "listarAlimentos", "AlimentoData", "71");
+        }
+        
+        return alimentosDevueltos;
+    }
+    
     //Listar Alimentos por id
     
     public Alimento buscarAlimentoPorID(int id){

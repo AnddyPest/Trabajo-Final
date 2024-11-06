@@ -235,7 +235,7 @@ private void cargarCabecera() {
 
     private void actualizarTabla() {
         modelo.setRowCount(0);
-        ArrayList<Alimento> listadoAlimentos = alimentoData.listarAlimentos();
+        ArrayList<Alimento> listadoAlimentos = alimentoData.listarAlimentosActivos();
         for (Alimento a : listadoAlimentos) {
             modelo.addRow(new Object[]{
                 a.getIdAlimento(),

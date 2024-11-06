@@ -311,8 +311,9 @@ public class VentanaMenuAutomatico extends javax.swing.JInternalFrame {
         jLabel9.setForeground(new java.awt.Color(204, 204, 204));
         jLabel9.setText("Limite de calorias:");
 
+        txtLimite.setBackground(new java.awt.Color(153, 153, 153));
         txtLimite.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        txtLimite.setForeground(new java.awt.Color(204, 204, 204));
+        txtLimite.setForeground(new java.awt.Color(0, 0, 0));
         txtLimite.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtLimite.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -914,7 +915,7 @@ private void cargarListaKeys() {
 
     private void cargarAlimentosAll() {
         modelTablaFiltered.setRowCount(0);
-        ArrayList<Alimento> alimentosAll = alimentoData.listarAlimentos();
+        ArrayList<Alimento> alimentosAll = alimentoData.listarAlimentosActivos();
         for (Alimento a : alimentosAll) {
             modelTablaFiltered.addRow(new Object[]{
                 a.getIdAlimento(),

@@ -1021,7 +1021,7 @@ public class VentanaNuevoMenuDiario extends javax.swing.JInternalFrame {
 
     private void cargarAlimentosAll() {
         modelTablaFiltered.setRowCount(0);
-        ArrayList<Alimento> alimentosAll = alimentoData.listarAlimentos();
+        ArrayList<Alimento> alimentosAll = alimentoData.listarAlimentosActivos();
         for (Alimento a : alimentosAll) {
             modelTablaFiltered.addRow(new Object[]{
                 a.getIdAlimento(),

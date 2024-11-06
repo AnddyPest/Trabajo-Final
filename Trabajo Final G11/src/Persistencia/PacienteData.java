@@ -103,6 +103,33 @@ public class PacienteData {
         return pacientesDevueltos;
     }
     
+    public ArrayList<Paciente> listarPacientesActivos(){
+        ArrayList<Paciente> pacientesDevueltos = new ArrayList<>();
+        try {            
+            
+            String Query= "Select * from paciente WHERE estado = 1";            
+            PreparedStatement ps = conexion.prepareStatement(Query);
+            
+            ResultSet resultados = ps.executeQuery();
+            
+            while(resultados.next()){
+                Paciente pacienteCreado = FuncionDe.crearPaciente(resultados);
+                
+                pacientesDevueltos.add(pacienteCreado);
+            }
+            FuncionDe.mostrarMensajeCorrecto("Listar Pacientes", "Todos los pacientes han sido enviados correctamente");
+            
+            resultados.close();
+            ps.close();
+        } catch (SQLException ex) {
+            FuncionDe.mostrarMensajeError(ex, "listarPacientes", "PacienteData", "80");
+        }
+        
+        return pacientesDevueltos;
+    }
+    
+    
+    
     //Listar Paciente por id
     
     public Paciente buscarPacientePorID(int id) {

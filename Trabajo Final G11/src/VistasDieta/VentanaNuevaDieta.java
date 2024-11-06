@@ -849,7 +849,7 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarCombo() {
-        ArrayList<Paciente> listadoPacientes = pacienteData.listarPacientes();
+        ArrayList<Paciente> listadoPacientes = pacienteData.listarPacientesActivos();
         for (Paciente p : listadoPacientes) {
             cmbPaciente.addItem(p.getNombre());
         }
@@ -876,7 +876,7 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
 
     private void cargarTablaMenu() {
         modelMenus.setRowCount(0);
-        ArrayList<MenuDiario> listadoMenuDiario = menuDiarioData.listarMenus();
+        ArrayList<MenuDiario> listadoMenuDiario = menuDiarioData.listarMenusActivos();
 
         for (MenuDiario md : listadoMenuDiario) {
             modelMenus.addRow(new Object[]{

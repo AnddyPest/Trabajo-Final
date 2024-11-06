@@ -13,7 +13,6 @@ import java.awt.Color;
 import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.AbstractMap;
 import java.util.AbstractMap.SimpleEntry;
@@ -44,6 +43,8 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         dietaMenuHand = new Dieta_MenuDiario_Handler_DATA(con);
         menuDiarioData = new MenuDiarioData(con);
         pacienteData = new PacienteData(con);
+        txtMsg.setForeground(Color.yellow);
+        txtMsg.setText("**Elija un modo de operar.**");
         cargarCabeceraDietas();
         cargarCabeceraMenues((NonEditableTableModel) modelo1, tabMenuSelect);
         cargarCabeceraMenues((NonEditableTableModel) modelo2, tabMenuAdd);
@@ -58,18 +59,18 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
                     int fila = tabListDietas.getSelectedRow();
                     if (fila != -1) {
                         txtId.setText((tabListDietas.getValueAt(fila, 0)).toString());
-                        txtName.setText(tabListDietas.getValueAt(fila, 1).toString());
+                        txtMsg.setText(tabListDietas.getValueAt(fila, 1).toString());
                         LocalDate inicioDiet = LocalDate.parse(tabListDietas.getValueAt(fila, 2).toString());
                         LocalDate finalDiet = LocalDate.parse(tabListDietas.getValueAt(fila, 3).toString());
                         fechaInicio.setDate(Date.from(inicioDiet.atStartOfDay(ZoneId.systemDefault()).toInstant()));
                         fechaFinal.setDate(Date.from(finalDiet.atStartOfDay(ZoneId.systemDefault()).toInstant()));
                         if (radioEditar.isSelected()) {
-                            txtName.setText("Esta por editar " + " a " + tabListDietas.getValueAt(fila, 1).toString());
-                            txtName.setForeground(Color.yellow);
+                            txtMsg.setText("Esta por editar " + " a " + tabListDietas.getValueAt(fila, 1).toString());
+                            txtMsg.setForeground(Color.yellow);
                             btnFinEdit.setEnabled(true);
                         } else {
-                            txtName.setText("se dara de " + btnUpdate.getText() + " a " + tabListDietas.getValueAt(fila, 1).toString());
-                            txtName.setForeground(Color.yellow);
+                            txtMsg.setText("se dara de " + btnUpdate.getText() + " a " + tabListDietas.getValueAt(fila, 1).toString());
+                            txtMsg.setForeground(Color.yellow);
                         }
                         btnUpdate.setEnabled(true);
                     }
@@ -84,10 +85,6 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
                 if (!e.getValueIsAdjusting()) {
                     int fila = tabMenuSelect.getSelectedRow();
                     if (fila != -1) {
-                        cmbDieta.setEnabled(false);
-                        txtDieta.setEnabled(false);
-                        fechaInicio.setEnabled(false);
-                        fechaFinal.setEnabled(false);
 
                     }
                 }
@@ -101,10 +98,6 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
                 if (!e.getValueIsAdjusting()) {
                     int fila = tabMenuAdd.getSelectedRow();
                     if (fila != -1) {
-                        cmbDieta.setEnabled(false);
-                        txtDieta.setEnabled(false);
-                        fechaInicio.setEnabled(false);
-                        fechaFinal.setEnabled(false);
 
                     }
                 }
@@ -142,7 +135,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         btnFinEdit = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         txtId = new javax.swing.JTextField();
-        txtName = new javax.swing.JTextField();
+        txtMsg = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -258,6 +251,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
             }
         });
 
+        btnFinEdit.setText("Aceptar");
         btnFinEdit.setEnabled(false);
         btnFinEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,27 +329,27 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         txtId.setSelectionColor(new java.awt.Color(51, 0, 0));
         txtId.setVerifyInputWhenFocusTarget(false);
 
-        txtName.setEditable(false);
-        txtName.setBackground(new java.awt.Color(102, 0, 102));
-        txtName.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        txtName.setForeground(new java.awt.Color(255, 255, 102));
-        txtName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtName.setBorder(null);
-        txtName.setCaretColor(new java.awt.Color(51, 0, 0));
-        txtName.setFocusable(false);
-        txtName.setRequestFocusEnabled(false);
-        txtName.setSelectedTextColor(new java.awt.Color(51, 0, 0));
-        txtName.setSelectionColor(new java.awt.Color(51, 0, 0));
-        txtName.setVerifyInputWhenFocusTarget(false);
+        txtMsg.setEditable(false);
+        txtMsg.setBackground(new java.awt.Color(102, 0, 102));
+        txtMsg.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        txtMsg.setForeground(new java.awt.Color(255, 255, 102));
+        txtMsg.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtMsg.setBorder(null);
+        txtMsg.setCaretColor(new java.awt.Color(51, 0, 0));
+        txtMsg.setFocusable(false);
+        txtMsg.setRequestFocusEnabled(false);
+        txtMsg.setSelectedTextColor(new java.awt.Color(51, 0, 0));
+        txtMsg.setSelectionColor(new java.awt.Color(51, 0, 0));
+        txtMsg.setVerifyInputWhenFocusTarget(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(153, 153, 153)
-                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addComponent(txtMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -365,7 +359,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
                 .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMsg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16))
         );
 
@@ -474,6 +468,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         jPanel8.setBackground(new java.awt.Color(102, 102, 102));
 
         btnRemoveMenu.setText("Quitar Menu");
+        btnRemoveMenu.setEnabled(false);
         btnRemoveMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRemoveMenuActionPerformed(evt);
@@ -481,6 +476,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         });
 
         btnAddMenu.setText("Agregar Menu");
+        btnAddMenu.setEnabled(false);
         btnAddMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddMenuActionPerformed(evt);
@@ -678,7 +674,8 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         tabListDietas.setEnabled(true);
         txtErrorName.setForeground(Color.red);
         txtErrorName.setText("");
-        txtName.setText("");
+        txtMsg.setForeground(Color.yellow);
+        txtMsg.setText("**Elija una Dieta para operar");
         txtId.setText("");
         radioAlta.setEnabled(false);
         radioBaja.setEnabled(false);
@@ -694,20 +691,24 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
     private void radioAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAltaActionPerformed
         btnSelect.setEnabled(true);
         btnUpdate.setText("Alta");
+        txtMsg.setText("Presione seleccionar para continuar");
     }//GEN-LAST:event_radioAltaActionPerformed
 
     private void radioBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBajaActionPerformed
         btnSelect.setEnabled(true);
         btnUpdate.setText("Baja");
+        txtMsg.setText("Presione seleccionar para continuar");
     }//GEN-LAST:event_radioBajaActionPerformed
 
     private void radioBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBorrarActionPerformed
         btnSelect.setEnabled(true);
         btnUpdate.setText("Borrar");
+        txtMsg.setText("Presione seleccionar para continuar");
     }//GEN-LAST:event_radioBorrarActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         btnUpdate.setEnabled(false);
+        
         if (radioAlta.isSelected()) {
             dietaData.altaLogicaDieta(Integer.parseInt(txtId.getText()));
             botonUpdate();
@@ -728,6 +729,9 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
             cargarTablaMenu(Integer.parseInt(txtId.getText()));
             cargarTablaMenu2(Integer.parseInt(txtId.getText()));
             sumarCalorias();
+            btnAddMenu.setEnabled(true);
+            btnRemoveMenu.setEnabled(true);
+            tabListDietas.setEnabled(false);
 
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -735,43 +739,51 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
     private void radioEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEditarActionPerformed
         btnSelect.setEnabled(true);
         btnUpdate.setText("Editar");
-        btnFinEdit.setText("Terminar edicion");
+        txtMsg.setText("Presione seleccionar para continuar");
     }//GEN-LAST:event_radioEditarActionPerformed
 
     private void btnFinEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinEditActionPerformed
         LocalDate nuevaFechaInicio = fechaInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate nuevaFechaFinal = fechaFinal.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        
+        int largoFilas = tabMenuSelect.getRowCount();
+        long diferencia = ChronoUnit.DAYS.between(nuevaFechaInicio, nuevaFechaFinal);
+        System.out.println("diferencia = "+diferencia);
+        long diferenciaReal = diferencia +1;       
+        if (largoFilas == diferenciaReal) {
+            int fila = tabListDietas.getSelectedRow();
+            if (fila != -1) {
+                int idDieta = (int) tabListDietas.getValueAt(fila, 0);
+                String nombre = tabListDietas.getValueAt(fila, 1).toString();
+                double pesoStart = Double.parseDouble(tabListDietas.getValueAt(fila, 4).toString());
+                double pesoEnd = Double.parseDouble(tabListDietas.getValueAt(fila, 5).toString());
+                int totalCalorias = Integer.parseInt(tabListDietas.getValueAt(fila, 6).toString());
+                //boolean estado = parseBoolean(tabDieta.getValueAt(fila, 5).toString());
+                Dieta dietaNueva = new Dieta(idDieta, nombre, idDieta, nuevaFechaInicio, nuevaFechaFinal, pesoStart, pesoEnd, totalCalorias, true);
+                dietaNueva.setIdDieta(idDieta);
+                dietaNueva.setFechaInicio(nuevaFechaInicio);
+                dietaNueva.setFechaFinal(nuevaFechaFinal);
 
-        int fila = tabListDietas.getSelectedRow();
-        if (fila != -1) {
-            int idDieta = (int) tabListDietas.getValueAt(fila, 0);
-            String nombre = tabListDietas.getValueAt(fila, 1).toString();
-            double pesoStart = Double.parseDouble(tabListDietas.getValueAt(fila, 4).toString());
-            double pesoEnd = Double.parseDouble(tabListDietas.getValueAt(fila, 5).toString());
-            int totalCalorias = Integer.parseInt(tabListDietas.getValueAt(fila, 6).toString());
-            //boolean estado = parseBoolean(tabDieta.getValueAt(fila, 5).toString());
-            Dieta dietaNueva = new Dieta(idDieta, nombre, idDieta, nuevaFechaInicio, nuevaFechaFinal, pesoStart, pesoEnd, totalCalorias, true);
-            dietaNueva.setIdDieta(idDieta);
-            dietaNueva.setFechaInicio(nuevaFechaInicio);
-            dietaNueva.setFechaFinal(nuevaFechaFinal);
+                //Condicionan la seleccion del comboBox:
+                String seleccion = (String) cmbDieta.getSelectedItem();
+                String nuevoValor = txtDieta.getText();
 
-            //Condicionan la seleccion del comboBox:
-            String seleccion = (String) cmbDieta.getSelectedItem();
-            String nuevoValor = txtDieta.getText();
-
-            //Controladores que segun la opcion, van a modificar el valor de la dieta.
-            if (seleccion.equalsIgnoreCase("Nombre")) {
-                dietaNueva.setNombre(nuevoValor);
-            } else if (seleccion.equalsIgnoreCase("peso inicial")) {
-                dietaNueva.setPesoInicial(Double.valueOf(nuevoValor));
-            } else if (seleccion.equalsIgnoreCase("peso final")) {
-                dietaNueva.setPesoFinal(Double.valueOf(nuevoValor));
+                //Controladores que segun la opcion, van a modificar el valor de la dieta.
+                if (seleccion.equalsIgnoreCase("Nombre")) {
+                    dietaNueva.setNombre(nuevoValor);
+                } else if (seleccion.equalsIgnoreCase("peso inicial")) {
+                    dietaNueva.setPesoInicial(Double.valueOf(nuevoValor));
+                } else if (seleccion.equalsIgnoreCase("peso final")) {
+                    dietaNueva.setPesoFinal(Double.valueOf(nuevoValor));
+                }
+                txtMsg.setText("");
+                dietaData.actualizarDietaPorId(dietaNueva);
+                botonUpdate();
             }
-
-            dietaData.actualizarDietaPorId(dietaNueva);
-            botonUpdate();
+        }else{
+            txtMsg.setForeground(Color.red);
+            txtMsg.setText("El numero de menus incluidos, debe ser igual a "+diferenciaReal); 
         }
-
     }//GEN-LAST:event_btnFinEditActionPerformed
 
     private void txtDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDietaActionPerformed
@@ -802,8 +814,8 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         long diferencia = ChronoUnit.DAYS.between(dateInicial, dateFinal);
         ArrayList<Dieta_MenuDiario_Handler> handlerFechas = dietaMenuHand.obtenerFechaYMenuPorIdDieta(idDietaCaja());
         ArrayList<LocalDate> fechasIncluidas = new ArrayList();
-        for(int i = 0; i<largoFilas; i++) {
-            fechasIncluidas.add((LocalDate)tabMenuSelect.getValueAt(i, 1));
+        for (int i = 0; i < largoFilas; i++) {
+            fechasIncluidas.add((LocalDate) tabMenuSelect.getValueAt(i, 1));
         }
         if (fila != -1 && largoFilas <= diferencia) {
 
@@ -834,7 +846,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         } else {
             System.out.println("Número de filas excede la diferencia de días.");
         }
-        
+
 
     }//GEN-LAST:event_btnAddMenuActionPerformed
 
@@ -884,7 +896,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtDieta;
     private javax.swing.JLabel txtErrorName;
     private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtMsg;
     // End of variables declaration//GEN-END:variables
 
     private int idDietaCaja() {
@@ -944,7 +956,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
     // Carga los menus en la tabla tabMenuAdd y filtra los menus, sacando los asociados con una dieta
     private void cargarTablaMenu2(int idDieta) {
         modelo2.setRowCount(0);
-        ArrayList<MenuDiario> listaIdMenu = menuDiarioData.listarMenus();
+        ArrayList<MenuDiario> listaIdMenu = menuDiarioData.listarMenusActivos();
 
         //Con este ArrayList capturo los menus asociados
         ArrayList<Integer> listaMenuConDieta = dietaMenuHand.listarMenuDiario_DietaID(idDieta);
@@ -1021,6 +1033,16 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         radioBaja.setEnabled(true);
         radioBorrar.setEnabled(true);
         radioEditar.setEnabled(true);
+        modelo1.setRowCount(0);
+        modelo2.setRowCount(0);
+        fechaInicio.setEnabled(false);
+        fechaFinal.setEnabled(false);
+        cmbDieta.setSelectedIndex(0);
+        cmbDieta.setEnabled(false);
+        fechaFinal.setDate(null);
+        fechaInicio.setDate(null);
+        btnRemoveMenu.setEnabled(false);
+        btnAddMenu.setEnabled(false);
     }
 
     private void sumarCalorias() {
