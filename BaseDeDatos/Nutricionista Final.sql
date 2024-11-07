@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-11-2024 a las 23:34:51
+-- Tiempo de generación: 07-11-2024 a las 00:59:29
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -59,30 +59,31 @@ INSERT INTO `alimento` (`idAlimento`, `nombre`, `tipoComida`, `caloriasPor100g`,
 (14, 'Hamburguesa', 'Cena', 500, 'Hamburguesa con queso', 1),
 (15, 'Tacos', 'Cena', 250, 'Tacos de carne con vegetales', 1),
 (16, 'Quesadillas', 'Cena', 300, 'Tortillas de maíz con queso', 1),
-(17, 'Ensalada de frutas', 'snack', 70, 'Mezcla de frutas frescas', 1),
-(18, 'Frutos secos', 'snack', 200, 'Mezcla de nueces y almendras', 1),
-(19, 'Panqueques', 'desayuno', 220, 'Panqueques con miel', 1),
-(20, 'Té con leche', 'desayuno', 40, 'Infusión con leche', 1),
-(21, 'Croissant', 'desayuno', 406, 'Hojaldre francés con mantequilla', 1),
-(22, 'Bagel', 'desayuno', 250, 'Pan en forma de rosquilla', 1),
-(23, 'Avena con frutas', 'desayuno', 150, 'Avena cocida con frutas', 1),
-(24, 'Batido verde', 'desayuno', 100, 'Batido de vegetales y frutas', 1),
-(25, 'Ensalada de pollo', 'merienda', 220, 'Ensalada de pollo con aderezo ligero', 1),
-(26, 'Wrap de pavo', 'merienda', 300, 'Tortilla rellena de pavo y vegetales', 1),
-(27, 'Manzana con mantequilla de maní', 'snack', 120, 'Rodajas de manzana con mantequilla de maní', 1),
-(28, 'Palomitas de maíz', 'snack', 100, 'Palomitas de maíz naturales', 1),
-(29, 'Quiche de espinacas', 'almuerzo', 250, 'Tarta salada de espinacas y queso', 1),
-(30, 'Ratatouille', 'almuerzo', 150, 'Estofado de vegetales', 1),
-(31, 'Lasaña', 'almuerzo', 350, 'Pasta al horno con carne y queso', 1),
-(32, 'Sushi', 'almuerzo', 200, 'Arroz con pescado y vegetales', 1),
-(33, 'Ravioles', 'cena', 300, 'Pasta rellena con salsa', 1),
-(34, 'Pollo a la parrilla', 'cena', 220, 'Pollo cocido a la parrilla', 1),
-(35, 'Estofado de ternera', 'cena', 280, 'Ternera cocida con vegetales', 1),
-(36, 'Salteado de vegetales', 'cena', 120, 'Mezcla de vegetales salteados', 1),
-(37, 'Barrita de proteína', 'snack', 180, 'Barrita nutritiva rica en proteínas', 1),
-(38, 'Chips de kale', 'snack', 50, 'Hojas de kale deshidratadas', 1),
-(39, 'Tostadas con aguacate', 'desayuno', 160, 'Pan tostado con aguacate', 1),
-(40, 'Café con leche', 'desayuno', 30, 'Bebida de café con leche', 1);
+(17, 'Ensalada de frutas', 'Snack', 70, 'Mezcla de frutas frescas', 1),
+(18, 'Frutos secos', 'Snack', 200, 'Mezcla de nueces y almendras', 1),
+(19, 'Panqueques', 'Desayuno', 220, 'Panqueques con miel', 1),
+(20, 'Té con leche', 'Desayuno', 40, 'Infusión con leche', 1),
+(21, 'Croissant', 'Desayuno', 406, 'Hojaldre francés con mantequilla', 1),
+(22, 'Bagel', 'Desayuno', 250, 'Pan en forma de rosquilla', 1),
+(23, 'Avena con frutas', 'Desayuno', 150, 'Avena cocida con frutas', 1),
+(24, 'Batido verde', 'Desayuno', 100, 'Batido de vegetales y frutas', 1),
+(25, 'Ensalada de pollo', 'Merienda', 220, 'Ensalada de pollo con aderezo ligero', 1),
+(26, 'Wrap de pavo', 'Merienda', 300, 'Tortilla rellena de pavo y vegetales', 1),
+(27, 'Manzana con mantequilla de maní', 'Snack', 120, 'Rodajas de manzana con mantequilla de maní', 1),
+(28, 'Palomitas de maíz', 'Snack', 100, 'Palomitas de maíz naturales', 1),
+(29, 'Quiche de espinacas', 'Almuerzo', 250, 'Tarta salada de espinacas y queso', 1),
+(30, 'Ratatouille', 'Almuerzo', 150, 'Estofado de vegetales', 1),
+(31, 'Lasaña', 'Almuerzo', 350, 'Pasta al horno con carne y queso', 1),
+(32, 'Sushi', 'Almuerzo', 200, 'Arroz con pescado y vegetales', 1),
+(33, 'Ravioles', 'Cena', 300, 'Pasta rellena con salsa', 1),
+(34, 'Pollo a la parrilla', 'Cena', 220, 'Pollo cocido a la parrilla', 1),
+(35, 'Estofado de ternera', 'Cena', 280, 'Ternera cocida con vegetales', 1),
+(36, 'Salteado de vegetales', 'Cena', 120, 'Mezcla de vegetales salteados', 1),
+(37, 'Barrita de proteína', 'Snack', 180, 'Barrita nutritiva rica en proteínas', 1),
+(38, 'Chips de kale', 'Snack', 50, 'Hojas de kale deshidratadas', 1),
+(39, 'Tostadas con aguacate', 'Desayuno', 160, 'Pan tostado con aguacate', 1),
+(40, 'Café con leche', 'Desayuno', 30, 'Bebida de café con leche', 1),
+(41, 'Bife con Ensalada', 'Cena', 750, '250g de carne de vaca con verduras', 1);
 
 -- --------------------------------------------------------
 
@@ -180,7 +181,9 @@ INSERT INTO `alimento_keyword_handler` (`idAlimento`, `idKeyword`) VALUES
 (39, 1),
 (39, 31),
 (40, 3),
-(40, 43);
+(40, 43),
+(41, 18),
+(41, 24);
 
 -- --------------------------------------------------------
 
@@ -205,12 +208,14 @@ CREATE TABLE `dieta` (
 --
 
 INSERT INTO `dieta` (`idDieta`, `nombre`, `idPaciente`, `fechaInicio`, `fechaFinal`, `pesoInicial`, `pesoFinal`, `totalCalorias`, `estado`) VALUES
-(1, 'dieta uno', 1, '2024-11-01', '2024-11-06', 100, 99, 5145, 1),
+(1, 'dieta uno', 1, '2024-11-01', '2024-11-05', 70, 66, 5145, 1),
 (2, 'dieta2', 2, '2024-11-07', '2024-11-08', 85, 0, 3370, 1),
 (3, 'dieta3', 5, '2024-11-14', '2024-11-21', 60, 0, 2360, 1),
 (4, 'dieta 4', 4, '2024-11-13', '2024-11-15', 190, 80, 3585, 1),
 (5, 'dietatestMenus', 5, '2024-11-03', '2024-11-05', 85, 75, 2590, 1),
-(6, 'dietamenu2', 6, '2024-11-05', '2024-11-08', 90, 75, 2590, 1);
+(6, 'dietamenu2', 6, '2024-11-05', '2024-11-08', 90, 75, 2590, 1),
+(7, 'Dieta de Andres', 7, '2024-11-06', '2024-11-09', 90, 0, 4585, 1),
+(8, 'Dieta si de andres', 41, '2024-11-06', '2024-11-10', 90, 88, 4800, 1);
 
 -- --------------------------------------------------------
 
@@ -250,7 +255,16 @@ INSERT INTO `dieta_menudiario_handler` (`idDieta`, `idMenuDiario`, `fecha`) VALU
 (6, 1, '2024-11-05'),
 (6, 2, '2024-11-06'),
 (6, 3, '2024-11-07'),
-(6, 4, '2024-11-08');
+(6, 4, '2024-11-08'),
+(7, 3, '2024-11-08'),
+(7, 6, '2024-11-09'),
+(7, 10, '2024-11-07'),
+(7, 11, '2024-11-06'),
+(8, 2, '2024-11-06'),
+(8, 3, '2024-11-08'),
+(8, 6, '2024-11-07'),
+(8, 7, '2024-11-09'),
+(8, 10, '2024-11-10');
 
 -- --------------------------------------------------------
 
@@ -332,7 +346,9 @@ INSERT INTO `menudiario` (`idMenuDiario`, `nombreMenu`, `caloriasDelMenu`, `esta
 (6, 'menu7', 875, 1),
 (7, 'menutest1', 840, 1),
 (8, 'menutest2', 870, 1),
-(9, 'menutest3', 880, 1);
+(9, 'menutest3', 880, 0),
+(10, 'Menu de Muestra', 1200, 1),
+(11, 'AutoMAC', 980, 1);
 
 -- --------------------------------------------------------
 
@@ -354,15 +370,20 @@ INSERT INTO `menudiario_alimento_handler` (`idAlimento`, `idMenuDiario`) VALUES
 (1, 6),
 (3, 8),
 (4, 5),
+(4, 10),
 (5, 1),
 (5, 9),
 (6, 2),
 (6, 4),
 (6, 5),
 (6, 6),
+(6, 10),
+(6, 11),
 (7, 4),
+(7, 10),
 (8, 5),
 (10, 4),
+(10, 10),
 (11, 3),
 (11, 6),
 (11, 8),
@@ -370,8 +391,10 @@ INSERT INTO `menudiario_alimento_handler` (`idAlimento`, `idMenuDiario`) VALUES
 (13, 6),
 (14, 3),
 (16, 1),
+(16, 11),
 (17, 1),
 (17, 6),
+(17, 11),
 (20, 2),
 (22, 4),
 (22, 7),
@@ -379,6 +402,7 @@ INSERT INTO `menudiario_alimento_handler` (`idAlimento`, `idMenuDiario`) VALUES
 (26, 3),
 (26, 8),
 (28, 2),
+(29, 11),
 (30, 2),
 (30, 5),
 (32, 1),
@@ -393,8 +417,10 @@ INSERT INTO `menudiario_alimento_handler` (`idAlimento`, `idMenuDiario`) VALUES
 (38, 3),
 (38, 7),
 (38, 8),
+(39, 11),
 (40, 1),
-(40, 9);
+(40, 9),
+(41, 10);
 
 -- --------------------------------------------------------
 
@@ -457,7 +483,8 @@ INSERT INTO `paciente` (`idPaciente`, `nombre`, `dni`, `edad`, `telefono`, `peso
 (37, 'Pablo Figueroa', 50123452, 49, '5558899', 93, 85, 1),
 (38, 'Carla Romero', 51123453, 27, '5559900', 58.5, 54, 1),
 (39, 'Fernando Rojas', 52123454, 36, '5550011', 89, 82, 1),
-(40, 'Nora Sanchez', 53123455, 44, '5551122', 75, 68, 1);
+(40, 'Nora Sanchez', 53123455, 44, '5551122', 75, 68, 1),
+(41, 'Andres Pestchanker', 31047437, 40, '2664682528', 90, 75, 1);
 
 --
 -- Índices para tablas volcadas
@@ -524,13 +551,13 @@ ALTER TABLE `paciente`
 -- AUTO_INCREMENT de la tabla `alimento`
 --
 ALTER TABLE `alimento`
-  MODIFY `idAlimento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `idAlimento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `dieta`
 --
 ALTER TABLE `dieta`
-  MODIFY `idDieta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idDieta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `keywords`
@@ -542,13 +569,13 @@ ALTER TABLE `keywords`
 -- AUTO_INCREMENT de la tabla `menudiario`
 --
 ALTER TABLE `menudiario`
-  MODIFY `idMenuDiario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idMenuDiario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Restricciones para tablas volcadas
