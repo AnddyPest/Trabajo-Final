@@ -70,7 +70,10 @@ public class Alimento_KeywordData {
             ResultSet resultados = ps.executeQuery();
             while(resultados.next()){
                 alimento = FuncionDe.crearAlimento(resultados);
-                alimentosDevueltos.add(alimento);
+                if(alimento.isEstado() == true){
+                    alimentosDevueltos.add(alimento);
+                }
+                
             }
             FuncionDe.mostrarMensajeCorrecto("obtenerAlimentosPorKeywordsYaEspecificadas", "Alimentos por keywords enviados correctamente");
         } catch (SQLException ex) {

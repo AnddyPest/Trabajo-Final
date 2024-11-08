@@ -691,10 +691,10 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
             if (txtName.getText().isEmpty()) {
                 txtErrorName.setText("*Vacío.");
                 txtName.requestFocus();
-            } else if (txtDni.getText().isEmpty()) {
-                txtErrorDni.setText("*Vacío.");
+            } else if (txtDni.getText().isEmpty() || txtDni.getText().length() < 7) {
+                txtErrorDni.setText("*Vacío o invalido.");
                 txtDni.requestFocus();
-            } else if (txtEdad.getText().isEmpty()) {
+            } else if (txtEdad.getText().isEmpty() || Integer.parseInt(txtEdad.getText()) < 1) {
                 txtErrorEdad.setText("*Vacío.");
                 txtEdad.requestFocus();
             } else if (txtTelefono.getText().isEmpty()) {
@@ -777,6 +777,7 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
         txtId.setText("");
         radioActualizar.setEnabled(false);
         radioBorrar.setEnabled(false);
+        btnActualizar.setEnabled(true);
         //btnSelect.setEnabled(false);
     }//GEN-LAST:event_radioBorrarActionPerformed
 

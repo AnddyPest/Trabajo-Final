@@ -578,6 +578,12 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
         txtTelefono.setText("");
         txtPesoInicial.setText("");
         txtPesoBuscado.setText("");
+        txtName.setEnabled(true);
+        txtDni.setEnabled(true);
+        txtEdad.setEnabled(true);
+        txtTelefono.setEnabled(true);
+        txtPesoInicial.setEnabled(true);
+        txtPesoBuscado.setEnabled(true);
         
     }//GEN-LAST:event_btnNwActionPerformed
 
@@ -603,16 +609,18 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        
         if (validarEntradas()) {
             if(txtName.getText().isEmpty()) {
             txtErrorName.setText("*Ingrese un Nombre y Apellido.");
             txtName.requestFocus();
-            }else if(txtDni.getText().isEmpty()) {
-            txtErrorDni.setText("Ingrese un DNI.");
+            }else if(txtDni.getText().isEmpty() || txtDni.getText().length() < 7) {
+            txtErrorDni.setText("Campo incorrecto.");
             txtDni.requestFocus();
-            }else if(txtEdad.getText().isEmpty()) {
-            txtErrorEdad.setText("Ingrese edad.");
+            }else if(txtEdad.getText().isEmpty() || Integer.parseInt(txtEdad.getText()) < 1 ) {
+            txtErrorEdad.setText("Campo incorrecto.");
             txtEdad.requestFocus();
+            
             }else if(txtTelefono.getText().isEmpty()) {
             txtErrorTelefono.setText("Ingrese un teléfono.");
             txtTelefono.requestFocus();
@@ -633,12 +641,12 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
                 Paciente paciente = new Paciente(nombre, dni, edad, tel, pesoI, pesoB);
                
                     pacienteData.crearPaciente(paciente);
-                    txtName.setEditable(false);
-                    txtEdad.setEditable(false);
-                    txtDni.setEditable(false);
-                    txtTelefono.setEditable(false);
-                    txtPesoInicial.setEditable(false);
-                    txtPesoBuscado.setEditable(false);
+                    txtName.setEnabled(false);
+                    txtEdad.setEnabled(false);
+                    txtDni.setEnabled(false);
+                    txtTelefono.setEnabled(false);
+                    txtPesoInicial.setEnabled(false);
+                    txtPesoBuscado.setEnabled(false);
                     btnSave.setEnabled(false);
                     btnNw.setEnabled(true);
                     txtErrorName.setForeground(Color.green);

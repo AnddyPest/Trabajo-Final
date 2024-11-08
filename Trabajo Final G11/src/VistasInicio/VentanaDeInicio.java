@@ -99,7 +99,7 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         });
         menuPacientes.add(menuEditarPaciente);
 
-        menuListarPacientes.setText("Listar/Buscar Pacientes");
+        menuListarPacientes.setText("Listar Pacientes");
         menuListarPacientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuListarPacientesActionPerformed(evt);

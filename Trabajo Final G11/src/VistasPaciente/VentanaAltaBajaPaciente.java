@@ -24,6 +24,7 @@ public class VentanaAltaBajaPaciente extends javax.swing.JInternalFrame {
         pacienteData = new PacienteData(con);
         cargarCabecera();
         actualizarTabla();
+        btnReset.setEnabled(false);
 
         tabPacientes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -66,6 +67,7 @@ public class VentanaAltaBajaPaciente extends javax.swing.JInternalFrame {
         btnExit = new javax.swing.JButton();
         radioAlta = new javax.swing.JRadioButton();
         radioBaja = new javax.swing.JRadioButton();
+        btnReset = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         txtId = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
@@ -130,6 +132,13 @@ public class VentanaAltaBajaPaciente extends javax.swing.JInternalFrame {
             }
         });
 
+        btnReset.setText("Reiniciar");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -143,7 +152,8 @@ public class VentanaAltaBajaPaciente extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                     .addComponent(radioBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(radioAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(radioAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReset, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -161,9 +171,11 @@ public class VentanaAltaBajaPaciente extends javax.swing.JInternalFrame {
                 .addComponent(radioAlta)
                 .addGap(18, 18, 18)
                 .addComponent(radioBaja)
-                .addGap(80, 80, 80)
+                .addGap(17, 17, 17)
+                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 460));
@@ -374,7 +386,8 @@ public class VentanaAltaBajaPaciente extends javax.swing.JInternalFrame {
         txtId.setText("");
         radioAlta.setEnabled(false);
         radioBaja.setEnabled(false);
-       // btnSelect.setEnabled(false);
+        btnReset.setEnabled(true);
+        // btnSelect.setEnabled(false);
     }//GEN-LAST:event_radioAltaActionPerformed
 
     private void radioBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBajaActionPerformed
@@ -387,13 +400,28 @@ public class VentanaAltaBajaPaciente extends javax.swing.JInternalFrame {
         txtId.setText("");
         radioAlta.setEnabled(false);
         radioBaja.setEnabled(false);
+        btnReset.setEnabled(true);
         //btnSelect.setEnabled(false);
     }//GEN-LAST:event_radioBajaActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        grupoSelect.clearSelection();
+        radioAlta.setEnabled(true);
+        radioBaja.setEnabled(true);
+        tabPacientes.setEnabled(false);
+        txtErrorName.setText("");
+        txtName.setText("");
+        txtId.setText("");
+        btnReset.setEnabled(false);
+        actualizarTabla();
+        btnActualizar.setEnabled(false);
+    }//GEN-LAST:event_btnResetActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnReset;
     private javax.swing.ButtonGroup grupoSelect;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
