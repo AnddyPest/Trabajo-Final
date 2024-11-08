@@ -70,7 +70,6 @@
                           <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
                           <Component id="jLabel1" alignment="1" max="32767" attributes="0"/>
                           <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
-                          <Component id="btnSelect" alignment="0" max="32767" attributes="0"/>
                           <Component id="radioBaja" alignment="0" max="32767" attributes="0"/>
                           <Component id="radioAlta" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnUpdate" max="32767" attributes="0"/>
@@ -107,9 +106,7 @@
                       <Component id="radioAlta" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="radioBaja" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="btnSelect" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
                       <Component id="btnUpdate" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnFinEdit" min="-2" pref="50" max="-2" attributes="0"/>
@@ -153,15 +150,6 @@
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Dieta"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnSelect">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Seleccionar"/>
-                <Property name="enabled" type="boolean" value="false"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelectActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnExit">
               <Properties>

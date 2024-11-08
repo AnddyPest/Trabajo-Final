@@ -70,7 +70,6 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        btnSelect = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         radioActualizar = new javax.swing.JRadioButton();
@@ -139,14 +138,6 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
         jLabel7.setText("Imagen acá");
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
-        btnSelect.setText("Seleccionar");
-        btnSelect.setEnabled(false);
-        btnSelect.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSelectActionPerformed(evt);
-            }
-        });
-
         btnActualizar.setEnabled(false);
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,7 +186,6 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                    .addComponent(btnSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(radioBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(radioActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -216,9 +206,7 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
                 .addComponent(radioActualizar)
                 .addGap(18, 18, 18)
                 .addComponent(radioBorrar)
-                .addGap(18, 18, 18)
-                .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(86, 86, 86)
                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -698,27 +686,6 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
-        tabPacientes.setEnabled(true);
-        txtErrorName.setForeground(Color.red);
-        txtErrorName.setText("");
-        txtErrorDni.setForeground(Color.red);
-        txtErrorDni.setText("");
-        txtErrorEdad.setForeground(Color.red);
-        txtErrorEdad.setText("");
-        txtErrorTel.setForeground(Color.red);
-        txtErrorTel.setText("");
-        txtName.setText("");
-        txtDni.setText("");
-        txtEdad.setText("");
-        txtTelefono.setText("");
-        txtId.setText("");
-        radioActualizar.setEnabled(false);
-        radioBorrar.setEnabled(false);
-        btnSelect.setEnabled(false);
-
-    }//GEN-LAST:event_btnSelectActionPerformed
-
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         if (validarEntradas()) {
             if (txtName.getText().isEmpty()) {
@@ -770,13 +737,47 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void radioActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioActualizarActionPerformed
-        btnSelect.setEnabled(true);
+        //btnSelect.setEnabled(true);
         btnActualizar.setText("Actualizar");
+        tabPacientes.setEnabled(true);
+        txtErrorName.setForeground(Color.red);
+        txtErrorName.setText("");
+        txtErrorDni.setForeground(Color.red);
+        txtErrorDni.setText("");
+        txtErrorEdad.setForeground(Color.red);
+        txtErrorEdad.setText("");
+        txtErrorTel.setForeground(Color.red);
+        txtErrorTel.setText("");
+        txtName.setText("");
+        txtDni.setText("");
+        txtEdad.setText("");
+        txtTelefono.setText("");
+        txtId.setText("");
+        radioActualizar.setEnabled(false);
+        radioBorrar.setEnabled(false);
+        //btnSelect.setEnabled(false);
     }//GEN-LAST:event_radioActualizarActionPerformed
 
     private void radioBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBorrarActionPerformed
-        btnSelect.setEnabled(true);
+       // btnSelect.setEnabled(true);
         btnActualizar.setText("Borrar");
+        tabPacientes.setEnabled(true);
+        txtErrorName.setForeground(Color.red);
+        txtErrorName.setText("");
+        txtErrorDni.setForeground(Color.red);
+        txtErrorDni.setText("");
+        txtErrorEdad.setForeground(Color.red);
+        txtErrorEdad.setText("");
+        txtErrorTel.setForeground(Color.red);
+        txtErrorTel.setText("");
+        txtName.setText("");
+        txtDni.setText("");
+        txtEdad.setText("");
+        txtTelefono.setText("");
+        txtId.setText("");
+        radioActualizar.setEnabled(false);
+        radioBorrar.setEnabled(false);
+        //btnSelect.setEnabled(false);
     }//GEN-LAST:event_radioBorrarActionPerformed
 
     private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
@@ -798,7 +799,6 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnSelect;
     private javax.swing.ButtonGroup grupoSelect;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;

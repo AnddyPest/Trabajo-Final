@@ -61,7 +61,6 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        btnSelect = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         radioAlta = new javax.swing.JRadioButton();
         radioBaja = new javax.swing.JRadioButton();
@@ -96,14 +95,6 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Menu Diario");
-
-        btnSelect.setText("Seleccionar");
-        btnSelect.setEnabled(false);
-        btnSelect.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSelectActionPerformed(evt);
-            }
-        });
 
         btnExit.setText("Salir");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +147,6 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                    .addComponent(btnSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(radioBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(radioAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -179,9 +169,7 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
                 .addComponent(radioAlta)
                 .addGap(18, 18, 18)
                 .addComponent(radioBaja)
-                .addGap(18, 18, 18)
-                .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(80, 80, 80)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -369,7 +357,13 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void radioAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAltaActionPerformed
+        //btnSelect.setEnabled(true);
+        btnUpdate.setText("Alta");
         tabMenu.setEnabled(true);
         txtErrorName.setForeground(Color.red);
         txtErrorName.setText("");
@@ -378,21 +372,21 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
         radioAlta.setEnabled(false);
         radioBaja.setEnabled(false);
         radioBorrar.setEnabled(false);
-        btnSelect.setEnabled(false);
-    }//GEN-LAST:event_btnSelectActionPerformed
-
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        dispose();
-    }//GEN-LAST:event_btnExitActionPerformed
-
-    private void radioAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAltaActionPerformed
-        btnSelect.setEnabled(true);
-        btnUpdate.setText("Alta");
+       // btnSelect.setEnabled(false);
     }//GEN-LAST:event_radioAltaActionPerformed
 
     private void radioBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBajaActionPerformed
-        btnSelect.setEnabled(true);
+        //btnSelect.setEnabled(true);
         btnUpdate.setText("Baja");
+        tabMenu.setEnabled(true);
+        txtErrorName.setForeground(Color.red);
+        txtErrorName.setText("");
+        txtName.setText("");
+        txtId.setText("");
+        radioAlta.setEnabled(false);
+        radioBaja.setEnabled(false);
+        radioBorrar.setEnabled(false);
+       // btnSelect.setEnabled(false);
     }//GEN-LAST:event_radioBajaActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -410,14 +404,22 @@ public class VentanaLABBMenuDiario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void radioBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBorrarActionPerformed
-       btnSelect.setEnabled(true);
+       //btnSelect.setEnabled(true);
         btnUpdate.setText("Borrar");
+        tabMenu.setEnabled(true);
+        txtErrorName.setForeground(Color.red);
+        txtErrorName.setText("");
+        txtName.setText("");
+        txtId.setText("");
+        radioAlta.setEnabled(false);
+        radioBaja.setEnabled(false);
+        radioBorrar.setEnabled(false);
+        //btnSelect.setEnabled(false);
     }//GEN-LAST:event_radioBorrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnSelect;
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup groupSelect;
     private javax.swing.JLabel jLabel1;

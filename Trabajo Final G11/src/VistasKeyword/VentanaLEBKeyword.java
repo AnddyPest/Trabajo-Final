@@ -26,7 +26,7 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
         cargarCabecera();
         actualizarTabla();
         tabKeywords.setEnabled(false);
-        btnSelect.setEnabled(false);
+        //btnSelect.setEnabled(false);
         btnUpdateD.setEnabled(false);
     
         
@@ -70,7 +70,6 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
         btnUpdateD = new javax.swing.JButton();
-        btnSelect = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -117,13 +116,6 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSelect.setText("Seleccionar");
-        btnSelect.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSelectActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -135,8 +127,7 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                    .addComponent(btnUpdateD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSelect, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnUpdateD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -148,9 +139,7 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(122, 122, 122)
-                .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(201, 201, 201)
                 .addComponent(btnUpdateD, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -404,12 +393,18 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
         txtErrorName.setText("");
     }//GEN-LAST:event_txtNameKeyTyped
 
-    ////BOTON PARA SELECCIONAR ELEMENTOS DE LA TABLA!!!!!
-    private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
-       tabKeywords.setEnabled(true);
+    private void radioEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEditarActionPerformed
+        //BOTON PARA HABILITAR LA EDICION DEL NOMBRE DE LA KEY!!!!!
+        txtID.setText("");
+        txtName.setText("");
+        //btnSelect.setEnabled(true);
+        txtErrorName.setForeground(Color.green);
+      txtErrorName.setText("**Modo Editar, seleccione Key a editar.");
+        btnUpdateD.setText("Editar");
+        tabKeywords.setEnabled(true);
        txtErrorName.setForeground(Color.red);
        txtErrorName.setText("");
-       btnSelect.setEnabled(false);
+      // btnSelect.setEnabled(false);
        txtName.setEditable(false);
        radioEditar.setEnabled(false);
        radioBorrar.setEnabled(false);
@@ -420,36 +415,34 @@ public class VentanaLEBKeyword extends javax.swing.JInternalFrame {
            txtName.setEditable(false);
        }
        
-       
-       
-       btnUpdateD.setEnabled(true);
-    }//GEN-LAST:event_btnSelectActionPerformed
-
-    private void radioEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEditarActionPerformed
-        //BOTON PARA HABILITAR LA EDICION DEL NOMBRE DE LA KEY!!!!!
-        txtID.setText("");
-        txtName.setText("");
-        btnSelect.setEnabled(true);
-        txtErrorName.setForeground(Color.green);
-      txtErrorName.setText("**Modo Editar, seleccione Key a editar.");
-        btnUpdateD.setText("Editar");
-       
     }//GEN-LAST:event_radioEditarActionPerformed
 
     private void radioBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBorrarActionPerformed
        txtID.setText("");
         txtName.setText("");
-        btnSelect.setEnabled(true);
+        //btnSelect.setEnabled(true);
       txtErrorName.setForeground(Color.green);
       txtErrorName.setText("**Modo Borrar, seleccione Key a borrar.");
         btnUpdateD.setText("Borrar");
+        tabKeywords.setEnabled(true);
+       txtErrorName.setForeground(Color.red);
+       txtErrorName.setText("");
+       //btnSelect.setEnabled(false);
+       txtName.setEditable(false);
+       radioEditar.setEnabled(false);
+       radioBorrar.setEnabled(false);
+       
+       if(radioEditar.isSelected()) {
+           txtName.setEditable(true);
+       }else if(radioBorrar.isSelected()){
+           txtName.setEditable(false);
+       }
     }//GEN-LAST:event_radioBorrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup GroupSelect;
     private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnSelect;
     private javax.swing.JButton btnUpdateD;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

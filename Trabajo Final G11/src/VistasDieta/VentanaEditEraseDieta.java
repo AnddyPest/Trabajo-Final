@@ -124,7 +124,6 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        btnSelect = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         radioAlta = new javax.swing.JRadioButton();
         radioBaja = new javax.swing.JRadioButton();
@@ -180,14 +179,6 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Dieta");
-
-        btnSelect.setText("Seleccionar");
-        btnSelect.setEnabled(false);
-        btnSelect.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSelectActionPerformed(evt);
-            }
-        });
 
         btnExit.setText("Salir");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -270,7 +261,6 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(radioBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(radioAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -302,9 +292,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
                 .addComponent(radioAlta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(radioBaja)
-                .addGap(27, 27, 27)
-                .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(89, 89, 89)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnFinEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -670,40 +658,59 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
-        tabListDietas.setEnabled(true);
-        txtErrorName.setForeground(Color.red);
-        txtErrorName.setText("");
-        txtMsg.setForeground(Color.yellow);
-        txtMsg.setText("**Elija una Dieta para operar");
-        txtId.setText("");
-        radioAlta.setEnabled(false);
-        radioBaja.setEnabled(false);
-        radioBorrar.setEnabled(false);
-        radioEditar.setEnabled(false);
-        btnSelect.setEnabled(false);
-    }//GEN-LAST:event_btnSelectActionPerformed
-
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         dispose();
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void radioAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAltaActionPerformed
-        btnSelect.setEnabled(true);
+        //btnSelect.setEnabled(true);
         btnUpdate.setText("Alta");
-        txtMsg.setText("Presione seleccionar para continuar");
+        //txtMsg.setText("Presione seleccionar para continuar");
+        tabListDietas.setEnabled(true);
+        txtErrorName.setForeground(Color.red);
+        txtErrorName.setText("");
+        txtMsg.setForeground(Color.yellow);
+       // txtMsg.setText("**Elija una Dieta para operar");
+        txtId.setText("");
+        radioAlta.setEnabled(false);
+        radioBaja.setEnabled(false);
+        radioBorrar.setEnabled(false);
+        radioEditar.setEnabled(false);
+       // btnSelect.setEnabled(false);
     }//GEN-LAST:event_radioAltaActionPerformed
 
     private void radioBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBajaActionPerformed
-        btnSelect.setEnabled(true);
+        //btnSelect.setEnabled(true);
         btnUpdate.setText("Baja");
-        txtMsg.setText("Presione seleccionar para continuar");
+        //txtMsg.setText("Presione seleccionar para continuar");
+        tabListDietas.setEnabled(true);
+        txtErrorName.setForeground(Color.red);
+        txtErrorName.setText("");
+        txtMsg.setForeground(Color.yellow);
+       // txtMsg.setText("**Elija una Dieta para operar");
+        txtId.setText("");
+        radioAlta.setEnabled(false);
+        radioBaja.setEnabled(false);
+        radioBorrar.setEnabled(false);
+        radioEditar.setEnabled(false);
+        //btnSelect.setEnabled(false);
     }//GEN-LAST:event_radioBajaActionPerformed
 
     private void radioBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBorrarActionPerformed
-        btnSelect.setEnabled(true);
+       // btnSelect.setEnabled(true);
         btnUpdate.setText("Borrar");
-        txtMsg.setText("Presione seleccionar para continuar");
+        //txtMsg.setText("Presione seleccionar para continuar");
+        tabListDietas.setEnabled(true);
+        txtErrorName.setForeground(Color.red);
+        txtErrorName.setText("");
+        txtMsg.setForeground(Color.yellow);
+       // txtMsg.setText("**Elija una Dieta para operar");
+        txtId.setText("");
+        radioAlta.setEnabled(false);
+        radioBaja.setEnabled(false);
+        radioBorrar.setEnabled(false);
+        radioEditar.setEnabled(false);
+        //btnSelect.setEnabled(false);
     }//GEN-LAST:event_radioBorrarActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -737,9 +744,20 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void radioEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEditarActionPerformed
-        btnSelect.setEnabled(true);
+        //btnSelect.setEnabled(true);
         btnUpdate.setText("Editar");
-        txtMsg.setText("Presione seleccionar para continuar");
+        //txtMsg.setText("Presione seleccionar para continuar");
+        tabListDietas.setEnabled(true);
+        txtErrorName.setForeground(Color.red);
+        txtErrorName.setText("");
+        txtMsg.setForeground(Color.yellow);
+       // txtMsg.setText("**Elija una Dieta para operar");
+        txtId.setText("");
+        radioAlta.setEnabled(false);
+        radioBaja.setEnabled(false);
+        radioBorrar.setEnabled(false);
+        radioEditar.setEnabled(false);
+        //btnSelect.setEnabled(false);
     }//GEN-LAST:event_radioEditarActionPerformed
 
     private void btnFinEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinEditActionPerformed
@@ -857,7 +875,6 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnFinEdit;
     private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JButton btnRemoveMenu;
-    private javax.swing.JButton btnSelect;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbDieta;
     private com.toedter.calendar.JDateChooser fechaFinal;
