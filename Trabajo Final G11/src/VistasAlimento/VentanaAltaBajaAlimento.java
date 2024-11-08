@@ -434,7 +434,7 @@ public class VentanaAltaBajaAlimento extends javax.swing.JInternalFrame {
                 a.getNombre(),
                 a.getTipoComida(),
                 a.getCaloriasPor100g(),
-                a.getCaloriasPor100g(),
+                //a.getCaloriasPor100g(),
                 a.isEstado() ? "Activo" : "Inactivo"
 
             });
