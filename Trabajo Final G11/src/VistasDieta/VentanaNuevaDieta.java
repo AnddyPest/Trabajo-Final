@@ -15,6 +15,8 @@ import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -651,57 +653,64 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
-        if (!tabMenus.isEnabled() && calInicio.getDate() != null && calFinal.getDate() != null) {
-            calInicio.setEnabled(false);
-            calFinal.setEnabled(false);
-            txtMsg.setText("**Seleccione menus para el período seleccionado**");
-            btnSelect.setText("Seleccionar Menus");
-            tabMenus.setEnabled(true);
-        } else if (!calInicio.isEnabled() && !calFinal.isEnabled()) {
-            DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate fechaInicial = calInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate fechaFinal = calFinal.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            int filas = modelDietas.getRowCount();
-            LocalDate nuevaFecha = fechaInicial.plusDays(filas);
-            if (filas < 1) {
-                modelDietas.addRow(new Object[]{
-                    fechaInicial.format(formatoFecha),
-                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 0),
-                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 1),
-                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 2)
-                });
-                modelMenus.removeRow(tabMenus.getSelectedRow());
-            } else if (!nuevaFecha.equals(fechaFinal)) {
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate fechaInicial = calInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate fechaFinal = calFinal.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        long diferencia = ChronoUnit.DAYS.between(fechaInicial, fechaFinal);
+        if (diferencia > 0) {
+            if (!tabMenus.isEnabled() && calInicio.getDate() != null && calFinal.getDate() != null) {
+                calInicio.setEnabled(false);
+                calFinal.setEnabled(false);
+                txtMsg.setText("**Seleccione menus para el período seleccionado**");
+                btnSelect.setText("Seleccionar Menus");
+                tabMenus.setEnabled(true);
+            } else if (!calInicio.isEnabled() && !calFinal.isEnabled()) {
 
-                modelDietas.addRow(new Object[]{
-                    nuevaFecha.format(formatoFecha),
-                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 0),
-                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 1),
-                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 2)
-                        
-                });
-                modelMenus.removeRow(tabMenus.getSelectedRow());
-            } else if (nuevaFecha.equals(fechaFinal)) {
-                modelDietas.addRow(new Object[]{
-                    nuevaFecha.format(formatoFecha),
-                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 0),
-                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 1),
-                    modelMenus.getValueAt(tabMenus.getSelectedRow(), 2)
-                });
-                modelMenus.removeRow(tabMenus.getSelectedRow());
-                tabMenus.setEnabled(false);
-                btnSelect.setEnabled(false);
-                btnCrearMenu.setEnabled(true);
+                int filas = modelDietas.getRowCount();
+                LocalDate nuevaFecha = fechaInicial.plusDays(filas);
+                if (filas < 1) {
+                    modelDietas.addRow(new Object[]{
+                        fechaInicial.format(formatoFecha),
+                        modelMenus.getValueAt(tabMenus.getSelectedRow(), 0),
+                        modelMenus.getValueAt(tabMenus.getSelectedRow(), 1),
+                        modelMenus.getValueAt(tabMenus.getSelectedRow(), 2)
+                    });
+                    modelMenus.removeRow(tabMenus.getSelectedRow());
+                } else if (!nuevaFecha.equals(fechaFinal)) {
 
+                    modelDietas.addRow(new Object[]{
+                        nuevaFecha.format(formatoFecha),
+                        modelMenus.getValueAt(tabMenus.getSelectedRow(), 0),
+                        modelMenus.getValueAt(tabMenus.getSelectedRow(), 1),
+                        modelMenus.getValueAt(tabMenus.getSelectedRow(), 2)
+
+                    });
+                    modelMenus.removeRow(tabMenus.getSelectedRow());
+                } else if (nuevaFecha.equals(fechaFinal)) {
+                    modelDietas.addRow(new Object[]{
+                        nuevaFecha.format(formatoFecha),
+                        modelMenus.getValueAt(tabMenus.getSelectedRow(), 0),
+                        modelMenus.getValueAt(tabMenus.getSelectedRow(), 1),
+                        modelMenus.getValueAt(tabMenus.getSelectedRow(), 2)
+                    });
+                    modelMenus.removeRow(tabMenus.getSelectedRow());
+                    tabMenus.setEnabled(false);
+                    btnSelect.setEnabled(false);
+                    btnCrearMenu.setEnabled(true);
+
+                }
+                int calDieta = 0;
+                for (int i = 0; i < tabDietas.getRowCount(); i++) {
+
+                    int calAli = (int) tabDietas.getValueAt(i, 3);
+                    calDieta += calAli;
+                }
+                String caloriasMenu = String.valueOf(calDieta);
+                txtCalTotal.setText(caloriasMenu);
             }
-            int calDieta = 0;
-            for (int i = 0; i < tabDietas.getRowCount(); i++) {
-
-                int calAli = (int) tabDietas.getValueAt(i, 3);
-                calDieta += calAli;
-            }
-            String caloriasMenu = String.valueOf(calDieta);
-            txtCalTotal.setText(caloriasMenu);
+        }else{
+            JOptionPane.showMessageDialog(this, "La Fecha Final debe ser posterior a la Fecha Inicial");
+            
         }
 
 
@@ -718,7 +727,7 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
 
         Dieta nuevaDieta = new Dieta(nombreDieta, idPac, inicioDieta, finalDieta, pesoI, pesoF, caloriasTotal);
         dietaData.crearDieta(nuevaDieta);
-       
+
         System.out.println("Nombre nueva dieta ----------- " + nuevaDieta.getNombre());
 
         Dieta dietaEnviada = dietaData.buscarDietasPorNombre(nombreDieta);
@@ -731,13 +740,13 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
 
         for (int i = 0; i < tabDietas.getRowCount(); i++) {
             LocalDate fechaDia = LocalDate.parse(tabDietas.getValueAt(i, 0).toString());
-            
+
             int idMenuEnviado = (int) tabDietas.getValueAt(i, 1);
             System.out.println("ID MENU ENVIADO " + idMenuEnviado);
             dieta_MenuDiario_Handler_DATA.createDieta_MenuDiario_Handler(dietaEnviada.getIdDieta(), idMenuEnviado, fechaDia);
 
         }
-        txtMsg.setText("**Dieta "+txtDietaName.getText()+" creada. Ingrese nuevo nomrbe**");
+        txtMsg.setText("**Dieta " + txtDietaName.getText() + " creada. Ingrese nuevo nomrbe**");
         txtDietaName.setEditable(true);
         txtDietaName.setText("");
         cargarTablaMenu();

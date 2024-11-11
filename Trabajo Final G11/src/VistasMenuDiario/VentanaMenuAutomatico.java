@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -657,56 +658,68 @@ public class VentanaMenuAutomatico extends javax.swing.JInternalFrame {
         ArrayList<Alimento> snacks = alimentoData.buscarAlimentosPorTipoComida("Snack");
         ArrayList<Alimento> cenas = alimentoData.buscarAlimentosPorTipoComida("Cena");
         modelTablaMenu.setRowCount(0);
-        if (!txtLimite.getText().isEmpty() && Integer.parseInt(txtLimite.getText()) <= 10000) {
+        int intentos = 0;
+        if (!txtLimite.getText().isEmpty() && Integer.parseInt(txtLimite.getText()) <= 10000 && Integer.parseInt(txtLimite.getText()) >= 1000 ) {
             txtError.setText("");
             int limiteCalorias = Integer.parseInt(txtLimite.getText());
             
-            while (tabMenuDiario.getRowCount() < 5) {
-                int randomIndexDesayuno = (int) (Math.random() * desayunos.size());
-                int randomIndexAlmuerzo = (int) (Math.random() * almuerzos.size());
-                int randomIndexMerienda = (int) (Math.random() * meriendas.size());
-                int randomIndexSnack = (int) (Math.random() * snacks.size());
-                int randomIndexCena = (int) (Math.random() * cenas.size());
-                Alimento desayuno = desayunos.get(randomIndexDesayuno);
-                Alimento almuerzo = almuerzos.get(randomIndexAlmuerzo);
-                Alimento merienda = meriendas.get(randomIndexMerienda);
-                Alimento snack = snacks.get(randomIndexSnack);
-                Alimento cena = cenas.get(randomIndexCena);
+            while (tabMenuDiario.getRowCount() < 5 ) {
+                if(intentos != 100){
+                    int randomIndexDesayuno = (int) (Math.random() * desayunos.size());
+                    int randomIndexAlmuerzo = (int) (Math.random() * almuerzos.size());
+                    int randomIndexMerienda = (int) (Math.random() * meriendas.size());
+                    int randomIndexSnack = (int) (Math.random() * snacks.size());
+                    int randomIndexCena = (int) (Math.random() * cenas.size());
+                    Alimento desayuno = desayunos.get(randomIndexDesayuno);
+                    Alimento almuerzo = almuerzos.get(randomIndexAlmuerzo);
+                    Alimento merienda = meriendas.get(randomIndexMerienda);
+                    Alimento snack = snacks.get(randomIndexSnack);
+                    Alimento cena = cenas.get(randomIndexCena);
 
-                boolean desayunoValido = verificarEnTabla(desayuno.getIdAlimento());
-                boolean almuerzoValido = verificarEnTabla(almuerzo.getIdAlimento());
-                boolean meriendaValido = verificarEnTabla(merienda.getIdAlimento());
-                boolean snackValido = verificarEnTabla(snack.getIdAlimento());
-                boolean cenaValido = verificarEnTabla(cena.getIdAlimento());
-                
-                int sumaCalorias = desayuno.getCaloriasPor100g() + almuerzo.getCaloriasPor100g() + merienda.getCaloriasPor100g() + snack.getCaloriasPor100g() + cena.getCaloriasPor100g();
+                    boolean desayunoValido = verificarEnTabla(desayuno.getIdAlimento());
+                    boolean almuerzoValido = verificarEnTabla(almuerzo.getIdAlimento());
+                    boolean meriendaValido = verificarEnTabla(merienda.getIdAlimento());
+                    boolean snackValido = verificarEnTabla(snack.getIdAlimento());
+                    boolean cenaValido = verificarEnTabla(cena.getIdAlimento());
 
-                if (sumaCalorias <= limiteCalorias && desayunoValido && almuerzoValido && meriendaValido && snackValido && cenaValido) {
-                    txtCalTotal.setText(String.valueOf(sumaCalorias));
-                    modelTablaMenu.addRow(new Object[]{
-                        desayuno.getIdAlimento(), desayuno.getTipoComida(), desayuno.getNombre(), desayuno.getCaloriasPor100g()
-                    });
-                    modelTablaMenu.addRow(new Object[]{
-                        almuerzo.getIdAlimento(), almuerzo.getTipoComida(), almuerzo.getNombre(), almuerzo.getCaloriasPor100g()
-                    });
-                    modelTablaMenu.addRow(new Object[]{
-                        merienda.getIdAlimento(), merienda.getTipoComida(), merienda.getNombre(), merienda.getCaloriasPor100g()
-                    });
-                    modelTablaMenu.addRow(new Object[]{
-                        snack.getIdAlimento(), snack.getTipoComida(), snack.getNombre(), snack.getCaloriasPor100g()
-                    });
-                    modelTablaMenu.addRow(new Object[]{
-                        cena.getIdAlimento(), cena.getTipoComida(), cena.getNombre(), cena.getCaloriasPor100g()
-                    });
-                    btnGuardar.setEnabled(true);
+                    int sumaCalorias = desayuno.getCaloriasPor100g() + almuerzo.getCaloriasPor100g() + merienda.getCaloriasPor100g() + snack.getCaloriasPor100g() + cena.getCaloriasPor100g();
+                    intentos+= 1;
+                    if (sumaCalorias <= limiteCalorias && desayunoValido && almuerzoValido && meriendaValido && snackValido && cenaValido) {
+                        txtCalTotal.setText(String.valueOf(sumaCalorias));
+                        modelTablaMenu.addRow(new Object[]{
+                            desayuno.getIdAlimento(), desayuno.getTipoComida(), desayuno.getNombre(), desayuno.getCaloriasPor100g()
+                        });
+                        modelTablaMenu.addRow(new Object[]{
+                            almuerzo.getIdAlimento(), almuerzo.getTipoComida(), almuerzo.getNombre(), almuerzo.getCaloriasPor100g()
+                        });
+                        modelTablaMenu.addRow(new Object[]{
+                            merienda.getIdAlimento(), merienda.getTipoComida(), merienda.getNombre(), merienda.getCaloriasPor100g()
+                        });
+                        modelTablaMenu.addRow(new Object[]{
+                            snack.getIdAlimento(), snack.getTipoComida(), snack.getNombre(), snack.getCaloriasPor100g()
+                        });
+                        modelTablaMenu.addRow(new Object[]{
+                            cena.getIdAlimento(), cena.getTipoComida(), cena.getNombre(), cena.getCaloriasPor100g()
+                        });
+                        btnGuardar.setEnabled(true);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(this, "No se encontraron resultados");
+                    cargarListaKeys();
+                    modelListaKeysIn.clear();
+                    modelListaKeysNotIn.clear();
+                    cargarAlimentosAll();
+                    modelTablaMenu.setRowCount(0);
+                    break;
                 }
+                
             }
-        }else if(txtLimite.getText().isEmpty()){
+        }else if(txtLimite.getText().isEmpty() ){
             txtLimite.requestFocus();
             txtError.setText("Debe ingresar un limite de calorías."); 
         }else{
             txtLimite.setText("");
-            txtError.setText("Maximo límite 10.000 cal");
+            txtError.setText("Establezca un límite entre 1000 y 10.000 cal");
         }
         
 
@@ -874,15 +887,21 @@ private void cargarListaKeys() {
         String selectedKey = listaOrigen.getSelectedValue();
 
         if (selectedKey != null) {
+            
+            if(modeloDestino.getSize() < 5){
+                modeloOrigen.removeElement(selectedKey);
 
-            modeloOrigen.removeElement(selectedKey);
+                modeloDestino.addElement(selectedKey);
 
-            modeloDestino.addElement(selectedKey);
+                ordenarListaAlfabeticamente(listaOrigen);
 
-            ordenarListaAlfabeticamente(listaOrigen);
-
-            ordenarListaAlfabeticamente(listaDestino);
+                ordenarListaAlfabeticamente(listaDestino);
+            }else{
+                txtError.setText("Maximo 5 keys.");
+            }
+               
         }
+        
     }
 
     private void ordenarListaAlfabeticamente(JList<String> lista) {
