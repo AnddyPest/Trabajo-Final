@@ -65,6 +65,52 @@ public class MenuDiario_Alimento_Handler_DATA {
        
     }
     
+    public int createHandler_MenuDiario_AlimentoPorId(int idMenuDiarioEnviado, int idAlimentoEnviado)  {
+        boolean validado = false;   
+        int codigoDevuelto = 1;
+        //UNA VEZ CREADO EL METODO HAY QUE ACTUALIZAR ESTO Y AÑADIR UN IF AL TRY DE ABAJO
+        List<MenuDiario_Alimento_Handler> listadoDeHandlers = this.listarHandler_MenuDiario_Alimento();
+        
+//        if(listadoDeHandlers.isEmpty()){           
+//            validado = true;
+//        } else{
+//            for(MenuDiario_Alimento_Handler handlerRevisado: listadoDeHandlers){
+//                
+//                if(handlerRevisado.getIdMenuDiario().getIdMenuDiario() != idMenuDiarioEnviado.getIdMenuDiario() && handlerRevisado.getIdAlimento().getIdAlimento() != idAlimentoEnviado.getIdAlimento() ){                                       
+//                    validado = true;
+//                    
+//                }else{
+//                    validado = false;
+//                    System.out.println("Validacion Metodo: createHandler_MenuDiario_Alimento|| Mensaje: Handlers ya relacionados no son admitidos\n");                    
+//                    break;
+//                }
+//            }
+//        }
+        if(!validado){
+          
+        
+            try {
+                String query = "Insert into menudiario_alimento_handler( idMenuDiario, idAlimento ) values( ? , ?  )";
+
+                PreparedStatement ps = conexion.prepareStatement(query);
+                ps.setInt(1, idMenuDiarioEnviado);
+                ps.setInt(2, idAlimentoEnviado);
+
+                ps.executeUpdate();
+                
+
+                FuncionDe.mostrarMensajeCorrecto("createHandler_MenuDiario_Alimento", "El handler (relacion) entre MenuDiario y Alimento ha sido creado");
+                ps.close();
+            }   catch (SQLException ex) {
+                FuncionDe.mostrarMensajeError(ex, "createHandler_MenuDiario_Alimento", "MenuDiario_Alimento_Handler_DATA", "29");
+                codigoDevuelto = ex.getErrorCode();
+            }
+        
+        }
+        return codigoDevuelto;
+       
+    }
+    
     //READ
     //Listar Todos Los Pacientes
     
@@ -180,7 +226,7 @@ public class MenuDiario_Alimento_Handler_DATA {
         try {
             FuncionDe.validarSiExisteId(this, idMenuDiario,idAlimento);
             
-            String Query = "DELETE FROM menudiario_alimento_handler WHERE menudiario_alimento_handler.idMenuDiario = ? AND menudiario_alimento_handler.idAlimento = ?";
+            String Query = "DELETE FROM menudiario_alimento_handler WHERE idMenuDiario = ? AND idAlimento = ?";
             PreparedStatement ps = conexion.prepareStatement(Query);
             ps.setInt(1, idMenuDiario);
             ps.setInt(2, idAlimento);

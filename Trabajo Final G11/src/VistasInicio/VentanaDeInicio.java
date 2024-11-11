@@ -3,7 +3,6 @@ package VistasInicio;
 import VistasAlimento.VentanaAltaBajaAlimento;
 import VistasAlimento.VentanaEditarBorrarAlimento;
 import VistasAlimento.VentanaNuevoAlimento;
-import VistasDieta.VentanaAltaBajaLogicaDieta;
 import VistasDieta.VentanaEditEraseDieta;
 import VistasDieta.VentanaExportarDieta;
 import VistasDieta.VentanaNuevaDieta;
@@ -43,7 +42,6 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         menuCrearDieta = new javax.swing.JMenuItem();
         menuBorrarDieta = new javax.swing.JMenuItem();
         menuListarDietas = new javax.swing.JMenuItem();
-        menuAltaBajaDieta = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         menuCrearMenuDiario = new javax.swing.JMenuItem();
         menuListarMenuDiario = new javax.swing.JMenuItem();
@@ -150,14 +148,6 @@ public class VentanaDeInicio extends javax.swing.JFrame {
             }
         });
         menuDietas.add(menuListarDietas);
-
-        menuAltaBajaDieta.setText("Alta/Baja Dieta");
-        menuAltaBajaDieta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuAltaBajaDietaActionPerformed(evt);
-            }
-        });
-        menuDietas.add(menuAltaBajaDieta);
 
         jMenuBar1.add(menuDietas);
 
@@ -495,25 +485,6 @@ public class VentanaDeInicio extends javax.swing.JFrame {
         desktop.repaint();
     }//GEN-LAST:event_menuListarMenuDiarioActionPerformed
 
-    private void menuAltaBajaDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAltaBajaDietaActionPerformed
-        desktop.removeAll();
-        VentanaAltaBajaLogicaDieta altaBajaDieta = new VentanaAltaBajaLogicaDieta();
-        desktop.add(altaBajaDieta);
-        altaBajaDieta.addComponentListener(new ComponentAdapter() {
-
-            @Override
-            public void componentShown(ComponentEvent e) {
-                altaBajaDieta.setLocation((desktop.getWidth() - altaBajaDieta.getWidth()) / 2,
-                        (desktop.getHeight() - altaBajaDieta.getHeight()) / 2
-                );
-            }
-        });
-        desktop.moveToFront(altaBajaDieta);
-        altaBajaDieta.setVisible(true);
-        desktop.revalidate();
-        desktop.repaint();
-    }//GEN-LAST:event_menuAltaBajaDietaActionPerformed
-
     private void menuListarDietasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListarDietasActionPerformed
         desktop.removeAll();
         VentanaExportarDieta exportDieta = new VentanaExportarDieta();
@@ -623,7 +594,6 @@ public class VentanaDeInicio extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem menuAltaBajaComida;
-    private javax.swing.JMenuItem menuAltaBajaDieta;
     private javax.swing.JMenuItem menuAltaBajaPaciente;
     private javax.swing.JMenuItem menuBorrarAlimento;
     private javax.swing.JMenuItem menuBorrarDieta;
