@@ -67,7 +67,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
                         if (radioEditar.isSelected()) {
                             txtMsg.setText("Esta por editar " + " a " + tabListDietas.getValueAt(fila, 1).toString());
                             txtMsg.setForeground(Color.yellow);
-                            btnFinEdit.setEnabled(true);
+                            //btnFinEdit.setEnabled(true);
                         } else {
                             txtMsg.setText("se dara de " + btnUpdate.getText() + " a " + tabListDietas.getValueAt(fila, 1).toString());
                             txtMsg.setForeground(Color.yellow);
@@ -727,6 +727,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
             dietaMenuHand.borrarDieta_MenuDiario_HandlerPorIds(Integer.parseInt(txtId.getText()), SOMEBITS);
             botonUpdate();
         } else if (radioEditar.isSelected()) {
+            btnFinEdit.setEnabled(true);
             fechaInicio.setEnabled(true);
             fechaFinal.setEnabled(true);
             cmbDieta.setEnabled(true);
