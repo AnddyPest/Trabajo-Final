@@ -884,7 +884,7 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
         rbtSnack.setEnabled(false);
         rbtTea.setEnabled(false);
     }
-
+    ///ESTO ES OBRA DEL D.R.Y!!!!!!!!!!!!!!!!!!
     private void cargarCabecerasGenerico(NonEditableTableModel modelo, JTable table) {
         modelo.addColumn("ID Key");
         modelo.addColumn("key");
