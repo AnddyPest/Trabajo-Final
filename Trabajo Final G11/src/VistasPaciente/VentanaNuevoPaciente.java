@@ -631,9 +631,7 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
             }else if(txtPesoBuscado.getText().isEmpty()){
             txtErrorPesoB.setText("Ingrese un peso.");
             txtPesoInicial.requestFocus();
-            }else{ //IMPORTANTE!!!!!!!!!!!!!!!
-                    //IMPORTANTE!!!!!!!!!!!!!!!
-                    //IMPORTANTE!!!!!!!!!!!!!!!
+            }else{
                 String nombre = txtName.getText();
                 int dni = Integer.parseInt(txtDni.getText());
                 int edad = Integer.parseInt(txtEdad.getText());
