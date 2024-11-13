@@ -631,15 +631,21 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
             }else if(txtPesoBuscado.getText().isEmpty()){
             txtErrorPesoB.setText("Ingrese un peso.");
             txtPesoInicial.requestFocus();
-            }else{ //IMPORTANTE!!!!!!!!!!!!!!!
-                    //IMPORTANTE!!!!!!!!!!!!!!!
-                    //IMPORTANTE!!!!!!!!!!!!!!!
+            }else{ 
                 String nombre = txtName.getText();
                 int dni = Integer.parseInt(txtDni.getText());
                 int edad = Integer.parseInt(txtEdad.getText());
                 String tel = txtTelefono.getText();
                 double pesoI = Double.parseDouble(txtPesoInicial.getText());
                 double pesoB = Double.parseDouble(txtPesoBuscado.getText());
+                txtErrorName.setText("");
+                txtErrorDni.setText("");
+                txtErrorEdad.setText("");
+                txtTelefono.setText("");
+                txtErrorPesoI.setText("");
+                txtErrorPesoB.setText("");
+                
+                
                 
                 Paciente paciente = new Paciente(nombre, dni, edad, tel, pesoI, pesoB);
                
