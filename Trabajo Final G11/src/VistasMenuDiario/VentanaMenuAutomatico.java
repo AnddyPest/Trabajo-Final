@@ -659,12 +659,12 @@ public class VentanaMenuAutomatico extends javax.swing.JInternalFrame {
         ArrayList<Alimento> cenas = alimentoData.buscarAlimentosPorTipoComida("Cena");
         modelTablaMenu.setRowCount(0);
         int intentos = 0;
-        if (!txtLimite.getText().isEmpty() && Integer.parseInt(txtLimite.getText()) <= 10000 && Integer.parseInt(txtLimite.getText()) >= 1000 ) {
+        if (!txtLimite.getText().isEmpty() && Integer.parseInt(txtLimite.getText()) <= 10000 && Integer.parseInt(txtLimite.getText()) >= 1000) {
             txtError.setText("");
             int limiteCalorias = Integer.parseInt(txtLimite.getText());
-            
-            while (tabMenuDiario.getRowCount() < 5 ) {
-                if(intentos != 100){
+
+            while (tabMenuDiario.getRowCount() < 5) {
+                if (intentos != 1000) {
                     int randomIndexDesayuno = (int) (Math.random() * desayunos.size());
                     int randomIndexAlmuerzo = (int) (Math.random() * almuerzos.size());
                     int randomIndexMerienda = (int) (Math.random() * meriendas.size());
@@ -683,7 +683,7 @@ public class VentanaMenuAutomatico extends javax.swing.JInternalFrame {
                     boolean cenaValido = verificarEnTabla(cena.getIdAlimento());
 
                     int sumaCalorias = desayuno.getCaloriasPor100g() + almuerzo.getCaloriasPor100g() + merienda.getCaloriasPor100g() + snack.getCaloriasPor100g() + cena.getCaloriasPor100g();
-                    intentos+= 1;
+                    intentos += 1;
                     if (sumaCalorias <= limiteCalorias && desayunoValido && almuerzoValido && meriendaValido && snackValido && cenaValido) {
                         txtCalTotal.setText(String.valueOf(sumaCalorias));
                         modelTablaMenu.addRow(new Object[]{
@@ -703,7 +703,7 @@ public class VentanaMenuAutomatico extends javax.swing.JInternalFrame {
                         });
                         btnGuardar.setEnabled(true);
                     }
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(this, "No se encontraron resultados");
                     cargarListaKeys();
                     modelListaKeysIn.clear();
@@ -712,16 +712,16 @@ public class VentanaMenuAutomatico extends javax.swing.JInternalFrame {
                     modelTablaMenu.setRowCount(0);
                     break;
                 }
-                
+
             }
-        }else if(txtLimite.getText().isEmpty() ){
+        } else if (txtLimite.getText().isEmpty()) {
             txtLimite.requestFocus();
-            txtError.setText("Debe ingresar un limite de calorías."); 
-        }else{
+            txtError.setText("Debe ingresar un limite de calorías.");
+        } else {
             txtLimite.setText("");
             txtError.setText("Establezca un límite entre 1000 y 10.000 cal");
         }
-        
+
 
     }//GEN-LAST:event_btnGenerateActionPerformed
 
@@ -757,7 +757,7 @@ public class VentanaMenuAutomatico extends javax.swing.JInternalFrame {
         txtMenuName.requestFocus();
         btnComenzar.setEnabled(false);
         txtError.setForeground(Color.green);
-        txtError.setText("Menu agregado con exito"); 
+        txtError.setText("Menu agregado con exito");
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -766,7 +766,7 @@ public class VentanaMenuAutomatico extends javax.swing.JInternalFrame {
             txtMenuName.requestFocus();
             txtError.setText("*Nombre no puede quedar vacío");
         } else {
-            txtError.setText(""); 
+            txtError.setText("");
             btnGenerate.setEnabled(true);
             txtMenuName.setEditable(false);
             btnComenzar.setEnabled(false);
@@ -782,32 +782,32 @@ public class VentanaMenuAutomatico extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtMenuNameKeyTyped
 
     private void btnAddInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddInActionPerformed
-        moverElementoEntreListas(listKeywords, listIncluye, modelListaKeys, modelListaKeysIn);
+        moverElementoEntreListas("va", listKeywords, listIncluye, modelListaKeys, modelListaKeysIn);
         filtroKeywords();
-        
+
     }//GEN-LAST:event_btnAddInActionPerformed
 
     private void btnRemoveInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInActionPerformed
-        moverElementoEntreListas(listIncluye, listKeywords, modelListaKeysIn, modelListaKeys);
+        moverElementoEntreListas("vuelve", listIncluye, listKeywords, modelListaKeysIn, modelListaKeys);
         filtroKeywords();
-        
+
     }//GEN-LAST:event_btnRemoveInActionPerformed
 
     private void btnAddNotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNotActionPerformed
-        moverElementoEntreListas(listKeywords, listNoIncluye, modelListaKeys, modelListaKeysNotIn);
+        moverElementoEntreListas("va", listKeywords, listNoIncluye, modelListaKeys, modelListaKeysNotIn);
         filtroKeywords();
-        
+
     }//GEN-LAST:event_btnAddNotActionPerformed
 
     private void btnRemoveNotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveNotActionPerformed
-        moverElementoEntreListas(listNoIncluye, listKeywords, modelListaKeysNotIn, modelListaKeys);
+        moverElementoEntreListas("vuelve", listNoIncluye, listKeywords, modelListaKeysNotIn, modelListaKeys);
         filtroKeywords();
-        
+
     }//GEN-LAST:event_btnRemoveNotActionPerformed
 
     private void txtLimiteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLimiteKeyTyped
         int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57;
+        boolean numero = key >= 48 && key <= 57 || key == 8;
 
         if (!numero) {
             evt.consume();
@@ -883,12 +883,23 @@ private void cargarListaKeys() {
         ordenarListaAlfabeticamente(listIncluye);
     }
 
-    private void moverElementoEntreListas(JList<String> listaOrigen, JList<String> listaDestino, DefaultListModel<String> modeloOrigen, DefaultListModel<String> modeloDestino) {
+    private void moverElementoEntreListas(String direccion, JList<String> listaOrigen, JList<String> listaDestino, DefaultListModel<String> modeloOrigen, DefaultListModel<String> modeloDestino) {
         String selectedKey = listaOrigen.getSelectedValue();
 
         if (selectedKey != null) {
-            
-            if(modeloDestino.getSize() < 5){
+            if (!direccion.equalsIgnoreCase("vuelve")) {
+                if (modeloDestino.getSize() < 5) {
+                    modeloOrigen.removeElement(selectedKey);
+
+                    modeloDestino.addElement(selectedKey);
+
+                    ordenarListaAlfabeticamente(listaOrigen);
+
+                    ordenarListaAlfabeticamente(listaDestino);
+                } else {
+                    txtError.setText("Maximo 5 keys.");
+                }
+            } else if (direccion.equalsIgnoreCase("vuelve")) {
                 modeloOrigen.removeElement(selectedKey);
 
                 modeloDestino.addElement(selectedKey);
@@ -896,12 +907,9 @@ private void cargarListaKeys() {
                 ordenarListaAlfabeticamente(listaOrigen);
 
                 ordenarListaAlfabeticamente(listaDestino);
-            }else{
-                txtError.setText("Maximo 5 keys.");
             }
-               
         }
-        
+
     }
 
     private void ordenarListaAlfabeticamente(JList<String> lista) {
@@ -920,7 +928,7 @@ private void cargarListaKeys() {
         for (String elemento : elementos) {
             modelo.addElement(elemento);
         }
-    }   
+    }
 
     private void cargarCabecerasGenerico(NonEditableTableModel modelo, JTable table) {
         modelo.addColumn("ID Alimento");
@@ -1001,7 +1009,5 @@ private void cargarListaKeys() {
         }
         return false;
     }
-
-   
 
 }

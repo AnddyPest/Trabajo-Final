@@ -7,6 +7,7 @@ import Persistencia.AlimentoData;
 import java.awt.Color;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -687,6 +688,7 @@ public class VentanaEditarBorrarAlimento extends javax.swing.JInternalFrame {
     private void actualizarTabla() {
         modelo.setRowCount(0);
         ArrayList<Alimento> listadoAlimentos = alimentoData.listarAlimentos();
+        Collections.sort(listadoAlimentos, (a1, a2) -> a1.getNombre().compareToIgnoreCase(a2.getNombre())); 
         for (Alimento a : listadoAlimentos) {
             modelo.addRow(new Object[]{
                 a.getIdAlimento(),

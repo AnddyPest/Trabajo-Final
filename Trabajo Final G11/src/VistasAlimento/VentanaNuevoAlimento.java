@@ -729,7 +729,7 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
 
     private void txtCaloriasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaloriasKeyTyped
         int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57 || key == 46;
+        boolean numero = key >= 48 && key <= 57 || key == 46 || key == 8;
 
         if (!numero) {
             evt.consume();
@@ -795,7 +795,7 @@ public class VentanaNuevoAlimento extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnRemoveKeyActionPerformed
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
-        DefaultTableModel modelo = (NonEditableTableModel) tabAddedKeys.getModel();
+        //DefaultTableModel modelo = (NonEditableTableModel) tabAddedKeys.getModel();
         Alimento completo = alimentoData.buscarAlimentoPorNombre(txtNameAli.getText());
         System.out.println("El nombnre enviado es "+txtNameAli.getText());
         System.out.println("ID DEL ALIMENTO "+completo.getIdAlimento());

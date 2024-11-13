@@ -348,7 +348,7 @@ public class VentanaExportarDieta extends javax.swing.JInternalFrame {
 
     private void btnVerDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDietaActionPerformed
       
-     Dieta selectedDiet = dietaData.buscarDietasPorNombre(cmbDietas.getSelectedItem().toString());
+    Dieta selectedDiet = dietaData.buscarDietasPorNombre(cmbDietas.getSelectedItem().toString());
 
     // Arraylist con los Id de Menu que estan relacionados con el Id de la Dieta
     ArrayList<Integer> handlerDietaMenu = dieta_MenuDiario_Handler_DATA.listarMenuDiario_DietaID(selectedDiet.getIdDieta());
@@ -400,8 +400,7 @@ public class VentanaExportarDieta extends javax.swing.JInternalFrame {
         }
 
         // Agrupar alimentos por tipo de comida
-        Map<String, List<Alimento>> alimentosPorTipo = alimentosEnMenuActual.stream()
-                .collect(Collectors.groupingBy(Alimento::getTipoComida));
+        Map<String, List<Alimento>> alimentosPorTipo = alimentosEnMenuActual.stream().collect(Collectors.groupingBy(Alimento::getTipoComida));
 
         // Iterar sobre los tipos de comida en el orden deseado
         for (String tipoComida : ordenComidas) {

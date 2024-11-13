@@ -7,6 +7,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
+import java.util.Collections;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -871,6 +873,7 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
     private void actualizarTabla() {
         modelo.setRowCount(0);
         ArrayList<Paciente> listadoPacientes = pacienteData.listarPacientes();
+        Collections.sort(listadoPacientes, (p1, p2) -> p1.getNombre().compareToIgnoreCase(p2.getNombre()));
         for (Paciente p : listadoPacientes) {
             modelo.addRow(new Object[]{
                 p.getIdPaciente(),
@@ -922,26 +925,22 @@ public class VentanaEditarBorrarPaciente extends javax.swing.JInternalFrame {
     
     private void entradaNumerosConPunto (java.awt.event.KeyEvent evt) {
         int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57 || key == 46;
+        boolean numero = key >= 48 && key <= 57 || key == 46 || key == 8;
 
         if (!numero) {
             evt.consume();
-            txtErrorDni.setText("*Solo números."); //modificar para que afecte al campo correspondiente
-        } else {
-            txtErrorDni.setText("");
+            JOptionPane.showMessageDialog(this, "El campo solo acepta numeros y puntos");
         }
         
     }
     
     private void entradaNumerosSinPunto (java.awt.event.KeyEvent evt) {
         int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57;
+        boolean numero = key >= 48 && key <= 57 || key == 8;
 
         if (!numero) {
             evt.consume();
-            txtErrorDni.setText("*Solo números.");//lo mismo aca
-        } else {
-            txtErrorDni.setText("");
+            JOptionPane.showMessageDialog(this, "El campo solo acepta numeros");
         }
     }
 }

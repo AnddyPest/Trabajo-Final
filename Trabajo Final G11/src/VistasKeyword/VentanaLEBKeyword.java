@@ -8,6 +8,7 @@ import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -476,6 +477,7 @@ private void cargarCabecera(){
 private void actualizarTabla(){
     modelo.setRowCount(0);
     ArrayList<Keywords> listadoKeys = keyWordData.listarKeywords();
+    Collections.sort(listadoKeys, (k1, k2) -> k1.getKeyword().compareToIgnoreCase(k2.getKeyword())); 
     for (Keywords a : listadoKeys){
         modelo.addRow(new Object[]{
             a.getIdKeyword(),

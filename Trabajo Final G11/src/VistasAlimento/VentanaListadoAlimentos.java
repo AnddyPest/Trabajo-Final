@@ -5,6 +5,7 @@ import Persistencia.AlimentoData;
 import Utilities.Conexion;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.table.DefaultTableModel;
 
 public class VentanaListadoAlimentos extends javax.swing.JInternalFrame {
@@ -236,6 +237,7 @@ private void cargarCabecera() {
     private void actualizarTabla() {
         modelo.setRowCount(0);
         ArrayList<Alimento> listadoAlimentos = alimentoData.listarAlimentosActivos();
+        Collections.sort(listadoAlimentos, (a1, a2) -> a1.getNombre().compareToIgnoreCase(a2.getNombre())); 
         for (Alimento a : listadoAlimentos) {
             modelo.addRow(new Object[]{
                 a.getIdAlimento(),

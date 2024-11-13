@@ -17,10 +17,12 @@ import java.time.temporal.ChronoUnit;
 import java.util.AbstractMap;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -780,6 +782,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         long diferencia = ChronoUnit.DAYS.between(nuevaFechaInicio, nuevaFechaFinal);
         System.out.println("diferencia = "+diferencia);
         long diferenciaReal = diferencia +1;       
+        if(diferencia >= 0) {
         if (largoFilas == diferenciaReal) {
             int fila = tabListDietas.getSelectedRow();
             if (fila != -1) {
@@ -787,7 +790,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
                 String nombre = tabListDietas.getValueAt(fila, 1).toString();
                 double pesoStart = Double.parseDouble(tabListDietas.getValueAt(fila, 4).toString());
                 double pesoEnd = Double.parseDouble(tabListDietas.getValueAt(fila, 5).toString());
-                int totalCalorias = Integer.parseInt(tabListDietas.getValueAt(fila, 6).toString());
+                int totalCalorias = Integer.parseInt(txtCalTotal.getText());
                 //boolean estado = parseBoolean(tabDieta.getValueAt(fila, 5).toString());
                 Dieta dietaNueva = new Dieta(idDieta, nombre, idDieta, nuevaFechaInicio, nuevaFechaFinal, pesoStart, pesoEnd, totalCalorias, true);
                 dietaNueva.setIdDieta(idDieta);
@@ -813,6 +816,9 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         }else{
             txtMsg.setForeground(Color.red);
             txtMsg.setText("El numero de menus incluidos, debe ser igual a "+diferenciaReal); 
+        }
+        }else{
+            JOptionPane.showMessageDialog(this, "La fecha final no puede ser anterior a la inicial");
         }
     }//GEN-LAST:event_btnFinEditActionPerformed
 
@@ -842,7 +848,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
         LocalDate dateFinal = fechaFinal.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate dateInicial = fechaInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         long diferencia = ChronoUnit.DAYS.between(dateInicial, dateFinal);
-        ArrayList<Dieta_MenuDiario_Handler> handlerFechas = dietaMenuHand.obtenerFechaYMenuPorIdDieta(idDietaCaja());
+        //ArrayList<Dieta_MenuDiario_Handler> handlerFechas = dietaMenuHand.obtenerFechaYMenuPorIdDieta(idDietaCaja());
         ArrayList<LocalDate> fechasIncluidas = new ArrayList();
         for (int i = 0; i < largoFilas; i++) {
             fechasIncluidas.add((LocalDate) tabMenuSelect.getValueAt(i, 1));
@@ -987,7 +993,7 @@ public class VentanaEditEraseDieta extends javax.swing.JInternalFrame {
     private void actualizarTabla() {
         modelo.setRowCount(0);
         ArrayList<Dieta> listadoDietas = dietaData.listarDietas();
-
+        Collections.sort(listadoDietas, (d1, d2) -> d1.getNombre().compareToIgnoreCase(d2.getNombre()));
         for (Dieta d : listadoDietas) {
             Paciente pacienteDieta = pacienteData.buscarPacientePorID(d.getIdPaciente());
             modelo.addRow(new Object[]{

@@ -9,8 +9,7 @@ import java.sql.Connection;
 import Utilities.Conexion;
 import java.awt.Color;
 import java.time.LocalDate;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.util.Collections;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -522,7 +521,7 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
     private void txtPesoFinalImputKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesoFinalImputKeyTyped
 
         int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57 || key == 46;
+        boolean numero = key >= 48 && key <= 57 || key == 46 || key == 8;
         txtError.setForeground(Color.red);
         if (!numero) {
             evt.consume();
@@ -616,15 +615,23 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
 
     private void cargarComboPacientes() {
         ArrayList<Paciente> listadoPacientes = pacienteData.listarPacientesActivos();
+        ArrayList<String> listadoNombresDesordenados = new ArrayList();
+        
         for (Paciente p : listadoPacientes) {
-            cmbPacientes.addItem(p.getNombre());
+            listadoNombresDesordenados.add(p.getNombre());
+        }
+        
+        Collections.sort(listadoNombresDesordenados);
+        
+        for(String s : listadoNombresDesordenados) {
+            cmbPacientes.addItem(s);
         }
     }
 
     private void cargarCabeceraDietas() {
         modelo.addColumn("idDieta");
         modelo.addColumn("Fecha Inicial");
-        modelo.addColumn("Peso Inicial");
+        
         modelo.addColumn("Fecha Final");
         modelo.addColumn("Peso Final");
 
@@ -639,7 +646,7 @@ public class VentanaControlPaciente extends javax.swing.JInternalFrame {
             modelo.addRow(new Object[]{
                 d.getIdDieta(),
                 d.getFechaInicio(),
-                d.getPesoInicial(),
+                
                 d.getFechaFinal(),
                 d.getPesoFinal()
             });

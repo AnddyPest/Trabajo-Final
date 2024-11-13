@@ -5,6 +5,7 @@ import Entidades.Paciente;
 import Persistencia.PacienteData;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.table.DefaultTableModel;
 
 public class VentanaListadoPacientes extends javax.swing.JInternalFrame {
@@ -238,6 +239,7 @@ public class VentanaListadoPacientes extends javax.swing.JInternalFrame {
     private void actualizarTabla() {
         modelo.setRowCount(0);
         ArrayList<Paciente> listadoPacientes = pacienteData.listarPacientesActivos();
+        Collections.sort(listadoPacientes, (p1, p2) -> p1.getNombre().compareToIgnoreCase(p2.getNombre()));
         for (Paciente p : listadoPacientes) {
             modelo.addRow(new Object[]{
                 p.getIdPaciente(),

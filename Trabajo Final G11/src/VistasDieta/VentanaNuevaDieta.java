@@ -16,6 +16,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Collection;
+import java.util.Collections;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -103,8 +105,6 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jSeparator8 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
-        txtW8tEnd = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         txtW8tInit = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -415,13 +415,7 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
 
         jLabel8.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel8.setText("Inicial:");
-
-        txtW8tEnd.setText("0");
-
-        jLabel9.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel9.setText("Final:");
+        jLabel8.setText("Peso Inicial:");
 
         txtW8tInit.setEditable(false);
 
@@ -432,20 +426,19 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator8)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator8)
                             .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtW8tInit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtW8tEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 29, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 114, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtW8tInit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -457,10 +450,8 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txtW8tEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
                     .addComponent(txtW8tInit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel7.setBackground(new java.awt.Color(102, 102, 102));
@@ -657,7 +648,7 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
         LocalDate fechaInicial = calInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate fechaFinal = calFinal.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         long diferencia = ChronoUnit.DAYS.between(fechaInicial, fechaFinal);
-        if (diferencia > 0) {
+        if (diferencia >= 0) {
             if (!tabMenus.isEnabled() && calInicio.getDate() != null && calFinal.getDate() != null) {
                 calInicio.setEnabled(false);
                 calFinal.setEnabled(false);
@@ -668,15 +659,16 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
 
                 int filas = modelDietas.getRowCount();
                 LocalDate nuevaFecha = fechaInicial.plusDays(filas);
-                if (filas < 1) {
-                    modelDietas.addRow(new Object[]{
-                        fechaInicial.format(formatoFecha),
-                        modelMenus.getValueAt(tabMenus.getSelectedRow(), 0),
-                        modelMenus.getValueAt(tabMenus.getSelectedRow(), 1),
-                        modelMenus.getValueAt(tabMenus.getSelectedRow(), 2)
-                    });
-                    modelMenus.removeRow(tabMenus.getSelectedRow());
-                } else if (!nuevaFecha.equals(fechaFinal)) {
+//                if (filas < 1) {
+//                    modelDietas.addRow(new Object[]{
+//                        fechaInicial.format(formatoFecha),
+//                        modelMenus.getValueAt(tabMenus.getSelectedRow(), 0),
+//                        modelMenus.getValueAt(tabMenus.getSelectedRow(), 1),
+//                        modelMenus.getValueAt(tabMenus.getSelectedRow(), 2)
+//                    });
+//                    modelMenus.removeRow(tabMenus.getSelectedRow());
+//                } else 
+                    if (!nuevaFecha.equals(fechaFinal) && nuevaFecha.isBefore(fechaFinal)) {
 
                     modelDietas.addRow(new Object[]{
                         nuevaFecha.format(formatoFecha),
@@ -722,7 +714,7 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
         LocalDate inicioDieta = calInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate finalDieta = calFinal.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         double pesoI = Double.parseDouble(txtW8tInit.getText());
-        double pesoF = Double.parseDouble(txtW8tEnd.getText());
+        double pesoF = 0;
         int caloriasTotal = Integer.parseInt(txtCalTotal.getText());
 
         Dieta nuevaDieta = new Dieta(nombreDieta, idPac, inicioDieta, finalDieta, pesoI, pesoF, caloriasTotal);
@@ -825,7 +817,6 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -853,14 +844,20 @@ public class VentanaNuevaDieta extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtIdPaciente;
     private javax.swing.JTextField txtMsg;
-    private javax.swing.JTextField txtW8tEnd;
     private javax.swing.JTextField txtW8tInit;
     // End of variables declaration//GEN-END:variables
 
     private void cargarCombo() {
         ArrayList<Paciente> listadoPacientes = pacienteData.listarPacientesActivos();
+        ArrayList<String> listadoNombresDesordenado = new ArrayList();
+        
         for (Paciente p : listadoPacientes) {
-            cmbPaciente.addItem(p.getNombre());
+            listadoNombresDesordenado.add(p.getNombre());
+        }
+        Collections.sort(listadoNombresDesordenado); 
+        
+        for(String s : listadoNombresDesordenado){
+            cmbPaciente.addItem(s);
         }
     }
 

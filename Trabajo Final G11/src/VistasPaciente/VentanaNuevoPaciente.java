@@ -5,6 +5,7 @@ import Entidades.Paciente;
 import Persistencia.PacienteData;
 import java.awt.Color;
 import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
     PacienteData pacienteData;
@@ -725,26 +726,24 @@ public class VentanaNuevoPaciente extends javax.swing.JInternalFrame {
     
     private void entradaNumerosConPunto (java.awt.event.KeyEvent evt) {
         int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57 || key == 46;
+        boolean numero = key >= 48 && key <= 57 || key == 46 || key == 8;
 
         if (!numero) {
             evt.consume();
-            txtErrorDni.setText("*Solo números.");
-        } else {
-            txtErrorDni.setText("");
+            JOptionPane.showMessageDialog(this, "El campo solo admite Numeros y puntos");
+        
         }
         
     }
     
     private void entradaNumerosSinPunto (java.awt.event.KeyEvent evt) {
         int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57;
+        boolean numero = key >= 48 && key <= 57 || key == 8;
 
         if (!numero) {
             evt.consume();
-            txtErrorDni.setText("*Solo números.");
-        } else {
-            txtErrorDni.setText("");
+            JOptionPane.showMessageDialog(this, "El campo solo acepta numeros");
+        
         }
     }
 }
